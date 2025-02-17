@@ -1,41 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Logo from "/src/Images/Logo.png";
 
 function Navbar() {
+  const [isTrue,setIsTrue]=useState(false)
   return (
     <>
 <nav className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00]">
-<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div className="relative flex h-16 items-center justify-between">
-      <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+<div className="mx-auto max-w-[1920px] px-2 sm:px-6 lg:px-8 xl:px-15">
+    <div className="relative flex h-16 items-center sm:justify-between">
+      <div className=" inset-y-0 left-0 flex items-center sm:hidden">
         {/* Mobile menu button*/}
         <button
-          type="button"
-          className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset"
+          type="button" onClick={()=>setIsTrue(!isTrue)}
+          className="relative inline-flex items-center justify-center rounded-md  text-gray-400 hover:bg-gray-700 hover:text-white"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
-          <span className="absolute -inset-0.5" />
-          <span className="sr-only">Open main menu</span>
+          <i className="fa-solid fa-bars text-[#1A1A1A] text-2xl"></i>
           {/*
       Icon when menu is closed.
 
       Menu open: "hidden", Menu closed: "block"
     */}
-          <svg
-            className="block size-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
+          
           {/*
       Icon when menu is open.
 
@@ -58,18 +45,20 @@ function Navbar() {
           </svg>
         </button>
       </div>
-      <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-        <div className="flex shrink-0 items-center">
+        <div className="flex shrink-0 items-center ml-2 sm:ml-0">
           <img
             className="h-8 w-auto"
-            src="./src/Images/Logo.png"
+            src={Logo}
             alt="Your Company"
           />
         </div>
-        <div className='bg-white p-[5px] rounded-lg'>
-            <input type="search" />
+        
+      <div className='bg-white p-[5px] rounded-lg sm:flex max-w-[800px] mx-2 w-full hidden'>
+            <input type="text" className='w-full outline-none lg:text-[20px]'/>
+            <span className='bg-[#002882] lg:p-[8px] lg:px-[16px] py-[6px] px-[12px] rounded-[5px]'>
+            <i className="fa-solid fa-magnifying-glass text-[#E6EAF3]"></i>
+            </span>
         </div>
-      </div>
       <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <button
           type="button"
@@ -122,14 +111,14 @@ function Navbar() {
         From: "transform opacity-100 scale-100"
         To: "transform opacity-0 scale-95"
     */}
-          <div
+          {/* <div
             className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-hidden"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="user-menu-button"
             tabIndex={-1}
           >
-            {/* Active: "bg-gray-100 outline-hidden", Not Active: "" */}
+            
             <a
               href="#"
               className="block px-4 py-2 text-sm text-gray-700"
@@ -157,42 +146,21 @@ function Navbar() {
             >
               Sign out
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
   </div>
   {/* Mobile menu, show/hide based on menu state. */}
-  <div className="sm:hidden" id="mobile-menu">
-    <div className="space-y-1 px-2 pt-2 pb-3">
-      {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-      <a
-        href="#"
-        className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
-        aria-current="page"
-      >
-        Dashboard
-      </a>
-      <a
-        href="#"
-        className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-      >
-        Team
-      </a>
-      <a
-        href="#"
-        className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-      >
-        Projects
-      </a>
-      <a
-        href="#"
-        className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-      >
-        Calendar
-      </a>
-    </div>
-  </div>
+  {isTrue?<div className="sm:hidden px-2 pb-2" id="mobile-menu">
+  <div className='bg-white p-[5px] rounded-lg flex w-full'>
+            <input type="text" className='w-full outline-none pr-1'/>
+            <span className='bg-[#002882] lg:p-[8px] lg:px-[16px] py-[3px] px-[6px] rounded-[5px]'>
+            <i className="fa-solid fa-magnifying-glass text-[#E6EAF3]"></i>
+            </span>
+        </div>
+  </div>:''}
+  
 </nav>
 
     </>

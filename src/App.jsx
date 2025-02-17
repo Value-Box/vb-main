@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import {BrowserRouter as Router, Route , Routes } from 'react-router-dom'
 import Navbar from './Components/Navbar'
+import Footer from './Components/Footer'
+
 
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
       <Routes>
       {/* <Route path="/Category/EditCategory" element={<Navbar/>}/> */}
       </Routes>
+      <Footer/>
     </Router>
     </>
   )
