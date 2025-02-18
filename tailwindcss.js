@@ -295,6 +295,10 @@ textarea,
   background-color: transparent; /* 3 */
   opacity: 1; /* 4 */
 }
+/* custom-scrollbar-hide.css */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
 /*
   Restore default font weight.
