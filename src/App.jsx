@@ -2,6 +2,8 @@ import { useState } from 'react'
 import {BrowserRouter as Router, Route , Routes } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
+import Home from './Pages/Home'
+
 
 
 
@@ -11,11 +13,13 @@ function App() {
   return (
     <>
     <Router>
-    <Navbar/>
+      <Navbar />
+      <Home />
       <Routes>
-      {/* <Route path="/Category/EditCategory" element={<Navbar/>}/> */}
+        
+        <Route path="/" element={<Home />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </Router>
     </>
   )
