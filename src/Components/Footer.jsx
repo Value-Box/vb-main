@@ -47,14 +47,15 @@ function Footer() {
               </svg>
             </p>
             <nav
-              className={`right-0 z-10 flex flex-col xl:space-y-2 text-sm text-[#CCC] 2xl:font-medium 
+  className={`right-0 z-10 flex sm:hidden flex-col xl:space-y-2 text-sm text-[#CCC] 2xl:font-medium 
     transition-transform transition-opacity duration-500 ease-in-out overflow-hidden origin-top
     ${
       openDropDown === "companyInfo"
-        ? "opacity-100 scale-y-100 mt-4"
-        : "opacity-0 scale-y-0 h-[0px]"
+        ? "opacity-100 scale-y-100 mt-4 sm:hidden" // 🟢 Small screen par dikhega
+        : "opacity-0 scale-y-0 h-[0px] sm:block"  // 🔴 Large screens par hidden rahega
     }`}
-            >
+>
+
               <a href="">About ValueBox</a>
               <a className="text-[#666]" href="">
                 ValueBox Se Ab Zindagi Asan!
@@ -113,12 +114,12 @@ function Footer() {
                 </svg>
               </p>
               <nav
-                className={`right-0 z-10 flex flex-col space-y-1 2xl:space-y-2 text-sm text-[#CCC] 2xl:font-medium 
+                className={`right-0 z-10 flex sm:hidden flex-col space-y-1 2xl:space-y-2 text-sm text-[#CCC] 2xl:font-medium 
     transition-transform transition-opacity duration-500 ease-in-out overflow-hidden origin-top
     ${
       openDropDown === "customerService"
-        ? "opacity-100 scale-y-100 mt-4"
-        : "opacity-0 scale-y-0 h-[0px]"
+      ? "opacity-100 scale-y-100 mt-4 sm:hidden" // 🟢 Small screen par dikhega
+      : "opacity-0 scale-y-0 h-[0px] sm:block"  // 🔴 Large screens par hidden rahega
     }`}
               >
                 <a className=" " href="">
@@ -177,7 +178,7 @@ function Footer() {
                 </svg>
               </p>
               <nav
-                className={`right-0 z-10 flex flex-col space-y-1 2xl:space-y-2 text-sm text-[#CCC] 2xl:font-medium 
+                className={`right-0 z-10 flex sm:hidden flex-col space-y-1 2xl:space-y-2 text-sm text-[#CCC] 2xl:font-medium 
     transition-transform transition-opacity duration-500 ease-in-out overflow-hidden origin-top
     ${
       openDropDown === "help"
