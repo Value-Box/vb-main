@@ -14,8 +14,8 @@ function Navbar() {
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -39,8 +39,8 @@ function Navbar() {
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -60,8 +60,8 @@ function Navbar() {
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -88,8 +88,8 @@ function Navbar() {
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -114,8 +114,8 @@ function Navbar() {
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -142,8 +142,8 @@ function Navbar() {
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -169,8 +169,8 @@ function Navbar() {
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -187,8 +187,8 @@ function Navbar() {
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -213,8 +213,8 @@ function Navbar() {
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -381,7 +381,7 @@ function Navbar() {
           </div>
         </div> */}
                     <div className="flex flex-col gap-5 w-full">
-                      <div className="bg-[#FCFCFC] z-10 p-3 rounded-lg">
+                      <div className="bg-[#FCFCFC] z-10 p-3 rounded-lg sm:hidden">
                         <button
                           type="button"
                           className="relative flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
@@ -405,17 +405,17 @@ function Navbar() {
                           </div>
                         </button>
                       </div>
-                      <div className="bg-[#FCFCFC] z-10 p-3 rounded-b-lg">
+                      <div className="bg-[#FCFCFC] z-10 p-3 rounded-b-lg rounded-t-lg">
                         <ul>
                           {profilPopup.map((item,index) => (
                             <React.Fragment key={index}>
                            
                               <li >
-                                <a className="flex gap-2 cursor-pointer">
+                                <a className="flex gap-2 cursor-pointer text-xs 2xl:text-base">
                                   {item.svg} {item.name}
                                 </a>
                               </li>
-                              <p className="h-[1px] bg-[#F2F2F2] my-3"></p>
+                              <p className="h-[1px] bg-[#F2F2F2] my-2"></p>
                             </React.Fragment>
                           ))}
                         </ul>
