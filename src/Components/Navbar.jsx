@@ -350,10 +350,10 @@ function Navbar() {
                   {/* Hover Effect */}
                   <div
                     className="absolute bg-[#F2F2F2] shadow-md opacity-0 rounded-lg group-hover:opacity-100 group-hover:visible z-10
-    transition-all duration-300 ease-in-out translate-y-0 flex gap-5 justify-center
-    left-1/2 transform -translate-x-1/2 invisible pointer-events-none group-hover:pointer-events-auto group-hover:visible"
+    transition-all duration-300 ease-in-out translate-y-0 flex gap-5 justify-end w-[250px] md:ml-0 ml-5 md:w-[300px]
+    left-1/2 transform md:-translate-x-1/2 -translate-x-2/2 invisible pointer-events-none group-hover:pointer-events-auto group-hover:visible"
                   >
-                    <div className="absolute w-4 h-4 bg-[#FCFCFC] top-[-6px] rotate-45 z-0"></div>
+                    {/* <div className="absolute w-4 h-4 bg-[#FCFCFC] top-[-6px] rotate-45 z-0 right-[20%]"></div> */}
                     {/* <div className='bg-[#FCFCFC] p-3 rounded-l-lg w-max max-h-[525px] overflow-y-auto scrollbar-hide'>
           <h3 className='text-base xl:text-lg font-semibold'>Browsing History</h3>
           <div className='bg-[#F2F2F2] rounded-lg overflow-hidden flex mt-3'>
@@ -372,8 +372,8 @@ function Navbar() {
             </div>
           </div>
         </div> */}
-                    <div className="flex flex-col gap-5">
-                      <div className="bg-[#FCFCFC] z-10 p-3 rounded-t-lg">
+                    <div className="flex flex-col gap-5 w-full">
+                      <div className="bg-[#FCFCFC] z-10 p-3 rounded-lg">
                         <button
                           type="button"
                           className="relative flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
@@ -387,7 +387,7 @@ function Navbar() {
                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                             alt=""
                           />
-                          <div className="hidden md:block">
+                          <div>
                             <p className="text-[10px] text-start xl:text-xs font-semibold text-[#333]">
                               Welcome
                             </p>
@@ -397,7 +397,7 @@ function Navbar() {
                           </div>
                         </button>
                       </div>
-                      <div className="bg-[#FCFCFC] z-10 p-3 rounded-br-lg">
+                      <div className="bg-[#FCFCFC] z-10 p-3 rounded-b-lg">
                         <ul>
                           {profilPopup.map((item) => (
                             <>
