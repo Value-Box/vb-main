@@ -9,6 +9,8 @@ import VerticalCategories from "./Categories/VerticalCategories";
 function Navbar() {
   const [isTrue, setIsTrue] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
   const dropdownRef = useRef(null);
 
   const profilPopup = [
@@ -252,7 +254,7 @@ function Navbar() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        console.log("Outside Click Detected"); // Debugging purpose
+        
         setDropdownOpen(false);
       }
     };
@@ -350,13 +352,13 @@ function Navbar() {
             <div className="relative inset-y-0 right-0 flex items-center pr-2 sm:static ml-auto sm:inset-auto sm:ml-4 sm:pr-0">
               {/* Profile dropdown */}
               <div className="relative ml-3 flex gap-3 xl:gap-8  items-center">
-                <div className="relative group">
+                <div className="relative group" ref={dropdownRef}>
                   {/* Button */}
-                  <button onClick={()=>{
-                    if(window.innerWidth<640){
-                      setDropdownOpen((prev) => !prev);
-                    }
-                  }}
+                  <button onClick={() => {
+          if (screenWidth < 640) {
+            setDropdownOpen((prev) => !prev); // Toggle dropdown state
+          }
+        }}
                     type="button"
                     className="relative flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
                     id="user-menu-button"
@@ -398,7 +400,7 @@ function Navbar() {
                   {/* Hover Effect */}
                   <div ref={dropdownRef}
     className={`absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all duration-300 ease-in-out 
-    translate-y-2 opacity-0 scale-95 flex gap-5 justify-end w-[250px] md:w-[300px] left-1/2 
+    translate-y-2 opacity-0 scale-95 flex gap-5 justify-end left-[100%] sm:left-0 w-[200px] sm:w-[250px] md:w-[300px] left-1/2 
     transform md:-translate-x-1/2 -translate-x-2/2 z-50 group-hover:opacity-100 
     group-hover:scale-100 group-hover:translate-y-0 sm:pointer-events-none sm:group-hover:pointer-events-auto
     ${dropdownOpen ? "opacity-100 scale-100 translate-y-0 pointer-events-auto" : "opacity-0 scale-95 translate-y-2 pointer-events-none"}`}
