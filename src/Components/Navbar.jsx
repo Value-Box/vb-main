@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Logo from "/src/Images/Logo.png";
 import ProductImg from "/src/Images/ProductCard.png";
 import { NavLink } from 'react-router-dom'
@@ -7,6 +7,19 @@ import { NavLink } from 'react-router-dom'
 function Navbar() {
   const [isTrue, setIsTrue] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const profilPopup = [
     {
@@ -314,15 +327,14 @@ function Navbar() {
               <div className="relative ml-3 flex gap-3 xl:gap-8  items-center">
                 <div className="relative group">
                   {/* Button */}
-                  <button onClick={() => setDropdownOpen(!dropdownOpen)}
-                    onBlur={() => setDropdownOpen(false)}
-                    type="button"
-                    className="relative flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
-                    id="user-menu-button"
-                    aria-expanded={dropdownOpen}
-                    aria-haspopup="true"
-                    // Toggle onClick
-                  >
+                  <button 
+        onClick={() => setDropdownOpen(!dropdownOpen)}
+        type="button"
+        className="relative flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
+        id="user-menu-button"
+        aria-expanded={dropdownOpen}
+        aria-haspopup="true"
+      >
                     <img
                       className="size-8 rounded-full max-w-none"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
