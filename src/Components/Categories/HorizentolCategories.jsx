@@ -20,9 +20,9 @@ function HorizentolCategories() {
       // console.log(remainingCategories)
   return (
     <>
-    <div className='flex items-center justify-center overflow-x-auto'>
+    <div className='flex items-center justify-center '>
     {/* <VerticalCategories/> */}
-    <div className="flex xl:gap-4 2xl:gap-10 p-2 bg-white justify-between">
+    <div className="flex xl:gap-4 2xl:gap-10 p-2 bg-white justify-between overflow-x-auto">
       {limittedCategories.map((category, index) => (
         <div
           key={index}

@@ -47,7 +47,8 @@ export default function VerticalCategories() {
   }, []);
 
   return (
-    <div className="ml-2 sm:ml-0 relative group py-1" ref={dropdownRef}>
+    <div className="ml-2 sm:ml-0 relative py-1 group" ref={dropdownRef}>
+      {/* Button for mobile */}
       <button
         className="bg-[#002882] text-[#E6EAF3] flex gap-2 w-max p-1 rounded-lg"
         onClick={() => {
@@ -71,10 +72,11 @@ export default function VerticalCategories() {
       <div
         className={`absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all sm:duration-300 ease-in-out 
         translate-y-2 opacity-0 scale-95 flex flex-col gap-2 w-[250px] md:w-[300px] left-1/2 
-        transform md:-translate-x-1/2 -translate-x-1/2 z-50 mt-1
-        group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-        group-hover:visible pointer-events-none group-hover:pointer-events-auto sm:delay-150 
+        transform md:-translate-x-1/2 -translate-x-1/2 z-50 mt-1 
+        sm:group-hover:opacity-100 sm:group-hover:scale-100 sm:group-hover:translate-y-0 
+        sm:group-hover:visible sm:pointer-events-auto 
         ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+        onClick={(e) => e.stopPropagation()} // 🛑 Prevent closing on click inside
       >
         <ul className="p-2 w-full">
           {verticleCategory.map((items, index) => (
