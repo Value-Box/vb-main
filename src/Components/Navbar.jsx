@@ -314,8 +314,7 @@ function Navbar() {
               <div className="relative ml-3 flex gap-3 xl:gap-8  items-center">
                 <div className="relative group">
                   {/* Button */}
-                  <button onClick={() => setDropdownOpen(!dropdownOpen)}
-                    onBlur={() => setDropdownOpen(false)}
+                  <button 
                     type="button"
                     className="relative flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
                     id="user-menu-button"
@@ -356,11 +355,11 @@ function Navbar() {
 
                   {/* Hover Effect */}
                   <div
-        className={`absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all duration-300 ease-in-out translate-y-0 flex gap-5 justify-end w-[250px] md:w-[300px] 
-        left-1/2 transform md:-translate-x-1/2 -translate-x-2/2 z-1024 ${
-          dropdownOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
-        }`}
-      >
+    className="absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all duration-300 ease-in-out 
+    translate-y-2 opacity-0 scale-95 flex gap-5 justify-end w-[250px] md:w-[300px] left-1/2 
+    transform md:-translate-x-1/2 -translate-x-2/2 z-50 group-hover:opacity-100 
+    group-hover:scale-100 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto"
+  >
                     {/* <div className="absolute w-4 h-4 bg-[#FCFCFC] top-[-6px] rotate-45 z-0 right-[20%]"></div> */}
                     {/* <div className='bg-[#FCFCFC] p-3 rounded-l-lg w-max max-h-[525px] overflow-y-auto scrollbar-hide'>
           <h3 className='text-base xl:text-lg font-semibold'>Browsing History</h3>
