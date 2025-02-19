@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Logo from "/src/Images/Logo.png";
 import ProductImg from "/src/Images/ProductCard.png";
 import { NavLink } from 'react-router-dom'
+import VerticalCategories from "./Categories/VerticalCategories";
+
 
 
 function Navbar() {
@@ -250,8 +252,8 @@ function Navbar() {
       <nav className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] sticky top-0 z-1024">
         <div className="mx-auto max-w-[1920px] px-2 sm:px-6 lg:px-8 xl:px-15">
           <div className="relative flex py-2 items-center sm:justify-between">
-            <div className=" inset-y-0 left-0 flex items-center sm:hidden">
-              {/* Mobile menu button*/}
+            {/* <div className=" inset-y-0 left-0 flex items-center sm:hidden">
+              
               <button
                 type="button"
                 onClick={() => setIsTrue(!isTrue)}
@@ -259,7 +261,7 @@ function Navbar() {
                 aria-controls="mobile-menu"
                 aria-expanded="false"
               >
-                {/* <i className="fa-solid fa-bars text-[#1A1A1A] text-2xl"></i> */}
+                
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="36"
@@ -276,7 +278,7 @@ function Navbar() {
                   />
                 </svg>
               </button>
-            </div>
+            </div> */}
             <div className="flex shrink-0 items-center ml-2 sm:ml-0">
               <NavLink>
               <img 
@@ -285,6 +287,8 @@ function Navbar() {
                 alt="Your Company"
               />
               </NavLink>
+
+              <VerticalCategories/>
             </div>
 
             <div className="bg-white p-1 2xl:p-[5px] rounded-lg sm:flex max-w-[800px] mx-2 w-full hidden">

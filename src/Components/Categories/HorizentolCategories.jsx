@@ -20,13 +20,13 @@ function HorizentolCategories() {
       // console.log(remainingCategories)
   return (
     <>
-    <div className='flex items-center justify-center'>
-    <VerticalCategories/>
-    <div className="flex  xl:gap-4 2xl:gap-10 p-2 bg-white justify-between">
+    <div className='flex items-center justify-center overflow-x-auto'>
+    {/* <VerticalCategories/> */}
+    <div className="flex xl:gap-4 2xl:gap-10 p-2 bg-white justify-between">
       {limittedCategories.map((category, index) => (
         <div
           key={index}
-          className="hidden lg:flex flex-shrink-0 px-3 xl:px-4 py-2 rounded-lg text-sm font-medium text-gray-700 transition-colors duration-200 cursor-pointer"
+          className="flex-shrink-0 px-3 xl:px-4 py-2 rounded-lg text-sm font-medium text-gray-700 transition-colors duration-200 cursor-pointer"
         >
             {/* {console.log(index)} */}
           {category}
