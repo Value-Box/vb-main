@@ -26,7 +26,7 @@ function Home() {
         <img
           src={images[currentIndex]}
           alt={`carousel-image-${currentIndex}`}
-          className="w-full h-[600px]"
+          className="w-full lg:h-[600px]"
         />
       </div>
       <button

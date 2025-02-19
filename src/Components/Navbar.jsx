@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect,useRef} from "react";
 import Logo from "/src/Images/Logo.png";
 import ProductImg from "/src/Images/ProductCard.png";
 import { NavLink } from 'react-router-dom'
@@ -9,6 +9,7 @@ import VerticalCategories from "./Categories/VerticalCategories";
 function Navbar() {
   const [isTrue, setIsTrue] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const profilPopup = [
     {
@@ -246,10 +247,43 @@ function Navbar() {
       link: "",
     },
   ];
+
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        console.log("Outside Click Detected"); // Debugging purpose
+        setDropdownOpen(false);
+      }
+    };
+  
+    document.addEventListener("click", handleClickOutside, true);
+  
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+  
+  
+  
+  useEffect(() => {
+      const handleResize = () => {
+        if (window.innerWidth >= 640) {
+          setDropdownOpen(false);
+        }
+      };
+  
+      window.addEventListener("resize", handleResize);
+      handleResize(); // Run once on mount to ensure correct state
+  
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
   return (
     <>
 
-      <nav className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] sticky top-0 z-1024">
+      <nav  className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] sticky top-0 z-1024">
         <div className="mx-auto max-w-[1920px] px-2 sm:px-6 lg:px-8 xl:px-15">
           <div className="relative flex py-2 items-center sm:justify-between">
             {/* <div className=" inset-y-0 left-0 flex items-center sm:hidden">
@@ -318,7 +352,11 @@ function Navbar() {
               <div className="relative ml-3 flex gap-3 xl:gap-8  items-center">
                 <div className="relative group">
                   {/* Button */}
-                  <button 
+                  <button onClick={()=>{
+                    if(window.innerWidth<640){
+                      setDropdownOpen((prev) => !prev);
+                    }
+                  }}
                     type="button"
                     className="relative flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
                     id="user-menu-button"
@@ -358,11 +396,12 @@ function Navbar() {
                   {/* Dropdown Menu */}
 
                   {/* Hover Effect */}
-                  <div
-    className="absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all duration-300 ease-in-out 
+                  <div ref={dropdownRef}
+    className={`absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all duration-300 ease-in-out 
     translate-y-2 opacity-0 scale-95 flex gap-5 justify-end w-[250px] md:w-[300px] left-1/2 
     transform md:-translate-x-1/2 -translate-x-2/2 z-50 group-hover:opacity-100 
-    group-hover:scale-100 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto"
+    group-hover:scale-100 group-hover:translate-y-0 sm:pointer-events-none sm:group-hover:pointer-events-auto
+    ${dropdownOpen ? "opacity-100 scale-100 translate-y-0 pointer-events-auto" : "opacity-0 scale-95 translate-y-2 pointer-events-none"}`}
   >
                     {/* <div className="absolute w-4 h-4 bg-[#FCFCFC] top-[-6px] rotate-45 z-0 right-[20%]"></div> */}
                     {/* <div className='bg-[#FCFCFC] p-3 rounded-l-lg w-max max-h-[525px] overflow-y-auto scrollbar-hide'>
@@ -383,7 +422,7 @@ function Navbar() {
             </div>
           </div>
         </div> */}
-                    <div className="flex flex-col gap-5 w-full">
+                    <div className="flex flex-col gap-5 w-full" >
                       <div className="bg-[#FCFCFC] z-10 p-3 rounded-lg sm:hidden">
                         <button
                           type="button"
@@ -426,6 +465,7 @@ function Navbar() {
                     </div>
                   </div>
                 </div>
+                
                 <button className="hidden md:flex gap-1 text-sm xl:text-base cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

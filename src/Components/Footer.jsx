@@ -20,7 +20,7 @@ function Footer() {
   return (
     <footer className="bg-[#1A1A1A]">
       <div className="max-w-[1920px] px-4 py-4 md:py-8 lg:py-10 2xl:py-16 md:px-8 lg:px-10 2xl:px-16 mx-auto sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:grid-cols-3 xl:grid-cols-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 sm:gap-8 md:grid-cols-3 xl:grid-cols-5">
           <div>
             <p
               className="font-medium text-[#EEA500] text-base 2xl:text-xl flex justify-between items-baseline"
@@ -471,62 +471,7 @@ function Footer() {
           </div>
         </div>
         <div className="text-[#CCC] lg:mt-10 mt-5 flex lg:flex-row flex-col gap-5 lg:gap-15 xl:gap-25">
-          <div>
-            <p className="font-medium text-base 2xl:text-xl flex justify-between items-baseline">
-              Security Certifications
-            </p>
-            <div className="flex gap-2 2xl-gap-3 mt-2 flex-wrap lg:flex-nowrap">
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={visa}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={mastercard}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={discover}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={americanexpress}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={jcb}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={applePay}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={GooglePay}
-                  alt=""
-                />
-              </span>
-            </div>
-          </div>
+          
           <div>
             <p className="font-medium text-base 2xl:text-xl flex justify-between items-baseline">
               We Accept
@@ -535,8 +480,7 @@ function Footer() {
               <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
                 <img
                   className="w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={visa}
-                  alt=""
+                  src={visa} alt=""
                 />
               </span>
               <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
