@@ -84,7 +84,7 @@ function Home() {
         &#8594;
       </button>
     </div>
-    <div className='p-3 md:p-0'>
+    <div className='p-3 md:p-0 bg-[#FCFCFC]'>
     <div className='flex justify-between md:justify-start md:m-0 lg:justify-between flex-auto rounded-lg sm:flex-wrap flex-col sm:flex-row lg:flex-nowrap md:px-4 px-2 lg:px-8 
     2xl:px-20 py-4 gap-2 max-w-[1920px] mx-auto bg-[#FEF6E6] md:bg-white'>
       
@@ -200,8 +200,8 @@ function Home() {
       </div>
     </div>
 
-    <div className='flex flex-wrap xl:flex-nowrap gap-4 sm:p-4 max-w-[1920px] mx-auto'>
-      <div className='bg-[#FFF6DF] sm:rounded-2xl p-4 w-full'>
+    <div className='flex flex-wrap sm:flex-nowrap gap-4 sm:p-4 max-w-[1920px] mx-auto'>
+      <div className='bg-[#FFF6DF] sm:rounded-2xl p-4 w-full sm:w-[50%] xl:w-full'>
         <Link>
         <div className='flex justify-between items-center mb-1'>
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '>Bundle Deals</h3>
@@ -295,7 +295,7 @@ function Home() {
             <p className="text-indigo-600 font-bold">{product.price}</p>
           </div> */}
           <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
-          <img src={product.img} alt="" className="min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
+          <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
           <p className="w-full whitespace-normal break-words mt-2 text-sm">{product.name}</p>
             <p className='inline-flex items-center rounded-md bg-gradient-to-l from-white to-[#FFD2AE] mt-1 ml-2'>
               <svg xmlns="http://www.w3.org/2000/svg" className='relative left-[-10px]' width="21" height="35" viewBox="0 0 21 35" fill="none">
@@ -320,7 +320,7 @@ function Home() {
     </div>
       </div>
       
-      <div className='bg-[#FFE3DF] sm:rounded-2xl p-4 w-full'>
+      <div className='bg-[#FFE3DF] sm:rounded-2xl p-4 w-full sm:w-[50%] xl:w-full'>
         <Link>
         <div className='flex justify-between items-center mb-1'>
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '><span>Flash</span><span className='text-[#F04438] '>Deals</span></h3>
@@ -403,7 +403,7 @@ function Home() {
         {products.map((product) => (
           <>
           <div className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
-          <img src={product.img} alt="" className="min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
+          <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
   
   {/* Yeh div flexible space le raha hai */}
   <div className="flex flex-col flex-grow justify-between">
