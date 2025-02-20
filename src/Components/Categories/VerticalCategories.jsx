@@ -3,17 +3,54 @@ import React, { useState, useEffect, useRef } from "react";
 export default function VerticalCategories() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   const verticleCategory = [
     {
       name: "Men Fashion",
-      subCategories: [{ name: "Sneakers" }, { name: "Loafers" }, { name: "Sandals" }],
+      subCategories: [
+        {
+          name: "Foot Wear",
+          items: [{ name: "Sneakers" }, { name: "Loafers" }, { name: "Sandals" }],
+        },
+        {
+          name: "Accessories",
+          items: [{ name: "Watches" }, { name: "Bags" }, { name: "Belts" }],
+        },
+      ],
     },
     {
-      name: "Accessories",
-      subCategories: [{ name: "Watches" }, { name: "Bags" }, { name: "Belts" }],
+      name: "Women Fashion",
+      subCategories: [
+        {
+          name: "Wear",
+          items: [{ name: "Sandles" }, { name: "Pumpy" }],
+        },
+        {
+          name: "Accessories",
+          items: [{ name: "Watches" }, { name: "Bags" }, { name: "Jewellery" }],
+        },
+      ],
+    },
+    {
+      name: "Kid Fashion",
+      subCategories: [
+        {
+          name: "Kids FootWear",
+          items: [{ name: "Chappal" }, { name: "Sports" }, { name: "Shoes" }, { name: "Sneakers" }],
+        },
+        {
+          name: "Boys Clothing",
+          items: [{ name: "Waistcoats" }, { name: "Pants & Shorts" }, { name: "Polo Shirts" }, { name: "Sets" }],
+        },
+        {
+          name: "Girls Clothing",
+          items: [{ name: "Sweatshirts" }, { name: "Dresses" }, { name: "Shirts" }, { name: "Sets" },{name:'T-Shirts'}],
+        },
+      ],
     },
   ];
+  
 
   // Function to handle clicks outside the dropdown
   useEffect(() => {
@@ -78,9 +115,10 @@ export default function VerticalCategories() {
         ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
         onClick={(e) => e.stopPropagation()} // 🛑 Prevent closing on click inside
       >
-        <ul className="p-2 w-full">
+        <ul className=" w-full">
           {verticleCategory.map((items, index) => (
-            <li className="py-2 px-3 hover:bg-gray-200 flex items-center justify-between" key={index}>
+            <li className="py-2 px-3 flex items-center justify-between cursor-pointer text-xs 2xl:text-base" key={index}
+            onMouseEnter={()=>setHoveredCategory(index)} onMouseLeave={()=>setHoveredCategory(null)}>
               {items.name}
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="20" viewBox="0 0 10 20" fill="none">
                 <path
@@ -90,6 +128,22 @@ export default function VerticalCategories() {
                   fill="#CCCCCC"
                 />
               </svg>
+              {hoveredCategory ===index &&(
+                <div className="absolute left-full top-0 bg-white rounded-lg shadow-lg flex gap-4 w-max">
+                  {items.subCategories.map((subcategory,subIndex)=>(
+                    <div key={subIndex} className="px-4 py-2  transition-colors duration-200">
+                      <h3 className="font-semibold text-gray-800">{subcategory.name}</h3>
+                      <div>
+                        {subcategory.items.map((child,childIndex)=>(
+                          <div key={ childIndex} className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer">
+                            {child.name}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </li>
           ))}
         </ul>

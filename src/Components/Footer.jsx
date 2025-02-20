@@ -602,7 +602,7 @@ function Footer() {
           </div>
         </div>
         <hr className="border-t border-[#CCC] 2xl:mt-10 mt-5 2xl:mb-10 mb-5" />
-        <div className="flex flex-col md:flex-row lg:text-lg text-base gap-5 items-center justify-between">
+        <div className="flex flex-col md:flex-row lg:text-lg text-base gap-2 sm:gap-5 items-center justify-between">
           <img src={Logo} className="w-[90px] 2xl:w-[128px]" alt="" />
           <div className="text-[#CCC] text-sm 2xl:text-base flex 2xl:gap-10 xl:gap-8 lg:gap-6 gap-4">
             <a href="">English</a>
