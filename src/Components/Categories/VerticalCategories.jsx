@@ -4,6 +4,7 @@ export default function VerticalCategories() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar control state
 
   const verticleCategory = [
     {
@@ -83,8 +84,14 @@ export default function VerticalCategories() {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(sidebarOpen)
+  }, [sidebarOpen]);
+  
+
   return (
     <div className="ml-2 sm:ml-0 relative py-1 group" ref={dropdownRef}>
+      
       {/* Button for mobile */}
       <button
         className="bg-[#002882] text-[#E6EAF3] flex gap-2 w-max p-1 rounded-lg"
@@ -109,7 +116,7 @@ export default function VerticalCategories() {
       <div
         className={`absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all sm:duration-300 ease-in-out 
         translate-y-2 opacity-0 scale-95 flex flex-col gap-2 w-[250px] md:w-[300px] left-1/2 
-        transform md:-translate-x-1/2 -translate-x-1/2 z-50 mt-1 
+        transform md:-translate-x-1/2 -translate-x-1/2 z-50 sm:mt-1 
         sm:group-hover:opacity-100 sm:group-hover:scale-100 sm:group-hover:translate-y-0 
         sm:group-hover:visible sm:pointer-events-auto 
         ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
@@ -118,7 +125,8 @@ export default function VerticalCategories() {
         <ul className=" w-full">
           {verticleCategory.map((items, index) => (
             <li className="py-2 px-3 flex items-center justify-between cursor-pointer text-xs 2xl:text-base" key={index}
-            onMouseEnter={()=>setHoveredCategory(index)} onMouseLeave={()=>setHoveredCategory(null)}>
+            onMouseEnter={()=>setHoveredCategory(index)} onMouseLeave={()=>setHoveredCategory(null)}
+            onClick={() => setSidebarOpen(true)}>
               {items.name}
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="20" viewBox="0 0 10 20" fill="none">
                 <path
@@ -129,10 +137,11 @@ export default function VerticalCategories() {
                 />
               </svg>
               {hoveredCategory ===index &&(
-                <div className="absolute left-full top-0 bg-white rounded-lg shadow-lg flex gap-4 w-max">
+                <>
+                <div className="hidden sm:flex absolute left-full top-0 bg-white rounded-lg shadow-lg  gap-4 w-max">
                   {items.subCategories.map((subcategory,subIndex)=>(
                     <div key={subIndex} className="px-4 py-2  transition-colors duration-200">
-                      <h3 className="font-semibold text-gray-800">{subcategory.name}</h3>
+                      <h3 className="font-semibold lg:text-sm 2xl:text-base text-gray-800">{subcategory.name}</h3>
                       <div>
                         {subcategory.items.map((child,childIndex)=>(
                           <div key={ childIndex} className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer">
@@ -143,7 +152,43 @@ export default function VerticalCategories() {
                     </div>
                   ))}
                 </div>
+                {sidebarOpen && 
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 h-full">
+                  <div className="bg-white w-64 h-screen ml-[-13px] shadow-lg transform translate-x-0 
+                  transition-transform duration-300" onClick={(e) => e.stopPropagation()}>
+                  <button
+  className="text-gray-500 hover:text-gray-700 absolute top-2 right-2 p-2"
+  onClick={(e) => {
+    e.stopPropagation(); // Stop event from propagating
+    console.log("Closing Sidebar");
+    setSidebarOpen(false);
+  }}
+>
+  ✕
+</button>
+
+                  <div className="block sm:hidden ">
+                {items.subCategories.map((subcategory,subIndex)=>(
+                  <div key={subIndex} className="px-4 py-2  transition-colors duration-200">
+                    <h3 className="font-semibold lg:text-sm 2xl:text-base text-gray-800">{subcategory.name}</h3>
+                    <div>
+                      {subcategory.items.map((child,childIndex)=>(
+                        <div key={ childIndex} className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer">
+                          {child.name}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+                  </div>
+                </div>
+              }
+              </>
               )}
+              
+                
+              
             </li>
           ))}
         </ul>
