@@ -155,7 +155,7 @@ function Home() {
     </div>
 
 {/* Carousel */}
-    <div className="relative w-full max-w-5xl mx-auto">
+    <div className="relative w-full max-w-5xl mx-auto hidden">
       <div
         ref={carouselRef}
         className="flex gap-4 overflow-x-scroll scrollbar-hide cursor-grab active:cursor-grabbing"
@@ -200,7 +200,7 @@ function Home() {
       </div>
     </div>
 
-    <div className='flex flex-wrap gap-4 p-4 max-w-[1920px] mx-auto'>
+    <div className='flex flex-wrap xl:flex-nowrap gap-4 p-4 max-w-[1920px] mx-auto'>
       <div className='bg-[#FFF6DF] rounded-2xl p-4 w-full'>
         <Link>
         <div className='flex justify-between items-center mb-1'>
