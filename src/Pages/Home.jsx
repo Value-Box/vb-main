@@ -200,8 +200,8 @@ function Home() {
       </div>
     </div>
 
-    <div className='flex flex-wrap xl:flex-nowrap gap-4 p-4 max-w-[1920px] mx-auto'>
-      <div className='bg-[#FFF6DF] rounded-2xl p-4 w-full'>
+    <div className='flex flex-wrap xl:flex-nowrap gap-4 sm:p-4 max-w-[1920px] mx-auto'>
+      <div className='bg-[#FFF6DF] sm:rounded-2xl p-4 w-full'>
         <Link>
         <div className='flex justify-between items-center mb-1'>
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '>Bundle Deals</h3>
@@ -320,7 +320,7 @@ function Home() {
     </div>
       </div>
       
-      <div className='bg-[#FFE3DF] rounded-2xl p-4 w-full'>
+      <div className='bg-[#FFE3DF] sm:rounded-2xl p-4 w-full'>
         <Link>
         <div className='flex justify-between items-center mb-1'>
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '><span>Flash</span><span className='text-[#F04438] '>Deals</span></h3>
