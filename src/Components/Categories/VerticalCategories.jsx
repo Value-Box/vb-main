@@ -4,6 +4,7 @@ export default function VerticalCategories() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [subCategory, setSubCategory] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar control state
 
   const verticleCategory = [
@@ -126,7 +127,7 @@ export default function VerticalCategories() {
           {verticleCategory.map((items, index) => (
             <li className="py-2 px-3 flex items-center justify-between cursor-pointer text-xs 2xl:text-base" key={index}
             onMouseEnter={()=>setHoveredCategory(index)} onMouseLeave={()=>setHoveredCategory(null)}
-            onClick={() => setSidebarOpen(true)}>
+            onClick={() => {setSidebarOpen(true), setSubCategory(index)}}>
               {items.name}
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="20" viewBox="0 0 10 20" fill="none">
                 <path
@@ -152,38 +153,7 @@ export default function VerticalCategories() {
                     </div>
                   ))}
                 </div>
-                {sidebarOpen && 
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 h-full">
-                  <div className="bg-white w-64 h-screen ml-[-13px] shadow-lg transform translate-x-0 
-                  transition-transform duration-300" onClick={(e) => e.stopPropagation()}>
-                  <button
-  className="text-gray-500 hover:text-gray-700 absolute top-2 right-2 p-2"
-  onClick={(e) => {
-    e.stopPropagation(); // Stop event from propagating
-    console.log("Closing Sidebar");
-    setSidebarOpen(false);
-  }}
->
-  ✕
-</button>
-
-                  <div className="block sm:hidden ">
-                {items.subCategories.map((subcategory,subIndex)=>(
-                  <div key={subIndex} className="px-4 py-2  transition-colors duration-200">
-                    <h3 className="font-semibold lg:text-sm 2xl:text-base text-gray-800">{subcategory.name}</h3>
-                    <div>
-                      {subcategory.items.map((child,childIndex)=>(
-                        <div key={ childIndex} className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer">
-                          {child.name}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-                  </div>
-                </div>
-              }
+               
               </>
               )}
               
@@ -193,6 +163,71 @@ export default function VerticalCategories() {
           ))}
         </ul>
       </div>
+
+      <div
+  className={`fixed inset-0 z-50  duration-400 ${
+    sidebarOpen ? "opacity-100 visible" : "opacity-0 delay-100 invisible"
+  }`}
+  onClick={() => setSidebarOpen(false)}
+>
+  <h1 className="bg-white">Sidebar</h1>
+  <button
+      className="text-[#002882] text-lg border-[#002882] border rounded-full w-8 h-8 cursor-pointer flex justify-center items-center z-1050 font-bold absolute top-2 right-2 p-2"
+      onClick={(e) => {
+        e.stopPropagation();
+        setSidebarOpen(false);
+      }}
+    >
+      ✕
+    </button>
+<div className={`bg-[#F2F2F2] flex w-[100%]  h-screen shadow-lg transform transition-transform duration-400 ease-in-out ${
+      sidebarOpen ? "translate-x-0" : "-translate-x-full"
+    }`}>
+      
+<div className="w-[30%]"
+    onClick={(e) => e.stopPropagation()} // Prevent closing sidebar when clicking inside
+  >
+    {/* Close Button */}
+    
+
+    {/* Sidebar Content */}
+    <div className="block sm:hidden">
+      {verticleCategory.map((items, index) =>
+        subCategory === index ? (
+          <div key={index}>
+            {items.subCategories.map((subcategory, subIndex) => (
+              <div key={subIndex} className="px-4 py-2 transition-colors duration-200">
+                <h3 className="font-semibold lg:text-sm 2xl:text-base text-gray-800">
+                  {subcategory.name}
+                </h3>
+                <div>
+                  {subcategory.items.map((child, childIndex) => (
+                    <div
+                      key={childIndex}
+                      className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer"
+                    >
+                      {child.name}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : null
+      )}
+    </div>
+  </div>
+  <div className="bg-white h-full w-full">
+
+  </div>
+</div>
+</div>
+
+
+
+     
+
+
     </div>
   );
 }

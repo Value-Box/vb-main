@@ -4,6 +4,9 @@ import HorizentolCategories from '../Components/Categories/HorizentolCategories'
 import ProductImg from "/src/Images/ProductCard.png";
 import HoddieImg from "/src/Images/Image2.png";
 import MouseImg from "/src/Images/Image3.png";
+import electricity from "/src/Images/electricity.gif";
+import VidCarousel from '../Components/Carousels/VidCarousel';
+
 
 function Home() {
     const images = [
@@ -23,13 +26,28 @@ function Home() {
       };
 
       const products = [
-        { id: 1, name: "Laptop", price: "$999", img: ProductImg },
-        { id: 2, name: "Keyboard", price: "$49", img: HoddieImg },
-        { id: 3, name: "Mouse", price: "$29", img: MouseImg },
-        { id: 4, name: "Headphones", price: "$89", img: ProductImg },
-        { id: 5, name: "Monitor", price: "$199", img: MouseImg },
-        { id: 6, name: "SSD", price: "$119", img: HoddieImg },
+        { id: 1, name: "Laptop", price: "999", img: ProductImg },
+        { id: 2, name: "Keyboard", price: "49", img: HoddieImg },
+        { id: 3, name: "Mouse", price: "29", img: MouseImg },
+        { id: 4, name: "Headphones", price: "89", img: ProductImg },
+        { id: 5, name: "Monitor", price: "199", img: MouseImg },
+        { id: 6, name: "SSD", price: "119", img: HoddieImg },
       ];
+
+      const featuredVideo=[
+        {
+          id:1,vidUrl:<iframe width="560" height="315" src="https://www.youtube.com/embed/6hksegA_x94?si=h_vjU1LfbdyqBZE7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,img:ProductImg,price: "999",description:"Men'S Other Running Shoes Korean Style"
+        },
+        {
+          id:1,vidUrl:<iframe width="560" height="315" src="https://www.youtube.com/embed/6hksegA_x94?si=h_vjU1LfbdyqBZE7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,img:HoddieImg,price: "49",description:"Men'S Other Running Shoes Korean Style"
+        },
+        {
+          id:1,vidUrl:<iframe width="560" height="315" src="https://www.youtube.com/embed/6hksegA_x94?si=h_vjU1LfbdyqBZE7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,img:MouseImg,price: "199",description:"Men'S Other Running Shoes Korean Style"
+        },
+        {
+          id:1,vidUrl:<iframe width="560" height="315" src="https://www.youtube.com/embed/6hksegA_x94?si=h_vjU1LfbdyqBZE7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,img:ProductImg,price: "9999",description:"Men'S Other Running Shoes Korean Style"
+        }
+      ]
       const carouselRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -84,6 +102,7 @@ function Home() {
         &#8594;
       </button>
     </div>
+
     <div className='p-3 md:p-0 bg-[#FCFCFC]'>
     <div className='flex justify-between md:justify-start md:m-0 lg:justify-between flex-auto rounded-lg sm:flex-wrap flex-col sm:flex-row lg:flex-nowrap md:px-4 px-2 lg:px-8 
     2xl:px-20 py-4 gap-2 max-w-[1920px] mx-auto bg-[#FEF6E6] md:bg-white'>
@@ -156,22 +175,20 @@ function Home() {
 
 {/* Carousel */}
     <div className="relative w-full max-w-5xl mx-auto hidden">
-      <div
-        ref={carouselRef}
-        className="flex gap-4 overflow-x-scroll scrollbar-hide cursor-grab active:cursor-grabbing"
+      <div className="flex gap-4 overflow-x-scroll scrollbar-hide cursor-grab active:cursor-grabbing"
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
       >
-        {products.map((product) => (
+        {products.map((product,index) => (
           <>
           {/* <div key={product.id} className="min-w-[230px] bg-white p-4 rounded-lg shadow-lg">
             <img src={product.img} alt={product.name} className="w-full h-40 object-cover rounded-md" />
             <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>
             <p className="text-indigo-600 font-bold">{product.price}</p>
           </div> */}
-          <div className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
+          <div key={index} className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
           <img src={product.img} alt="" className="min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
   
   {/* Yeh div flexible space le raha hai */}
@@ -287,26 +304,27 @@ function Home() {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
       >
-        {products.map((product) => (
+        {products.map((product,index) => (
           <>
           {/* <div key={product.id} className="min-w-[230px] bg-white p-4 rounded-lg shadow-lg">
             <img src={product.img} alt={product.name} className="w-full h-40 object-cover rounded-md" />
             <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>
             <p className="text-indigo-600 font-bold">{product.price}</p>
           </div> */}
-          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
+          <div key={index} className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
           <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
           <p className="w-full whitespace-normal break-words mt-2 text-sm">{product.name}</p>
             <p className='inline-flex items-center rounded-md bg-gradient-to-l from-white to-[#FFD2AE] mt-1 ml-2'>
-              <svg xmlns="http://www.w3.org/2000/svg" className='relative left-[-10px]' width="21" height="35" viewBox="0 0 21 35" fill="none">
-               <path d="M19.9661 15.3081L14.4253 17.3229L15.2085 1.48724C15.2421 0.809162 14.6655 0.317927 14.1256 0.56477L10.5 2.2232C9.9601 1.97639 10.4664 1.54513 10.5 2.2232C10.5 2.2232 10.7181 0.91438 10 1.5C5.77615 4.94452 6.57459 17.3229 6.57459 17.3229L1.03387 15.3081C0.321944 15.0491 -0.275344 15.978 0.133111 16.7091L9.83472 34.0784C10.1488 34.6405 10.8513 34.6405 11.1652 34.0784L20.867 16.7091C21.2753 15.9781 20.6781 15.0491 19.9661 15.3081Z" fill="url(#paint0_linear_11156_17119)"/>
-               <defs>
-                 <linearGradient id="paint0_linear_11156_17119" x1="10.5" y1="0.5" x2="10.5" y2="34.5" gradientUnits="userSpaceOnUse">
-                   <stop stop-color="#FFD2AE"/>
-                   <stop offset="1" stop-color="#FF9948"/>
-                 </linearGradient>
-               </defs>
-              </svg>
+              
+              <svg xmlns="http://www.w3.org/2000/svg" className='relative left-[-10px]' width="22" height="35" viewBox="0 0 22 35" fill="none">
+  <path d="M20.3 15.3081L14.7593 17.3229L15.5425 1.48724C15.5761 0.809162 14.9994 0.317927 14.4596 0.56477L10.834 2.2232C10.2941 1.97639 10.8003 1.54513 10.834 2.2232C10.834 2.2232 11.0521 0.91438 10.334 1.5C6.11014 4.94452 6.90858 17.3229 6.90858 17.3229L1.36785 15.3081C0.655928 15.0491 0.0586404 15.978 0.467096 16.7091L10.1687 34.0784C10.4827 34.6405 11.1853 34.6405 11.4992 34.0784L21.2009 16.7091C21.6092 15.9781 21.0121 15.0491 20.3 15.3081Z" fill="url(#paint0_linear_11256_1038)"/>
+  <defs>
+    <linearGradient id="paint0_linear_11256_1038" x1="10.834" y1="0.5" x2="10.834" y2="34.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD2AE"/>
+      <stop offset="1" stop-color="#FF9948"/>
+    </linearGradient>
+  </defs>
+</svg>
               <span className="flex items-baseline font-semibold">
                 <span className="text-xs">PKR</span>
                 <span className="text-lg ml-[2px]">{product.price}</span>
@@ -323,7 +341,7 @@ function Home() {
       <div className='bg-[#FFE3DF] sm:rounded-2xl p-4 w-full sm:w-[50%] xl:w-full'>
         <Link>
         <div className='flex justify-between items-center mb-1'>
-          <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '><span>Flash</span><span className='text-[#F04438] '>Deals</span></h3>
+          <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl flex'><span className='flex gap-2'><img className='w-6' src={electricity} alt="" /> Flash</span><span className='text-[#F04438] '>Deals</span></h3>
           <span className='bg-[#FFC3B2] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
           <svg xmlns="http://www.w3.org/2000/svg" className='w-4 lg:w-5 2xl:w-6' viewBox="0 0 24 24" fill="none">
              <path d="M2 12H22M22 12L13 3M22 12L13 21" stroke="black" stroke-width="2.5"/>
@@ -400,9 +418,9 @@ function Home() {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
       >
-        {products.map((product) => (
+        {products.map((product,index) => (
           <>
-          <div className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
+          <div key={index} className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
           <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
   
   {/* Yeh div flexible space le raha hai */}
@@ -434,6 +452,7 @@ function Home() {
       
     </div>
 
+    <VidCarousel videos={featuredVideo} />
     </>
   )
 }
