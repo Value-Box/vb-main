@@ -2,13 +2,11 @@ import React, { useState ,useEffect,useRef} from "react";
 import Logo from "/src/Images/Logo.png";
 import ProductImg from "/src/Images/ProductCard.png";
 import { NavLink } from 'react-router-dom'
-import LoginSignup from "../Pages/LoginSignup";
-import { useNavigate } from "react-router-dom";
+import VerticalCategories from "./Categories/VerticalCategories";
 
 
 
 function Navbar() {
-  const navigate = useNavigate();
   const [isTrue, setIsTrue] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -469,12 +467,9 @@ function Navbar() {
                     </div>
                   </div>
                 </div>
-              <NavLink to="/LoginSignup">
-              <button
-               className="hidden md:flex gap-1 text-sm xl:text-base cursor-pointer">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 xl:w-9"
+                <NavLink to="/LoginSignup">
+                <button className="hidden md:flex gap-1 text-sm xl:text-base cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 md:w-7 2xl:w-9"
                     viewBox="0 0 36 36"
                     fill="none"
                   >
@@ -485,13 +480,10 @@ function Navbar() {
                   </svg>
                   Support
                 </button>
-              </NavLink>
-               
-                <button
-                 className="relative cursor-pointer">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 xl:w-9"
+                </NavLink>
+                
+                <button className="relative cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 md:w-7 2xl:w-9"
                     viewBox="0 0 36 36"
                     fill="none"
                   >
