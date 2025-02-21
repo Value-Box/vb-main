@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import Logo from "/src/Images/Logo.png";
 import ProductImg from "/src/Images/ProductCard.png";
 import { NavLink } from 'react-router-dom'
+import LoginSignup from "../Pages/LoginSignup";
+import { useNavigate } from "react-router-dom";
+
 
 
 function Navbar() {
+  const navigate = useNavigate();
   const [isTrue, setIsTrue] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -423,7 +427,9 @@ function Navbar() {
                     </div>
                   </div>
                 </div>
-                <button className="hidden md:flex gap-1 text-sm xl:text-base cursor-pointer">
+              <NavLink to="/LoginSignup">
+              <button
+               className="hidden md:flex gap-1 text-sm xl:text-base cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-5 xl:w-9"
@@ -437,7 +443,10 @@ function Navbar() {
                   </svg>
                   Support
                 </button>
-                <button className="relative cursor-pointer">
+              </NavLink>
+               
+                <button
+                 className="relative cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-6 xl:w-9"
