@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import LoginImage from "/src/Images/LoginImage.png";
-import Input from '../Components/Input';
-import FormButton from '../Components/FormButton';
+import Input from '../../Components/Input';
+import FormButton from '../../Components/FormButton';
 
 
 function LoginSignup() {

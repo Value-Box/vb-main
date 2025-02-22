@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Input from '../Components/Input';
-import FormButton from "../Components/FormButton";
+import Input from '../../Components/Input';
+
+import FormButton from "../../Components/FormButton";
 import { NavLink } from "react-router-dom";
 
 

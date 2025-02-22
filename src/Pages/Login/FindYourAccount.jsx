@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Input from '../Components/Input';
-import FormButton from '../Components/FormButton';
+import Input from '../../Components/Input';
+import FormButton from "../../Components/FormButton";
 import LoginImage from "/src/Images/LoginImage.png";
 
 function FindYourAccount() {

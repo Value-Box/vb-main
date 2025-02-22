@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom"; // Import NavLink
-import FormButton from "../Components/FormButton";
+import FormButton from "../../Components/FormButton";
 
 function GetCode() {
   const [code, setCode] = useState(["", "", "", ""]);

@@ -2,7 +2,7 @@ import React, { useState ,useEffect,useRef} from "react";
 import Logo from "/src/Images/Logo.png";
 import ProductImg from "/src/Images/ProductCard.png";
 import { NavLink } from 'react-router-dom'
-import VerticalCategories from "./Categories/VerticalCategories";
+import VerticalCategories from "./../Categories/VerticalCategories";
 
 
 
