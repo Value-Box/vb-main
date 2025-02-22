@@ -49,9 +49,12 @@ function ProductCard1() {
       prevIndex +1>=  category.length ?0 : prevIndex - 1
     );
   };
+
+
+
   return (
     <>
-    
+   
     <div className="relative w-full mx-auto overflow-hidden">
       {/* Wrapper */}
       <div
