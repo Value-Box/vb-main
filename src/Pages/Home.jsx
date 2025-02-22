@@ -22,13 +22,13 @@ const fetchUserData = async (options) => {
 };
 function Home() {
   const { data, loading, error } = useFetch({ apiFunc: fetchUserData });
-  console.log(data)
 
   const [brands, setBrands] = useState([]);
   useEffect(() => {
     if (data?.data) {
       setBrands(data.data); // ✅ Sirf API se jo array aa raha hai woh set hoga
     }
+    console.log("Data Updated:", data);
   }, [data]);
 
     const images = [
