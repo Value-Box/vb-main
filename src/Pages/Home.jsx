@@ -6,9 +6,31 @@ import HoddieImg from "/src/Images/Image2.png";
 import MouseImg from "/src/Images/Image3.png";
 import electricity from "/src/Images/electricity.gif";
 import VidCarousel from '../Components/Carousels/VidCarousel';
+import useFetch from '../hooks/UseFetch';
 
 
+// const options = {
+//   method: "GET", // HTTP method (GET, POST, PUT, DELETE)
+//   headers: {
+//     "Content-Type": "application/json",
+//     Authorization: `Bearer YOUR_TOKEN_HERE`, // ✅ Token bhejna zaroori hai
+//   },
+// };
+
+const fetchUserData = async (options) => {
+  return fetch("http://182.176.166.222:8081/api/GetBrands/GetBrands", options);
+};
 function Home() {
+  const { data, loading, error } = useFetch({ apiFunc: fetchUserData });
+  console.log(data)
+
+  const [brands, setBrands] = useState([]);
+  useEffect(() => {
+    if (data?.data) {
+      setBrands(data.data); // ✅ Sirf API se jo array aa raha hai woh set hoga
+    }
+  }, [data]);
+
     const images = [
         "https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
         "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80",
@@ -81,6 +103,15 @@ function Home() {
   return (
     <>
     <HorizentolCategories/>
+    <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      <ul>
+        {brands.map((brand, index) => (
+          <li key={index}>{brand.brandName}</li>
+        ))}
+      </ul>
+    </div>
     <div className="relative w-full mx-auto">
       <div className="overflow-hidden">
         <img
@@ -182,12 +213,7 @@ function Home() {
         onMouseMove={handleMouseMove}
       >
         {products.map((product,index) => (
-          <>
-          {/* <div key={product.id} className="min-w-[230px] bg-white p-4 rounded-lg shadow-lg">
-            <img src={product.img} alt={product.name} className="w-full h-40 object-cover rounded-md" />
-            <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>
-            <p className="text-indigo-600 font-bold">{product.price}</p>
-          </div> */}
+          
           <div key={index} className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
           <img src={product.img} alt="" className="min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
   
@@ -212,7 +238,7 @@ function Home() {
   </div>
 </div>
          
-          </>
+          
         ))}
       </div>
     </div>
@@ -305,12 +331,8 @@ function Home() {
         onMouseMove={handleMouseMove}
       >
         {products.map((product,index) => (
-          <>
-          {/* <div key={product.id} className="min-w-[230px] bg-white p-4 rounded-lg shadow-lg">
-            <img src={product.img} alt={product.name} className="w-full h-40 object-cover rounded-md" />
-            <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>
-            <p className="text-indigo-600 font-bold">{product.price}</p>
-          </div> */}
+          
+          
           <div key={index} className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
           <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
           <p className="w-full whitespace-normal break-words mt-2 text-sm">{product.name}</p>
@@ -332,7 +354,7 @@ function Home() {
 
             </p>
           </div>
-          </>
+         
         ))}
       </div>
     </div>
@@ -419,7 +441,7 @@ function Home() {
         onMouseMove={handleMouseMove}
       >
         {products.map((product,index) => (
-          <>
+          
           <div key={index} className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
           <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
   
@@ -444,7 +466,7 @@ function Home() {
   </div>
 </div>
          
-          </>
+          
         ))}
       </div>
     </div>

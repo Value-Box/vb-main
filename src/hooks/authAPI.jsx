@@ -1,6 +1,6 @@
 export const authAPI = async () => {
     try {
-      const response = await fetch("http://192.168.1.196:8081/api/GetSecurityKey/SecurityKey", {
+      const response = await fetch("http://182.176.166.222:8081/api/GetSecurityKey/SecurityKey", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
