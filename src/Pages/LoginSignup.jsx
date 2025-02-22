@@ -42,7 +42,21 @@ function LoginSignup() {
         <form className="w-full md:w-1/2 px-5 md:px-0">
         <div className='hidden md:block'>
         <h2 className="text-2xl text-center font-bold mb-1">Register/Sign in</h2>
-          <p className="text-center mb-4">Your information is protected</p>
+        <div className="py-2 text-center flex items-center justify-center gap-1">
+  <div className="w-4 h-4 flex items-center justify-center bg-[#12B76A] rounded-full border border-[#12B76A]">
+    <svg
+      className="w-3 h-3 text-white"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  </div>
+  <span className='text-[16px]'>Your Information is Protected</span>
+</div>
          
         </div>
          
@@ -68,17 +82,17 @@ function LoginSignup() {
               Continue
             </FormButton>
             <p 
-              className="text-center  cursor-pointer" 
+              className="mt-3 text-center  cursor-pointer" 
               onClick={() => setIsModalOpen(true)}
             >
               Trouble Signing in?
             </p>
-          <div className="flex items-center w-full my-4">
+          <div className="flex items-center w-full mt-5">
       <div className="flex-1 h-px bg-gray-300"></div>
       <span className="px-3 text-gray-500 text-1xl">Or continue with</span>
        <div className="flex-1 h-px bg-gray-300"></div>
        </div>
-       <div className='flex flex-col gap-3'>
+       <div className='flex flex-col gap-3 mt-5'>
        <FormButton className="bg-white font-semibold text-black border border-gray-300 !rounded-full py-2 px-4 w-full mb-1 cursor-pointer">
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 36 36" fill="none">
     <path d="M32.7083 15.0623H31.5V15H18V21H26.4773C25.2405 24.4928 21.9172 27 18 27C13.0297 27 9 22.9702 9 18C9 13.0297 13.0297 9 18 9C20.2943 9 22.3815 9.8655 23.9708 11.2792L28.2135 7.0365C25.5345 4.53975 21.951 3 18 3C9.71625 3 3 9.71625 3 18C3 26.2838 9.71625 33 18 33C26.2838 33 33 26.2838 33 18C33 16.9943 32.8965 16.0125 32.7083 15.0623Z" fill="#FFC107"/>
@@ -127,11 +141,13 @@ function LoginSignup() {
   <div className="fixed px-5 md:p-0 inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
     <div className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-lg shadow-lg relative">
        {/* Close Icon */}
-      <button 
+       <button 
   className="absolute top-4 right-4 text-white cursor-pointer"
   onClick={() => setIsModalOpen(false)}
 >
-  <span className="rounded-full bg-[#002882] p-2 text-white">✖</span> 
+  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white">
+    ✖
+  </span> 
 </button>
 
 
@@ -140,7 +156,7 @@ function LoginSignup() {
       <p>If you remember your email address or phone number, you can reset your password.</p>
       <NavLink to="/ResetPassword" className="w-full">
       <FormButton className="bg-gray-300 text-black w-full mb-1 border-none cursor-pointer">
-      Reset Your Password
+        Reset Your Password
       </FormButton>
       </NavLink>
       
