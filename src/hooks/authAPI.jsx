@@ -1,42 +1,98 @@
-export const authAPI = async () => {
-    try {
-      const response = await fetch("http://182.176.166.222:8081/api/GetSecurityKey/SecurityKey", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          UserName: 'arshad',
-          Password: 'arshad',
-          MACAddress: "64-51-06-56-B7-6C",
-          IPAddress: "192.168.1.7",
-          Source: "1",
-        }),
-      });
+// export const authAPI = async () => {
+//     try {
+//       const response = await fetch("http://182.176.166.222:8081/api/GetSecurityKey/SecurityKey", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//           UserName: 'arshad',
+//           Password: 'arshad',
+//           MACAddress: "64-51-06-56-B7-6C",
+//           IPAddress: "192.168.1.7",
+//           Source: "1",
+//         }),
+//       });
   
-      if (!response.ok) {
-        throw new Error(`HTTP Error! Status: ${response.status}`);
-      }
+//       if (!response.ok) {
+//         throw new Error(`HTTP Error! Status: ${response.status}`);
+//       }
   
-      const data = await response.json();
-      console.log(data.data.token)
-      if (data.statusCode === 200) {
-        // ✅ Token ko sirf sessionStorage me store kar rahe hain
-        sessionStorage.setItem("token", data.data.token);
+//       const data = await response.json();
+//       console.log(data.data.token)
+//       if (data.statusCode === 200) {
+//         // ✅ Token ko sirf sessionStorage me store kar rahe hain
+//         sessionStorage.setItem("token", data.data.token);
         
-        return data.data.token;
-      } else {
-        console.error("Login failed:", data.message);
-        return null;
-      }
-    } catch (error) {
-      console.error("API Error:", error);
+//         return data.data.token;
+//       } else {
+//         console.error("Login failed:", data.message);
+//         return null;
+//       }
+//     } catch (error) {
+//       console.error("API Error:", error);
+//       return null;
+//     }
+//   };
+  
+//   // ✅ Function to Get Token from sessionStorage
+//   export const getToken = () => {
+//     return sessionStorage.getItem("token");
+//   };
+  
+
+export const getIPAddress = async () => {
+  try {
+    const response = await fetch("https://api64.ipify.org?format=json");
+    const data = await response.json();
+    return data.ip; // ✅ Public IP Address
+  } catch (error) {
+    console.error("Failed to fetch IP Address:", error);
+    return "Unknown";
+  }
+};
+
+export const authAPI = async () => {
+  try {
+    const ipAddress = await getIPAddress(); // ✅ Fetch IP Address
+    const macAddress = "00-00-00-00-00-00"; // ⚠️ Manual MAC address (Browser se auto fetch nahi hota)
+    console.log(macAddress)
+    const response = await fetch("http://182.176.166.222:8081/api/GetSecurityKey/SecurityKey", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      
+      body: JSON.stringify({
+        UserName: "arshad",
+        Password: "arshad",
+        MACAddress: macAddress,
+        IPAddress: ipAddress,
+        Source: "1",
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP Error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data.data.token);
+
+    if (data.statusCode === 200) {
+      sessionStorage.setItem("token", data.data.token);
+      return data.data.token;
+    } else {
+      console.error("Login failed:", data.message);
       return null;
     }
-  };
-  
-  // ✅ Function to Get Token from sessionStorage
-  export const getToken = () => {
-    return sessionStorage.getItem("token");
-  };
-  
+  } catch (error) {
+    console.error("API Error:", error);
+    return null;
+  }
+};
+
+// ✅ Function to Get Token from sessionStorage
+export const getToken = () => {
+  return sessionStorage.getItem("token");
+};
