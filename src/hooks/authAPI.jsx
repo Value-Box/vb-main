@@ -1,11 +1,16 @@
+const getNetworkDetails = async () => {
+  const isLocal = window.location.hostname === "localhost";
+  const ipAddress = isLocal ? "192.168.1.7" : await getPublicIP();
+  const macAddress = isLocal ? "64-51-06-56-B7-6C" : "00-00-00-00-00-00";
 
-const isLocal = window.location.hostname === "localhost";
-const ipAddress = isLocal ? "192.168.1.7" : await getPublicIP();
-const macAddress = isLocal ? "64-51-06-56-B7-6C" : "00-00-00-00-00-00";
+  return { ipAddress, macAddress };
+};
 
 export const authAPI = async () => {
 
     try {
+      const { ipAddress, macAddress } = await getNetworkDetails(); // ✅ Await inside function
+
       const response = await fetch("http://182.176.166.222:8081/api/GetSecurityKey/SecurityKey", {
         method: "POST",
         headers: {
