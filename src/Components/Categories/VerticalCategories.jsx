@@ -127,7 +127,9 @@ export default function VerticalCategories() {
           {verticleCategory.map((items, index) => (
             <li className="py-2 px-3 flex items-center justify-between cursor-pointer text-xs 2xl:text-base" key={index}
             onMouseEnter={()=>setHoveredCategory(index)} onMouseLeave={()=>setHoveredCategory(null)}
-            onClick={() => {setSidebarOpen(true), setSubCategory(index)}}>
+            onClick={() => {if (window.innerWidth < 640) {setSidebarOpen(true)}
+             if (window.innerWidth < 640) {setSubCategory(index)} }}
+>
               {items.name}
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="20" viewBox="0 0 10 20" fill="none">
                 <path
@@ -163,6 +165,7 @@ export default function VerticalCategories() {
           ))}
         </ul>
       </div>
+
 
       <div
   className={`fixed inset-0 z-50  duration-400 ${

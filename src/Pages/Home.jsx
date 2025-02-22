@@ -36,16 +36,16 @@ function Home() {
 
       const featuredVideo=[
         {
-          id:1,vidUrl:<iframe width="560" height="315" src="https://www.youtube.com/embed/6hksegA_x94?si=h_vjU1LfbdyqBZE7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,img:ProductImg,price: "999",description:"Men'S Other Running Shoes Korean Style"
+          id:1,vid:'https://www.youtube.com/shorts/UdBYTbk4sd0',img:ProductImg,price: "999",description:"Men'S Other Running Shoes Korean Style"
         },
         {
-          id:1,vidUrl:<iframe width="560" height="315" src="https://www.youtube.com/embed/6hksegA_x94?si=h_vjU1LfbdyqBZE7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,img:HoddieImg,price: "49",description:"Men'S Other Running Shoes Korean Style"
+          id:1,vid:'https://www.youtube.com/shorts/52ErK8RTr9E',img:HoddieImg,price: "49",description:"Men'S Other Running Shoes Korean Style"
         },
         {
-          id:1,vidUrl:<iframe width="560" height="315" src="https://www.youtube.com/embed/6hksegA_x94?si=h_vjU1LfbdyqBZE7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,img:MouseImg,price: "199",description:"Men'S Other Running Shoes Korean Style"
+          id:1,vid:'https://www.youtube.com/shorts/UdBYTbk4sd0',img:MouseImg,price: "199",description:"Men'S Other Running Shoes Korean Style"
         },
         {
-          id:1,vidUrl:<iframe width="560" height="315" src="https://www.youtube.com/embed/6hksegA_x94?si=h_vjU1LfbdyqBZE7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,img:ProductImg,price: "9999",description:"Men'S Other Running Shoes Korean Style"
+          id:1,vid:'https://www.youtube.com/shorts/52ErK8RTr9E',img:ProductImg,price: "9999",description:"Men'S Other Running Shoes Korean Style"
         }
       ]
       const carouselRef = useRef(null);
@@ -123,8 +123,8 @@ function Home() {
         
           <div className='hidden md:flex gap-2'>
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="37" viewBox="0 0 36 37" fill="none">
-  <path d="M28.6875 7.25H7.3125C5.13788 7.25 3.375 9.01288 3.375 11.1875V25.8125C3.375 27.9871 5.13788 29.75 7.3125 29.75H28.6875C30.8621 29.75 32.625 27.9871 32.625 25.8125V11.1875C32.625 9.01288 30.8621 7.25 28.6875 7.25Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M3.375 14H32.625M9 21.5938H12.375V23H9V21.5938Z" stroke="#1A1A1A" stroke-width="2.8125" stroke-linejoin="round"/>
+  <path d="M28.6875 7.25H7.3125C5.13788 7.25 3.375 9.01288 3.375 11.1875V25.8125C3.375 27.9871 5.13788 29.75 7.3125 29.75H28.6875C30.8621 29.75 32.625 27.9871 32.625 25.8125V11.1875C32.625 9.01288 30.8621 7.25 28.6875 7.25Z" stroke="#1A1A1A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M3.375 14H32.625M9 21.5938H12.375V23H9V21.5938Z" stroke="#1A1A1A" strokeWidth="2.8125" strokeLinejoin="round"/>
 </svg>
           <div>
           <span className='text-sm 2xl:text-base font-semibold'>Safe Payments</span>
@@ -224,7 +224,7 @@ function Home() {
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '>Bundle Deals</h3>
           <span className='bg-[#FFEB71] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
           <svg xmlns="http://www.w3.org/2000/svg" className='w-4 lg:w-5 2xl:w-6' viewBox="0 0 24 24" fill="none">
-             <path d="M2 12H22M22 12L13 3M22 12L13 21" stroke="black" stroke-width="2.5"/>
+             <path d="M2 12H22M22 12L13 3M22 12L13 21" stroke="black" strokeWidth="2.5"/>
          </svg>
           </span>
         </div>
@@ -242,8 +242,8 @@ function Home() {
                <path d="M19.9661 15.3081L14.4253 17.3229L15.2085 1.48724C15.2421 0.809162 14.6655 0.317927 14.1256 0.56477L10.5 2.2232C9.9601 1.97639 10.4664 1.54513 10.5 2.2232C10.5 2.2232 10.7181 0.91438 10 1.5C5.77615 4.94452 6.57459 17.3229 6.57459 17.3229L1.03387 15.3081C0.321944 15.0491 -0.275344 15.978 0.133111 16.7091L9.83472 34.0784C10.1488 34.6405 10.8513 34.6405 11.1652 34.0784L20.867 16.7091C21.2753 15.9781 20.6781 15.0491 19.9661 15.3081Z" fill="url(#paint0_linear_11156_17119)"/>
                <defs>
                  <linearGradient id="paint0_linear_11156_17119" x1="10.5" y1="0.5" x2="10.5" y2="34.5" gradientUnits="userSpaceOnUse">
-                   <stop stop-color="#FFD2AE"/>
-                   <stop offset="1" stop-color="#FF9948"/>
+                   <stop stopColor="#FFD2AE"/>
+                   <stop offset="1" stopColor="#FF9948"/>
                  </linearGradient>
                </defs>
               </svg>
@@ -262,8 +262,8 @@ function Home() {
                <path d="M19.9661 15.3081L14.4253 17.3229L15.2085 1.48724C15.2421 0.809162 14.6655 0.317927 14.1256 0.56477L10.5 2.2232C9.9601 1.97639 10.4664 1.54513 10.5 2.2232C10.5 2.2232 10.7181 0.91438 10 1.5C5.77615 4.94452 6.57459 17.3229 6.57459 17.3229L1.03387 15.3081C0.321944 15.0491 -0.275344 15.978 0.133111 16.7091L9.83472 34.0784C10.1488 34.6405 10.8513 34.6405 11.1652 34.0784L20.867 16.7091C21.2753 15.9781 20.6781 15.0491 19.9661 15.3081Z" fill="url(#paint0_linear_11156_17119)"/>
                <defs>
                  <linearGradient id="paint0_linear_11156_17119" x1="10.5" y1="0.5" x2="10.5" y2="34.5" gradientUnits="userSpaceOnUse">
-                   <stop stop-color="#FFD2AE"/>
-                   <stop offset="1" stop-color="#FF9948"/>
+                   <stop stopColor="#FFD2AE"/>
+                   <stop offset="1" stopColor="#FF9948"/>
                  </linearGradient>
                </defs>
               </svg>
@@ -282,8 +282,8 @@ function Home() {
                <path d="M19.9661 15.3081L14.4253 17.3229L15.2085 1.48724C15.2421 0.809162 14.6655 0.317927 14.1256 0.56477L10.5 2.2232C9.9601 1.97639 10.4664 1.54513 10.5 2.2232C10.5 2.2232 10.7181 0.91438 10 1.5C5.77615 4.94452 6.57459 17.3229 6.57459 17.3229L1.03387 15.3081C0.321944 15.0491 -0.275344 15.978 0.133111 16.7091L9.83472 34.0784C10.1488 34.6405 10.8513 34.6405 11.1652 34.0784L20.867 16.7091C21.2753 15.9781 20.6781 15.0491 19.9661 15.3081Z" fill="url(#paint0_linear_11156_17119)"/>
                <defs>
                  <linearGradient id="paint0_linear_11156_17119" x1="10.5" y1="0.5" x2="10.5" y2="34.5" gradientUnits="userSpaceOnUse">
-                   <stop stop-color="#FFD2AE"/>
-                   <stop offset="1" stop-color="#FF9948"/>
+                   <stop stopColor="#FFD2AE"/>
+                   <stop offset="1" stopColor="#FF9948"/>
                  </linearGradient>
                </defs>
               </svg>
@@ -320,8 +320,8 @@ function Home() {
   <path d="M20.3 15.3081L14.7593 17.3229L15.5425 1.48724C15.5761 0.809162 14.9994 0.317927 14.4596 0.56477L10.834 2.2232C10.2941 1.97639 10.8003 1.54513 10.834 2.2232C10.834 2.2232 11.0521 0.91438 10.334 1.5C6.11014 4.94452 6.90858 17.3229 6.90858 17.3229L1.36785 15.3081C0.655928 15.0491 0.0586404 15.978 0.467096 16.7091L10.1687 34.0784C10.4827 34.6405 11.1853 34.6405 11.4992 34.0784L21.2009 16.7091C21.6092 15.9781 21.0121 15.0491 20.3 15.3081Z" fill="url(#paint0_linear_11256_1038)"/>
   <defs>
     <linearGradient id="paint0_linear_11256_1038" x1="10.834" y1="0.5" x2="10.834" y2="34.5" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFD2AE"/>
-      <stop offset="1" stop-color="#FF9948"/>
+      <stop stopColor="#FFD2AE"/>
+      <stop offset="1" stopColor="#FF9948"/>
     </linearGradient>
   </defs>
 </svg>
@@ -344,7 +344,7 @@ function Home() {
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl flex'><span className='flex gap-2'><img className='w-6' src={electricity} alt="" /> Flash</span><span className='text-[#F04438] '>Deals</span></h3>
           <span className='bg-[#FFC3B2] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
           <svg xmlns="http://www.w3.org/2000/svg" className='w-4 lg:w-5 2xl:w-6' viewBox="0 0 24 24" fill="none">
-             <path d="M2 12H22M22 12L13 3M22 12L13 21" stroke="black" stroke-width="2.5"/>
+             <path d="M2 12H22M22 12L13 3M22 12L13 21" stroke="black" strokeWidth="2.5"/>
          </svg>
           </span>
         </div>
@@ -452,7 +452,7 @@ function Home() {
       
     </div>
 
-    <VidCarousel videos={featuredVideo} />
+    <VidCarousel />
     </>
   )
 }
