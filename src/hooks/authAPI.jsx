@@ -1,3 +1,14 @@
+const getPublicIP = async () => {
+  try {
+    const response = await fetch("https://api64.ipify.org?format=json");
+    const data = await response.json();
+    return data.ip;
+  } catch (error) {
+    console.error("Failed to get public IP:", error);
+    return "0.0.0.0"; // Default IP agar error aaye
+  }
+};
+
 const getNetworkDetails = async () => {
   const isLocal = window.location.hostname === "localhost";
   const ipAddress = isLocal ? "192.168.1.7" : await getPublicIP();
@@ -10,7 +21,7 @@ export const authAPI = async () => {
 
     try {
       const { ipAddress, macAddress } = await getNetworkDetails(); // ✅ Await inside function
-
+      console.log(ipAddress)
       const response = await fetch("http://182.176.166.222:8081/api/GetSecurityKey/SecurityKey", {
         method: "POST",
         headers: {
