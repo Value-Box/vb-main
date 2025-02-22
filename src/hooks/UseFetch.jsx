@@ -27,13 +27,14 @@ const useFetch = ({ apiFunc, method = "GET", body = null, headers = {} }) => {
           method,
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `${token}`,
             ...headers,
           },
           ...(body ? { body: JSON.stringify(body) } : {}),
         };
 
         const response = await apiFunc(options); // ✅ API call
+
         if (!response.ok) {
           throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
@@ -51,8 +52,8 @@ const useFetch = ({ apiFunc, method = "GET", body = null, headers = {} }) => {
       fetchData(); // ✅ API call sirf tab hogi jab token available hoga
     }
   }, [token]); // 🔥 `useEffect` sirf tab chalega jab token milega
-
   return { data, loading, error };
+  
 };
 
 export default useFetch;
