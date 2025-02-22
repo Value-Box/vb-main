@@ -15,7 +15,8 @@ import LoginNavbar from "./Components/Headers/LoginNavbar";
 
 const Layout=()=>{
   const location=useLocation()
-  const isLogin=location.pathname.startsWith("/Login")
+  const loginRoutes = ["/LoginSignup", "/ResetPassword", "/FindYourAccount", "/GetCode"];
+  const isLogin = loginRoutes.includes(location.pathname); // ✅ Improved check
 
   const [token, setToken] = useState(null);
   const [brands, setBrands] = useState([]);
