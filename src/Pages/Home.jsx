@@ -6,9 +6,49 @@ import HoddieImg from "/src/Images/Image2.png";
 import MouseImg from "/src/Images/Image3.png";
 import electricity from "/src/Images/electricity.gif";
 import VidCarousel from '../Components/Carousels/VidCarousel';
+import useFetch from '../hooks/UseFetch';
+import ProductCard1 from '../Components/ProductCards/ProductCard1';
 
 
+// const options = {
+//   method: "GET", // HTTP method (GET, POST, PUT, DELETE)
+//   headers: {
+//     "Content-Type": "application/json",
+//     Authorization: `Bearer YOUR_TOKEN_HERE`, // ✅ Token bhejna zaroori hai
+//   },
+// };
+
+const url='http://182.176.166.222:8081/'
+const fetchBrandData = async (options) => {
+  return fetch(`${url}api/GetBrands/GetBrands`, options);
+};
+const fetchProductData = async (options) => {
+  return fetch(`${url}api/ProductsInfoAPI/GetProducts`, options);
+};
 function Home() {
+  const { data, loading, error } = useFetch({ apiFunc: fetchBrandData });
+  const { data: ProData, loading: ProLoading, error: ProError } = useFetch({ apiFunc: fetchProductData });
+
+  const [brands, setBrands] = useState([]);
+  useEffect(() => {
+    if (data?.data) {
+      setBrands(data.data); // ✅ Sirf API se jo array aa raha hai woh set hoga
+    }
+    console.log("Data Updated:", data);
+  }, [data]);
+
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    if (ProData) {
+      console.log("Full Product Data:", ProData); // 🔥 API se aane wala pura data dekho
+      if (ProData.data) {
+        setProducts(ProData.data);
+        console.log("Product List Updated:", ProData.data); // ✅ Check karo ke array aa raha hai ya nahi
+      }
+    }
+  }, [ProData]);
+  
+
     const images = [
         "https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
         "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80",
@@ -25,7 +65,7 @@ function Home() {
         setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
       };
 
-      const products = [
+      const dummyProducts = [
         { id: 1, name: "Laptop", price: "999", img: ProductImg },
         { id: 2, name: "Keyboard", price: "49", img: HoddieImg },
         { id: 3, name: "Mouse", price: "29", img: MouseImg },
@@ -81,6 +121,15 @@ function Home() {
   return (
     <>
     <HorizentolCategories/>
+    <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      <ul>
+        {brands.map((brand, index) => (
+          <li key={index}>{brand.brandName}</li>
+        ))}
+      </ul>
+    </div>
     <div className="relative w-full mx-auto">
       <div className="overflow-hidden">
         <img
@@ -181,13 +230,8 @@ function Home() {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
       >
-        {products.map((product,index) => (
-          <>
-          {/* <div key={product.id} className="min-w-[230px] bg-white p-4 rounded-lg shadow-lg">
-            <img src={product.img} alt={product.name} className="w-full h-40 object-cover rounded-md" />
-            <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>
-            <p className="text-indigo-600 font-bold">{product.price}</p>
-          </div> */}
+        {dummyProducts.map((product,index) => (
+          
           <div key={index} className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
           <img src={product.img} alt="" className="min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
   
@@ -212,7 +256,7 @@ function Home() {
   </div>
 </div>
          
-          </>
+          
         ))}
       </div>
     </div>
@@ -304,13 +348,9 @@ function Home() {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
       >
-        {products.map((product,index) => (
-          <>
-          {/* <div key={product.id} className="min-w-[230px] bg-white p-4 rounded-lg shadow-lg">
-            <img src={product.img} alt={product.name} className="w-full h-40 object-cover rounded-md" />
-            <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>
-            <p className="text-indigo-600 font-bold">{product.price}</p>
-          </div> */}
+        {dummyProducts.map((product,index) => (
+          
+          
           <div key={index} className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
           <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
           <p className="w-full whitespace-normal break-words mt-2 text-sm">{product.name}</p>
@@ -332,7 +372,7 @@ function Home() {
 
             </p>
           </div>
-          </>
+         
         ))}
       </div>
     </div>
@@ -418,8 +458,8 @@ function Home() {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
       >
-        {products.map((product,index) => (
-          <>
+        {dummyProducts.map((product,index) => (
+          
           <div key={index} className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
           <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
   
@@ -444,7 +484,7 @@ function Home() {
   </div>
 </div>
          
-          </>
+          
         ))}
       </div>
     </div>
@@ -453,6 +493,8 @@ function Home() {
     </div>
 
     <VidCarousel />
+    <ProductCard1 />
+    
     </>
   )
 }

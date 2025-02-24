@@ -1,6 +1,25 @@
+import { useState, useEffect } from "react";
 export const authAPI = async () => {
+    const [networkInfo, setNetworkInfo] = useState({
+      localIP: "Fetching...",
+      macAddress: "Fetching...",
+    });
+  
+    useEffect(() => {
+      const fetchNetworkInfo = async () => {
+        try {
+          const response = await fetch("http://localhost:5000/local-ip"); // ✅ Backend API call
+          const data = await response.json();
+          setNetworkInfo(data); // ✅ State update karo
+        } catch (error) {
+          console.error("Error fetching network info:", error);
+        }
+      };
+  
+      fetchNetworkInfo();
+    }, []);
     try {
-      const response = await fetch("http://192.168.1.196:8081/api/GetSecurityKey/SecurityKey", {
+      const response = await fetch("http://182.176.166.222:8081/api/GetSecurityKey/SecurityKey", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -8,8 +27,8 @@ export const authAPI = async () => {
         body: JSON.stringify({
           UserName: 'arshad',
           Password: 'arshad',
-          MACAddress: "64-51-06-56-B7-6C",
-          IPAddress: "192.168.1.7",
+          MACAddress: `${networkInfo.macAddress}`,
+          IPAddress: `${networkInfo.localIP}`,
           Source: "1",
         }),
       });
