@@ -10,29 +10,21 @@ import useFetch from '../hooks/UseFetch';
 import ProductCard1 from '../Components/ProductCards/ProductCard1';
 
 
-// const options = {
-//   method: "GET", // HTTP method (GET, POST, PUT, DELETE)
-//   headers: {
-//     "Content-Type": "application/json",
-//     Authorization: `Bearer YOUR_TOKEN_HERE`, // ✅ Token bhejna zaroori hai
-//   },
+// const url='http://182.176.166.222:8081/'
+// const fetchBrandData = async (options) => {
+//   return fetch(`${url}api/GetBrands/GetBrands`, options);
 // };
 
-const url='http://182.176.166.222:8081/'
-const fetchBrandData = async (options) => {
-  return fetch(`${url}api/GetBrands/GetBrands`, options);
-};
-
 function Home() {
-  const { data, loading, error } = useFetch({ apiFunc: fetchBrandData });
+  // const { data, loading, error } = useFetch({ apiFunc: fetchBrandData });
 
-  const [brands, setBrands] = useState([]);
-  useEffect(() => {
-    if (data?.data) {
-      setBrands(data.data); // ✅ Sirf API se jo array aa raha hai woh set hoga
-    }
-    console.log("Data Updated:", data);
-  }, [data]);
+  // const [brands, setBrands] = useState([]);
+  // useEffect(() => {
+  //   if (data?.data) {
+  //     setBrands(data.data); // ✅ Sirf API se jo array aa raha hai woh set hoga
+  //   }
+  //   console.log("Data Updated:", data);
+  // }, [data]);
 
 
   
@@ -109,7 +101,7 @@ function Home() {
   return (
     <>
     <HorizentolCategories/>
-    <div>
+    {/* <div>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       <ul>
@@ -117,7 +109,7 @@ function Home() {
           <li key={index}>{brand.brandName}</li>
         ))}
       </ul>
-    </div>
+    </div> */}
     <div className="relative w-full mx-auto">
       <div className="overflow-hidden">
         <img

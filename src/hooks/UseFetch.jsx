@@ -1,66 +1,71 @@
-import { useState, useEffect } from "react";
-import { getToken } from "./authAPI"; // Token ko fetch karne ke liye
-import Loader from "../utility/Loader";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { getToken } from "./authAPI";
 
-const useFetch = ({ apiFunc, method = "GET", body = null, headers = {} }) => {
+const useFetch = ({ url, method = "GET", body = null, headers = {} }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [token, setToken] = useState(null);
 
-  // ✅ Sirf ek baar token fetch karne ke liye
+  // ✅ Token ek baar fetch hoga
   useEffect(() => {
     setToken(getToken());
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!token) {
-        setError("Token is required but not found!");
-        return;
-      }
+  // ✅ Memoize `headers` aur `body` to prevent unnecessary re-renders
+  const memoizedHeaders = useMemo(() => ({ ...headers }), [JSON.stringify(headers)]);
+  const memoizedBody = useMemo(() => (body ? JSON.stringify(body) : null), [JSON.stringify(body)]);
 
-      try {
-        setLoading(true);
-        setError(null);
-
-        const options = {
-          method,
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`,
-            ...headers,
-          },
-          ...(body ? { body: JSON.stringify(body) } : {}),
-        };
-
-        const response = await apiFunc(options); // ✅ API call
-
-        if (!response.ok) {
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
-
-        const result = await response.json();
-        setData(result);
-      } catch (err) {
-        setError(err.message || "Something went wrong!");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (token) {
-      fetchData(); // ✅ API call sirf tab hogi jab token available hoga
+  // ✅ Function ko useCallback se wrap kiya, taake unnecessary re-creation na ho
+  const fetchData = useCallback(async () => {
+    if (!url) return;
+    if (!token) {
+      setError("Token is required but not found!");
+      return;
     }
-  }, [token]); // 🔥 `useEffect` sirf tab chalega jab token milega
 
-  // ✅ Jab tak loading true hai, Loader dikhayega
-  if (loading) return <Loader />;
+    setLoading(true);
+    setError(null);
 
-  return { data, loading, error };
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          ...memoizedHeaders,
+        },
+        ...(memoizedBody ? { body: memoizedBody } : {}),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      setError(err.message || "Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
+  }, [url, token, method, memoizedHeaders, memoizedBody]);
+
+  // ✅ Fetch only when token & url are available
+  useEffect(() => {
+    if (token && url) {
+      fetchData();
+    }
+  }, [token, url, fetchData]);
+
+  return { data, loading, error, refetch: fetchData }; // ✅ Added `refetch` for manual reload
 };
 
 export default useFetch;
+
+
+
+
 
 
 

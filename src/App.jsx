@@ -11,8 +11,6 @@ import GetCode from "./Pages/Login/GetCode";
 import LoginNavbar from "./Components/Headers/LoginNavbar";
 import { useState, useEffect } from "react";
 import { authAPI, getToken } from "./hooks/authAPI";
-import Loader from "./utility/Loader";
-
 
 
 const Layout=()=>{
@@ -20,9 +18,6 @@ const Layout=()=>{
   const loginRoutes = ["/LoginSignup", "/ResetPassword", "/FindYourAccount", "/GetCode"];
   const isLogin = loginRoutes.includes(location.pathname); // ✅ Improved check
 
-
-
-  
   useEffect(() => {
     authAPI(); // ✅ Page Load hone par call hoga
   }, []);
@@ -47,22 +42,10 @@ const Layout=()=>{
 }
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    // ✅ Simulating API call with setTimeout
-    setTimeout(() => {
-      setLoading(false); // ✅ Hide Loader after data loads
-    }, 3000); // 3 seconds delay
-  }, []);
   return (
-    <>
-    
     <Router basename="/vb-main">
-      {loading && <Loader />}
       <Layout />
     </Router>
-    </>
-    
   );
   
 }

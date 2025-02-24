@@ -45,15 +45,15 @@
 export const fetchNetworkInfo = async () => {
   try {
 
-    const response = await fetch("http://localhost:5000/local-ip"); // ✅ Backend se data lo
+    const response = await fetch("http://localhost:5000/ip-info"); // ✅ Backend se data lo
     const data = await response.json();
     return {
-      localIP: data.localIP || "Not Found",
+      publicIP: data.publicIP || "Not Found",
       macAddress: data.macAddress || "Not Found",
     };
   } catch (error) {
     console.error("Error fetching network info:", error);
-    return { localIP: "Error", macAddress: "Error" };
+    return { publicIP: "Error", macAddress: "Error" };
   }
 };
 
@@ -66,7 +66,7 @@ export const authAPI = async () => {
     // ✅ Pehle network info fetch karo
     const networkInfo = await fetchNetworkInfo(); 
 // ✅ Check karo agar network info valid nahi hai to API call mat karo
-if (networkInfo.macAddress === "Error" || networkInfo.localIP === "Error") {
+if (networkInfo.macAddress === "Error" || networkInfo.publicIP === "Error") {
   console.error("Network info could not be fetched. Skipping API call.");
   return null;
 }
@@ -79,7 +79,7 @@ if (networkInfo.macAddress === "Error" || networkInfo.localIP === "Error") {
         UserName: "arshad",
         Password: "arshad",
         MACAddress: networkInfo.macAddress,
-        IPAddress: networkInfo.localIP,
+        IPAddress: networkInfo.publicIP,
         Source: "1",
       }),
     });

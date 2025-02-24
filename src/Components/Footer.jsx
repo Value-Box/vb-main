@@ -9,7 +9,7 @@ import discover from "/src/Images/logos_discover.svg";
 import americanexpress from "/src/Images/cib_american-express.svg";
 import jcb from "/src/Images/logos_jcb.svg";
 import applePay from "/src/Images/lineicons_apple-pay.svg";
-import GooglePay from "/src/Images/logos_google-pay.svg";
+import Logos from "/src/Images/Logos.png";
 
 function Footer() {
   const [openDropDown, setOpenDropDown] = useState(null);
@@ -549,56 +549,9 @@ function Footer() {
             <p className="font-medium text-base 2xl:text-xl flex justify-between items-baseline">
               We Accept
             </p>
-            <div className="flex gap-2 2xl-gap-3 mt-2 flex-wrap lg:flex-nowrap">
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-[30px] sm:w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={visa} alt=""
+            <img className="mt-1 w-full sm:max-w-[500px]"
+                  src={Logos} alt=""
                 />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-[30px] sm:w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={mastercard}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-[30px] sm:w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={discover}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-[30px] sm:w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={americanexpress}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-[30px] sm:w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={jcb}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-[30px] sm:w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={applePay}
-                  alt=""
-                />
-              </span>
-              <span className="bg-white rounded-sm xl:px-4 px-2 py-1 2xl:py-2">
-                <img
-                  className="w-[30px] sm:w-full min-w-[30px] h-6 sm:h-6 2xl:h-8 object-contain scale-[1.1]"
-                  src={GooglePay}
-                  alt=""
-                />
-              </span>
-            </div>
           </div>
         </div>
         <hr className="border-t border-[#CCC] 2xl:mt-10 mt-5 2xl:mb-10 mb-5" />

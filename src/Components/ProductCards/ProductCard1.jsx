@@ -1,42 +1,34 @@
 import React, { useState,useEffect  } from 'react'
 import useFetch from '../../hooks/UseFetch';
+import useFetchHomeProducts from '../../services/productsAPI';
 
-const url='http://182.176.166.222:8081/'
-const fetchProductData = async (options) => {
-    return fetch(`${url}api/ProductsInfoAPI/GetProducts`, options);
-  };
 
-  const fetchCategory=async(options)=>{
-    return fetch(`${url}api/CategoryInfoAPI/GetCategorys`,options)
-  }
+
+
+
 
 function ProductCard1() {
     const[currentIndex,setCurrentIndex]=useState(0)
 
-    const { data: ProData, loading: ProLoading, error: ProError } = useFetch({ apiFunc: fetchProductData });
-    const [products, setProducts] = useState([]);
-  useEffect(() => {
-    if (ProData) {
-      console.log("Full Product Data:", ProData); // 🔥 API se aane wala pura data dekho
-      if (ProData.data) {
-        setProducts(ProData.data);
-        console.log("Product List Updated:", ProData.data); // ✅ Check karo ke array aa raha hai ya nahi
-      }
-    }
-  }, [ProData]);
+    const { products, loading, error } = useFetchHomeProducts();
+console.log(useFetchHomeProducts())
+  //   const [Products, setProducts] = useState([]);
+  // useEffect(() => {
+    
+  // }, []);
 
-  const {data:categoryData,loading:categoryLoading, error: categoryError}=useFetch({apiFunc:fetchCategory})
+  // const {data:categoryData,loading:categoryLoading, error: categoryError}=useFetch({apiFunc:fetchCategory})
 
-  const [category,setCategory]=useState([])
-  useEffect(()=>{
-    if(categoryData){
-        console.log(categoryData.data)
-        if(categoryData.data){
-           const childCategories = categoryData.data.filter(cat=>cat.parentID !==null)
-            setCategory(childCategories)
-        }
-    }
-  },[categoryData])
+  // const [category,setCategory]=useState([])
+  // useEffect(()=>{
+  //   if(categoryData){
+  //       console.log(categoryData.data)
+  //       if(categoryData.data){
+  //          const childCategories = categoryData.data.filter(cat=>cat.parentID !==null)
+  //           setCategory(childCategories)
+  //       }
+  //   }
+  // },[categoryData])
 
   const visibleItems = 4; // Ek sath kitne dikhane hain (Customize kar sakte ho)
   const nextSlide=()=>{
@@ -57,8 +49,8 @@ function ProductCard1() {
   return (
     <>
    
-    <div className="relative w-full mx-auto overflow-hidden">
-      {/* Wrapper */}
+    {/* <div className="relative w-full mx-auto overflow-hidden">
+
       <div
         className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] px-10 py-3 flex transition-transform duration-500 ease-in-out"
         
@@ -73,7 +65,7 @@ function ProductCard1() {
         ))}
       </div>
 
-      {/* Left Button */}
+
       <button
         onClick={prevSlide}
         className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-[#FCFCFC] border-[#999] border bg-opacity-50 text-white p-1 rounded-full z-10"
@@ -83,7 +75,7 @@ function ProductCard1() {
 </svg>
       </button>
 
-      {/* Right Button */}
+
       <button
         onClick={nextSlide}
         className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FCFCFC] border-[#999] border bg-opacity-50 text-white p-1 rounded-full z-10"
@@ -101,8 +93,6 @@ function ProductCard1() {
         {products.map((items, index) => (
           
 <div key={index} className="bg-white rounded-lg overflow-hidden duration-400 hover:shadow-lg  xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2">
-      {/*E11*/}
-      {/* <div class="h-48 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1570797197190-8e003a00c846?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=968&q=80')"></div>*/}
       <img
         className="h-48 w-full object-cover object-end"
         src={`http://182.176.166.222:8081${items.imagePath}`}
@@ -181,7 +171,6 @@ function ProductCard1() {
         <span className="text-xs">PKR</span>
         <span className="text-lg ml-[2px]">{items.price}</span>
       </span>
-          {/* <span className="text-gray-600 text-sm">/ wk</span> */}
         </div>
         
       </div>
@@ -191,7 +180,7 @@ function ProductCard1() {
     
   </div>
 
-</div>
+</div> */}
 
     </>
   )

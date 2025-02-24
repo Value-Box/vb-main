@@ -1,29 +1,34 @@
 import express from "express";
 import cors from "cors";
-import os from "os";  // System info ke liye OS module use kar rahe hain
+import os from "os";
+import axios from "axios";  
 
 const app = express();
-app.use(cors());  // CORS allow kar rahe hain taake frontend request bhej sake
+app.use(cors());
 
-// ✅ API Endpoint: /local-ip
-app.get("/local-ip", (req, res) => {
-  const networkInterfaces = os.networkInterfaces(); // System ke network interfaces get karo
+app.get("/ip-info", async (req, res) => {
+  const networkInterfaces = os.networkInterfaces();
   let localIP = "Not Found";
   let macAddress = "Not Found";
 
-  // Har network interface ko check karo
   Object.values(networkInterfaces).forEach((interfaces) => {
     interfaces.forEach((iface) => {
       if (iface.family === "IPv4" && !iface.internal) { 
-        // ✅ IPv4 aur non-internal (external) address find karo
         localIP = iface.address;
-        macAddress = iface.mac; 
+        macAddress = iface.mac;
       }
     });
   });
 
-  // ✅ Response frontend ko send karo
-  res.json({ localIP, macAddress });
+  let publicIP = "Not Found";
+  try {
+    const response = await axios.get("https://api64.ipify.org?format=json");
+    publicIP = response.data.ip;
+  } catch (error) {
+    console.error("Error fetching public IP:", error);
+  }
+
+  res.json({ localIP, macAddress, publicIP });
 });
 
 const PORT = 5000;
