@@ -30,16 +30,16 @@ function LoginSignup() {
   <span className='text-xs font-medium'>Your Information is Protected</span>
 </div>
 
-     <div className="flex h-screen">
-     <div className="flex items-center justify-center bg-gray-200 hidden md:block">
+     <div className="flex w-full">
+     <div className="flex items-center justify-center w-[50%] bg-gray-200 hidden md:block">
   <img 
     className="w-full h-full object-contain"
     src={LoginImage}
     alt="Login Page"
   />
 </div>
-      <div className="w-full md:w-1/2 flex items-center justify-center">
-        <form className="w-full md:w-1/2 px-5 md:px-0">
+      <div className="w-full flex items-center  w-[50%] justify-center">
+        <form className="max-w-[400px] 2xl:max-w-[500px] px-5 md:px-0">
         <div className='hidden md:block'>
         <h2 className="text-2xl text-center font-bold mb-1">Register/Sign in</h2>
         <div className="py-2 text-center flex items-center justify-center gap-1">

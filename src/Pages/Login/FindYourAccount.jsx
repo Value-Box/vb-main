@@ -161,8 +161,6 @@ function FindYourAccount() {
             <p className="text-[#666] text-lg mt-2">Enter your order details to find your account.</p>
             <label className="block text-blue-900 text-[14px] font-medium mb-1 mt-[20px]">Your Order Number</label>
             <Input  type="text" placeholder="Enter order number" value={orderInfo}  onChange={(e) => setOrderInfo(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 mt-3"/>
-           
-onClick={handleFindAccount}
             <FormButton
               onClick={handleFindAccount}
               className="bg-blue-900 text-white w-full mb-1 cursor-pointer mt-[20px]" >
