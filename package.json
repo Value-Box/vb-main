@@ -4,12 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "start /B node server.js && vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "vite build && gh-pages -d dist",
+    "server": "start cmd /k node server.js",
+    "client": "vite",
+    "start": "node server.js",
+    "proxy": "http://localhost:5000"
+
   },
   "dependencies": {
     "cors": "^2.8.5",
