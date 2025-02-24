@@ -3,12 +3,7 @@ import GooglePlay from "/src/Images/GooglePlay.svg";
 import PlayStore from "/src/Images/PlayStore.svg";
 import Logo from "/src/Images/Logo.png";
 // import {visa,mastercard,discover,americanexpress,jcb,applePay,GooglePay} from "/src/Images";
-import visa from "/src/Images/logos_visa.svg";
-import mastercard from "/src/Images/logos_mastercard.svg";
-import discover from "/src/Images/logos_discover.svg";
-import americanexpress from "/src/Images/cib_american-express.svg";
-import jcb from "/src/Images/logos_jcb.svg";
-import applePay from "/src/Images/lineicons_apple-pay.svg";
+
 import Logos from "/src/Images/Logos.png";
 
 function Footer() {
@@ -19,7 +14,7 @@ function Footer() {
   };
   return (
     <footer className="bg-[#1A1A1A]">
-      <div className="max-w-[1920px] px-4 py-4 md:py-8 lg:py-10 2xl:py-16 md:px-8 lg:px-10 2xl:px-16 mx-auto sm:px-6 lg:px-8">
+      <div className="max-w-[1920px] px-4 py-4 md:py-8 lg:py-10 2xl:py-16 md:px-8 2xl:px-16 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 sm:gap-8 md:grid-cols-3 xl:grid-cols-5">
           <div>
             <p
@@ -48,7 +43,7 @@ function Footer() {
             </p>
             <nav
   className={`right-0 z-10 flex sm:hidden flex-col xl:space-y-2 text-sm text-[#CCC] 2xl:font-medium 
-    transition-transform transition-opacity duration-500 ease-in-out overflow-hidden origin-top
+     transition-opacity duration-500 ease-in-out overflow-hidden origin-top
     ${
       openDropDown === "companyInfo"
         ? "opacity-100 scale-y-100 mt-1 sm:hidden" // 🟢 Small screen par dikhega
@@ -115,7 +110,7 @@ function Footer() {
               </p>
               <nav
                 className={`right-0 z-10 flex sm:hidden flex-col space-y-1 2xl:space-y-2 text-sm text-[#CCC] 2xl:font-medium 
-    transition-transform transition-opacity duration-500 ease-in-out overflow-hidden origin-top
+     transition-opacity duration-500 ease-in-out overflow-hidden origin-top
     ${
       openDropDown === "customerService"
       ? "opacity-100 scale-y-100 mt-1 sm:hidden" // 🟢 Small screen par dikhega
@@ -179,7 +174,7 @@ function Footer() {
               </p>
               <nav
                 className={`right-0 z-10 flex sm:hidden flex-col space-y-1 2xl:space-y-2 text-sm text-[#CCC] 2xl:font-medium 
-    transition-transform transition-opacity duration-500 ease-in-out overflow-hidden origin-top
+     transition-opacity duration-500 ease-in-out overflow-hidden origin-top
     ${
       openDropDown === "help"
         ? "opacity-100 scale-y-100 mt-1"
@@ -239,7 +234,7 @@ function Footer() {
               </p>
               <nav className="flex sm:hidden flex-col mt-2 space-y-1 2xl:space-y-2 2xl:text-base text-sm text-[#CCC] 2xl:font-medium">
                 <div
-                  className={`sm:flex flex-col 2xl:text-base text-sm space-y-1 2xl:space-y-2 origin-top transition-transform transition-opacity duration-500 ease-in-out ${
+                  className={`sm:flex flex-col 2xl:text-base text-sm space-y-1 2xl:space-y-2 origin-top transition-opacity duration-500 ease-in-out ${
                     openDropDown === "downloadApp" ? "opacity-100 visible scale-y-100 h-auto" : "opacity-0 invisible scale-y-0 h-[0px] "
                   }`}
                 >
@@ -312,7 +307,7 @@ function Footer() {
               </nav>
               <nav className="hidden sm:flex flex-col mt-2 space-y-1 2xl:space-y-2 2xl:text-base text-sm text-[#CCC] 2xl:font-medium">
                 <div
-                  className='hidden sm:flex flex-col 2xl:text-base text-sm space-y-1 2xl:space-y-2 origin-top transition-transform transition-opacity duration-500 ease-in-out'
+                  className='hidden sm:flex flex-col 2xl:text-base text-sm space-y-1 2xl:space-y-2 origin-top transition-opacity duration-500 ease-in-out'
                 >
                   <a className="flex gap-2 items-center" href="">
                     <svg

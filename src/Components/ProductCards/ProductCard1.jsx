@@ -1,17 +1,31 @@
 import React, { useState,useEffect  } from 'react'
-import useFetch from '../../hooks/UseFetch';
 import useFetchHomeProducts from '../../services/productsAPI';
-
-
-
-
+import fetchHomeCategories from '../../services/categoryAPI';
 
 
 function ProductCard1() {
     const[currentIndex,setCurrentIndex]=useState(0)
 
-    const { products, loading, error } = useFetchHomeProducts();
-console.log(useFetchHomeProducts())
+    const { data, loading, error } = useFetchHomeProducts();
+    const [Products, setProducts] = useState([]); // ✅ Null ki jagah empty array use karein
+
+
+    useEffect(() => {
+      if (data?.data) {
+        console.log("Products:", data.data);
+        setProducts(data.data);
+      }
+    }, [data]);
+
+    const { categoryData, catLoading, catError } = fetchHomeCategories();
+    const [category,setCategory]=useState([])
+    useEffect(() => {
+      if (categoryData?.data) {
+        console.log("category:", categoryData.data);
+        setCategory(categoryData.data); // ✅ Corrected this line
+      }
+    }, [categoryData]); // ✅ Fixed dependency
+    
   //   const [Products, setProducts] = useState([]);
   // useEffect(() => {
     
@@ -48,10 +62,10 @@ console.log(useFetchHomeProducts())
 
   return (
     <>
-   
-    {/* <div className="relative w-full mx-auto overflow-hidden">
 
-      <div
+    <div className="relative w-full mx-auto overflow-hidden">
+
+      {/* <div
         className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] px-10 py-3 flex transition-transform duration-500 ease-in-out"
         
       >
@@ -63,7 +77,7 @@ console.log(useFetchHomeProducts())
             <span className="text-base font-medium text-[#666]">{item.name}</span>
           </div>
         ))}
-      </div>
+      </div> */}
 
 
       <button
@@ -87,10 +101,9 @@ console.log(useFetchHomeProducts())
     </div>
     <div className="antialiased text-gray-900 ">
   <div className="bg-[#FCFCFC] p-8 flex gap-5">
-  {ProLoading && <p>Loading...</p>}
-      {ProError && <p>Error: {ProError}</p>}
+  
       
-        {products.map((items, index) => (
+        {Products.map((items, index) => (
           
 <div key={index} className="bg-white rounded-lg overflow-hidden duration-400 hover:shadow-lg  xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2">
       <img
@@ -180,7 +193,7 @@ console.log(useFetchHomeProducts())
     
   </div>
 
-</div> */}
+</div>
 
     </>
   )
