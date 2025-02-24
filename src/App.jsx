@@ -10,39 +10,28 @@ import GetCode from "./Pages/Login/GetCode";
 
 import LoginNavbar from "./Components/Headers/LoginNavbar";
 import { useState, useEffect } from "react";
+import { authAPI, getToken } from "./hooks/authAPI";
+import Loader from "./utility/Loader";
+
+
 
 const Layout=()=>{
   const location=useLocation()
   const loginRoutes = ["/LoginSignup", "/ResetPassword", "/FindYourAccount", "/GetCode"];
   const isLogin = loginRoutes.includes(location.pathname); // ✅ Improved check
 
-  const [networkInfo, setNetworkInfo] = useState({
-    localIP: "Fetching...",
-    macAddress: "Fetching...",
-  });
 
+
+  
   useEffect(() => {
-    const fetchNetworkInfo = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/local-ip"); // ✅ Backend API call
-        const data = await response.json();
-        setNetworkInfo(data); // ✅ State update karo
-      } catch (error) {
-        console.error("Error fetching network info:", error);
-      }
-    };
-
-    fetchNetworkInfo();
+    authAPI(); // ✅ Page Load hone par call hoga
   }, []);
   
   return (
    
       <>
       {isLogin?<LoginNavbar/>:<Navbar />}
-      <div>
-      <h2>Your Local IP Address: {networkInfo.localIP}</h2>
-      <h2>Your MAC Address: {networkInfo.macAddress}</h2>
-    </div>
+      
 
 <Routes>
   <Route path="/" element={<Home />} />
@@ -58,10 +47,22 @@ const Layout=()=>{
 }
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    // ✅ Simulating API call with setTimeout
+    setTimeout(() => {
+      setLoading(false); // ✅ Hide Loader after data loads
+    }, 3000); // 3 seconds delay
+  }, []);
   return (
+    <>
+    
     <Router basename="/vb-main">
+      {loading && <Loader />}
       <Layout />
     </Router>
+    </>
+    
   );
   
 }

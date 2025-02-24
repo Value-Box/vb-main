@@ -22,12 +22,9 @@ const url='http://182.176.166.222:8081/'
 const fetchBrandData = async (options) => {
   return fetch(`${url}api/GetBrands/GetBrands`, options);
 };
-const fetchProductData = async (options) => {
-  return fetch(`${url}api/ProductsInfoAPI/GetProducts`, options);
-};
+
 function Home() {
   const { data, loading, error } = useFetch({ apiFunc: fetchBrandData });
-  const { data: ProData, loading: ProLoading, error: ProError } = useFetch({ apiFunc: fetchProductData });
 
   const [brands, setBrands] = useState([]);
   useEffect(() => {
@@ -37,16 +34,7 @@ function Home() {
     console.log("Data Updated:", data);
   }, [data]);
 
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    if (ProData) {
-      console.log("Full Product Data:", ProData); // 🔥 API se aane wala pura data dekho
-      if (ProData.data) {
-        setProducts(ProData.data);
-        console.log("Product List Updated:", ProData.data); // ✅ Check karo ke array aa raha hai ya nahi
-      }
-    }
-  }, [ProData]);
+
   
 
     const images = [

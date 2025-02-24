@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getToken } from "./authAPI"; // Token ko fetch karne ke liye
+import Loader from "../utility/Loader";
 
 const useFetch = ({ apiFunc, method = "GET", body = null, headers = {} }) => {
   const [data, setData] = useState(null);
@@ -52,8 +53,11 @@ const useFetch = ({ apiFunc, method = "GET", body = null, headers = {} }) => {
       fetchData(); // ✅ API call sirf tab hogi jab token available hoga
     }
   }, [token]); // 🔥 `useEffect` sirf tab chalega jab token milega
+
+  // ✅ Jab tak loading true hai, Loader dikhayega
+  if (loading) return <Loader />;
+
   return { data, loading, error };
-  
 };
 
 export default useFetch;
