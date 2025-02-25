@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { getToken } from "./authAPI";
 
 const useFetch = ({ url, method = "GET", body = null, headers = {} }) => {
-  const [data, setData] = useState({ data: [] });
+  const [data, setData] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [token, setToken]  = useState(null);
@@ -45,7 +45,7 @@ const useFetch = ({ url, method = "GET", body = null, headers = {} }) => {
       
       const result = await response.json();
       // console.log(result)
-      setData(result);
+      setData(result?.data ? result : { data: [] });
       
     } catch (err) {
       setError(err.message || "Something went wrong!");
