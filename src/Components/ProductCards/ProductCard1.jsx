@@ -6,7 +6,7 @@ import useFetchHomeCategories from '../../services/categoryAPI';
 function ProductCard1() {
     const[currentIndex,setCurrentIndex]=useState(0)
 
-    const { data:proData, loading:proLoading, error:proError } = useFetchHomeProducts();
+    const { data:proData={}, loading:proLoading=false, error:proError=null } = useFetchHomeProducts();
     const [Products, setProducts] = useState([]); // ✅ Null ki jagah empty array use karein
 
 
@@ -22,7 +22,7 @@ function ProductCard1() {
 // const catLoading = categoryFetch?.loading;
 // const catError = categoryFetch?.error;
 
-const { data: categoryData, loading: catLoading, error: catError } = useFetchHomeCategories();
+const { data: categoryData={}, loading: catLoading=false, error: catError=null } = useFetchHomeCategories();
     
     const [category,setCategory]=useState([])
     useEffect(() => {
