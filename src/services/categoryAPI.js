@@ -1,9 +1,12 @@
 import { API_ENDPOINTS } from "../config/apiEndpoints";
+import { getToken } from "../hooks/authAPI";
 import useFetch from "../hooks/UseFetch";
 
-const fetchHomeCategories=()=>{
-
-    return useFetch({url:API_ENDPOINTS.GetCategorys})
+const useFetchHomeCategories=()=>{
+    const token=getToken()
+    if(token){
+        return useFetch({url:API_ENDPOINTS.GetCategorys})
+    }   
 }
 
-export default fetchHomeCategories;
+export default useFetchHomeCategories;

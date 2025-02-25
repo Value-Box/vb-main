@@ -2,10 +2,11 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { getToken } from "./authAPI";
 
 const useFetch = ({ url, method = "GET", body = null, headers = {} }) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken]  = useState(null);
+
 
   // ✅ Token ek baar fetch hoga
   useEffect(() => {
@@ -41,9 +42,11 @@ const useFetch = ({ url, method = "GET", body = null, headers = {} }) => {
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
-
+      
       const result = await response.json();
+      // console.log(result)
       setData(result);
+      
     } catch (err) {
       setError(err.message || "Something went wrong!");
     } finally {

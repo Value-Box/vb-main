@@ -48,7 +48,7 @@ function VidCarousel() {
                 {items.map((item, index) => (
                     <div 
                         key={index} 
-                        className={`bg-white rounded-lg overflow-hidden w-[20%] min-w-[20%] transition-transform duration-300 ${index === currentIndex ? 'scale-105 shadow-xl' : 'scale-100'}`}
+                        className={`bg-white rounded-lg overflow-hidden w-[20%] min-w-[20%] transition-transform duration-300 ${index === currentIndex ? 'border border-[#CCD1D2]' : 'scale-100'}`}
                     >
                         <div className="relative">
                             <iframe

@@ -86,7 +86,7 @@ export default function VerticalCategories() {
   }, []);
 
   useEffect(() => {
-    console.log(sidebarOpen)
+    // console.log(sidebarOpen)
   }, [sidebarOpen]);
   
 
