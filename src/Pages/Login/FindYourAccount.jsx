@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Input from '../../Components/Input';
 import FormButton from "../../Components/FormButton";
 import LoginImage from "/src/Images/LoginImage.png";
+import { motion } from "framer-motion";
 
 function FindYourAccount() {
 
@@ -28,32 +29,35 @@ function FindYourAccount() {
   };
 
   return (
+
+
+    
     <div className="flex flex-col items-center h-screen">
       <div className="bg-white mt-10 px-5 md:px-0 w-full max-w-md">
-       
-       {view === "main" && (
+      {view === "main" && (
           <NavLink to="/LoginSignup">
-            <span className="flex flex-row gap-1 text-[#002882] cursor-pointer">
+            <motion.span 
+              className="flex flex-row gap-1 text-[#002882] cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M19.0004 10.9999H7.83041L12.7104 6.11991C13.1004 5.72991 13.1004 5.08991 12.7104 4.69991C12.6179 4.60721 12.508 4.53366 12.387 4.48348C12.2661 4.4333 12.1364 4.40747 12.0054 4.40747C11.8744 4.40747 11.7448 4.4333 11.6238 4.48348C11.5028 4.53366 11.3929 4.60721 11.3004 4.69991L4.71041 11.2899C4.61771 11.3824 4.54416 11.4923 4.49398 11.6133C4.4438 11.7343 4.41797 11.8639 4.41797 11.9949C4.41797 12.1259 4.4438 12.2556 4.49398 12.3765C4.54416 12.4975 4.61771 12.6074 4.71041 12.6999L11.3004 19.2899C11.393 19.3825 11.5029 19.4559 11.6239 19.506C11.7448 19.5561 11.8745 19.5819 12.0054 19.5819C12.1363 19.5819 12.266 19.5561 12.387 19.506C12.5079 19.4559 12.6178 19.3825 12.7104 19.2899C12.803 19.1973 12.8764 19.0874 12.9265 18.9665C12.9766 18.8455 13.0024 18.7158 13.0024 18.5849C13.0024 18.454 12.9766 18.3243 12.9265 18.2034C12.8764 18.0824 12.803 17.9725 12.7104 17.8799L7.83041 12.9999H19.0004C19.5504 12.9999 20.0004 12.5499 20.0004 11.9999C20.0004 11.4499 19.5504 10.9999 19.0004 10.9999Z" fill="#002882"/>
               </svg>
               Back
-            </span>
+            </motion.span>
           </NavLink>
         )}
-     
-        {view !== "main" && (
-          <button
+     {view !== "main" && (
+          <motion.button
             onClick={() => setView("main")}
             className="flex items-center gap-2 text-[#002882] cursor-pointer mb-4"
+            whileHover={{ scale: 1.05 }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M19.0004 10.9999H7.83041L12.7104 6.11991C13.1004 5.72991 13.1004 5.08991 12.7104 4.69991C12.6179 4.60721 12.508 4.53366 12.387 4.48348C12.2661 4.4333 12.1364 4.40747 12.0054 4.40747C11.8744 4.40747 11.7448 4.4333 11.6238 4.48348C11.5028 4.53366 11.3929 4.60721 11.3004 4.69991L4.71041 11.2899C4.61771 11.3824 4.54416 11.4923 4.49398 11.6133C4.4438 11.7343 4.41797 11.8639 4.41797 11.9949C4.41797 12.1259 4.4438 12.2556 4.49398 12.3765C4.54416 12.4975 4.61771 12.6074 4.71041 12.6999L11.3004 19.2899C11.393 19.3825 11.5029 19.4559 11.6239 19.506C11.7448 19.5561 11.8745 19.5819 12.0054 19.5819C12.1363 19.5819 12.266 19.5561 12.387 19.506C12.5079 19.4559 12.6178 19.3825 12.7104 19.2899C12.803 19.1973 12.8764 19.0874 12.9265 18.9665C12.9766 18.8455 13.0024 18.7158 13.0024 18.5849C13.0024 18.454 12.9766 18.3243 12.9265 18.2034C12.8764 18.0824 12.803 17.9725 12.7104 17.8799L7.83041 12.9999H19.0004C19.5504 12.9999 20.0004 12.5499 20.0004 11.9999C20.0004 11.4499 19.5504 10.9999 19.0004 10.9999Z" fill="#002882"/>
-            </svg>
-            Back
-          </button>
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M19.0004 10.9999H7.83041L12.7104 6.11991C13.1004 5.72991 13.1004 5.08991 12.7104 4.69991C12.6179 4.60721 12.508 4.53366 12.387 4.48348C12.2661 4.4333 12.1364 4.40747 12.0054 4.40747C11.8744 4.40747 11.7448 4.4333 11.6238 4.48348C11.5028 4.53366 11.3929 4.60721 11.3004 4.69991L4.71041 11.2899C4.61771 11.3824 4.54416 11.4923 4.49398 11.6133C4.4438 11.7343 4.41797 11.8639 4.41797 11.9949C4.41797 12.1259 4.4438 12.2556 4.49398 12.3765C4.54416 12.4975 4.61771 12.6074 4.71041 12.6999L11.3004 19.2899C11.393 19.3825 11.5029 19.4559 11.6239 19.506C11.7448 19.5561 11.8745 19.5819 12.0054 19.5819C12.1363 19.5819 12.266 19.5561 12.387 19.506C12.5079 19.4559 12.6178 19.3825 12.7104 19.2899C12.803 19.1973 12.8764 19.0874 12.9265 18.9665C12.9766 18.8455 13.0024 18.7158 13.0024 18.5849C13.0024 18.454 12.9766 18.3243 12.9265 18.2034C12.8764 18.0824 12.803 17.9725 12.7104 17.8799L7.83041 12.9999H19.0004C19.5504 12.9999 20.0004 12.5499 20.0004 11.9999C20.0004 11.4499 19.5504 10.9999 19.0004 10.9999Z" fill="#002882"/>
+              </svg>  Back
+          </motion.button>
         )}
-
      
         {view === "main" && (
           <>
@@ -170,28 +174,29 @@ function FindYourAccount() {
         )}
 
 {view === "results" && (
-  <div>
-    <h2 className="text-2xl font-bold">Account linked with this email:</h2>
-
-    <ul className="mt-3 space-y-2.5">
-      {accounts.length > 0 ? (
-        accounts.map((account) => (
-          <li 
-            key={account.id} 
-            className="flex items-center gap-4 p-2 border rounded-full border-gray-300 bg-white"
-          >
-         <img src={account.Image} alt={account.name} className="w-12 h-12 rounded-full object-cover" />
-          <div className="flex flex-col">
-            <p className="text-black text-xm font-normal">{account.email}</p>
-            </div>
-          </li>
-        ))
-      ) : (
-        <p>No accounts found.</p>
-      )}
-    </ul>
-  </div>
-)}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+            <h2 className="text-2xl font-bold">Account linked with this email:</h2>
+            <ul className="mt-3 space-y-2.5">
+              {accounts.length > 0 ? (
+                accounts.map((account) => (
+                  <motion.li
+                    key={account.id}
+                    className="flex items-center gap-4 p-2 border rounded-full border-gray-300 bg-white"
+                    whileHover={{ scale: 1.05, backgroundColor: "#f0f0f0" }}
+                  >
+                    <img src={account.Image} alt={account.name} className="w-12 h-12 rounded-full object-cover" />
+                    <div className="flex flex-col">
+                      <p className="text-black text-xm font-normal">{account.email}</p>
+                    </div>
+                  </motion.li>
+                ))
+              ) : (
+                <p>No accounts found.</p>
+              )}
+            </ul>
+          </motion.div>
+        )}
+      
 
 
 
