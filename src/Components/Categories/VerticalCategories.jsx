@@ -120,7 +120,7 @@ export default function VerticalCategories() {
         transform md:-translate-x-1/2 -translate-x-1/2 z-50 sm:mt-1 
         sm:group-hover:opacity-100 sm:group-hover:scale-100 sm:group-hover:translate-y-0 
         sm:group-hover:visible sm:pointer-events-auto 
-        ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+        ${isOpen ? "opacity-100 visible z-[1055]" : "opacity-0 invisible"}`}
         onClick={(e) => e.stopPropagation()} // 🛑 Prevent closing on click inside
       >
         <ul className=" w-full">

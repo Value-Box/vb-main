@@ -2,8 +2,8 @@ import React from 'react'
 
 function InfoSection() {
   return (
-    <div className='p-3 md:p-0 bg-[#FCFCFC]'>
-    <div className='flex justify-between md:justify-start md:m-0 lg:justify-between flex-auto rounded-lg sm:flex-wrap flex-col sm:flex-row lg:flex-nowrap md:px-4 px-2 lg:px-8 
+    <div className='p-3 md:p-0  bg-[#FCFCFC] flex justify-center'>
+    <div className='flex justify-between md:justify-start md:m-0 lg:justify-between flex-auto rounded-lg sm:flex-wrap flex-col sm:flex-row lg:flex-nowrap  md:px-4 px-2 lg:px-8 
     2xl:px-20 py-4 gap-2 max-w-[1920px] mx-auto bg-[#FEF6E6] md:bg-white'>
       
         

@@ -4,6 +4,8 @@ import HorizentolCategories from '../Components/Categories/HorizentolCategories'
 import ProductImg from "/src/Images/ProductCard.png";
 import HoddieImg from "/src/Images/Image2.png";
 import MouseImg from "/src/Images/Image3.png";
+import BudleDealsBg from "/src/Images/BudleDealsBg.png";
+import TrendyFesshionImg from "/src/Images/TrendyFesshionImg.png";
 import electricity from "/src/Images/electricity.gif";
 import VidCarousel from '../Components/Carousels/VidCarousel';
 import useFetch from '../hooks/UseFetch';
@@ -100,8 +102,9 @@ function Home() {
     carouselRef.current.scrollLeft = scrollLeft - walk;
   };
   return (
-    <>
-    <HorizentolCategories/>
+    <div>
+    <HorizentolCategories  />
+
     {/* <div>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
@@ -111,7 +114,7 @@ function Home() {
         ))}
       </ul>
     </div> */}
-    <div className="relative w-full mx-auto">
+    <div className="relative max-w-[1920px] w-full mx-auto">
       <div className="overflow-hidden">
         <img
           src={images[currentIndex]}
@@ -189,8 +192,8 @@ function Home() {
         </Link>
 
         {/* Products */}
-        <div className='mt-5 hidden xl:flex gap-2'>
-          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
+        <div className='mt-5 flex xl:overflow-hidden overflow-x-auto gap-2 w-full scrollbar-hidden'>
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px] min-w-[200px] xl:min-w-auto '>
           <img src={ProductImg} alt="" className=" h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
           <p className="w-full whitespace-normal break-words mt-2 text-sm">Men'S Other Running Shoes Korean Style</p>
             <p className='inline-flex items-center rounded-md bg-gradient-to-l from-white to-[#FFD2AE] mt-1 ml-2'>
@@ -210,7 +213,7 @@ function Home() {
 
             </p>
           </div>
-          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px] min-w-[200px] xl:min-w-auto'>
             <img src={HoddieImg} alt="" className=" h-[190px] 2xl:h-[250px] rounded-lg object-cover"/>
             <p className="w-full whitespace-normal break-words mt-2 text-sm">Men'S Other Running Shoes Korean Style</p>
             <p className='inline-flex items-center rounded-md bg-gradient-to-l from-white to-[#FFD2AE] mt-1 ml-2'>
@@ -230,7 +233,7 @@ function Home() {
 
             </p>
           </div>
-          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px] min-w-[200px] xl:min-w-auto'>
             <img src={MouseImg} alt="" className=" h-[190px] 2xl:h-[250px] rounded-lg object-cover"/>
             <p className="w-full whitespace-normal break-words mt-2 text-sm">Men'S Other Running Shoes Korean Style</p>
             <p className='inline-flex items-center rounded-md bg-gradient-to-l from-white to-[#FFD2AE] mt-1 ml-2'>
@@ -251,43 +254,8 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="relative w-full block xl:hidden mx-auto mt-5">
-      <div
-        ref={carouselRef}
-        className="flex gap-4 overflow-x-scroll scrollbar-hide cursor-grab active:cursor-grabbing"
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-      >
-        {dummyProducts.map((product,index) => (
-          
-          
-          <div key={index} className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
-          <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
-          <p className="w-full whitespace-normal break-words mt-2 text-sm">{product.name}</p>
-            <p className='inline-flex items-center rounded-md bg-gradient-to-l from-white to-[#FFD2AE] mt-1 ml-2'>
-              
-              <svg xmlns="http://www.w3.org/2000/svg" className='relative left-[-10px]' width="22" height="35" viewBox="0 0 22 35" fill="none">
-  <path d="M20.3 15.3081L14.7593 17.3229L15.5425 1.48724C15.5761 0.809162 14.9994 0.317927 14.4596 0.56477L10.834 2.2232C10.2941 1.97639 10.8003 1.54513 10.834 2.2232C10.834 2.2232 11.0521 0.91438 10.334 1.5C6.11014 4.94452 6.90858 17.3229 6.90858 17.3229L1.36785 15.3081C0.655928 15.0491 0.0586404 15.978 0.467096 16.7091L10.1687 34.0784C10.4827 34.6405 11.1853 34.6405 11.4992 34.0784L21.2009 16.7091C21.6092 15.9781 21.0121 15.0491 20.3 15.3081Z" fill="url(#paint0_linear_11256_1038)"/>
-  <defs>
-    <linearGradient id="paint0_linear_11256_1038" x1="10.834" y1="0.5" x2="10.834" y2="34.5" gradientUnits="userSpaceOnUse">
-      <stop stopColor="#FFD2AE"/>
-      <stop offset="1" stopColor="#FF9948"/>
-    </linearGradient>
-  </defs>
-</svg>
-              <span className="flex items-baseline font-semibold">
-                <span className="text-xs">PKR</span>
-                <span className="text-lg ml-[2px]">{product.price}</span>
-              </span>
 
-            </p>
-          </div>
-         
-        ))}
-      </div>
-    </div>
+       
       </div>
       
       <div className='bg-[#FFE3DF] sm:rounded-2xl p-4 w-full sm:w-[50%] xl:w-full'>
@@ -305,8 +273,8 @@ function Home() {
         </Link>
 
         {/* Products */}
-        <div className='mt-5 hidden xl:flex gap-2 '>
-        <div className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
+        <div className='mt-5 flex xl:overflow-hidden overflow-x-auto gap-2 w-full scrollbar-hidden'>
+        <div className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px] min-w-[200px] xl:min-w-auto">
   <img src={ProductImg} alt="" className="h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
   
   {/* Yeh div flexible space le raha hai */}
@@ -328,9 +296,9 @@ function Home() {
       </span>
     </p>
   </div>
-</div>
+        </div>
 
-          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px] min-w-[200px] xl:min-w-auto'>
             <img src={HoddieImg} alt="" className=" h-[190px] 2xl:h-[250px] rounded-lg object-cover"/>
             <p className="w-full whitespace-normal break-words mt-2 text-sm">Men'S Other Running Shoes Korean Style</p>
             <p className="flex items-center justify-between rounded-md mt-1">
@@ -344,7 +312,7 @@ function Home() {
       </span>
     </p>
           </div>
-          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]'>
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px] min-w-[200px] xl:min-w-auto'>
             <img src={MouseImg} alt="" className=" h-[190px] 2xl:h-[250px] rounded-lg object-cover"/>
             <p className="w-full whitespace-normal break-words mt-2 text-sm">Men'S Other Running Shoes Korean Style</p>
             <p className="flex items-center justify-between rounded-md mt-1">
@@ -360,46 +328,142 @@ function Home() {
           </div>
         </div>
 
-        {/* Carousel */}
-    <div className="relative w-full block xl:hidden mx-auto mt-5">
-      <div
-        ref={carouselRef}
-        className="flex gap-4 overflow-x-scroll scrollbar-hide cursor-grab active:cursor-grabbing"
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-      >
-        {dummyProducts.map((product,index) => (
+        
+      </div>
+      
+    </div>
+
+    <div className='flex flex-wrap sm:flex-nowrap gap-4 sm:p-4 max-w-[1920px] mx-auto'>
+      <div className=' sm:rounded-2xl p-4 w-full sm:w-[55%]'style={{ backgroundImage: `url(${BudleDealsBg})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+        <Link>
+        <div className='flex justify-between items-center mb-1'>
+          <h3 className='text-[#FCFCFC] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '>Bundle Deals</h3>
+          <span className='bg-[#7A5A43] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
           
-          <div key={index} className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]">
-          <img src={product.img} alt="" className="min-w-[200px] sm:min-w-[230px] no-select pointer-events-none h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
+         <svg xmlns="http://www.w3.org/2000/svg" className='w-4 lg:w-5 2xl:w-6' viewBox="0 0 24 25" fill="none">
+           <path d="M2 12.5H22M22 12.5L13 3.5M22 12.5L13 21.5" stroke="#FCFCFC" strokeWidth="2.5"/>
+        </svg>
+          </span>
+        </div>
+        <span className='text-[#FCFCFC] text-sm 2xl:text-base font-semibold'>Stay up to date with latest trends!</span>
+        </Link>
+
+        {/* Products */}
+        <div className='mt-2 2xl:mt-5 flex xl:overflow-hidden overflow-x-auto gap-2 w-full scrollbar-hidden'>
+          <div className=' w-fit rounded-xl flex flex-col '>
+          <img src={TrendyFesshionImg} alt="" className="max-w-[200px] h-full 2xl:max-w-[350px] rounded-lg object-cover" />
+            
+          </div>
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col min-w-[200px] xl:min-w-auto '>
+          <img src={ProductImg} alt="" className=" h-[150px] 2xl:h-[200px] rounded-lg object-cover" />
+            <p className='inline-flex items-center rounded-md mt-1 ml-2'>
+              
+              <span className="flex items-baseline font-semibold">-
+                <span className="text-xs">PKR</span>
+                <span className="text-lg ml-[2px]">5,699</span>
+              </span>
+              <span className="text-[#F04438] py-1 rounded-full text-sm relative">
+              -52%</span>
+            </p>
+          </div>
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col min-w-[200px] xl:min-w-auto '>
+          <img src={ProductImg} alt="" className="h-[150px] 2xl:h-[200px] rounded-lg object-cover" />
+            <p className='inline-flex items-center rounded-md mt-1 ml-2'>
+              
+              <span className="flex items-baseline font-semibold">
+                <span className="text-xs">PKR</span>
+                <span className="text-lg ml-[2px]">5,699</span>
+              </span>
+              <span className="text-[#F04438] py-1 rounded-full text-sm relative">
+              -52%</span>
+            </p>
+          </div>
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col min-w-[200px] xl:min-w-auto '>
+          <img src={ProductImg} alt="" className=" h-[150px] 2xl:h-[200px] rounded-lg object-cover" />
+            <p className='inline-flex items-center rounded-md mt-1 ml-2'>
+              
+              <span className="flex items-baseline font-semibold">
+                <span className="text-xs">PKR</span>
+                <span className="text-lg ml-[2px]">5,699</span>
+              </span>
+              <span className="text-[#F04438] py-1 rounded-full text-xs xl:text-sm relative">
+              -52%</span>
+            </p>
+          </div>
+        </div>
+
+       
+      </div>
+      
+      <div className='bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] sm:rounded-2xl p-4 w-full sm:w-[45%] '>
+        <Link>
+        <div className='flex justify-between items-center mb-1'>
+          <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl flex'><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M6 28.5C6 29.2956 6.31607 30.0587 6.87868 30.6213C7.44129 31.1839 8.20435 31.5 9 31.5C9.79565 31.5 10.5587 31.1839 11.1213 30.6213C11.6839 30.0587 12 29.2956 12 28.5C12 27.7044 11.6839 26.9413 11.1213 26.3787C10.5587 25.8161 9.79565 25.5 9 25.5C8.20435 25.5 7.44129 25.8161 6.87868 26.3787C6.31607 26.9413 6 27.7044 6 28.5Z" stroke="#D92D20" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M19.5 25.5H9V4.5H6" stroke="#D92D20" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M9 7.5L30 9L29.1375 15.033M21.75 19.5H9M31.5 22.5H27.75C27.1533 22.5 26.581 22.7371 26.159 23.159C25.7371 23.581 25.5 24.1533 25.5 24.75C25.5 25.3467 25.7371 25.919 26.159 26.341C26.581 26.7629 27.1533 27 27.75 27H29.25C29.8467 27 30.419 27.2371 30.841 27.659C31.2629 28.081 31.5 28.6533 31.5 29.25C31.5 29.8467 31.2629 30.419 30.841 30.841C30.419 31.2629 29.8467 31.5 29.25 31.5H25.5M28.5 31.5V33M28.5 21V22.5" stroke="#D92D20" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+</svg> <span className='text-[#D92D20] '>One Dollar Shop</span></h3>
+          <span className='bg-[#E6EAF3] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
+          
+         <svg xmlns="http://www.w3.org/2000/svg" className='w-4 lg:w-5 2xl:w-6' viewBox="0 0 24 25" fill="none">
+  <path d="M2 12.5H22M22 12.5L13 3.5M22 12.5L13 21.5" stroke="#D92D20" strokeWidth="2.5"/>
+</svg>
+          </span>
+        </div>
+
+        <span className='text-[#333] text-sm 2xl:text-base font-semibold '>Big brands, Big Savings</span>
+        </Link>
+
+        {/* Products */}
+        <div className='mt-2 2xl:mt-5 flex xl:overflow-hidden overflow-x-auto gap-2 w-full scrollbar-hidden'>
+        <div className="bg-[#FFF] p-2 w-fit rounded-xl flex flex-col min-w-[200px] xl:min-w-auto">
+  <img src={ProductImg} alt="" className="h-[150px] 2xl:h-[200px] rounded-lg object-cover" />
   
   {/* Yeh div flexible space le raha hai */}
   <div className="flex flex-col flex-grow justify-between">
     {/* Product Name */}
-    <p className="w-full whitespace-normal break-words mt-2 text-sm flex-grow">
-    {product.name}
-    </p>
+    
 
     {/* Price aur Discount */}
     <p className="flex items-center justify-between rounded-md mt-1">
-      <span className="text-[#F04438] bg-[#FEE4E2] px-4 py-1 rounded-full text-sm relative">
-      <svg className='absolute  bottom-[-4px] left-0 ' xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
-         <path d="M2.01618 12.5223C1.27261 12.7215 0.592195 12.0411 0.791433 11.2976L3.48116 1.25936C3.6804 0.515788 4.60986 0.26674 5.15419 0.811071L12.5027 8.15954C13.047 8.70387 12.7979 9.63333 12.0544 9.83257L2.01618 12.5223Z" fill="#FEE4E2"/>
-      </svg> -52%</span>
+      
       <span className="flex items-baseline font-semibold">
         <span className="text-xs">PKR</span>
-        <span className="text-lg ml-[2px]">{product.price}</span>
+        <span className="text-lg ml-[2px]">5,699</span>
       </span>
+      <span className="text-[#F04438] px-4 py-1 rounded-full text-sm relative">
+      -52%</span>
     </p>
   </div>
-</div>
-         
-          
-        ))}
-      </div>
-    </div>
+        </div>
+
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col  min-w-[200px] xl:min-w-auto'>
+            <img src={HoddieImg} alt="" className="h-[150px] 2xl:h-[200px] rounded-lg object-cover"/>
+            <p className="flex items-center justify-between rounded-md mt-1">
+      
+      <span className="flex items-baseline font-semibold">
+        <span className="text-xs">PKR</span>
+        <span className="text-lg ml-[2px]">5,699</span>
+      </span>
+      <span className="text-[#F04438] px-4 py-1 rounded-full text-sm relative">
+       -52%</span>
+    </p>
+          </div>
+          <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col  min-w-[200px] xl:min-w-auto'>
+            <img src={MouseImg} alt="" className="h-[150px] 2xl:h-[200px] rounded-lg object-cover"/>
+            <p className="flex items-center justify-between rounded-md mt-1">
+      
+      <span className="flex items-baseline font-semibold">
+        <span className="text-xs">PKR</span>
+        <span className="text-lg ml-[2px]">5,699</span>
+      </span>
+      <span className="text-[#F04438] px-4 py-1 rounded-full text-sm relative">
+       -52%</span>
+    </p>
+          </div>
+        </div>
+
+        
       </div>
       
     </div>
@@ -407,7 +471,7 @@ function Home() {
     <VidCarousel />
     <ProductCard1 />
     
-    </>
+    </div>
   )
 }
 

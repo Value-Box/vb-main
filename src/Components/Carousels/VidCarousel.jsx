@@ -13,7 +13,6 @@ function VidCarousel() {
     
     const visibleItems = 5;
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [mutedVideos, setMutedVideos] = useState(items.map(() => true));
     const containerRef = useRef(null);
 
     const nextSlide = () => {
@@ -33,14 +32,10 @@ function VidCarousel() {
         }
     }, [currentIndex]);
 
-    const toggleMute = (index) => {
-        setMutedVideos((prevMuted) =>
-            prevMuted.map((muted, i) => (i === index ? !muted : muted))
-        );
-    };
+
 
     return (
-        <div className="relative w-full mx-auto overflow-hidden px-5">
+        <div className="relative w-full max-w-[1920px] mx-auto overflow-hidden px-5">
             <div
                 ref={containerRef}
                 className="bg-white flex gap-5 overflow-x-auto w-full scrollbar-hide"
@@ -48,32 +43,19 @@ function VidCarousel() {
                 {items.map((item, index) => (
                     <div 
                         key={index} 
-                        className={`bg-white rounded-lg overflow-hidden w-[20%] min-w-[20%] transition-transform duration-300 ${index === currentIndex ? 'border border-[#CCD1D2]' : 'scale-100'}`}
+                        className={`bg-white rounded-lg overflow-hidden w-[30%] min-w-[250px] xl:min-w-[20%] transition-transform duration-300 ${index === currentIndex ? 'border border-[#CCD1D2]' : 'scale-100'}`}
                     >
                         <div className="relative">
                             <iframe
-                                src={`${item}${mutedVideos[index] ? "&mute=1" : "&mute=0"}`}
+                                src={`${item}`}
                                 className="h-[350px] w-full rounded-t-lg"
                                 allow="autoplay"
                             ></iframe>
-                            <button
-                                onClick={() => toggleMute(index)}
-                                className="absolute bottom-4 right-4 bg-black bg-opacity-50 p-2 rounded-full"
-                            >
-                                {mutedVideos[index] ? (
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="24" height="24" viewBox="0 0 24 24">
-                                        <path d="M16.5 12L22 16V8L16.5 12ZM14 3V21L8.5 15H3V9H8.5L14 3Z"></path>
-                                    </svg>
-                                ) : (
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="24" height="24" viewBox="0 0 24 24">
-                                        <path d="M14 21V3L8.5 9H3V15H8.5L14 21ZM18 12L22 16V8L18 12Z"></path>
-                                    </svg>
-                                )}
-                            </button>
+                            
                         </div>
-                        <div className="bg-[#F2F2F2] rounded-b-lg p-4 flex flex-row items-center gap-2.5">
-                            <img className="w-[80px] h-[80px] rounded-lg object-contain" src={ProductCardCrousal} alt="Product" />
-                            <div className="flex flex-col gap-2">
+                        <div className="bg-[#F2F2F2] rounded-b-lg p-2 xl:p-4 flex flex-row items-center gap-2.5">
+                            <img className="w-[50px] xl:w-[80px] xl:h-[80px] rounded-lg object-contain" src={ProductCardCrousal} alt="Product" />
+                            <div className="flex flex-col xl:gap-2">
                                 <span className="text-xs font-semibold text-gray-900">PKR <span className='text-base'>5000</span></span>
                                 <span className="text-sm text-black">Men's Other Running Shoes Korean Style</span>
                             </div>

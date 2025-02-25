@@ -51,7 +51,7 @@ const { data: categoryData, loading: catLoading, error: catError } = useFetchHom
   return (
     <>
 
-<div className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] relative w-full mx-auto overflow-hidden px-[60px] py-3"> 
+<div className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] max-w-[1920px] relative w-full mx-auto overflow-hidden px-7 sm:px-[60px] py-1 sm:py-3"> 
   {/* ✅ Ye padding buttons ke liye extra space dega */}
 
   <div className="relative w-full overflow-hidden">
@@ -64,10 +64,10 @@ const { data: categoryData, loading: catLoading, error: catError } = useFetchHom
       {category.map((item, index) => (
         <div
           key={index}
-          className="flex-shrink-0 w-auto h-max px-5 py-2 flex items-center justify-center bg-[#FCFCFC] border-[#999] border rounded-full mx-2"
+          className="flex-shrink-0 w-auto h-max px-2 sm:px-5 py-1 sm:py-2 flex items-center justify-center bg-[#FCFCFC] border-[#999] border rounded-full mx-1 sm:mx-2"
           style={{ flex: `0 0 ${100 / visibleItems}%` }}
         >
-          <span className="text-base w-max font-medium text-[#666]">{item.name}</span>
+          <span className="text-xs sm:text-sm lg:text-base w-max font-medium text-[#666]">{item.name}</span>
         </div>
       ))}
     </div>
@@ -76,7 +76,7 @@ const { data: categoryData, loading: catLoading, error: catError } = useFetchHom
   {/* ✅ Navigation Buttons */}
   <button
     onClick={prevSlide}
-    className="absolute left-2 top-1/2 cursor-pointer transform -translate-y-1/2 bg-[#FCFCFC] border-[#999] border bg-opacity-50 text-white p-2 rounded-full z-10"
+    className="absolute left-1 sm:left-2 top-1/2 cursor-pointer transform -translate-y-1/2 bg-[#FCFCFC] border-[#999] border bg-opacity-50 text-white sm:p-2 rounded-full z-10"
   >
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path d="M14.2894 18.2929C13.8989 18.6834 13.2657 18.6834 12.8752 18.2929L7.98782 13.4006C7.20742 12.6195 7.20772 11.3537 7.98842 10.5729L12.8788 5.68254C13.2693 5.29202 13.9025 5.29202 14.293 5.68254C14.6836 6.07307 14.6836 6.70623 14.293 7.09676L10.1074 11.2824C9.71682 11.6729 9.71682 12.3061 10.1074 12.6966L14.2894 16.8787C14.68 17.2692 14.68 17.9023 14.2894 18.2929Z" fill="#999999"/>
@@ -85,7 +85,7 @@ const { data: categoryData, loading: catLoading, error: catError } = useFetchHom
 
   <button
     onClick={nextSlide}
-    className="absolute right-2 top-1/2 cursor-pointer transform -translate-y-1/2 bg-[#FCFCFC] border-[#999] border bg-opacity-50 text-white p-2 rounded-full z-10"
+    className="absolute right-1 sm:right-2 top-1/2 cursor-pointer transform -translate-y-1/2 bg-[#FCFCFC] border-[#999] border bg-opacity-50 text-white sm:p-2 rounded-full z-10"
   >
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path d="M9.71057 18.2929C10.1011 18.6834 10.7343 18.6834 11.1248 18.2929L16.0122 13.4006C16.7926 12.6195 16.7923 11.3537 16.0116 10.5729L11.1212 5.68254C10.7307 5.29202 10.0975 5.29202 9.70696 5.68254C9.31643 6.07307 9.31643 6.70623 9.70696 7.09676L13.8926 11.2824C14.2832 11.6729 14.2832 12.3061 13.8926 12.6966L9.71057 16.8787C9.32004 17.2692 9.32004 17.9023 9.71057 18.2929Z" fill="#999999"/>
@@ -93,13 +93,13 @@ const { data: categoryData, loading: catLoading, error: catError } = useFetchHom
   </button>
 </div>
 
-    <div className="antialiased text-gray-900 ">
-  <div className="bg-[#FCFCFC] p-8 flex gap-5">
+    <div className="antialiased text-gray-900 max-w-[1920px] mx-auto ">
+  <div className="bg-[#FCFCFC] p-3 sm:p-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid xl:grid-cols-5 gap-5">
   
       
         {Products.map((items, index) => (
           
-<div key={index} className="bg-white rounded-lg overflow-hidden duration-400 hover:shadow-lg  xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2">
+<div key={index} className="bg-white rounded-lg overflow-hidden duration-400 hover:shadow-lg  ">
       <img
         className="h-48 w-full object-cover object-end"
         src={`http://182.176.166.222:8081${items.imagePath}`}
