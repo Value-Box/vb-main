@@ -38,7 +38,7 @@ const Layout=()=>{
 
     return (
       <Suspense>
-      <Router basename="/vb-main">
+      <Router>
         <Layout />
       </Router>
       </Suspense>
