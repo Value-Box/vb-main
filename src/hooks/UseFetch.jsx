@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { getToken } from "./authAPI";
 
 const useFetch = ({ url, method = "GET", body = null, headers = {} }) => {
-  const [data, setData] = useState(undefined);
+  const [data, setData] = useState({ data: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [token, setToken]  = useState(null);
