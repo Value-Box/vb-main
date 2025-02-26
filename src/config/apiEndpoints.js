@@ -4,4 +4,5 @@ export const API_ENDPOINTS = {
     GetBrands: `${BASE_URL}/GetBrands/GetBrands`,
     GetProducts: `${BASE_URL}ProductsInfoAPI/GetProducts`,
     GetCategorys: `${BASE_URL}CategoryInfoAPI/GetCategorys`,
+    ProductCollection: `${BASE_URL}ProductCollectionAPI/GetCollections`,
 };
