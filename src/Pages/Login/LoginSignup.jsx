@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import LoginImage from "/src/Images/LoginImage.png";
 import Input from '../../Components/Input';
 import FormButton from '../../Components/FormButton';
+import InfoSection from '../../Components/InfoSection';
 
 
 function LoginSignup() {
   const [showPassword, setShowPassword] = useState(false); 
-
-
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
  
   return (
     <>
@@ -27,8 +32,10 @@ function LoginSignup() {
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   </div>
+
   <span className='text-xs font-medium'>Your Information is Protected</span>
 </div>
+{!isMobile?'':<InfoSection/>}
 
      <div className="flex w-full">
      <div className="flex items-center justify-center w-[50%] bg-gray-200 hidden md:block">
