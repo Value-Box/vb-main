@@ -24,23 +24,22 @@ function BundleDeal() {
       { id: 6, name: "Mouse", price: "29", img: MouseImg },
   ];
   return (
-    <div className='bg-[#FFF6DF] sm:rounded-2xl p-4 w-full sm:w-[50%] xl:w-full'>
-        <Link to='/DealsPage' state={{ name: "Bundle Deals" }}>
-        <div className='flex justify-between items-center mb-1'>
-          <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '>Bundle Deals</h3>
+    <div className='bg-[#FFF6DF] sm:rounded-2xl sm:p-4 w-full md:w-[50%] xl:w-full pb-4'>
+        <Link to='/DealsPage' state={{ name: "Bundle Deals" }} >
+        <div className='flex justify-between items-center mb-1 px-4 pt-2 sm:p-0'>
+          <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '>3 From 3000 PKR</h3>
           <span className='bg-[#FFEB71] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
           <svg xmlns="http://www.w3.org/2000/svg" className='w-4 lg:w-5 2xl:w-6' viewBox="0 0 24 24" fill="none">
              <path d="M2 12H22M22 12L13 3M22 12L13 21" stroke="black" strokeWidth="2.5"/>
          </svg>
           </span>
         </div>
-        <span className='bg-[#002882] text-[#E6EAF3] text-sm 2xl:text-base font-semibold px-3 py-1 rounded '>Pick & Save</span>
-        <span className='text-[#333] text-lg lg:text-xl 2xl:text-2xl font-semibold ml-3'>3 From 3000 PKR</span>
+        <span className='hidden sm:inline-flex bg-[#002882] text-[#E6EAF3] text-sm 2xl:text-base font-semibold  md:ml-0 px-3 py-1 rounded '>Pick & Save</span>
+        <span className='hidden sm:inline-flex text-[#333] text-lg lg:text-xl 2xl:text-2xl font-semibold ml-3'>3 From 3000 PKR</span>
         </Link>
 
         {/* Products */}
-        {!isMobile?(
-          <div className='mt-5 flex gap-2'>
+        {!isMobile?(<div className='mt-5 flex gap-2'>
           <div className='bg-[#FFF] p-2 w-fit rounded-xl flex flex-col h-[280px] 2xl:h-[350px]  '>
           <img src={ProductImg} alt="" className=" h-[190px] 2xl:h-[250px] rounded-lg object-cover" />
           <p className="w-full whitespace-normal break-words mt-2 text-sm">Men'S Other Running Shoes Korean Style</p>

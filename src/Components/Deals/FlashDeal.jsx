@@ -22,9 +22,9 @@ function FlashDeal() {
         { id: 6, name: "Mouse", price: "29", img: MouseImg },
     ];
   return (
-    <div className='bg-[#FFE3DF] sm:rounded-2xl p-4 w-full sm:w-[50%] xl:w-full'>
+    <div className='bg-[#FFE3DF] sm:rounded-2xl sm:p-4 w-full md:w-[50%] xl:w-full pb-4'>
             <Link to='/DealsPage' state={{ name: "Flash Deals" }}>
-            <div className='flex justify-between items-center mb-1'>
+            <div className='flex justify-between items-center mb-1 px-4 pt-2 sm:p-0'>
               <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl flex'><span className='flex gap-2'><img className='w-6' src={electricity} alt="" /> Flash</span><span className='text-[#F04438] '>Deals</span></h3>
               <span className='bg-[#FFC3B2] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
               <svg xmlns="http://www.w3.org/2000/svg" className='w-4 lg:w-5 2xl:w-6' viewBox="0 0 24 24" fill="none">
@@ -33,7 +33,7 @@ function FlashDeal() {
               </span>
             </div>
     
-            <span className='text-[#333] text-lg lg:text-xl 2xl:text-2xl font-semibold '>Limited time 70% off</span>
+            <span className='hidden sm:inline-flex text-[#333] text-lg lg:text-xl 2xl:text-2xl font-semibold '>Limited time 70% off</span>
             </Link>
     
             {/* Products */}

@@ -28,7 +28,7 @@ function Home() {
   return (
     <div>
     <HorizentolCategories  />
-    <div className="relative max-w-[1920px] w-full mx-auto">
+    <div className="relative max-w-[1920px]  w-full mx-auto">
       <div className="overflow-hidden">
         <img
           src={images[currentIndex]}
@@ -51,18 +51,19 @@ function Home() {
     </div>
 
     <InfoSection/>
-    <div className='flex  gap-4 sm:p-4 max-w-[1920px] mx-auto'>
+    <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:px-4 py-0 max-w-[1920px] mx-auto'>
       <BundleDeal/>
       <FlashDeal/>
     </div>
 
-    <div className='flex flex-wrap sm:flex-nowrap gap-4 sm:p-4 max-w-[1920px] mx-auto'>
+    <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:p-4 max-w-[1920px] mx-auto'>
       <TrendyFashion/>
       <OneDollarShop/>
     </div>
 
     <VidCarousel />
     <ProductCard1 />
+    
     </div>
   )
 }

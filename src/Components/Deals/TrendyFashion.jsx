@@ -9,12 +9,17 @@ import HoddieImg from "/src/Images/Image2.png";
 
 function TrendyFashion() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1140);
+  const [isMobile2, setIsMobile2] = useState(window.innerWidth <= 640);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 1140);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1140);
+      setIsMobile2(window.innerWidth <= 640);
+    };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
 
   const dummyProductsList = [
     { id: 1, name: "Laptop", price: "999", img: ProductImg },
@@ -26,17 +31,20 @@ function TrendyFashion() {
   ];
 
   return (
-    <div className='sm:rounded-2xl p-4 w-full sm:w-[55%] h-fit' style={{ backgroundImage: `url(${BudleDealsBg})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+    <div className='sm:rounded-2xl p-4 w-full md:w-[55%] h-fit' style={ !isMobile2 ? { backgroundImage: `url(${BudleDealsBg})`, backgroundSize: "cover", backgroundPosition: "center" } : {} }>
       <Link to='/DealsPage'>
         <div className='flex justify-between items-center mb-1'>
-          <h3 className='text-[#FCFCFC] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl'>#Trendy Fashion</h3>
-          <span className='bg-[#7A5A43] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
+          <h3 className='sm:text-[#FCFCFC] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl hidden sm:inline-block'>#Trendy Fashion</h3>
+          <h3 className='sm:text-[#FCFCFC] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl sm:hidden inline-block'>
+            <span className=' text-sm rounded-sm px-1 h-fit inline-block text-white bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] sm:bg-white'>#</span> Trendy Fashion</h3>
+          
+          <span className='bg-[#F04438] sm:bg-[#7A5A43] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
             <svg xmlns="http://www.w3.org/2000/svg" className='w-4 lg:w-5 2xl:w-6' viewBox="0 0 24 25" fill="none">
               <path d="M2 12.5H22M22 12.5L13 3.5M22 12.5L13 21.5" stroke="#FCFCFC" strokeWidth="2.5" />
             </svg>
           </span>
         </div>
-        <span className='text-[#FCFCFC] text-sm 2xl:text-base font-semibold'>Stay up to date with latest trends!</span>
+        <span className='hidden sm:flex text-[#FCFCFC] text-sm 2xl:text-base font-semibold'>Stay up to date with latest trends!</span>
       </Link>
 
       {/* Products */}

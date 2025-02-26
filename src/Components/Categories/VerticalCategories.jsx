@@ -168,7 +168,7 @@ export default function VerticalCategories() {
 
 
       <div
-  className={`fixed inset-0 z-50  duration-400 ${
+  className={`fixed inset-0 z-[9999] duration-400 ${
     sidebarOpen ? "opacity-100 visible" : "opacity-0 delay-100 invisible"
   }`}
   onClick={() => setSidebarOpen(false)}
