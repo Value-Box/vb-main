@@ -178,7 +178,7 @@ function Home() {
 
     <div className='flex flex-wrap sm:flex-nowrap gap-4 sm:p-4 max-w-[1920px] mx-auto'>
       <div className='bg-[#FFF6DF] sm:rounded-2xl p-4 w-full sm:w-[50%] xl:w-full'>
-        <Link>
+        <Link to='/DealsPage'>
         <div className='flex justify-between items-center mb-1'>
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '>Bundle Deals</h3>
           <span className='bg-[#FFEB71] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
@@ -259,7 +259,7 @@ function Home() {
       </div>
       
       <div className='bg-[#FFE3DF] sm:rounded-2xl p-4 w-full sm:w-[50%] xl:w-full'>
-        <Link>
+        <Link to='/DealsPage'>
         <div className='flex justify-between items-center mb-1'>
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl flex'><span className='flex gap-2'><img className='w-6' src={electricity} alt="" /> Flash</span><span className='text-[#F04438] '>Deals</span></h3>
           <span className='bg-[#FFC3B2] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
@@ -335,7 +335,7 @@ function Home() {
 
     <div className='flex flex-wrap sm:flex-nowrap gap-4 sm:p-4 max-w-[1920px] mx-auto'>
       <div className=' sm:rounded-2xl p-4 w-full sm:w-[55%]'style={{ backgroundImage: `url(${BudleDealsBg})`, backgroundSize: "cover", backgroundPosition: "center" }}>
-        <Link>
+        <Link to='/DealsPage'>
         <div className='flex justify-between items-center mb-1'>
           <h3 className='text-[#FCFCFC] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '>Bundle Deals</h3>
           <span className='bg-[#7A5A43] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>
