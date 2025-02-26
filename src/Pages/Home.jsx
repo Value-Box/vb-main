@@ -8,7 +8,7 @@ import BudleDealsBg from "/src/Images/BudleDealsBg.png";
 import TrendyFesshionImg from "/src/Images/TrendyFesshionImg.png";
 import electricity from "/src/Images/electricity.gif";
 import VidCarousel from '../Components/Carousels/VidCarousel';
-import useFetch from '../hooks/UseFetch';
+import {useFetch} from '../hooks/UseFetch';
 import ProductCard1 from '../Components/ProductCards/ProductCard1';
 import InfoSection from '../Components/InfoSection';
 
