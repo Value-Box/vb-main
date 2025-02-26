@@ -58,8 +58,8 @@ function InfoSection() {
   return (
 
  <>
- <div className="md:p-0 p-3">
- <div className="grid grid-cols-4 gap-4 p-3 md:px-20 md:py-3 md:bg-white bg-[#FEF6E6] hidden md:grid">
+ <div className="md:p-0 p-3 ">
+ <div className=" grid-cols-4 gap-4 p-3 xl:px-20 md:py-3 md:bg-white bg-[#FEF6E6] hidden md:grid">
   <div className="flex items-center gap-2 border-r border-gray-300 pr-2">
    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="37" viewBox="0 0 36 37" fill="none">
     <path d="M4.5 18.5H18V20.75H4.5V18.5ZM2.25 12.875H13.5V15.125H2.25V12.875Z" fill="#1A1A1A"/>
