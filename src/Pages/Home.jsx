@@ -7,6 +7,7 @@ import BundleDeal from '../Components/Deals/BundleDeal';
 import FlashDeal from '../Components/Deals/FlashDeal';
 import TrendyFashion from '../Components/Deals/TrendyFashion';
 import OneDollarShop from '../Components/Deals/OneDollarShop';
+import { NavLink } from 'react-router-dom';
 
 function Home() {
     const images = [
@@ -57,7 +58,7 @@ function Home() {
     </div>
 
     <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:p-4 max-w-[1920px] mx-auto'>
-      <TrendyFashion/>
+      <NavLink to="TrendyFashion"><TrendyFashion/></NavLink> 
       <OneDollarShop/>
     </div>
 

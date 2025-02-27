@@ -1,6 +1,7 @@
 import React, { useState,useEffect,useRef  } from 'react'
 import useFetchHomeProducts from '../../services/productsAPI';
 import useFetchHomeCategories from '../../services/categoryAPI';
+import LoadMoreButton from '../Buttons/LoadMoreButton';
 
 
 function ProductCard1() {
@@ -8,6 +9,7 @@ function ProductCard1() {
 
     const { response: proData, loading: proLoading, error: proError } = useFetchHomeProducts();
     const [Products, setProducts] = useState([]); // ✅ Empty array instead of null
+    
     useEffect(() => {
       if (proData?.data) {
         console.log("Products:", proData);
@@ -246,7 +248,10 @@ function ProductCard1() {
   </div>
 
 </div>
-
+    <div className='flex justify-center'>
+    <LoadMoreButton className="bg-[#00171F] text-white "> Load More </LoadMoreButton>
+    </div>
+   
     </>
   )
 }
