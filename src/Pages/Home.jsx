@@ -58,7 +58,7 @@ function Home() {
     </div>
 
     <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:p-4 max-w-[1920px] mx-auto'>
-      <NavLink to="TrendyFashion"><TrendyFashion/></NavLink> 
+      <TrendyFashion/>
       <OneDollarShop/>
     </div>
 
