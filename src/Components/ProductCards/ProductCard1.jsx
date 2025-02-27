@@ -1,4 +1,4 @@
-import React, { useState,useEffect  } from 'react'
+import React, { useState,useEffect,useRef  } from 'react'
 import useFetchHomeProducts from '../../services/productsAPI';
 import useFetchHomeCategories from '../../services/categoryAPI';
 
@@ -40,12 +40,49 @@ function ProductCard1() {
     );
   };
   
+  
+  const items = [
+    { text: "Welcome Deal", icon: "🎁" },
+    { text: "30+ Sold Recently", icon: "🛒" },
+    { text: "Selling out so Fast", icon: "🔥" },
+    { text: "Free Shipping Worldwide", icon: "🚚" }
+  ];
+  
+  const [currentIndex1, setCurrentIndex1] = useState(0);
+  const [isSliding, setIsSliding] = useState(false);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsSliding(true); // Pehle animation start kro
+  
+      setTimeout(() => {
+        setCurrentIndex1((prevIndex) => (prevIndex + 1) % items.length);
+        setIsSliding(false); // Animation complete hone ke baad reset kro
+      }, 700); // Animation duration ke baad item change ho
+    }, 2000); // Har item 2s tak screen pe rahe
+  
+    return () => clearInterval(interval);
+  }, []);
+  
+  let animation = (
+    <div className="relative h-10 text-center items-center overflow-hidden flex text-[12px]">
+      <div
+        className={`absolute flex gap-2 text-center items-center text-gray-500 text-[12px] transition-transform duration-700 ease-in-out ${
+          isSliding ? "translate-y-full opacity-0" : "translate-y-0 opacity-100"
+        }`}
+      >
+        <span className="text-[18px]">{items[currentIndex1].icon}</span>
+        <span className="text-red-500">•</span> 
+        <span>{items[currentIndex1].text}</span>
+      </div>
+    </div>
+  );
 
   return (
     <>
 
 <div className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] max-w-[1920px] relative w-full mx-auto overflow-hidden px-7 sm:px-[60px] py-1 sm:py-3"> 
-  {/* ✅ Ye padding buttons ke liye extra space dega */}
+ 
 
   <div className="relative w-full overflow-hidden">
     <div
@@ -98,7 +135,7 @@ function ProductCard1() {
         src={`http://182.176.166.222:8081${items.imagePath}`}
         alt="Home in Countryside"
       />
-      <div className="p-2">
+      <div className="p-2 flex flex-col gap-2">
 
         <div className='flex items-start justify-between '>
         <div className="mt-2 flex flex-col items-start gap-2">
@@ -167,12 +204,38 @@ function ProductCard1() {
         </svg>
         </span>
         </div>
-      
-        <div className="mt-1">
-        <span className="flex items-baseline font-semibold">
-        <span className="text-xs">PKR</span>
-        <span className="text-lg ml-[2px]">{items.price}</span>
+     
+        <div className="flex flex-col gap-2">
+        <span className="flex justify-between">
+       <span className="text-lg ml-[2px]"><span className="text-xs">PKR</span>{items.price}</span>
+      <span className='flex flex-row items-center text-[13px] font-bold text-[#F04438]'>26% off</span>
       </span>
+      <div className='flex flex-row'>
+      <span className="bg-[#F04438] text-[13px] text-white flex justify-center items-center rounded-md px-[10px] py-[3px] gap-[10px]">
+  Sale
+</span>
+        <span className="text-red-500 px-2">•</span> 
+        <span className="bg-[#E6EAF3] text-[13px] text-black flex justify-center items-center rounded-md px-[10px] py-[3px]">
+  Super<span className='text-[#33539B]'>Deal</span>
+</span>
+        <span className="text-red-500 px-2">•</span> 
+        <span className='flex flex-row items-center text-[13px] font-bold text-[#F04438]'><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <path d="M7.5493 10.0003H5.4168C5.25211 10.0006 5.09119 10.0496 4.95431 10.1412C4.81744 10.2327 4.71073 10.3628 4.64763 10.5149C4.58454 10.667 4.56788 10.8344 4.59977 10.996C4.63165 11.1576 4.71065 11.3061 4.8268 11.4228L10.0001 16.667L15.1726 11.4228C15.2503 11.3456 15.3119 11.2538 15.354 11.1527C15.396 11.0516 15.4177 10.9432 15.4177 10.8337C15.4177 10.7242 15.396 10.6157 15.354 10.5146C15.3119 10.4135 15.2503 10.3217 15.1726 10.2445C15.0164 10.0882 14.8045 10.0004 14.5835 10.0003H12.5093C12.566 7.70866 12.981 5.20449 15.8335 3.33366H15.0001C11.1393 3.33366 7.9643 6.25033 7.5493 10.0003Z" fill="#F04438"/>
+</svg> Save PKR 4,456</span>
+      </div>
+
+      {animation}
+
+      <div className='flex gap-2 items-center '>
+      <span className="flex h-[28px] px-[10px] py-[5px] items-center gap-[5px] font-bold rounded-bl-[20px] rounded-br-[20px] rounded-tr-[20px] bg-gradient-to-r from-[#FFC136] via-[#FAC142] via-[#FFD168] via-[#F5BC3A] to-[#E09B00]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <path d="M9.99935 2.66663C11.4138 2.66663 12.7704 3.22853 13.7706 4.22872C14.7708 5.22892 15.3327 6.58547 15.3327 7.99996C15.3327 9.41445 14.7708 10.771 13.7706 11.7712C12.7704 12.7714 11.4138 13.3333 9.99935 13.3333C8.58486 13.3333 7.22831 12.7714 6.22811 11.7712C5.22792 10.771 4.66602 9.41445 4.66602 7.99996C4.66602 6.58547 5.22792 5.22892 6.22811 4.22872C7.22831 3.22853 8.58486 2.66663 9.99935 2.66663ZM9.99935 3.99996C8.93848 3.99996 7.92107 4.42139 7.17092 5.17153C6.42078 5.92168 5.99935 6.93909 5.99935 7.99996C5.99935 9.06083 6.42078 10.0782 7.17092 10.8284C7.92107 11.5785 8.93848 12 9.99935 12C11.0602 12 12.0776 11.5785 12.8278 10.8284C13.5779 10.0782 13.9993 9.06083 13.9993 7.99996C13.9993 6.93909 13.5779 5.92168 12.8278 5.17153C12.0776 4.42139 11.0602 3.99996 9.99935 3.99996ZM9.33268 5.33329H10.3327V7.85329L11.886 9.40663L11.1793 10.1133L9.33268 8.26663V5.33329ZM1.33268 12C1.15587 12 0.986302 11.9297 0.861278 11.8047C0.736253 11.6797 0.666016 11.5101 0.666016 11.3333C0.666016 11.1565 0.736253 10.9869 0.861278 10.8619C0.986302 10.7369 1.15587 10.6666 1.33268 10.6666H3.88602C4.09268 11.14 4.35935 11.5866 4.66602 12H1.33268ZM1.99935 8.66663C1.82254 8.66663 1.65297 8.59639 1.52794 8.47136C1.40292 8.34634 1.33268 8.17677 1.33268 7.99996C1.33268 7.82315 1.40292 7.65358 1.52794 7.52855C1.65297 7.40353 1.82254 7.33329 1.99935 7.33329H3.36602L3.33268 7.99996L3.36602 8.66663H1.99935ZM2.66602 5.33329C2.4892 5.33329 2.31964 5.26305 2.19461 5.13803C2.06959 5.01301 1.99935 4.84344 1.99935 4.66663C1.99935 4.48981 2.06959 4.32025 2.19461 4.19522C2.31964 4.0702 2.4892 3.99996 2.66602 3.99996H4.66602C4.35935 4.41329 4.09268 4.85996 3.88602 5.33329H2.66602Z" fill="#1A1A1A"/>
+</svg> express
+</span>
+<span>Get it within 2 Days</span>
+
+      </div>
+      
         </div>
         
       </div>
