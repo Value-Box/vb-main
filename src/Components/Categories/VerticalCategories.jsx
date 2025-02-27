@@ -115,15 +115,16 @@ export default function VerticalCategories() {
 
       {/* Dropdown Menu */}
       <div
-        className={`absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all sm:duration-300 ease-in-out 
-        translate-y-2 opacity-0 scale-95 flex flex-col gap-2 w-[250px] md:w-[300px] left-1/2 
+        className={`absolute bg-[#F2F2F2] shadow-md rounded-l-lg transition-all sm:duration-300 ease-in-out 
+        translate-y-2 opacity-0 scale-95 flex flex-col gap-2 w-[230px] md:w-[250px] left-1/2 
         transform md:-translate-x-1/2 -translate-x-1/2 z-50 sm:mt-1 
         sm:group-hover:opacity-100 sm:group-hover:scale-100 sm:group-hover:translate-y-0 
         sm:group-hover:visible sm:pointer-events-auto 
         ${isOpen ? "opacity-100 visible z-[1055]" : "opacity-0 invisible"}`}
         onClick={(e) => e.stopPropagation()} // 🛑 Prevent closing on click inside
       >
-        <ul className=" w-full">
+        <ul className="w-full h-[600px] overflow-y-auto">
+
           {verticleCategory.map((items, index) => (
             <li className="py-2 px-3 flex items-center justify-between cursor-pointer text-xs 2xl:text-base" key={index}
             onMouseEnter={()=>setHoveredCategory(index)} onMouseLeave={()=>setHoveredCategory(null)}
@@ -139,25 +140,25 @@ export default function VerticalCategories() {
                   fill="#CCCCCC"
                 />
               </svg>
-              {hoveredCategory ===index &&(
-                <>
-                <div className="hidden sm:flex absolute left-full top-0 bg-white rounded-lg shadow-lg  gap-4 w-max">
-                  {items.subCategories.map((subcategory,subIndex)=>(
-                    <div key={subIndex} className="px-4 py-2  transition-colors duration-200">
-                      <h3 className="font-semibold lg:text-sm 2xl:text-base text-gray-800">{subcategory.name}</h3>
-                      <div>
-                        {subcategory.items.map((child,childIndex)=>(
-                          <div key={ childIndex} className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer">
-                            {child.name}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-               
-              </>
-              )}
+              {verticleCategory.length > 0 && (
+    <div className="hidden sm:flex absolute left-[99%] top-0 bg-white rounded-r-lg gap-4 w-max h-full min-h-full">
+      {(hoveredCategory !== null ? verticleCategory[hoveredCategory] : verticleCategory[0])?.subCategories.map((subcategory, subIndex) => (
+        <div key={subIndex} className="px-4 py-2 transition-colors duration-200">
+          <h3 className="font-semibold lg:text-sm 2xl:text-base text-gray-800">{subcategory.name}</h3>
+          <div>
+            {subcategory.items.map((child, childIndex) => (
+              <div 
+                key={childIndex} 
+                className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer"
+              >
+                {child.name}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
               
                 
               
