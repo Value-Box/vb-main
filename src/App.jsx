@@ -3,6 +3,7 @@ import { authAPI, getToken } from "./hooks/authAPI";
 import { HashRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 
 
+
 const Navbar=lazy(()=>import("./Components/Headers/Navbar"))
 const Footer=lazy(()=>import("./Components/Footer"))
 const Home=lazy(()=>import("./Pages/Home"))
@@ -13,6 +14,7 @@ const GetCode=lazy(()=>import("./Pages/Login/GetCode"))
 const LoginNavbar=lazy(()=>import("./Components/Headers/LoginNavbar"))
 const DealsPage=lazy(()=>import("./Pages/DealsPage"))
 const Collection=lazy(()=>import("./Pages/Collection"))
+const TrendyFashion=lazy(()=>import("./Pages/TrendyFashion"))
 
 
 
@@ -32,6 +34,8 @@ const Layout=()=>{
           <Route path="/ResetPassword" element={<ResetPassword/>} />
           <Route path="/FindYourAccount" element={<FindYourAccount/>} />
           <Route path="/GetCode" element={<GetCode/>} />
+          <Route path="/TrendyFashion" element={<TrendyFashion/>} />
+
         </Routes>
         {isLogin?'':<Footer />}
       </>

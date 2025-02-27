@@ -1,10 +1,11 @@
 import React from 'react'
-import TrendyFashionHS from /src/Images/TrendyFashionHS;
+import TrendyFashionHS from "/src/Images/TrendyFashionHS.png";
 
 function TrendyFashion() {
   return (
     <div>
-      <img src="TrendyFashionHS" alt="" />
+      <img src="src/Images/TrendyFashionHS.png" alt="" />
+     
     </div>
   )
 }
