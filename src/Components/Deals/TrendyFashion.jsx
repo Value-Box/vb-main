@@ -32,7 +32,7 @@ function TrendyFashion() {
 
   return (
     <div className='sm:rounded-2xl p-4 w-full md:w-[55%] h-fit' style={ !isMobile2 ? { backgroundImage: `url(${BudleDealsBg})`, backgroundSize: "cover", backgroundPosition: "center" } : {} }>
-      <Link to='/DealsPage'>
+      <Link to='/TrendyFashion'>
         <div className='flex justify-between items-center mb-1'>
           <h3 className='sm:text-[#FCFCFC] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl hidden sm:inline-block'>#Trendy Fashion</h3>
           <h3 className='sm:text-[#FCFCFC] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl sm:hidden inline-block'>
