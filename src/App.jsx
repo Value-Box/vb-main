@@ -12,6 +12,10 @@ const FindYourAccount=lazy(()=>import("./Pages/Login/FindYourAccount"))
 const GetCode=lazy(()=>import("./Pages/Login/GetCode"))
 const LoginNavbar=lazy(()=>import("./Components/Headers/LoginNavbar"))
 const DealsPage=lazy(()=>import("./Pages/DealsPage"))
+const Collection=lazy(()=>import("./Pages/Collection"))
+
+
+
 const Layout=()=>{
   const location=useLocation()
   const loginRoutes = ["/LoginSignup", "/ResetPassword", "/FindYourAccount", "/GetCode"];
@@ -24,6 +28,7 @@ const Layout=()=>{
           <Route path="/" element={<Home />} />
           <Route path="/LoginSignup" element={<LoginSignup />} />
           <Route path="/DealsPage" element={<DealsPage />} />
+          <Route path="/Collection" element={<Collection />} />
           <Route path="/ResetPassword" element={<ResetPassword/>} />
           <Route path="/FindYourAccount" element={<FindYourAccount/>} />
           <Route path="/GetCode" element={<GetCode/>} />
