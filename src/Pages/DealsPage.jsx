@@ -1,6 +1,18 @@
 import React from 'react'
 import DealCarousel from '../Components/Carousels/DealCarousel'
 import { useLocation } from 'react-router-dom';
+import ProductImg from "/src/Images/ProductCard.png";
+const products = [
+  { id: 1, name: "Men'S Other Running Shoes Korean Style", price: 5000, image: ProductImg },
+  { id: 2, name: "Men'S Other Running Shoes Korean Style", price: 4500, image: ProductImg },
+  { id: 3, name: "Men'S Other Running Shoes Korean Style", price: 4000, image: ProductImg },
+  { id: 4, name: "Men'S Other Running Shoes Korean Style", price: 6000, image: ProductImg },
+  { id: 3, name: "Men'S Other Running Shoes Korean Style", price: 4000, image: ProductImg },
+  { id: 5, name: "Men'S Other Running Shoes Korean Style", price: 6000, image: ProductImg },
+  { id: 6, name: "Men'S Other Running Shoes Korean Style", price: 4000, image: ProductImg },
+  { id: 7, name: "Men'S Other Running Shoes Korean Style", price: 6000, image: ProductImg },
+  { id: 8, name: "Men'S Other Running Shoes Korean Style", price: 5500, image: ProductImg }
+];
 
 function DealsPage() {
     const location=useLocation()
@@ -39,7 +51,7 @@ function DealsPage() {
       
   return (
     <>
-    <DealCarousel/>
+    <DealCarousel products={products} CardType={'BundleDealCard'} />
     <h1 className="text-2xl font-bold text-center my-6">{name}</h1>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
   {selectedDeal ? (
