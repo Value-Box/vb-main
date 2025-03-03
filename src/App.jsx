@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Routes, useLocation } from "react-router-d
 
 
 
+
 const Navbar=lazy(()=>import("./Components/Headers/Navbar"))
 const Footer=lazy(()=>import("./Components/Footer"))
 const Home=lazy(()=>import("./Pages/Home"))
@@ -15,6 +16,7 @@ const LoginNavbar=lazy(()=>import("./Components/Headers/LoginNavbar"))
 const DealsPage=lazy(()=>import("./Pages/DealsPage"))
 const Collection=lazy(()=>import("./Pages/Collection"))
 const TrendyFashion=lazy(()=>import("./Pages/TrendyFashion"))
+const SingleProduct=lazy(()=>import("./Pages/SingleProduct"))
 
 
 
@@ -35,6 +37,7 @@ const Layout=()=>{
           <Route path="/FindYourAccount" element={<FindYourAccount/>} />
           <Route path="/GetCode" element={<GetCode/>} />
           <Route path="/TrendyFashion" element={<TrendyFashion/>} />
+          <Route path="/SingleProduct" element={<SingleProduct/>} />
 
         </Routes>
         {isLogin?'':<Footer />}

@@ -1,4 +1,3 @@
-import { h1 } from "framer-motion/client";
 import React, { useState, useRef, useEffect } from "react";
 
 function DealCarousel2({ products }) {
