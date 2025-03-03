@@ -2285,7 +2285,7 @@ function ProductPage() {
 
   
          
-          <div className="flex lg:hidden items-center justify-between w-full py-4 sticky top-[10%] gap-7 xl:gap-10">
+          <div className="flex lg:hidden items-center justify-between bg-[#FFF] shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.10),0px_2px_4px_-2px_rgba(16,24,40,0.06)] px-2 w-full py-4 sticky top-[10%] gap-7 xl:gap-10">
               {mobSections.map((section) => (
                 <button
                   key={section.id}
@@ -2295,6 +2295,45 @@ function ProductPage() {
                   {section.name}
                 </button>
               ))}
+            </div>
+
+            <div className="bg-[#FFF]">
+              <h3 className="text-[#1A1A1A] text-lg ">Vouchers</h3>
+              <div className="flex p-3">
+              <div className="flex items-center bg-blue-100 border border-blue-300 rounded-lg w-[350px]">
+      {/* Left Section */}
+      <div className="flex flex-col items-center justify-center w-1/3 px-2 py-2 ">
+        <p className="text-blue-600 font-bold text-lg">10% OFF</p>
+        <p className="text-xs text-blue-500">No Min Spend</p>
+      </div>
+      
+      {/* Right Section */}
+      <div className="flex flex-col justify-between relative border-r border-dashed border-blue-400 rounded-l-lg h-[90px] ">
+        <p className="absolute -top-2 left-[-5px]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+  <circle cx="6" cy="6" r="6" fill="#FCFCFC"/>
+</svg>
+        </p>
+        <p className="absolute -bottom-2 left-[-5px]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+  <circle cx="6" cy="6" r="6" fill="#FCFCFC"/>
+</svg>
+        </p>
+      </div>
+      <div className="flex-1 space-y-1 px-2">
+        <p className="font-bold text-sm text-blue-800">ValueBox Voucher</p>
+        <p className="text-xs text-blue-500">Bank of Punjab</p>
+        <p className="text-xs text-gray-600">From: 26/11/2024</p>
+        <p className="text-xs text-gray-600">To: 28/11/2024</p>
+      </div>
+      
+      {/* Actions */}
+      <div className="flex flex-col items-end p-3 space-y-2">
+        <button className="text-xs text-blue-600 bg-blue-200 px-2 py-1 rounded">T&C</button>
+        <button className="text-white bg-blue-500 px-3 py-1 rounded shadow-md text-sm">Collect</button>
+      </div>
+    </div>
+              </div>
             </div>
 
     </div>
