@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import { motion } from "framer-motion"; 
 import TrendyFashionHS from "/src/Images/TrendyFashionHS.png";
 import TFcard1 from "/src/Images/TFcard1.png";
@@ -9,10 +9,37 @@ import TFcard5 from "/src/Images/TFcard5.png"; // Added Image
 import TFmenswear1 from "/src/Images/TFmenswear1.png"
 import TFkidswear from "/src/Images/TFkidswear.png"
 import TFstore1 from "/src/Images/TFstore1.png"
+import TFstore2 from "/src/Images/TFstore2.png"
+
 
 
 
 function TrendyFashion() {
+  const categories = [
+    { name: 'Fashion', img: '/src/Images/TFstore2.png' },
+    { name: 'Electronics', img: '/src/Images/TFstore2.png' },
+    { name: 'Home & Kitchen', img: '/src/Images/TFstore2.png' },
+    { name: 'Sports', img: '/src/Images/TFstore2.png' },
+    { name: 'Books', img: '/src/Images/TFstore2.png' },
+    { name: 'Beauty', img: '/src/Images/TFstore2.png' },
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Handle Next Slide
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % categories.length);
+  };
+
+  // Handle Previous Slide
+  const handlePrev = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + categories.length) % categories.length
+    );
+  };
+
+
+
   return (
     <div>
       <img src={TrendyFashionHS} alt="Trendy Fashion Header" className="w-full" />
@@ -83,7 +110,21 @@ function TrendyFashion() {
              <img src={TFstore1} alt="" />
              <div className="p-[30px] grid grid-cols-2 gap-x-[20px] gap-y-[20px]">
   {[...Array(6)].map((_, index) => (
-    <div key={index} className="flex flex-col items-start w-[197px] h-[152px] gap-[10px] rounded-[10px] bg-[#F2F2F2]">
+    <div key={index} className="flex flex-col items-start w-[180px] h-[152px]  gap-[10px] rounded-[10px] bg-[#F2F2F2]">
+      <span className="mt-auto flex justify-center bg-black text-white w-full rounded-b-[10px] py-2.5">
+        UP TO 80% OFF
+      </span>
+    </div>
+  ))}
+</div>
+    </div>
+      
+            {/* Right Column */}
+            <div className="bg-white flex">
+             <img src={TFstore2} alt="" />
+             <div className="p-[30px] grid grid-cols-2 gap-x-[20px] gap-y-[20px]">
+  {[...Array(6)].map((_, index) => (
+    <div key={index} className="flex flex-col items-start w-[180px] h-[152px]  gap-[10px] rounded-[10px] bg-[#F2F2F2]">
       <span className="mt-auto flex justify-center bg-black text-white w-full rounded-b-[10px] py-2.5">
         UP TO 80% OFF
       </span>
@@ -91,19 +132,56 @@ function TrendyFashion() {
   ))}
 </div>
 
+
            
 
 
             </div>
-      
-            {/* Right Column */}
-            <div className="bg-white p-6 flex items-center justify-center">
-             
-            </div>
           </div>
     </div>
    
+    <div className="relative w-full p-6">
+      <div className="overflow-hidden">
+        <div
+          className="flex transition-transform duration-300"
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+          }}
+        >
+          {categories.map((category, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center w-full justify-center px-4"
+            >
+              <div className="w-[120px] h-[120px] mb-4">
+                <img
+                  src={category.img}
+                  alt={category.name}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+              <span className="text-center text-lg font-semibold">
+                {category.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
 
+      {/* Carousel Navigation Buttons */}
+      <button
+        onClick={handlePrev}
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full"
+      >
+        &lt;
+      </button>
+      <button
+        onClick={handleNext}
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full"
+      >
+        &gt;
+      </button>
+    </div>
     </div>
   );
 }
