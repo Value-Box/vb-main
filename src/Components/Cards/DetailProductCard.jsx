@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react'
 
-function DetailProductCard({products}) {
+function DetailProductCard({products,style=''}) {
 
     const [currentIndex1, setCurrentIndex1] = useState(0);
     const [isSliding, setIsSliding] = useState(false);
@@ -39,7 +39,7 @@ function DetailProductCard({products}) {
   
   return (
     <>
-    <div class="px-3 sm:px-8 flex gap-3 xl:gap-5">
+    <div class={`px-3 sm:px-8 flex gap-3 xl:gap-5 ${style}`}>
     {products.map((items, index) => (
           
           <div key={index} className="bg-white rounded-lg overflow-hidden xl:min-w-[250px] duration-400 hover:shadow-lg  select-none">
