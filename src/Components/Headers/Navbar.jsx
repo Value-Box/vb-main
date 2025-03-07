@@ -482,7 +482,7 @@ function Navbar() {
                 </button>
                 </NavLink>
                 
-                <button className="relative cursor-pointer">
+                <NavLink to="/AddToCart" className="relative cursor-pointer">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 md:w-7 2xl:w-9"
                     viewBox="0 0 36 36"
                     fill="none"
@@ -523,11 +523,11 @@ function Navbar() {
                   <span
                     className="absolute top-[-4px] right-[-8px] xl:top-[-6px] xl:right-[-11px] w-4 h-4 2xl:h-auto 
              flex items-center justify-center xl:w-5 xl:h-auto px-1 2xl:w-6 bg-gradient-to-r from-[#0032A3] via-[#3B66C8] to-[#0032A3]
-              text-[9px] xl:text-[10px] xl:h-[20px] 2xl:text-xs p-0.5 2xl:p-1 rounded-full text-[#FCFCFC]"
+              text-[9px] xl:text-[10px] 2xl:text-xs p-0.5 2xl:p-1 rounded-full text-[#FCFCFC]"
                   >
                     20
                   </span>
-                </button>
+                </NavLink>
               </div>
             </div>
           </div>

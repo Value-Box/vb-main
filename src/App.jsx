@@ -3,8 +3,6 @@ import { authAPI, getToken } from "./hooks/authAPI";
 import { HashRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 
 
-
-
 const Navbar=lazy(()=>import("./Components/Headers/Navbar"))
 const Footer=lazy(()=>import("./Components/Footer"))
 const Home=lazy(()=>import("./Pages/Home"))
@@ -17,7 +15,7 @@ const DealsPage=lazy(()=>import("./Pages/DealsPage"))
 const Collection=lazy(()=>import("./Pages/Collection"))
 const TrendyFashion=lazy(()=>import("./Pages/TrendyFashion"))
 const SingleProduct=lazy(()=>import("./Pages/SingleProduct"))
-
+const AddToCart=lazy(()=>import("./Pages/AddToCart"))
 
 
 const Layout=()=>{
@@ -38,6 +36,7 @@ const Layout=()=>{
           <Route path="/GetCode" element={<GetCode/>} />
           <Route path="/TrendyFashion" element={<TrendyFashion/>} />
           <Route path="/SingleProduct" element={<SingleProduct/>} />
+          <Route path="/AddToCart" element={<AddToCart/>} />
 
         </Routes>
         {isLogin?'':<Footer />}

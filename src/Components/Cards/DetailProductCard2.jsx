@@ -1,56 +1,53 @@
 import React, { useEffect,useState } from 'react'
 
-function DetailProductCard({products,style=''}) {
+function DetailProductCard2({ products,style='' }) {
 
     const [currentIndex1, setCurrentIndex1] = useState(0);
-    const [isSliding, setIsSliding] = useState(false);
-    const items = [
-        { text: "Welcome Deal", icon: "🎁" },
-        { text: "30+ Sold Recently", icon: "🛒" },
-        { text: "Selling out so Fast", icon: "🔥" },
-        { text: "Free Shipping Worldwide", icon: "🚚" }
-      ];
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setIsSliding(true); // Pehle animation start kro
-    
-        setTimeout(() => {
-          setCurrentIndex1((prevIndex) => (prevIndex + 1) % items.length);
-          setIsSliding(false); // Animation complete hone ke baad reset kro
-        }, 700); // Animation duration ke baad item change ho
-      }, 2000); // Har item 2s tak screen pe rahe
-    
-      return () => clearInterval(interval);
-    }, []);
-    
-    let animation = (
-      <div className="relative h-6 text-center items-center overflow-hidden flex text-[12px]">
-        <div
-          className={`absolute flex gap-2 text-center items-center text-gray-500 text-[12px] transition-transform duration-700 ease-in-out ${
-            isSliding ? "translate-y-full opacity-0" : "translate-y-0 opacity-100"
-          }`}
-        >
-          <span className="xl:text-[18px]">{items[currentIndex1].icon}</span>
-          <span className="text-red-500">•</span> 
-          <span>{items[currentIndex1].text}</span>
-        </div>
-      </div>
-    );
-  
+        const [isSliding, setIsSliding] = useState(false);
+        const items = [
+            { text: "Welcome Deal", icon: "🎁" },
+            { text: "30+ Sold Recently", icon: "🛒" },
+            { text: "Selling out so Fast", icon: "🔥" },
+            { text: "Free Shipping Worldwide", icon: "🚚" }
+          ];
+        useEffect(() => {
+          const interval = setInterval(() => {
+            setIsSliding(true); // Pehle animation start kro
+        
+            setTimeout(() => {
+              setCurrentIndex1((prevIndex) => (prevIndex + 1) % items.length);
+              setIsSliding(false); // Animation complete hone ke baad reset kro
+            }, 700); // Animation duration ke baad item change ho
+          }, 2000); // Har item 2s tak screen pe rahe
+        
+          return () => clearInterval(interval);
+        }, []);
+        
+        let animation = (
+          <div className="relative h-6 text-center items-center overflow-hidden flex text-[12px]">
+            <div
+              className={`absolute flex gap-2 text-center items-center text-gray-500 text-[12px] transition-transform duration-700 ease-in-out ${
+                isSliding ? "translate-y-full opacity-0" : "translate-y-0 opacity-100"
+              }`}
+            >
+              <span className="xl:text-[18px]">{items[currentIndex1].icon}</span>
+              <span className="text-red-500">•</span> 
+              <span>{items[currentIndex1].text}</span>
+            </div>
+          </div>
+        )
   return (
     <>
-    <div className={`px-3 sm:px-8 flex gap-3 xl:gap-5 ${style}`}>
-    {products.map((items, index) => (
-          
-          <div key={index} className="bg-white rounded-lg overflow-hidden flex-1 min-w-[200px] max-w-[300px] xl:min-w-[250px] duration-400 hover:shadow-lg  select-none">
+    {products.map((product,index) => (
+        <div key={index} className={`bg-white rounded-lg overflow-hidden flex-1 min-w-[200px] max-w-[300px] xl:min-w-[250px] duration-400 hover:shadow-lg  select-none ${style}`}>
                 <img
                   className="h-48 w-full object-cover object-end select-none pointer-events-none"
-                  src={items.image} draggable="false"
+                  src={product.image} draggable="false"
                   alt="Home in Countryside"
                 />
                 <div className="p-2 flex flex-col gap-2">
           
-                  <div className='flex items-start justify-between '>
+                  <div className='flex items-start justify-between'>
                   <div className="mt-2 flex flex-col items-start gap-2 w-[70%] ">
                   <span className='flex items-center'>
                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
@@ -109,7 +106,7 @@ function DetailProductCard({products,style=''}) {
                       <span className="bg-[#FFEAD5] text-[#FB6514] py-1 px-2 text-xs rounded-sm font-semibold tracking-wide">
                     Top Selling
                     </span>
-                    <p className="font-medium text-sm 2xl:text-base truncate max-w-[190px]">{items.name}</p>
+                    <p className="font-medium text-sm 2xl:text-base truncate max-w-[190px]">{product.name}</p>
                   </div>
                   <span className='bg-[#FCFCFC] border border-[#CCD1D2] rounded-lg p-1 2xl:p-2 '>
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -120,7 +117,7 @@ function DetailProductCard({products,style=''}) {
                
                   <div className="flex flex-col gap-2">
                   <span className="flex justify-between">
-                 <span className="text-md xl:text-lg ml-[2px]"><span className="text-xs">PKR </span>{items.price}</span>
+                 <span className="text-md xl:text-lg ml-[2px]"><span className="text-xs">PKR </span>{product.price}</span>
                 <span className='flex flex-row items-center text-[13px] font-bold text-[#F04438]'>26% off</span>
                 </span>
                 <div className='flex flex-row'>
@@ -153,10 +150,9 @@ function DetailProductCard({products,style=''}) {
                   
                 </div>
               </div>
-                  ))}
-                  </div>
+              ))}
     </>
   )
 }
 
-export default DetailProductCard
+export default DetailProductCard2
