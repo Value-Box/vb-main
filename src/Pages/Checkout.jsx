@@ -28,7 +28,7 @@ function Checkout() {
     { value: "option3", label: "Option3" },
   ];
  
-
+ 
   const [imageFront, setImageFront] = useState(null);
   const [imageBack, setImageBack] = useState(null);
 
@@ -42,8 +42,8 @@ function Checkout() {
   const removeImage = (setImage) => {
     setImage(null); // Remove the selected image
   };
-  
-const Product=
+
+
 
   return (
     <div className="w-full p-10 bg-[#FCFCFC]">
@@ -297,7 +297,7 @@ const Product=
            <Input type="text" placeholder="Please Input" />
               </div>
              <div>
-
+              
              </div>
 
             </div>
