@@ -1,6 +1,11 @@
 import React from "react";
+import { useState} from "react";
+import Select from "../Components/Select"
 import FormButton from '../Components/FormButton';
+import Input from '../Components/Input';
+import CheckBox from '../Components/CheckBox';
 import SAsvg from "/src/Images/SAsvg.svg";
+import jazzcash from "/src/Images/jazzcash.svg";
 import CheckoutDt1 from "/src/Images/CheckoutDt1.png";
 import CheckoutDt2 from "/src/Images/CheckoutDt2.png";
 import CheckoutDt3 from "/src/Images/CheckoutDt3.png";
@@ -9,6 +14,37 @@ import CheckoutDt3 from "/src/Images/CheckoutDt3.png";
 
 
 function Checkout() {
+ 
+  const [selectedValue, setSelectedValue] = useState(""); // State for selected value
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value); // Update state on change
+  };
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const options = [
+    { value: "option1", label: "Option1" },
+    { value: "option2", label: "Option2" },
+    { value: "option3", label: "Option3" },
+  ];
+ 
+
+  const [imageFront, setImageFront] = useState(null);
+  const [imageBack, setImageBack] = useState(null);
+
+  const handleImageChange = (event, setImage) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+    }
+  };
+
+  const removeImage = (setImage) => {
+    setImage(null); // Remove the selected image
+  };
+  
+const Product=
+
   return (
     <div className="w-full p-10 bg-[#FCFCFC]">
       <div className="flex flex-col md:flex-row gap-10">
@@ -77,17 +113,201 @@ function Checkout() {
         
             </div>
           </div>
-          <div className="w-full bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
+          <div className="w-full flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
           <h3 className="text-[24px] font-semibold">Payment Method</h3>
-           
+        
+          <div className="flex gap-2.5 items-baseline">
+           <CheckBox/>
+           <div className="flex flex-col gap-1">
+           <div className="flex gap-2.5 items-center ">
+           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+           <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 34 24" fill="none">
+             <path d="M7.61331 23.8807V22.2922C7.61331 21.6832 7.24258 21.2861 6.60712 21.2861C6.28945 21.2861 5.94525 21.392 5.70694 21.7362C5.5217 21.445 5.25697 21.2861 4.85983 21.2861C4.59498 21.2861 4.33038 21.3655 4.11848 21.6567V21.3391H3.5625V23.8807H4.11848V22.4775C4.11848 22.0275 4.35679 21.8156 4.72753 21.8156C5.09802 21.8156 5.2835 22.0539 5.2835 22.4775V23.8807H5.83948V22.4775C5.83948 22.0275 6.10409 21.8156 6.44829 21.8156C6.81902 21.8156 7.00427 22.0539 7.00427 22.4775V23.8807H7.61331ZM15.847 21.3391H14.9469V20.5713H14.391V21.3391H13.8879V21.842H14.3908V23.007C14.3908 23.5895 14.6292 23.9336 15.2646 23.9336C15.5029 23.9336 15.7675 23.8543 15.953 23.7484L15.7941 23.2717C15.6352 23.3776 15.45 23.4042 15.3176 23.4042C15.0528 23.4042 14.9469 23.2453 14.9469 22.9805V21.842H15.847V21.3391ZM20.5597 21.286C20.242 21.286 20.0302 21.445 19.8978 21.6567V21.3391H19.3418V23.8807H19.8978V22.451C19.8978 22.0275 20.0831 21.7892 20.4273 21.7892C20.5332 21.7892 20.6656 21.8157 20.7715 21.8421L20.9303 21.3127C20.8244 21.2861 20.6656 21.2861 20.5597 21.2861M13.4378 21.551C13.173 21.3656 12.8024 21.2863 12.4052 21.2863C11.7699 21.2863 11.3463 21.6039 11.3463 22.107C11.3463 22.5306 11.664 22.7688 12.22 22.8483L12.4847 22.8748C12.776 22.9277 12.9348 23.0071 12.9348 23.1396C12.9348 23.3248 12.723 23.4572 12.3523 23.4572C11.9817 23.4572 11.6904 23.3248 11.5051 23.1925L11.2403 23.6161C11.5316 23.8278 11.9287 23.9337 12.3258 23.9337C13.0671 23.9337 13.4908 23.5897 13.4908 23.113C13.4908 22.6629 13.1466 22.4246 12.617 22.3453L12.3523 22.3187C12.114 22.2922 11.9287 22.2394 11.9287 22.0805C11.9287 21.8952 12.114 21.7893 12.4052 21.7893C12.723 21.7893 13.0407 21.9216 13.1995 22.0011L13.4378 21.551ZM28.2111 21.2863C27.8933 21.2863 27.6815 21.4451 27.5491 21.6569V21.3392H26.9931V23.8808H27.5491V22.4512C27.5491 22.0276 27.7345 21.7893 28.0786 21.7893C28.1846 21.7893 28.317 21.8158 28.4229 21.8422L28.5817 21.3128C28.4758 21.2863 28.317 21.2863 28.2111 21.2863ZM21.1157 22.61C21.1157 23.3778 21.6451 23.9337 22.4659 23.9337C22.8365 23.9337 23.1013 23.8544 23.366 23.6426L23.1013 23.1925C22.8895 23.3513 22.6777 23.4307 22.4394 23.4307C21.9893 23.4307 21.6716 23.113 21.6716 22.61C21.6716 22.1335 21.9893 21.8157 22.4394 21.7893C22.6777 21.7893 22.8895 21.8686 23.1013 22.0276L23.366 21.5775C23.1013 21.3656 22.8365 21.2863 22.4659 21.2863C21.6451 21.2863 21.1157 21.8422 21.1157 22.61ZM26.2519 22.61V21.3392H25.6959V21.6569C25.5106 21.4187 25.2458 21.2863 24.9016 21.2863C24.1868 21.2863 23.6308 21.8422 23.6308 22.61C23.6308 23.3778 24.1868 23.9337 24.9016 23.9337C25.2722 23.9337 25.5371 23.8014 25.6959 23.5631V23.8808H26.2519V22.61ZM24.2132 22.61C24.2132 22.1599 24.5045 21.7893 24.981 21.7893C25.4311 21.7893 25.7489 22.1335 25.7489 22.61C25.7489 23.0601 25.4311 23.4307 24.981 23.4307C24.5045 23.4042 24.2132 23.0601 24.2132 22.61ZM17.568 21.2863C16.8267 21.2863 16.2971 21.8157 16.2971 22.61C16.2971 23.4043 16.8265 23.9337 17.5944 23.9337C17.965 23.9337 18.3358 23.8278 18.627 23.5897L18.3622 23.1925C18.1504 23.3513 17.8857 23.4572 17.621 23.4572C17.2768 23.4572 16.9326 23.2984 16.8531 22.8482H18.7329V22.6365C18.7594 21.8157 18.2829 21.2863 17.568 21.2863ZM17.5679 21.7628C17.912 21.7628 18.1504 21.9747 18.2032 22.3718H16.8795C16.9324 22.0276 17.1707 21.7628 17.5679 21.7628ZM31.3615 22.61V20.3331H30.8055V21.6569C30.6201 21.4187 30.3554 21.2863 30.0112 21.2863C29.2964 21.2863 28.7404 21.8422 28.7404 22.61C28.7404 23.3778 29.2964 23.9337 30.0112 23.9337C30.382 23.9337 30.6467 23.8014 30.8055 23.5631V23.8808H31.3615V22.61ZM29.3229 22.61C29.3229 22.1599 29.6141 21.7893 30.0907 21.7893C30.5408 21.7893 30.8585 22.1335 30.8585 22.61C30.8585 23.0601 30.5408 23.4307 30.0907 23.4307C29.6141 23.4042 29.3229 23.0601 29.3229 22.61ZM10.7372 22.61V21.3392H10.1812V21.6569C9.99583 21.4187 9.7311 21.2863 9.3869 21.2863C8.67209 21.2863 8.11611 21.8422 8.11611 22.61C8.11611 23.3778 8.67209 23.9337 9.3869 23.9337C9.75764 23.9337 10.0224 23.8014 10.1812 23.5631V23.8808H10.7372V22.61ZM8.67209 22.61C8.67209 22.1599 8.96334 21.7893 9.43985 21.7893C9.88994 21.7893 10.2077 22.1335 10.2077 22.61C10.2077 23.0601 9.88994 23.4307 9.43985 23.4307C8.96334 23.4042 8.67209 23.0601 8.67209 22.61Z" fill="black"/>
+             <path d="M13.252 2.03857H21.5917V17.0236H13.252V2.03857Z" fill="#FF5F00"/>
+             <path d="M13.7816 9.53114C13.7816 6.48651 15.2112 3.78597 17.4086 2.03855C15.7937 0.767759 13.7552 0 11.5313 0C6.26247 0 2 4.26247 2 9.53114C2 14.7997 6.26247 19.0623 11.5311 19.0623C13.7551 19.0623 15.7936 18.2945 17.4086 17.0236C15.2112 15.3027 13.7816 12.5758 13.7816 9.53114Z" fill="#EB001B"/>
+             <path d="M32.8422 9.53114C32.8422 14.7997 28.5797 19.0623 23.3111 19.0623C21.0871 19.0623 19.0486 18.2945 17.4336 17.0236C19.6575 15.2763 21.0607 12.5758 21.0607 9.53114C21.0607 6.48651 19.631 3.78597 17.4336 2.03855C19.0485 0.767759 21.0871 0 23.3111 0C28.5797 0 32.8422 4.28901 32.8422 9.53114Z" fill="#F79E1B"/>
+            </svg>
+            </span>
+             <span className="text-[#666] text-[18px]">5590********2298</span>            
+
+           </div>
+           <div className="flex gap-2.5 items-center ">
+           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+           <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 36 36" fill="none">
+  <path d="M9 18H27M18 27L18 9" stroke="#999999" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+            </span>
+             <span className="text-black text-[18px] font-medium">Add New Card</span>            
+
+           </div>
+           </div>
+       </div>
+           <div className="flex gap-2.5 items-center">
+           <CheckBox/>
+           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+           <img src={jazzcash} className="w-[34px] h-[24px]" alt="Icon"/>
+            </span>
+            <span className="text-black text-[18px] font-medium">JazzCash</span>             
+
+           </div>
+           <div className="flex gap-2.5 items-center">
+           <CheckBox/>
+           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+           <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 32 36" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5461 0.747803C24.2681 0.747803 30.528 5.9315 30.528 12.3259C30.528 18.7203 24.2681 22.6131 16.5461 22.6131C8.93447 22.4587 3.62582 19.9768 0.620117 15.1673C2.24324 6.04772 7.5519 1.24122 16.5461 0.747803ZM16.0253 7.95075C11.5854 8.40012 8.86832 10.5137 7.87412 14.2915C9.2282 15.4859 11.9453 16.1487 16.0253 16.28C20.1242 16.2154 22.6077 15.0203 22.6566 12.2429C22.4007 9.17384 19.417 7.83483 16.0253 7.95075Z" fill="black"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M0.0380903 18.2151C2.32834 24.7864 8.64454 28.4434 15.1386 28.4434C20.5237 28.4434 24.0935 26.1128 25.9653 22.5953L32 26.3755C29.8966 31.5212 23.6599 35.2523 16.2933 35.2523C7.19955 35.2523 -0.587796 29.1238 0.0349543 18.4673C0.0349543 18.3824 0.0360028 18.2984 0.0380903 18.2151Z" fill="#00C252"/>
+</svg>
+            </span>
+            <span className="text-black text-[18px] font-medium">Easypaisa</span>             
+
+           </div>
+           <hr className="border-t-[1px] border-[#CCD1D2]" />
+           <div className="flex gap-2.5 items-center">
+           <CheckBox/>
+           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+           <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 36 36" fill="none">
+  <path d="M27.75 21.015L27.765 20.9985M11.25 21.015L11.265 20.9985M6 27V15C6 14.2044 6.31607 13.4413 6.87868 12.8787C7.44129 12.3161 8.20435 12 9 12H30C30.7956 12 31.5587 12.3161 32.1213 12.8787C32.6839 13.4413 33 14.2044 33 15V27C33 27.7956 32.6839 28.5587 32.1213 29.1213C31.5587 29.6839 30.7956 30 30 30H9C8.20435 30 7.44129 29.6839 6.87868 29.1213C6.31607 28.5587 6 27.7956 6 27Z" stroke="#1A1A1A" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6 24H4.5C3.70435 24 2.94129 23.6839 2.37868 23.1213C1.81607 22.5587 1.5 21.7956 1.5 21V9C1.5 8.20435 1.81607 7.44129 2.37868 6.87868C2.94129 6.31607 3.70435 6 4.5 6H25.5C26.2956 6 27.0587 6.31607 27.6213 6.87868C28.1839 7.44129 28.5 8.20435 28.5 9V12M19.5 24C18.7044 24 17.9413 23.6839 17.3787 23.1213C16.8161 22.5587 16.5 21.7956 16.5 21C16.5 20.2044 16.8161 19.4413 17.3787 18.8787C17.9413 18.3161 18.7044 18 19.5 18C20.2956 18 21.0587 18.3161 21.6213 18.8787C22.1839 19.4413 22.5 20.2044 22.5 21C22.5 21.7956 22.1839 22.5587 21.6213 23.1213C21.0587 23.6839 20.2956 24 19.5 24Z" stroke="#1A1A1A" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+            </span>
+            <span className="text-black text-[18px] font-medium">Cash On Delivery</span>             
+
+           </div>
+           <hr className="border-t-[1px] border-[#CCD1D2]" />
+           <div className="flex gap-2.5 items-center">
+           <CheckBox/>
+           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+           <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 36 36" fill="none">
+  <path d="M21 27.75C21 27.75 22.5 27.75 24 30.75C24 30.75 28.7655 23.25 33 21.75M8.25 17.25H8.2365M16.5 29.25H15.75C10.1115 29.25 7.293 29.25 5.4105 27.765C5.11134 27.528 4.8333 27.2655 4.5795 26.9805C3 25.2105 3 22.5555 3 17.25C3 11.9445 3 9.291 4.5795 7.5195C4.8325 7.2355 5.1095 6.9745 5.4105 6.7365C7.293 5.25 10.1115 5.25 15.75 5.25H20.25C25.8885 5.25 28.707 5.25 30.588 6.735C30.89 6.975 31.1675 7.2365 31.4205 7.5195C32.844 9.1155 32.985 11.427 33 15.75V16.5" stroke="#1A1A1A" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21.75 17.25C21.75 18.2446 21.3549 19.1984 20.6517 19.9017C19.9484 20.6049 18.9946 21 18 21C17.0054 21 16.0516 20.6049 15.3483 19.9017C14.6451 19.1984 14.25 18.2446 14.25 17.25C14.25 16.2554 14.6451 15.3016 15.3483 14.5983C16.0516 13.8951 17.0054 13.5 18 13.5C18.9946 13.5 19.9484 13.8951 20.6517 14.5983C21.3549 15.3016 21.75 16.2554 21.75 17.25Z" stroke="#1A1A1A" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+            </span>
+            <span className="text-black text-[18px] font-medium">Buy Now Pay Later</span>              
+           </div>
+           <div className="flex justify-between gap-10">
+           <div className="w-full flex flex-col gap-1">
+                <label className="text-gray-600 text-[16px] font-medium">Choose an Installment Partner <span className="text-yellow-400">*</span></label>
+                <Select
+        options={options}
+        value={selectedOption}
+        onChange={(e) => setSelectedOption(e.target.value)}
+        placeholder="Please Select"
+      />
+              </div>
+              <div className="w-full flex flex-col gap-1">
+              <label className="text-gray-600 text-[16px] font-medium">Installment Duration <span className="text-yellow-400">*</span></label>
+              <Select
+        options={options}
+        value={selectedOption}
+        onChange={(e) => setSelectedOption(e.target.value)}
+        placeholder="Please Select"
+      />
+              </div>
+           </div>
+           <div className="flex justify-between gap-10">
+           <div className="w-full flex flex-col gap-1">
+           <label className="text-gray-600 text-[16px] font-medium">Customer CNIC<span className="text-yellow-400">*</span></label>
+           <Input type="text" placeholder="XXXX-XXXXXXX-X" />
+              </div>
+              <div className="w-full flex flex-col gap-1">
+              <label className="text-gray-600 text-[16px] font-medium">Customer Phone Number  <span className="text-yellow-400">*</span></label>
+                <Input type="text" placeholder=" +92312-3456452" />
+              </div>
+           </div>
+      <div className="flex justify-between gap-10">
+      {/* Front Side Upload */}
+      <div className="flex flex-col gap-1 w-full">
+        <label className="text-gray-600 text-[16px] font-medium">
+          Upload ID Front Side <span className="text-yellow-400">*</span>
+        </label>
+        <input type="file" accept="image/*" onChange={(e) => handleImageChange(e, setImageFront)} className="hidden" id="file-upload-front" />
+
+        {/* Custom Upload Button */}
+        <label htmlFor="file-upload-front" className="flex h-[60px] px-5 py-3 justify-center items-center gap-3 self-stretch rounded-md border border-yellow-500 bg-white cursor-pointer text-[#002882] font-semibold">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+            <path d="M12.5 15V2M12.5 2L15.5 5.5M12.5 2L9.5 5.5" stroke="#002882" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M8.5 22H16.5C19.328 22 20.743 22 21.621 21.122C22.5 20.242 22.5 18.829 22.5 16V15C22.5 12.172 22.5 10.758 21.621 9.87895C20.853 9.11095 19.675 9.01395 17.5 9.00195M7.5 9.00195C5.325 9.01395 4.147 9.11095 3.379 9.87895C2.5 10.758 2.5 12.172 2.5 15V16C2.5 18.829 2.5 20.243 3.379 21.122C3.679 21.422 4.041 21.619 4.5 21.749" stroke="#002882" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+          Upload Image
+        </label>
+
+        {/* Image Preview with Close Button */}
+        {imageFront && (
+          <div className="relative w-32 h-32 mt-3">
+            <img src={imageFront} alt="Front Preview" className="w-full h-full rounded-md object-cover border border-gray-300" />
+            <button
+              className="absolute -top-2 -right-2 bg-[#002882] text-white w-6 h-6 rounded-full flex items-center justify-center shadow-md hover:bg-[#002882]"
+              onClick={() => removeImage(setImageFront)}
+            >
+              ✖
+            </button>
           </div>
+        )}
+      <p className="text-[#999] text-[14px] font-normal italic">Only PNG, JPG and WEBp with File size less then 500kb are accepted.</p>
+      </div>
+
+      {/* Back Side Upload */}
+      <div className="flex flex-col gap-1 w-full">
+        <label className="text-gray-600 text-[16px] font-medium">
+          Upload ID Back Side <span className="text-yellow-400">*</span>
+        </label>
+        <input type="file" accept="image/*" onChange={(e) => handleImageChange(e, setImageBack)} className="hidden" id="file-upload-back" />
+
+        {/* Custom Upload Button */}
+        <label htmlFor="file-upload-back" className="flex h-[60px] px-5 py-3 justify-center items-center gap-3 self-stretch rounded-md border border-yellow-500 bg-white cursor-pointer text-[#002882] font-semibold">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+            <path d="M12.5 15V2M12.5 2L15.5 5.5M12.5 2L9.5 5.5" stroke="#002882" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M8.5 22H16.5C19.328 22 20.743 22 21.621 21.122C22.5 20.242 22.5 18.829 22.5 16V15C22.5 12.172 22.5 10.758 21.621 9.87895C20.853 9.11095 19.675 9.01395 17.5 9.00195M7.5 9.00195C5.325 9.01395 4.147 9.11095 3.379 9.87895C2.5 10.758 2.5 12.172 2.5 15V16C2.5 18.829 2.5 20.243 3.379 21.122C3.679 21.422 4.041 21.619 4.5 21.749" stroke="#002882" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+          Upload Image
+        </label>
+
+        {/* Image Preview with Close Button */}
+        {imageBack && (
+          <div className="relative w-32 h-32 mt-3">
+            <img src={imageBack} alt="Back Preview" className="w-full h-full rounded-md object-cover border border-gray-300" />
+            <button
+              className="absolute -top-2 -right-2 bg-[#002882] text-white w-6 h-6 rounded-full flex items-center justify-center shadow-md hover:bg-[#002882]"
+              onClick={() => removeImage(setImageBack)}
+            >
+              ✖
+            </button>
+          </div>
+        )}
+         <p className="text-[#999] text-[14px] font-normal italic">Only PNG, JPG and WEBp with File size less then 500kb are accepted.</p>
+      </div>
+    </div>
+       
+    <p className="text-[#999] text-[16px] font-normal flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <g clip-path="url(#clip0_7110_93676)">
+    <path d="M10 18.75C7.67936 18.75 5.45376 17.8281 3.81282 16.1872C2.17187 14.5462 1.25 12.3206 1.25 10C1.25 7.67936 2.17187 5.45376 3.81282 3.81282C5.45376 2.17187 7.67936 1.25 10 1.25C12.3206 1.25 14.5462 2.17187 16.1872 3.81282C17.8281 5.45376 18.75 7.67936 18.75 10C18.75 12.3206 17.8281 14.5462 16.1872 16.1872C14.5462 17.8281 12.3206 18.75 10 18.75ZM10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 7.34784 18.9464 4.8043 17.0711 2.92893C15.1957 1.05357 12.6522 0 10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20Z" fill="#999999"/>
+    <path d="M11.1624 8.235L8.29994 8.59375L8.19744 9.06875L8.75994 9.1725C9.12744 9.26 9.19994 9.3925 9.11994 9.75875L8.19744 14.0938C7.95494 15.215 8.32869 15.7425 9.20744 15.7425C9.88869 15.7425 10.6799 15.4275 11.0387 14.995L11.1487 14.475C10.8987 14.695 10.5337 14.7825 10.2912 14.7825C9.94744 14.7825 9.82244 14.5413 9.91119 14.1163L11.1624 8.235ZM11.2499 5.625C11.2499 5.95652 11.1182 6.27446 10.8838 6.50888C10.6494 6.7433 10.3315 6.875 9.99994 6.875C9.66842 6.875 9.35048 6.7433 9.11606 6.50888C8.88164 6.27446 8.74994 5.95652 8.74994 5.625C8.74994 5.29348 8.88164 4.97554 9.11606 4.74112C9.35048 4.5067 9.66842 4.375 9.99994 4.375C10.3315 4.375 10.6494 4.5067 10.8838 4.74112C11.1182 4.97554 11.2499 5.29348 11.2499 5.625Z" fill="#999999"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_7110_93676">
+      <rect width="20" height="20" fill="white"/>
+    </clipPath>
+  </defs>
+</svg> Note: Installments are available for one product at a time during checkout</p>
+         
+            </div>
+            <div className="w-full flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
+            <div className="w-full flex flex-col gap-1">
+           <label className="text-gray-600 text-[16px] font-medium">Order Note (Optional)<span className="text-yellow-400">*</span></label>
+           <Input type="text" placeholder="Please Input" />
+              </div>
+             <div>
+
+             </div>
+
+            </div>
         </div>
 
         {/* Right Section - col-3 */}
         <div className="w-full md:w-1/4 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
         <h1 className='text-md md:text-xl 2xl:text-2xl font-bold'>Order Summery</h1>
-          {/* Coupon Input */}
-  <div className="flex items-center ">
+        
+    <div className="flex items-center ">
     <input
       type="text"
       placeholder="Enter Coupon Code"
@@ -162,20 +382,8 @@ function Checkout() {
     <div className="flex justify-between">
       <span className="text-black font-semibold">Plant with ValueBox</span>
    </div>
-    <p className=" flex gap-2">
-    <label className="flex items-center cursor-pointer">
-  <input
-    type="radio"
-    className="peer hidden"
-    name="radio-group"
-  />
-  <span className="flex justify-center items-center w-[18px] h-[18px] rounded-full border border-gray-400 peer-checked:border-[#002882] peer-checked:bg-[#002882] relative">
-    {/* Checkmark (✓) appears when checked */}
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-  <path d="M13.5288 5.7668C13.4661 5.70354 13.3914 5.65332 13.3092 5.61905C13.2269 5.58478 13.1387 5.56714 13.0496 5.56714C12.9605 5.56714 12.8722 5.58478 12.79 5.61905C12.7077 5.65332 12.6331 5.70354 12.5703 5.7668L7.54156 10.8023L5.42881 8.6828C5.36366 8.61987 5.28675 8.57038 5.20247 8.53717C5.1182 8.50395 5.0282 8.48767 4.93763 8.48923C4.84706 8.4908 4.75768 8.51019 4.6746 8.5463C4.59153 8.58241 4.51637 8.63453 4.45344 8.69968C4.3905 8.76483 4.34102 8.84174 4.3078 8.92602C4.27459 9.01029 4.2583 9.10029 4.25987 9.19086C4.26144 9.28143 4.28083 9.37081 4.31694 9.45389C4.35304 9.53696 4.40516 9.61212 4.47031 9.67505L7.06231 12.2671C7.12506 12.3303 7.19972 12.3805 7.28197 12.4148C7.36423 12.4491 7.45246 12.4667 7.54156 12.4667C7.63067 12.4667 7.7189 12.4491 7.80115 12.4148C7.88341 12.3805 7.95806 12.3303 8.02081 12.2671L13.5288 6.75905C13.5973 6.69584 13.652 6.61913 13.6894 6.53374C13.7268 6.44835 13.7461 6.35615 13.7461 6.26293C13.7461 6.16971 13.7268 6.0775 13.6894 5.99211C13.652 5.90673 13.5973 5.83001 13.5288 5.7668V5.7668Z" fill="white"/>
-</svg>
-  </span>
-</label>
+    <p className=" flex text-[#999] text-[14px] gap-2">
+    <CheckBox/>
 
       We invite you to plant a tree for RS. 10
     </p>
@@ -191,8 +399,7 @@ function Checkout() {
   <button className="w-full bg-[#002882] text-white font-bold py-3 rounded-md">
   Place Order
   </button>
-  <p className="text-[#999] text-[14px] font-normal text-center
-">Upon clicking 'Place Order', I confirm I have read and acknowledged <a href="" className="text-[#002882] underline"> all terms and policies.</a></p>
+  <p className="text-[#999] text-[14px] font-normal text-center">Upon clicking 'Place Order', I confirm I have read and acknowledged <a href="" className="text-[#002882] underline"> all terms and policies.</a></p>
         </div>
       </div>
     </div>
