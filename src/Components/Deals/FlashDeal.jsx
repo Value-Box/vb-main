@@ -23,7 +23,7 @@ function FlashDeal() {
     ];
   return (
     <div className='bg-[#FFE3DF] sm:rounded-2xl sm:p-4 w-full md:w-[50%] xl:w-full pb-4'>
-            <Link to='/DealsPage' state={{ name: "Flash Deals" }}>
+            <Link to='/FlashDealPage' state={{ name: "Flash Deals" }}>
             <div className='flex justify-between items-center mb-1 px-4 pt-2 sm:p-0'>
               <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl flex'><span className='flex gap-2'><img className='w-6' src={electricity} alt="" /> Flash</span><span className='text-[#F04438] '>Deals</span></h3>
               <span className='bg-[#FFC3B2] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>

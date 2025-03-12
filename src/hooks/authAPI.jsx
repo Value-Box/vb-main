@@ -42,20 +42,20 @@
 //   };
   
 
-export const fetchNetworkInfo = async () => {
-  try {
+// export const fetchNetworkInfo = async () => {
+//   try {
 
-    const response = await fetch("http://localhost:5000/ip-info"); // ✅ Backend se data lo
-    const data = await response.json();
-    return {
-      publicIP: data.publicIP || "Not Found",
-      macAddress: data.macAddress || "Not Found",
-    };
-  } catch (error) {
-    console.error("Error fetching network info:", error);
-    return { publicIP: "Error", macAddress: "Error" };
-  }
-};
+//     const response = await fetch("http://localhost:5000/ip-info"); // ✅ Backend se data lo
+//     const data = await response.json();
+//     return {
+//       publicIP: data.publicIP || "Not Found",
+//       macAddress: data.macAddress || "Not Found",
+//     };
+//   } catch (error) {
+//     console.error("Error fetching network info:", error);
+//     return { publicIP: "Error", macAddress: "Error" };
+//   }
+// };
 
 export const authAPI = async () => {
   try {
@@ -64,12 +64,12 @@ export const authAPI = async () => {
       return existingToken; // ✅ Agar token pehle se hai to return kar do
     }
     // ✅ Pehle network info fetch karo
-    const networkInfo = await fetchNetworkInfo(); 
-// ✅ Check karo agar network info valid nahi hai to API call mat karo
-if (networkInfo.macAddress === "Error" || networkInfo.publicIP === "Error") {
-  console.error("Network info could not be fetched. Skipping API call.");
-  return null;
-}
+//     const networkInfo = await fetchNetworkInfo(); 
+// // ✅ Check karo agar network info valid nahi hai to API call mat karo
+// if (networkInfo.macAddress === "Error" || networkInfo.publicIP === "Error") {
+//   console.error("Network info could not be fetched. Skipping API call.");
+//   return null;
+// }
     const response = await fetch("http://182.176.166.222:8081/api/GetSecurityKey/SecurityKey", {
       method: "POST",
       headers: {
@@ -78,8 +78,8 @@ if (networkInfo.macAddress === "Error" || networkInfo.publicIP === "Error") {
       body: JSON.stringify({
         UserName: "arshad",
         Password: "arshad",
-        MACAddress: networkInfo.macAddress,
-        IPAddress: networkInfo.publicIP,
+        MACAddress: "E4-54-E8-91-4E-33",
+        IPAddress: '192.168.1.196',
         Source: "1",
       }),
     });
