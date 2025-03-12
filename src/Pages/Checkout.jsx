@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState} from "react";
 import Select from "../Components/Select"
 import FormButton from '../Components/FormButton';
@@ -9,6 +9,10 @@ import jazzcash from "/src/Images/jazzcash.svg";
 import CheckoutDt1 from "/src/Images/CheckoutDt1.png";
 import CheckoutDt2 from "/src/Images/CheckoutDt2.png";
 import CheckoutDt3 from "/src/Images/CheckoutDt3.png";
+import Faysalbank from "/src/Images/faysalbank.png";
+import Alfalahbank from "/src/Images/Alfalah.png";
+import Meezanbank from "/src/Images/Meezanbank.png";
+import Askaribank from "/src/Images/Askaribank.png";
 
 
 
@@ -27,7 +31,15 @@ function Checkout() {
     { value: "option2", label: "Option2" },
     { value: "option3", label: "Option3" },
   ];
- 
+  
+  const [mapTrue,isMapTrue]=useState(false)
+  const collectionPoint = {
+    name: "ValueBox Shop Lahore - Model Town",
+    address: "Aurangzeb Block New Garden Town, ValueBox Shop, Shop no. 79, Block B, Lahore - Faisal Town, Punjab",
+    phone: "021-111-456132",
+    openingHours: "11:00 - 20:00",
+  };
+
  
   const [imageFront, setImageFront] = useState(null);
   const [imageBack, setImageBack] = useState(null);
@@ -43,8 +55,201 @@ function Checkout() {
     setImage(null); // Remove the selected image
   };
 
+const [cartData, setCartData] = useState([
+      {
+        store: "Zahir Clothing",
+        items: [
+          {
+            id: 1,
+            name: "Wifi doorbell Camera Smart WI-FI Video Intercom",
+            price: 8500,
+            oldPrice: 11000,
+            discount: 5999,
+            label: "Welcome Deal",
+            warranty: "One Year Warranty",
+            installment: "Installment Offers available up to 36 months",
+            delivery: "Standard", // 👈 Added delivery type
+            image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080'
+          },
+          {
+            id: 2,
+            name: "Wifi doorbell Camera Smart WI-FI Video Intercom",
+            price: 8500,
+            oldPrice: 11000,
+            discount: 5999,
+            label: "Welcome Deal",
+            warranty: "One Year Warranty",
+            installment: "Installment Offers available up to 36 months",
+            delivery: "Standard", // 👈 Added delivery type
+            image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080'
+          },
+          {
+            id: 3,
+            name: "Wifi doorbell Camera Smart WI-FI Video Intercom",
+            price: 8500,
+            oldPrice: 11000,
+            discount: 5999,
+            delivery: "Express", // 👈 Added delivery type
+            image: "https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMnx8aGVhZHBob25lfGVufDB8MHx8fDE3MjEzMDM2OTB8MA&ixlib=rb-4.0.3&q=80&w=1080"
+          },
+        ],
+      },
+      {
+        store: "Arshad Electronics",
+        items: [
+          {
+            id: 4,
+            name: "Wifi doorbell Camera Smart WI-FI Video Intercom",
+            price: 8500,
+            oldPrice: 11000,
+            discount: 5999,
+            label: "Flash Sale",
+            delivery: "Express", // 👈 Added delivery type
+            image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw0fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080"
+          },
+          {
+            id: 5,
+            name: "Wifi doorbell Camera Smart WI-FI Video Intercom",
+            price: 8500,
+            oldPrice: 11000,
+            discount: 5999,
+            label: "Flash Sale",
+            delivery: "Standard", // 👈 Added delivery type
+            image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw0fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080"
+          },
+        ],
+      },
+    ])
 
+      useEffect(() => {
+        setCartData((prevData) =>
+          prevData.map((store) => ({
+            ...store,
+            items: store.items.map((item) =>
+              item.quantity === undefined ? { ...item, quantity: 1 } : item
+            ),
+          }))
+        );
+      }, []);
 
+      const increaseQuantity=(id)=>{
+        console.log(id)
+      setCartData((prevData)=>
+      prevData.map((store)=>({
+        ...store,items:store.items.map((item)=>
+        item.id===id?{...item,quantity:item.quantity+1}:item
+        ),
+      })))
+      }  
+      const decreaseQuantity=(id)=>{
+        setCartData((prevData)=>
+        prevData.map((store)=>({
+          ...store,items:store.items.map((item)=>
+          item.id===id && item.quantity>1 ?{...item,quantity:item.quantity-1}:item
+          ),
+        })))
+      }
+      // modal 1
+      const [isModalOpen, setIsModalOpen] = useState(false);
+
+      const collectionPoints = [
+        {
+          name: "ValueBox Shop Lahore - Model Town",
+          address: "Aurangzeb Block New Garden Town, ValueBox Shop, Shop no. 79, Block B, Lahore - Faisal Town, Punjab",
+          region: "Punjab, Lahore - Faisal Town, Block B",
+          openingHours: "11:00:00 - 20:00:00",
+          phone: "021-123-456789",
+        },
+        {
+          name: "ValueBox Shop Lahore - Model Town",
+          address: "Aurangzeb Block New Garden Town, ValueBox Shop, Shop no. 79, Block B, Lahore - Faisal Town, Punjab",
+          region: "Punjab, Lahore - Faisal Town, Block B",
+          openingHours: "11:00:00 - 20:00:00",
+          phone: "021-123-456789",
+        },
+        {
+          name: "ValueBox Shop Lahore - Model Town",
+          address: "Aurangzeb Block New Garden Town, ValueBox Shop, Shop no. 79, Block B, Lahore - Faisal Town, Punjab",
+          region: "Punjab, Lahore - Faisal Town, Block B",
+          openingHours: "11:00:00 - 20:00:00",
+          phone: "021-123-456789",
+        },
+      ];
+// modal 2
+const [isOpen, setIsOpen] = useState(false);
+
+const [formOpen, setFormOpen] = useState(false);
+// add address form
+const [locationType, setLocationType] = useState("home");
+  const [defaultShipping, setDefaultShipping] = useState(false);
+  const [defaultBilling, setDefaultBilling] = useState(true);
+  const [country, setCountry] = useState("");
+  const [province, setProvince] = useState("");
+  const [street, setStreet] = useState("");
+  const [apartment, setApartment] = useState("");
+  const [landmark, setLandmark] = useState("");
+  const [city, setCity] = useState("");
+  const [area, setArea] = useState("");
+  const [zip, setZip] = useState("");
+  const [contactName, setContactName] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted");
+  };
+  // modal 3
+const [isInstalmentModalOpen, setIsInstalmentModalOpen] = useState(false);
+const [selectedBank, setSelectedBank] = useState("faysal"); // Default Bank
+
+const bankData = {
+  faysal: {
+    name: "Faysal Bank Islami",
+    plans: [
+      { period: "Down Payment", interest: "-", fee: "PKR 12,000" },
+      { period: "6", interest: "0%", fee: "PKR 6,000" },
+      { period: "12", interest: "0%", fee: "PKR 6,000" },
+      { period: "24", interest: "0%", fee: "PKR 6,000" },
+      { period: "36", interest: "0%", fee: "PKR 6,000" },
+    ],
+  },
+  alfalah: {
+    name: "Bank Alfalah",
+    plans: [
+      { period: "Down Payment", interest: "-", fee: "PKR 10,000" },
+      { period: "6", interest: "1%", fee: "PKR 5,500" },
+      { period: "12", interest: "1%", fee: "PKR 5,500" },
+      { period: "24", interest: "1%", fee: "PKR 5,500" },
+      { period: "36", interest: "1%", fee: "PKR 5,500" },
+    ],
+  },
+  meezan: {
+    name: "Meezan",
+    plans: [
+      { period: "Down Payment", interest: "-", fee: "PKR 15,000" },
+      { period: "6", interest: "0.5%", fee: "PKR 7,000" },
+      { period: "12", interest: "0.5%", fee: "PKR 7,000" },
+      { period: "24", interest: "0.5%", fee: "PKR 7,000" },
+      { period: "36", interest: "0.5%", fee: "PKR 7,000" },
+    ],
+  },
+  askari: {
+    name: "Askari",
+    plans: [
+      { period: "Down Payment", interest: "-", fee: "PKR 15,000" },
+      { period: "6", interest: "2.5%", fee: "PKR 7,000" },
+      { period: "12", interest: "2.5%", fee: "PKR 7,000" },
+      { period: "24", interest: "2.5%", fee: "PKR 7,000" },
+      { period: "36", interest: "2.5%", fee: "PKR 7,000" },
+    ],
+  },
+};
+// modal 4
+
+ const [isCardModalOpen, setIsCardModalOpen] = useState(false);
+ const [billingAddressOpen, setbillingAddressOpen] = useState(false);
+// modal 5
+const [showOffersModal, setShowOffersModal] = useState(false);
   return (
     <div className="w-full p-10 bg-[#FCFCFC]">
       <div className="flex flex-col md:flex-row gap-10">
@@ -59,7 +264,7 @@ function Checkout() {
               <span className="text-[16px] font-semibold">
               Farman Haris <span className="mx-2 text-[#999] font-normal">|</span> <span className="text-[#999] text-[14px] font-normal">+92123456789</span>
               </span>
-              <button className="flex gap-1 bg-transparent text-[#002882]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <button className="flex gap-1 bg-transparent text-[#002882]"  onClick={() => setIsOpen(true)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M13 3C13.2549 3.00028 13.5 3.09788 13.6854 3.27285C13.8707 3.44782 13.9822 3.68695 13.9972 3.94139C14.0121 4.19584 13.9293 4.44638 13.7657 4.64183C13.6021 4.83729 13.3701 4.9629 13.117 4.993L13 5H5V19H19V11C19.0003 10.7451 19.0979 10.5 19.2728 10.3146C19.4478 10.1293 19.687 10.0178 19.9414 10.0028C20.1958 9.98789 20.4464 10.0707 20.6418 10.2343C20.8373 10.3979 20.9629 10.6299 20.993 10.883L21 11V19C21.0002 19.5046 20.8096 19.9906 20.4665 20.3605C20.1234 20.7305 19.6532 20.9572 19.15 20.995L19 21H5C4.49542 21.0002 4.00943 20.8096 3.63945 20.4665C3.26947 20.1234 3.04284 19.6532 3.005 19.15L3 19V5C2.99984 4.49542 3.19041 4.00943 3.5335 3.63945C3.87659 3.26947 4.34684 3.04284 4.85 3.005L5 3H13ZM19.243 3.343C19.423 3.16365 19.6644 3.05953 19.9184 3.05177C20.1723 3.04402 20.4197 3.13322 20.6103 3.30125C20.8008 3.46928 20.9203 3.70355 20.9444 3.95647C20.9685 4.2094 20.8954 4.46201 20.74 4.663L20.657 4.758L10.757 14.657C10.577 14.8363 10.3356 14.9405 10.0816 14.9482C9.82767 14.956 9.58029 14.8668 9.38972 14.6988C9.19916 14.5307 9.07969 14.2964 9.0556 14.0435C9.03151 13.7906 9.10459 13.538 9.26 13.337L9.343 13.243L19.243 3.343Z" fill="#002882"/>
               </svg> Edit</button>
               </div>
@@ -71,7 +276,7 @@ function Checkout() {
               Office
             </FormButton>
               </div>
-              <div className="flex items-center gap-[10px] p-[10px_15px]  rounded-[5px] bg-[#FEF6E6]">
+              <div className="flex items-center gap-[10px] p-[10px_15px]  rounded-[5px] bg-[#FEF6E6] cursor-pointer"  onClick={() => setIsModalOpen(true)}>
               <span className="flex flex-col justify-center items-center gap-[10px] p-4 rounded-[5px] border border-[#667EB4] bg-[#FCFCFC]">
               <img src={SAsvg} alt="Icon"/>
               </span>
@@ -108,7 +313,20 @@ function Checkout() {
             <path d="M10 1.25L2.5 3.75V11.25C2.5 15.3926 5.85742 18.75 10 18.75C14.1426 18.75 17.5 15.3926 17.5 11.25V3.75L10 1.25ZM16.0938 11.25C16.0938 14.6152 13.3652 17.3438 10 17.3438C6.63477 17.3438 3.90625 14.6152 3.90625 11.25V4.80469L10 2.65625L16.0938 4.80469V11.25Z" fill="black"/>
             <path d="M7.39015 9.2793C7.32498 9.21383 7.24752 9.16188 7.16222 9.12643C7.07692 9.09099 6.98545 9.07274 6.89308 9.07274C6.80071 9.07274 6.70924 9.09099 6.62394 9.12643C6.53864 9.16188 6.46118 9.21383 6.39601 9.2793C6.33054 9.34447 6.27859 9.42193 6.24315 9.50723C6.2077 9.59253 6.18945 9.68399 6.18945 9.77637C6.18945 9.86874 6.2077 9.96021 6.24315 10.0455C6.27859 10.1308 6.33054 10.2083 6.39601 10.2734L8.92335 12.8008L8.96437 12.8418C9.02601 12.9036 9.09923 12.9526 9.17983 12.986C9.26043 13.0194 9.34684 13.0366 9.4341 13.0366C9.52136 13.0366 9.60776 13.0194 9.68836 12.986C9.76896 12.9526 9.84218 12.9036 9.90382 12.8418L14.2691 8.47656C14.3308 8.41492 14.3798 8.3417 14.4132 8.2611C14.4467 8.1805 14.4639 8.0941 14.4639 8.00684C14.4639 7.91958 14.4467 7.83317 14.4132 7.75257C14.3798 7.67197 14.3308 7.59875 14.2691 7.53711L14.2144 7.48242C14.1527 7.42066 14.0795 7.37167 13.9989 7.33824C13.9183 7.3048 13.8319 7.2876 13.7446 7.2876C13.6574 7.2876 13.571 7.3048 13.4904 7.33824C13.4098 7.37167 13.3366 7.42066 13.2749 7.48242L9.43312 11.3223L7.39015 9.2793Z" fill="black"/>
             </svg>Buy Now Pay Later</p>
-            <p className="text-[#666] text-[18px] ">Installment Offers available up to 36 months <a href="" className="text-[#002882] underline"> View more details</a></p>
+            <p className="text-[#666] text-[18px] flex gap-1">
+  Installment Offers available up to 36 months
+  <a 
+    href="#" 
+    className="text-[#002882] underline" 
+    onClick={(e) => { 
+      e.preventDefault(); 
+      setIsInstalmentModalOpen(true); 
+    }}
+  >
+    View more details
+  </a>
+</p>
+
             </div>
         
             </div>
@@ -132,12 +350,12 @@ function Checkout() {
 
            </div>
            <div className="flex gap-2.5 items-center ">
-           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC] cursor-pointer" onClick={() => setIsCardModalOpen(true)}>
            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 36 36" fill="none">
-  <path d="M9 18H27M18 27L18 9" stroke="#999999" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+          <path d="M9 18H27M18 27L18 9" stroke="#999999" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+           </svg>
             </span>
-             <span className="text-black text-[18px] font-medium">Add New Card</span>            
+             <span className="text-black text-[18px] font-medium cursor-pointer" onClick={() => setIsCardModalOpen(true)}>Add New Card</span>            
 
            </div>
            </div>
@@ -192,7 +410,7 @@ function Checkout() {
         value={selectedOption}
         onChange={(e) => setSelectedOption(e.target.value)}
         placeholder="Please Select"
-      />
+           />
               </div>
               <div className="w-full flex flex-col gap-1">
               <label className="text-gray-600 text-[16px] font-medium">Installment Duration <span className="text-yellow-400">*</span></label>
@@ -297,14 +515,108 @@ function Checkout() {
            <Input type="text" placeholder="Please Input" />
               </div>
              <div>
+             {cartData.map((store, index) => (
+     
+      <div key={index} >
+       
+     
+        {store.items.map((item,storeIndex) => (
+          <>
+          <div key={item.id} className="flex items-center gap-2 xl:gap-4 mt-2 w-full">
+            
+         
+            <img src={item.image} className='w-20 h-20 lg:w-25 lg:h-25 2xl:w-32 2xl:h-32 rounded-lg select-none' alt="" />
+            <div className="flex-1 flex flex-col gap-3 select-none min-w-0">
+            <div className="flex gap-2 justify-between overflow-hidden w-full min-w-0">
+              <div className="flex items-center space-x-2 w-full overflow-hidden min-w-0">
+                {item.label && (
+                  <span className="text-xs bg-red-500 text-white px-2 py-1 rounded shrink-0">
+                    {item.label}
+                  </span>
+                )}
+                <p className="w-full min-w-0 overflow-hidden text-ellipsis whitespace-nowrap">
+                  {item.name}
+                </p>
+              </div>
               
+              <div className='flex gap-1'>
+              <button className='cursor-pointer'>
+              <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5 2xl:w-6 2xl:h-6' viewBox="0 0 24 24" fill="none">
+                <path d="M20.5 6H3.5M9.5 11L10 16M14.5 11L14 16" stroke="#666666" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M6.5 6H6.61C7.01245 5.98972 7.40242 5.85822 7.72892 5.62271C8.05543 5.3872 8.30325 5.05864 8.44 4.68L8.474 4.577L8.571 4.286C8.654 4.037 8.696 3.913 8.751 3.807C8.85921 3.59939 9.01451 3.41999 9.20448 3.28316C9.39444 3.14633 9.6138 3.05586 9.845 3.019C9.962 3 10.093 3 10.355 3H13.645C13.907 3 14.038 3 14.155 3.019C14.3862 3.05586 14.6056 3.14633 14.7955 3.28316C14.9855 3.41999 15.1408 3.59939 15.249 3.807C15.304 3.913 15.346 4.037 15.429 4.286L15.526 4.577C15.6527 4.99827 15.9148 5.36601 16.2717 5.62326C16.6285 5.88051 17.0603 6.01293 17.5 6" stroke="#666666" stroke-width="1.5"/>
+                <path d="M18.374 15.4C18.197 18.054 18.108 19.381 17.243 20.19C16.378 20.999 15.048 21 12.387 21H11.613C8.95299 21 7.62299 21 6.75699 20.19C5.89199 19.381 5.80399 18.054 5.62699 15.4L5.16699 8.5M18.833 8.5L18.633 11.5" stroke="#666666" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              </button>
+              <button className='cursor-pointer'>
+              <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5 2xl:w-6 2xl:h-6' viewBox="0 0 24 24" fill="none">
+                <path d="M20.0009 13.3096L13.6274 19.735C13.2049 20.1608 12.6318 20.4 12.0344 20.4C11.4369 20.4 10.8638 20.1608 10.4413 19.735L4.06781 13.3107C3.54096 12.7843 3.12245 12.1582 2.8363 11.4683C2.55016 10.7784 2.40203 10.0383 2.4004 9.29056C2.39878 8.5428 2.5437 7.80209 2.82684 7.11093C3.10998 6.41978 3.52577 5.79181 4.05033 5.26307C4.57489 4.73432 5.1979 4.31522 5.88359 4.02982C6.56927 3.74442 7.30413 3.59835 8.04597 3.59999C8.78781 3.60163 9.52203 3.75094 10.2065 4.03936C10.8909 4.32779 11.5121 4.74963 12.0344 5.28069C13.0952 4.23803 14.5208 3.65863 16.0024 3.66799C17.4841 3.67734 18.9024 4.27471 19.9502 5.33068C20.9979 6.38665 21.5908 7.8162 21.6003 9.30964C21.6098 10.8031 21.0351 12.2402 20.0009 13.3096Z" stroke="#666666" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              </button>
+              </div>
+            </div>
+            <div className='flex gap-2'>
+                <span className='text-[#999] bg-[#F2F2F2] px-4 rounded-[5px] inline-block '>Red/42</span>
+                <span className='text-[#999] bg-[#F2F2F2] px-4 rounded-[5px] inline-block '>Free Delivery</span>
+            </div>
+
+            <div className='flex gap-3'>
+            <div className='flex xl:flex-row gap-1 items-center'>
+            <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 xl:w-5 xl:h-5' viewBox="0 0 20 20" fill="none">
+              <path d="M6.69034 10H4.03644C3.83149 10.0003 3.63122 10.0591 3.46088 10.169C3.29053 10.2789 3.15773 10.435 3.07921 10.6175C3.00069 10.8 2.97996 11.0009 3.01964 11.1948C3.05932 11.3887 3.15763 11.5669 3.30218 11.707L9.74041 18L16.1776 11.707C16.2742 11.6143 16.3509 11.5042 16.4033 11.3829C16.4556 11.2615 16.4825 11.1314 16.4825 11C16.4825 10.8686 16.4556 10.7385 16.4033 10.6171C16.3509 10.4958 16.2742 10.3857 16.1776 10.293C15.9831 10.1055 15.7194 10.0001 15.4444 10H12.8631C12.9336 7.25 13.4501 4.245 17 2H15.9629C11.1581 2 7.20681 5.5 6.69034 10Z" fill="#F04438"/>
+            </svg>
+            <span className='text-[#F04438] text-sm xl:text-base'>Save PKR 5,999</span>
+            </div>
+            <p className='bg-[#CCC] h-5 w-px '></p>
+            <div className='flex gap-1 items-center'>
+            <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 xl:w-5 xl:h-5' viewBox="0 0 20 20" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 15.7144C0 16.8972 0.957143 17.8572 2.14 17.8572H17.86C19.0429 17.8572 20 16.8972 20 15.7144V12.8087C20.0001 12.6517 19.9486 12.4991 19.8533 12.3744C19.758 12.2496 19.6243 12.1598 19.4729 12.1187C19.008 11.9921 18.5976 11.7161 18.3051 11.3332C18.0125 10.9504 17.854 10.4819 17.854 10.0001C17.854 9.51826 18.0125 9.04981 18.3051 8.66696C18.5976 8.28411 19.008 8.00811 19.4729 7.88152C19.6243 7.84039 19.758 7.75053 19.8533 7.62581C19.9486 7.50109 20.0001 7.34846 20 7.19152V4.2858C20 3.10294 19.0429 2.14294 17.86 2.14294H2.14C0.957143 2.14294 0 3.10294 0 4.2858V7.1858C0.000189937 7.3435 0.0525637 7.49671 0.148953 7.62152C0.245342 7.74634 0.380328 7.83575 0.532857 7.8758C1.00268 7.99866 1.41852 8.2738 1.7153 8.65817C2.01209 9.04255 2.17308 9.51447 2.17308 10.0001C2.17308 10.4857 2.01209 10.9576 1.7153 11.342C1.41852 11.7264 1.00268 12.0015 0.532857 12.1244C0.380328 12.1644 0.245342 12.2538 0.148953 12.3787C0.0525637 12.5035 0.000189937 12.6567 0 12.8144L0 15.7144ZM7.08857 14.2029L14.2314 7.06009C14.3908 6.89119 14.4782 6.66682 14.4749 6.4346C14.4716 6.20237 14.3779 5.98057 14.2138 5.81625C14.0497 5.65193 13.828 5.55804 13.5958 5.55449C13.3635 5.55094 13.1391 5.63801 12.97 5.79723L5.82714 12.9401C5.74017 13.022 5.67052 13.1205 5.62231 13.2298C5.57411 13.3391 5.54833 13.457 5.5465 13.5764C5.54467 13.6959 5.56684 13.8145 5.61168 13.9252C5.65652 14.036 5.72313 14.1366 5.80755 14.2211C5.89198 14.3056 5.99251 14.3723 6.10319 14.4173C6.21387 14.4623 6.33245 14.4846 6.4519 14.4829C6.57135 14.4812 6.68925 14.4555 6.79861 14.4074C6.90797 14.3594 7.00657 14.2898 7.08857 14.2029ZM5.74429 7.14294C5.74429 6.76406 5.8948 6.4007 6.1627 6.13279C6.43061 5.86488 6.79398 5.71437 7.17286 5.71437C7.55174 5.71437 7.9151 5.86488 8.18301 6.13279C8.45092 6.4007 8.60143 6.76406 8.60143 7.14294C8.60143 7.52182 8.45092 7.88519 8.18301 8.1531C7.9151 8.42101 7.55174 8.57152 7.17286 8.57152C6.79398 8.57152 6.43061 8.42101 6.1627 8.1531C5.8948 7.88519 5.74429 7.52182 5.74429 7.14294ZM11.4586 12.8572C11.4586 12.4783 11.6091 12.115 11.877 11.8471C12.1449 11.5792 12.5083 11.4287 12.8871 11.4287C13.266 11.4287 13.6294 11.5792 13.8973 11.8471C14.1652 12.115 14.3157 12.4783 14.3157 12.8572C14.3157 13.2361 14.1652 13.5995 13.8973 13.8674C13.6294 14.1353 13.266 14.2858 12.8871 14.2858C12.5083 14.2858 12.1449 14.1353 11.877 13.8674C11.6091 13.5995 11.4586 13.2361 11.4586 12.8572Z" fill="#F04438"/>
+</svg>
+            <span className='text-sm xl:text-base text-[#F04438]'>Coupons applicable</span>
+            </div>
+            <p className='bg-[#CCC] h-5 w-px '></p>
+            <div className='flex gap-1 items-center'>
+            <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 xl:w-5 xl:h-5' viewBox="0 0 18 20" fill="none">
+<path d="M16.0096 6.66755V8.43408C16.0096 10.6361 15.6173 12.5459 14.8437 14.11C14.2331 15.3442 13.3823 16.3714 12.3147 17.1627C11.3571 17.8725 10.3955 18.2606 9.75741 18.4612C9.20382 18.6352 8.78993 18.7027 8.6392 18.7235C8.48847 18.7027 8.07458 18.6352 7.521 18.4612C6.88291 18.2606 5.92129 17.8725 4.96371 17.1627C3.89614 16.3714 3.04527 15.3442 2.43472 14.11C1.66113 12.5459 1.26881 10.6361 1.26881 8.43408V5.3558C2.31888 5.12853 3.34433 4.80878 4.32436 4.40262C5.23778 4.02399 6.11415 3.56974 6.92898 3.05254C7.7046 2.56021 8.27735 2.10418 8.6392 1.78975C9.00107 2.10418 9.57381 2.56021 10.3494 3.05254C11.0243 3.48091 11.7415 3.86614 12.4867 4.20086L13.2331 3.14301C12.4762 2.8169 11.7492 2.4351 11.0687 2.00622C9.78621 1.19769 9.10486 0.4927 9.09902 0.48649L8.64187 0L8.18027 0.485594C8.17354 0.4927 7.49219 1.19769 6.20968 2.00622C5.4588 2.4795 4.65121 2.89544 3.80948 3.24236C2.75929 3.67542 1.65199 4.00178 0.518432 4.21254L0 4.30898V8.43409C0 10.8518 0.443327 12.9645 1.31766 14.7134C2.02743 16.1327 3.01825 17.3133 4.2627 18.2222C6.38008 19.7687 8.49012 19.9858 8.57894 19.9942L8.6392 20L8.69947 19.9942C8.78829 19.9858 10.8983 19.7687 13.0157 18.2222C14.2602 17.3133 15.251 16.1327 15.9606 14.7134C16.8351 12.9645 17.2784 10.8518 17.2784 8.43409V4.86905L16.0096 6.66755Z" fill="#33539B"/>
+<path d="M10.3521 3.05254C9.57837 2.56135 9.00652 2.10633 8.64453 1.79204V0L9.10168 0.48649C9.10752 0.492712 9.78887 1.1977 11.0714 2.00622C11.7519 2.4351 12.4789 2.8169 13.2357 3.14301L12.4894 4.20086C11.7441 3.86614 11.027 3.48091 10.3521 3.05254Z" fill="#002882"/>
+<path d="M17.2811 4.86914V8.43418C17.2811 10.8519 16.8378 12.9646 15.9633 14.7135C15.2536 16.1328 14.2628 17.3134 13.0184 18.2223C10.901 19.7688 8.79095 19.9859 8.70213 19.9943L8.64453 19.9998V18.7232C8.79743 18.702 9.20966 18.6343 9.76007 18.4613C10.3982 18.2607 11.3598 17.8726 12.3174 17.1628C13.3849 16.3715 14.2358 15.3443 14.8463 14.1101C15.6199 12.546 16.0123 10.6362 16.0123 8.43417V6.66764L17.2811 4.86914Z" fill="#002882"/>
+<path d="M8.11644 15.165L4.40004 12.0903C4.09559 11.8384 4.05296 11.3874 4.30483 11.0829L5.13718 10.0768C5.38905 9.77232 5.84004 9.72969 6.14448 9.98157L8.17914 11.6649L14.6499 2.4923C14.8777 2.16942 15.3241 2.09232 15.647 2.32012L16.7139 3.07289C17.0368 3.30069 17.1139 3.7471 16.8861 4.06998L9.15711 15.0262C8.91686 15.3667 8.43755 15.4307 8.11644 15.165Z" fill="#EEA500"/>
+</svg>
+            <span className='text-sm xl:text-base'>One Year Warranty</span>
+            </div>
+            </div>
+              <div className='flex justify-between'>
+              <div className='flex gap-2'>
+              <p className="text-[#002882] font-bold text-xl 2xl:text-3xl">
+                <small className='text-xs 2xl:text-sm font-medium'>PKR</small> {item.price}</p>
+              <small className="line-through text-gray-400 flex items-center">PKR {item.oldPrice}</small>
+              </div>
+              <div className="flex items-center border border-[#CCD1D2] rounded-full ">
+              <button className="px-1 py-1 cursor-pointer" onClick={()=>decreaseQuantity(item.id)}>
+                <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 2xl:w-5 2xl:h-5' viewBox="0 0 20 20" fill="none">
+                <path d="M16.6654 10H3.33203" stroke="#999999" stroke-width="1.66667" stroke-linecap="round"/>
+              </svg></button>
+              <span className="px-4">{item.quantity}</span>
+              <button className="px-1 py-1 cursor-pointer" onClick={()=>increaseQuantity(item.id)}>
+                <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 2xl:w-5 2xl:h-5' viewBox="0 0 20 20" fill="none">
+                <path d="M14.9974 10.8333H10.8307V15C10.8307 15.4583 10.4557 15.8333 9.9974 15.8333C9.53906 15.8333 9.16406 15.4583 9.16406 15V10.8333H4.9974C4.53906 10.8333 4.16406 10.4583 4.16406 9.99996C4.16406 9.54163 4.53906 9.16663 4.9974 9.16663H9.16406V4.99996C9.16406 4.54163 9.53906 4.16663 9.9974 4.16663C10.4557 4.16663 10.8307 4.54163 10.8307 4.99996V9.16663H14.9974C15.4557 9.16663 15.8307 9.54163 15.8307 9.99996C15.8307 10.4583 15.4557 10.8333 14.9974 10.8333Z" fill="#1A1A1A"/>
+              </svg></button>
+            </div> 
+              </div>
+            </div>
+            
+          </div>
+          <div className='bg-[#CCC] h-px my-4'></div>
+          </>
+        ))}
+      </div>
+    ))}
              </div>
 
             </div>
         </div>
 
         {/* Right Section - col-3 */}
-        <div className="w-full md:w-1/4 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
+        <div className="w-full md:w-1/4 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5 h-auto">
         <h1 className='text-md md:text-xl 2xl:text-2xl font-bold'>Order Summery</h1>
         
     <div className="flex items-center ">
@@ -318,8 +630,8 @@ function Checkout() {
     </button>
   </div>
   {/* Offers Section */}
-  <div className="flex items-center justify-between mt-4 border bg-[#E6EAF3] border-gray-300 rounded-md px-3 py-2 cursor-pointer">
-    <div className="flex items-center space-x-2 ">
+  <div className="flex items-center justify-between mt-4 border bg-[#E6EAF3] border-gray-300 rounded-md px-3 py-2 cursor-pointer"  onClick={() => setShowOffersModal(true)}>
+    <div className="flex items-center space-x-2 cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <g clip-path="url(#clip0_7213_113152)">
     <path d="M7.75913 16.2412L16.3306 7.66978M9.99455 1.71092C10.5739 1.23954 11.298 0.982178 12.0448 0.982178C12.7917 0.982178 13.5158 1.23954 14.0951 1.71092L14.666 2.17549L15.3911 2.05892C16.1287 1.94016 16.8846 2.07922 17.5316 2.45267C18.1786 2.82613 18.6771 3.41115 18.9431 4.1092L19.2037 4.79492L19.8911 5.0572C20.5895 5.32296 21.1749 5.82134 21.5487 6.46835C21.9225 7.11537 22.0618 7.87146 21.9431 8.6092L21.8266 9.33435L22.2894 9.9052C22.7608 10.4845 23.0182 11.2086 23.0182 11.9555C23.0182 12.7024 22.7608 13.4264 22.2894 14.0058L21.8266 14.5766L21.9431 15.3018C22.0619 16.0393 21.9228 16.7952 21.5494 17.4422C21.1759 18.0892 20.5909 18.5877 19.8928 18.8538L19.2071 19.1161L18.9448 19.8018C18.6788 20.4998 18.1803 21.0849 17.5333 21.4583C16.8863 21.8318 16.1304 21.9708 15.3928 21.8521L14.6677 21.7355L14.0968 22.2001C13.5175 22.6714 12.7934 22.9288 12.0466 22.9288C11.2997 22.9288 10.5756 22.6714 9.99627 22.2001L9.42541 21.7372L8.70027 21.8521C7.96273 21.9708 7.20681 21.8318 6.55982 21.4583C5.91283 21.0849 5.41432 20.4998 5.14827 19.8018L4.88598 19.1161L4.20027 18.8538C3.50222 18.5877 2.91719 18.0892 2.54374 17.4422C2.17028 16.7952 2.03122 16.0393 2.14998 15.3018L2.26655 14.5766L1.80198 14.0058C1.3306 13.4264 1.07324 12.7024 1.07324 11.9555C1.07324 11.2086 1.3306 10.4845 1.80198 9.9052L2.26484 9.33435L2.14998 8.6092C2.03111 7.87188 2.16993 7.11612 2.54305 6.46916C2.91618 5.8222 3.50082 5.32356 4.19855 5.0572L4.88427 4.79663L5.14656 4.1092C5.41231 3.41083 5.91069 2.82543 6.5577 2.45165C7.20472 2.07786 7.96081 1.93856 8.69855 2.0572L9.4237 2.17378L9.99455 1.71092Z" stroke="#002882" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
@@ -384,8 +696,7 @@ function Checkout() {
    </div>
     <p className=" flex text-[#999] text-[14px] gap-2">
     <CheckBox/>
-
-      We invite you to plant a tree for RS. 10
+       We invite you to plant a tree for RS. 10
     </p>
   </div>
   <hr className="border-t-[1px] border-[#CCD1D2]" />
@@ -402,6 +713,842 @@ function Checkout() {
   <p className="text-[#999] text-[14px] font-normal text-center">Upon clicking 'Place Order', I confirm I have read and acknowledged <a href="" className="text-[#002882] underline"> all terms and policies.</a></p>
         </div>
       </div>
+      {/* Modal 1 */}
+      {isModalOpen && (
+        <div className=" fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
+          <div className="relative bg-white rounded-lg shadow-lg ">
+            {/* Modal Header */}
+            <div className="flex justify-end items-center">
+              
+            <button  className="absolute -top-4 -right-4 z-1050 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+  onClick={() => {
+    setIsModalOpen(false);
+    isMapTrue(false); 
+  }}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+    <g clipPath="url(#clip0_7110_94001)">
+      <rect width="36" height="36" fill="url(#paint0_radial_7110_94001)"/>
+      <path d="M18 0C7.97143 0 0 7.97143 0 18C0 28.0286 7.97143 36 18 36C28.0286 36 36 28.0286 36 18C36 7.97143 28.0286 0 18 0ZM24.9429 27L18 20.0571L11.0571 27L9 24.9429L15.9429 18L9 11.0571L11.0571 9L18 15.9429L24.9429 9L27 11.0571L20.0571 18L27 24.9429L24.9429 27Z" fill="#002882"/>
+    </g>
+    <defs>
+      <radialGradient id="paint0_radial_7110_94001" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 18) rotate(90) scale(18)">
+        <stop offset="0.80208" stopColor="white"/>
+        <stop offset="1" stopColor="white" stopOpacity="0"/>
+      </radialGradient>
+      <clipPath id="clip0_7110_94001">
+        <rect width="36" height="36" fill="white"/>
+      </clipPath>
+    </defs>
+  </svg>
+</button>
+
+
+            </div>
+
+            {/* Modal Body */}
+            <div className="max-h-[100vh] w-[1500px] overflow-y-auto rounded-2xl border border-gray-300">
+              {mapTrue?(
+                <div className="flex items-center justify-center">
+                <div className="relative w-full bg-white shadow-lg rounded-lg">
+                  {/* Google Maps Embed */}
+                  <iframe
+                    className="w-full h-[500px] rounded-t-lg "
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(collectionPoint.address)}&output=embed`}
+                    allowFullScreen
+                    loading="lazy"
+                  ></iframe>
+          
+                  {/* Collection Point Details */}
+                  <div className="">
+                  <div className="flex justify-between absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-white w-[100%] max-w-[95%] p-5 rounded-2xl shadow-lg">
+                     <div className="w-[50%]">
+                     <h3 className="text-lg font-semibold flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M8.75391 10C8.75391 9.13805 9.09632 8.3114 9.70581 7.7019C10.3153 7.09241 11.142 6.75 12.0039 6.75C12.8659 6.75 13.6925 7.09241 14.302 7.7019C14.9115 8.3114 15.2539 9.13805 15.2539 10C15.2539 10.862 14.9115 11.6886 14.302 12.2981C13.6925 12.9076 12.8659 13.25 12.0039 13.25C11.142 13.25 10.3153 12.9076 9.70581 12.2981C9.09632 11.6886 8.75391 10.862 8.75391 10Z" fill="url(#paint0_linear_7298_123765)"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.77725 8.877C3.94358 6.86675 4.85947 4.99247 6.34321 3.62598C7.82695 2.2595 9.77013 1.50066 11.7872 1.5H12.2192C14.2364 1.50066 16.1795 2.2595 17.6633 3.62598C19.147 4.99247 20.0629 6.86675 20.2292 8.877C20.4138 11.1214 19.7209 13.3499 18.2962 15.094L13.5032 20.956C13.3216 21.1783 13.0928 21.3575 12.8333 21.4806C12.5739 21.6036 12.2904 21.6675 12.0032 21.6675C11.7161 21.6675 11.4326 21.6036 11.1732 21.4806C10.9137 21.3575 10.6849 21.1783 10.5032 20.956L5.71125 15.094C4.28621 13.3501 3.59294 11.1215 3.77725 8.877ZM12.0032 5.25C10.7435 5.25 9.53529 5.75045 8.64449 6.64124C7.75369 7.53204 7.25325 8.74022 7.25325 10C7.25325 11.2598 7.75369 12.468 8.64449 13.3588C9.53529 14.2496 10.7435 14.75 12.0032 14.75C13.263 14.75 14.4712 14.2496 15.362 13.3588C16.2528 12.468 16.7532 11.2598 16.7532 10C16.7532 8.74022 16.2528 7.53204 15.362 6.64124C14.4712 5.75045 13.263 5.25 12.0032 5.25Z" fill="url(#paint1_linear_7298_123765)"/>
+                      <defs>
+                        <linearGradient id="paint0_linear_7298_123765" x1="8.75391" y1="10" x2="15.2539" y2="10" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#0032A3"/>
+                          <stop offset="0.25" stop-color="#1A51CB"/>
+                          <stop offset="0.5" stop-color="#3B66C8"/>
+                          <stop offset="0.75" stop-color="#1A51CB"/>
+                          <stop offset="1" stop-color="#0032A3"/>
+                        </linearGradient>
+                        <linearGradient id="paint1_linear_7298_123765" x1="3.74805" y1="11.5837" x2="20.2585" y2="11.5837" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#0032A3"/>
+                          <stop offset="0.25" stop-color="#1A51CB"/>
+                          <stop offset="0.5" stop-color="#3B66C8"/>
+                          <stop offset="0.75" stop-color="#1A51CB"/>
+                          <stop offset="1" stop-color="#0032A3"/>
+                        </linearGradient>
+                      </defs>
+                    </svg> {collectionPoint.name}
+                    </h3>
+                    <div className="flex gap-1 items-center">
+                    <span className="w-1/4 flex px-[10px] py-[5px] justify-center items-center gap-[10px] rounded-full bg-gradient-to-r from-[#FFC136] via-[#FAC142] via-[#FFD168] via-[#F5BC3A] to-[#E09B00] text-black text-sm">
+                    Collection Point
+                    </span>
+
+                    <p className="text-gray-600">{collectionPoint.address}</p>
+                    </div>
+                   
+                     </div>
+                   <div className="mt-3 flex flex-col gap-2 text-gray-600">
+                      <p className="text-[]18px[">{collectionPoint.phone}</p>
+                      <p className="text-18px"> {collectionPoint.openingHours}</p>
+                    </div>
+                  </div>
+                  </div>
+                 
+                </div>
+              </div>
+              ):(
+                
+                <div className="p-6">
+                  <table className="w-full border-collapse rounded-2xl overflow-hidden">
+                <thead className="bg-gray-200">
+                  <tr className="border-b border-gray-300">
+                    <th className="p-3 text-left rounded-tl-2xl">Full Name</th>
+                    <th className="p-3 text-left">Address</th>
+                    <th className="p-3 text-left">Region & Area</th>
+                    <th className="p-3 text-left">Opening Hours</th>
+                    <th className="p-3 text-left">Phone Number</th>
+                    <th className="p-3 text-left rounded-tr-2xl">Location</th>
+                  </tr>
+                </thead>
+                <tbody className="text-[#999]">
+                  {collectionPoints.map((point, index) => (
+                    <tr key={index} className="hover:bg-gray-100 border-b border-gray-300 last:border-none">
+                      <td className="flex gap-2 p-3">{/* No column borders */}
+                        <CheckBox />
+                        {point.name}
+                      </td>
+                      <td className="p-3">{point.address}</td>
+                      <td className="p-3">{point.region}</td>
+                      <td className="p-3">{point.openingHours}</td>
+                      <td className="p-3">{point.phone}</td>
+                      <td className="w-[10%]">
+                        <div className="bg-[#F2F2F2] rounded-[5px] flex gap-1 items-center p-2 cursor-pointer text-yellow-400 w-[50%]" onClick={()=>isMapTrue(true)}>  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.29688 8.33333C7.29688 7.61504 7.58222 6.92616 8.09013 6.41825C8.59804 5.91034 9.28691 5.625 10.0052 5.625C10.7235 5.625 11.4124 5.91034 11.9203 6.41825C12.4282 6.92616 12.7135 7.61504 12.7135 8.33333C12.7135 9.05163 12.4282 9.7405 11.9203 10.2484C11.4124 10.7563 10.7235 11.0417 10.0052 11.0417C9.28691 11.0417 8.59804 10.7563 8.09013 10.2484C7.58222 9.7405 7.29688 9.05163 7.29688 8.33333Z" fill="url(#paint0_linear_7298_123697)"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M3.14933 7.3975C3.28795 5.72229 4.05119 4.16039 5.28764 3.02165C6.52409 1.88292 8.1434 1.25055 9.82433 1.25H10.1843C11.8653 1.25055 13.4846 1.88292 14.721 3.02165C15.9575 4.16039 16.7207 5.72229 16.8593 7.3975C17.0132 9.26784 16.4357 11.125 15.2485 12.5783L11.2543 17.4633C11.1029 17.6486 10.9123 17.7979 10.6961 17.9005C10.4799 18.003 10.2436 18.0562 10.0043 18.0562C9.76506 18.0562 9.52878 18.003 9.3126 17.9005C9.09641 17.7979 8.90572 17.6486 8.75433 17.4633L4.761 12.5783C3.57347 11.1251 2.99575 9.26795 3.14933 7.3975ZM10.0043 4.375C8.95452 4.375 7.9477 4.79204 7.20537 5.53437C6.46304 6.2767 6.046 7.28352 6.046 8.33333C6.046 9.38315 6.46304 10.39 7.20537 11.1323C7.9477 11.8746 8.95452 12.2917 10.0043 12.2917C11.0541 12.2917 12.061 11.8746 12.8033 11.1323C13.5456 10.39 13.9627 9.38315 13.9627 8.33333C13.9627 7.28352 13.5456 6.2767 12.8033 5.53437C12.061 4.79204 11.0541 4.375 10.0043 4.375Z" fill="url(#paint1_linear_7298_123697)"/>
+              <defs>
+                <linearGradient id="paint0_linear_7298_123697" x1="7.29688" y1="8.33333" x2="12.7135" y2="8.33333" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#0032A3"/>
+                  <stop offset="0.25" stop-color="#1A51CB"/>
+                  <stop offset="0.5" stop-color="#3B66C8"/>
+                  <stop offset="0.75" stop-color="#1A51CB"/>
+                  <stop offset="1" stop-color="#0032A3"/>
+                </linearGradient>
+                <linearGradient id="paint1_linear_7298_123697" x1="3.125" y1="9.6531" x2="16.8837" y2="9.6531" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#0032A3"/>
+                  <stop offset="0.25" stop-color="#1A51CB"/>
+                  <stop offset="0.5" stop-color="#3B66C8"/>
+                  <stop offset="0.75" stop-color="#1A51CB"/>
+                  <stop offset="1" stop-color="#0032A3"/>
+                </linearGradient>
+                </defs>
+                </svg> Map</div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="flex justify-end p-4 w-full mt-5">
+  <div className="flex gap-2">
+    <FormButton
+      onClick={() => setIsModalOpen(false)}
+      className="bg-gray-300 border-0 text-[#666]"
+    >
+      Cancel
+    </FormButton>
+    <FormButton className="bg-[#002882] text-white">
+      Confirm
+    </FormButton>
+  </div>
+</div>
+                </div>
+              )}
+  
+</div>
+
+
+
+
+
+
+           {/* Modal Footer */}
+
+
+          </div>
+        </div>
+      )}
+
+       {/* Modal 2 */}
+
+
+       {isOpen && (
+  <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
+    {formOpen ? (  
+      
+      <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[1000px] max-w-full min-h-[700px] flex flex-col gap-5 relative">
+      <h2 className="text-[24px] font-semibold mb-4">Add New Address</h2>
+    
+      {/* Location Type */}
+      <div className="mb-4 flex gap-4">
+        <label className="flex items-center gap-1">
+          <CheckBox value="home" checked={locationType === "home"} onChange={() => setLocationType("home")}/>
+          Home
+        </label>
+        <label className="flex items-center gap-1">
+          <CheckBox value="office" checked={locationType === "office"} onChange={() => setLocationType("office")}/>
+          Office
+        </label>
+      </div>
+      <hr className="border-t-[1px] border-[#CCD1D2]" />
+    
+      {/* Default Address Checkboxes */}
+      <div className="flex flex-col gap-5">
+        <label className="flex items-center gap-1">
+          <CheckBox checked={defaultShipping} onChange={() => setDefaultShipping(!defaultShipping)}/>
+          Default Shipping Address
+        </label>
+        <label className="flex items-center gap-1">
+          <CheckBox checked={defaultBilling} onChange={() => setDefaultBilling(!defaultBilling)}/>
+          Default Billing Address
+        </label>
+      </div>
+    
+      {/* Form Content */}
+      <form onSubmit={handleSubmit} className="flex flex-col flex-grow space-y-3">
+        <div className="grid grid-cols-2 gap-2">
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-gray-600 text-[16px] font-medium">Country/region </label>
+            <Select options={options} placeholder="Please Select" value={country} onChange={(e) => setCountry(e.target.value)} />
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-gray-600 text-[16px] font-medium">Province</label>
+            <Select options={options} placeholder="Please Select" value={province} onChange={(e) => setProvince(e.target.value)} />
+          </div>
+        </div>
+    
+        <label className="text-gray-600 text-[16px] font-medium">Address</label>
+        <div className="grid grid-cols-3 gap-2">
+          <Input type="text" placeholder="Street Address*" value={street} onChange={(e) => setStreet(e.target.value)} />
+          <Input type="text" placeholder="Apt, Suite (Optional)" value={apartment} onChange={(e) => setApartment(e.target.value)} />
+          <Input type="text" placeholder="Landmark (Optional)" value={landmark} onChange={(e) => setLandmark(e.target.value)} />
+        </div>
+    
+        <div className="grid grid-cols-3 gap-2">
+          <Select options={options} placeholder="Please Select" value={city} onChange={(e) => setCity(e.target.value)} />
+          <Select options={options} placeholder="Select Area" value={area} onChange={(e) => setArea(e.target.value)} />
+          <Input type="text" placeholder="ZIP Code*" value={zip} onChange={(e) => setZip(e.target.value)} className="border p-2 rounded" />
+        </div>
+    
+        <label className="text-gray-600 text-[16px] font-medium">Contact Information</label>
+        <div className="grid grid-cols-2 gap-2">
+          <Input type="text" placeholder="Contact Name*" value={contactName} onChange={(e) => setContactName(e.target.value)} className="border p-2 rounded" />
+          <Input type="text" placeholder="+92 Enter your Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} className="border p-2 rounded" />
+        </div>
+    
+        {/* Confirm Button (Always at Bottom) */}
+        <button type="submit" className="bg-[#002882] text-white w-full py-2 rounded mt-auto">Confirm</button>
+      </form>
+    
+      {/* Close Button */}
+      <button 
+        className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+        onClick={() => { setIsOpen(false); setFormOpen(false) }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <g clip-path="url(#clip0_7135_111246)">
+            <rect width="36" height="36" fill="url(#paint0_radial_7135_111246)"/>
+            <path d="M18 0C7.97143 0 0 7.97143 0 18C0 28.0286 7.97143 36 18 36C28.0286 36 36 28.0286 36 18C36 7.97143 28.0286 0 18 0ZM24.9429 27L18 20.0571L11.0571 27L9 24.9429L15.9429 18L9 11.0571L11.0571 9L18 15.9429L24.9429 9L27 11.0571L20.0571 18L27 24.9429L24.9429 27Z" fill="#002882"/>
+          </g>
+          <defs>
+            <radialGradient id="paint0_radial_7135_111246" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 18) rotate(90) scale(18)">
+              <stop offset="0.80208" stop-color="white"/>
+              <stop offset="1" stop-color="white" stop-opacity="0"/>
+            </radialGradient>
+            <clipPath id="clip0_7135_111246">
+              <rect width="36" height="36" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </button>
+    </div>
+    
+    ) : (
+      <div className="bg-white p-6 rounded-lg shadow-lg w-[1000px] max-w-full min-h-[700px] flex flex-col relative">
+        
+        {/* Close Button */}
+        <button 
+          className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+          onClick={() => setIsOpen(false)}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <g clip-path="url(#clip0_7135_111246)">
+    <rect width="36" height="36" fill="url(#paint0_radial_7135_111246)"/>
+    <path d="M18 0C7.97143 0 0 7.97143 0 18C0 28.0286 7.97143 36 18 36C28.0286 36 36 28.0286 36 18C36 7.97143 28.0286 0 18 0ZM24.9429 27L18 20.0571L11.0571 27L9 24.9429L15.9429 18L9 11.0571L11.0571 9L18 15.9429L24.9429 9L27 11.0571L20.0571 18L27 24.9429L24.9429 27Z" fill="#002882"/>
+  </g>
+  <defs>
+    <radialGradient id="paint0_radial_7135_111246" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 18) rotate(90) scale(18)">
+      <stop offset="0.80208" stop-color="white"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clip0_7135_111246">
+      <rect width="36" height="36" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+        </button>
+
+        {/* Modal Content */}
+        <h2 className="text-[30px] font-semibold mb-4">Shipping Address</h2>
+
+        {/* Scrollable Address List */}
+        <div className="flex-grow overflow-y-auto space-y-4">
+          <div className="flex gap-2 border border-gray-300 p-4 rounded-lg">
+            <CheckBox />
+            <div>
+              <strong>Farman Haris</strong> | +92123456789
+              <p className="text-gray-600">135- Mian House, Garden Town Lahore</p>
+              <p className="text-gray-400 text-sm">Lahore - Garden Town, Punjab, Pakistan</p>
+              <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 text-xs rounded">Home</span>
+              <span className="inline-block bg-red-100 text-red-500 px-2 py-1 text-xs rounded ml-2">Default</span>
+            </div>
+          </div>
+
+          <div className="flex gap-2 border border-gray-300 p-4 rounded-lg">
+            <CheckBox />
+            <div>
+              <strong>Farman Haris</strong> | +92123456789
+              <p className="text-gray-600">135- Mian House, Garden Town Lahore</p>
+              <p className="text-gray-400 text-sm">Lahore - Garden Town, Punjab, Pakistan</p>
+              <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 text-xs rounded">Office</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Add New Address Button - Always at Bottom */}
+        <FormButton 
+          className="bg-[#002882] text-white w-full py-2 mt-4 rounded" 
+          onClick={() => setFormOpen(true)}
+        >
+          Add New Address
+        </FormButton>
+      </div>
+    )}
+  </div>
+)}
+
+ {/* Modal 3 */}
+      
+
+ {isInstalmentModalOpen && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+    <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] relative flex flex-col">
+      
+      {/* Close Button */}
+      <button  className="absolute -top-4 -right-4 z-1050 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+      onClick={() => setIsInstalmentModalOpen(false)} 
+  
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+    <g clipPath="url(#clip0_7110_94001)">
+      <rect width="36" height="36" fill="url(#paint0_radial_7110_94001)"/>
+      <path d="M18 0C7.97143 0 0 7.97143 0 18C0 28.0286 7.97143 36 18 36C28.0286 36 36 28.0286 36 18C36 7.97143 28.0286 0 18 0ZM24.9429 27L18 20.0571L11.0571 27L9 24.9429L15.9429 18L9 11.0571L11.0571 9L18 15.9429L24.9429 9L27 11.0571L20.0571 18L27 24.9429L24.9429 27Z" fill="#002882"/>
+    </g>
+    <defs>
+      <radialGradient id="paint0_radial_7110_94001" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 18) rotate(90) scale(18)">
+        <stop offset="0.80208" stopColor="white"/>
+        <stop offset="1" stopColor="white" stopOpacity="0"/>
+      </radialGradient>
+      <clipPath id="clip0_7110_94001">
+        <rect width="36" height="36" fill="white"/>
+      </clipPath>
+    </defs>
+  </svg>
+</button>
+      
+
+      {/* Fixed Title */}
+      <h2 className="text-[30px] font-semibold mb-2 sticky top-0 bg-white z-10">
+        Easy Monthly Instalments
+      </h2>
+
+      {/* Bank Logos & Table in One Row */}
+      <div className="flex w-full gap-4">
+        
+        {/* Left Side - Bank Logos (2/12 width) */}
+        <div className="w-1/12 flex flex-col items-center gap-4">
+          <img 
+            src={Faysalbank} 
+            alt="Faysal Bank" 
+            className={`w-12 h-12 cursor-pointer bg-[#F0F0F0] p-1 rounded-[5px] ${selectedBank === "faysal" ? "border-1 border-yellow-400 rounded-2xl" : ""}`}
+            onClick={() => setSelectedBank("faysal")}
+          />
+          <img 
+            src={Alfalahbank} 
+            alt="Bank Alfalah" 
+            className={`w-12 h-12 cursor-pointer bg-[#F0F0F0] p-1 rounded-[5px] ${selectedBank === "alfalah" ? "border-1 border-yellow-400 rounded-2xl" : ""}`}
+            onClick={() => setSelectedBank("alfalah")}
+          />
+          <img 
+            src={Meezanbank}
+            alt="Meezan Bank" 
+            className={`w-12 h-12 cursor-pointer bg-[#F0F0F0] p-1 rounded-[5px] ${selectedBank === "meezan" ? "border-1 border-yellow-400 rounded-2xl" : ""}`}
+            onClick={() => setSelectedBank("meezan")}
+          />
+          <img 
+            src={Askaribank} 
+            alt="Askari Bank" 
+            className={`w-12 h-12 cursor-pointer bg-[#F0F0F0] p-1 rounded-[5px] ${selectedBank === "askari" ? "border-1 border-yellow-400 rounded-2xl" : ""}`}
+            onClick={() => setSelectedBank("askari")}
+          />
+        </div>
+
+        {/* Right Side - Table (10/12 width) */}
+        <div className="w-11/12 overflow-y-auto max-h-[400px]">
+          {/* Bank Title */}
+          <p className="text-[20px] font-semibold">{bankData[selectedBank].name}</p>
+
+          {/* Instalment Table */}
+          <div className="w-full mt-2 font-medium overflow-hidden rounded-lg border border-[#DBDBDB]">
+  <table className="w-full bg-white">
+    <thead>
+      <tr className="bg-[#F0F0F0] text-left text-black">
+        <th className="p-3">Time Period</th>
+        <th className="p-3">Interest</th>
+        <th className="p-3">Processing Fee</th>
+      </tr>
+    </thead>
+    <tbody>
+      {bankData[selectedBank].plans.map((plan, index) => (
+        <tr key={index} className="bg-white text-[#999] border-t border-gray-300">
+          <td className="p-3 text-center">{plan.period}</td>
+          <td className="p-3 text-center">{plan.interest}</td>
+          <td className="p-3 text-center">{plan.fee}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+       
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+)}
+
+{/* Modal 4 */}
+{isCardModalOpen && (
+  <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
+    {billingAddressOpen ? (  
+      
+      <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[700px] flex flex-col gap-5 relative">
+      <h2 className="text-[24px] font-semibold">Billing Address</h2>
+    
+   
+    
+      {/* Form Content */}
+      <form onSubmit={handleSubmit} className="flex flex-col flex-grow space-y-3">
+      <div className="">
+        <label className="block text-gray-700 font-medium">Email<span className="text-yellow-400">*</span></label>
+        <Input
+          type="text"
+          className="w-full p-2 border rounded-md"
+          placeholder="farmanharis66@gmail.com"
+        />
+      </div>
+      <div className="">
+        <label className="block text-gray-700 font-medium">Address<span className="text-yellow-400">*</span></label>
+        <Input
+          type="text"
+          className="w-full p-2 border rounded-md"
+          placeholder="135- Mian House, Garden Town Lahore, Lahore - Garden Town, Punjab, Pakistan"
+        />
+      </div>
+      {/* Confirm Button (Always at Bottom) */}
+        <button type="submit" className="bg-[#002882] text-white w-full py-2 rounded mt-auto">Update Billing Address</button>
+      </form>
+    
+      {/* Close Button */}
+      <button 
+        className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+        onClick={() => {setIsCardModalOpen(false); setbillingAddressOpen(false) }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <g clip-path="url(#clip0_7135_111246)">
+            <rect width="36" height="36" fill="url(#paint0_radial_7135_111246)"/>
+            <path d="M18 0C7.97143 0 0 7.97143 0 18C0 28.0286 7.97143 36 18 36C28.0286 36 36 28.0286 36 18C36 7.97143 28.0286 0 18 0ZM24.9429 27L18 20.0571L11.0571 27L9 24.9429L15.9429 18L9 11.0571L11.0571 9L18 15.9429L24.9429 9L27 11.0571L20.0571 18L27 24.9429L24.9429 27Z" fill="#002882"/>
+          </g>
+          <defs>
+            <radialGradient id="paint0_radial_7135_111246" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 18) rotate(90) scale(18)">
+              <stop offset="0.80208" stop-color="white"/>
+              <stop offset="1" stop-color="white" stop-opacity="0"/>
+            </radialGradient>
+            <clipPath id="clip0_7135_111246">
+              <rect width="36" height="36" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </button>
+    </div>
+    
+    ) : (
+      <div className="bg-white p-6 rounded-lg shadow-lg w-[600px] max-w-full flex flex-col relative gap-5">
+        
+        {/* Close Button */}
+        <button 
+          className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+          onClick={() => setIsCardModalOpen(false)}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <g clip-path="url(#clip0_7135_111246)">
+    <rect width="36" height="36" fill="url(#paint0_radial_7135_111246)"/>
+    <path d="M18 0C7.97143 0 0 7.97143 0 18C0 28.0286 7.97143 36 18 36C28.0286 36 36 28.0286 36 18C36 7.97143 28.0286 0 18 0ZM24.9429 27L18 20.0571L11.0571 27L9 24.9429L15.9429 18L9 11.0571L11.0571 9L18 15.9429L24.9429 9L27 11.0571L20.0571 18L27 24.9429L24.9429 27Z" fill="#002882"/>
+  </g>
+  <defs>
+    <radialGradient id="paint0_radial_7135_111246" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 18) rotate(90) scale(18)">
+      <stop offset="0.80208" stop-color="white"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clip0_7135_111246">
+      <rect width="36" height="36" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+        </button>
+
+        {/* Modal Content */}
+        <h2 className="text-[30px] font-semibold">Add a new card</h2>
+        <p className="text-green-600 text-[16px] font-medium flex items-center gap-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M12 17C12.5304 17 13.0391 16.7893 13.4142 16.4142C13.7893 16.0391 14 15.5304 14 15C14 14.4696 13.7893 13.9609 13.4142 13.5858C13.0391 13.2107 12.5304 13 12 13C11.4696 13 10.9609 13.2107 10.5858 13.5858C10.2107 13.9609 10 14.4696 10 15C10 15.5304 10.2107 16.0391 10.5858 16.4142C10.9609 16.7893 11.4696 17 12 17ZM18 8C18.5304 8 19.0391 8.21071 19.4142 8.58579C19.7893 8.96086 20 9.46957 20 10V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58579 21.4142C4.21071 21.0391 4 20.5304 4 20V10C4 9.46957 4.21071 8.96086 4.58579 8.58579C4.96086 8.21071 5.46957 8 6 8H7V6C7 4.67392 7.52678 3.40215 8.46447 2.46447C9.40215 1.52678 10.6739 1 12 1C12.6566 1 13.3068 1.12933 13.9134 1.3806C14.52 1.63188 15.0712 2.00017 15.5355 2.46447C15.9998 2.92876 16.3681 3.47995 16.6194 4.08658C16.8707 4.69321 17 5.34339 17 6V8H18ZM12 3C11.2044 3 10.4413 3.31607 9.87868 3.87868C9.31607 4.44129 9 5.20435 9 6V8H15V6C15 5.20435 14.6839 4.44129 14.1213 3.87868C13.5587 3.31607 12.7956 3 12 3Z" fill="#12B76A"/>
+</svg> All Data is encrypted <svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1569 12.7116L4.49994 18.3686L3.08594 16.9546L8.03594 12.0046L3.08594 7.05463L4.49994 5.64062L10.1569 11.2976C10.3444 11.4852 10.4497 11.7395 10.4497 12.0046C10.4497 12.2698 10.3444 12.5241 10.1569 12.7116Z" fill="#12B76A"/>
+</svg>
+      </p>
+
+      {/* Card Logos */}
+      <div className="flex justify-start gap-2">
+      <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="12" viewBox="0 0 36 12" fill="none">
+  <g clip-path="url(#clip0_7171_91263)">
+    <path d="M18.6183 3.88031C18.5978 5.49975 20.0616 6.40341 21.1642 6.94073C22.2971 7.49198 22.6776 7.84552 22.6731 8.33855C22.6647 9.093 21.7695 9.426 20.9318 9.43894C19.4702 9.46158 18.6204 9.04434 17.9449 8.72878L17.4184 11.1924C18.0962 11.5047 19.3513 11.7771 20.6528 11.7891C23.7078 11.7891 25.7065 10.281 25.7174 7.94283C25.7293 4.97536 21.6128 4.81111 21.6409 3.48473C21.6506 3.08255 22.0344 2.65336 22.8753 2.54424C23.2916 2.48911 24.4406 2.44692 25.7434 3.04683L26.2547 0.663235C25.5541 0.408141 24.6537 0.163876 23.5326 0.163876C20.6571 0.163876 18.6346 1.69247 18.6183 3.88031ZM31.1678 0.369187C30.61 0.369187 30.1399 0.694593 29.9301 1.19395L25.566 11.614H28.6189L29.2264 9.93506H32.9569L33.3093 11.614H36L33.652 0.369187H31.1678ZM31.5949 3.40683L32.4759 7.62937H30.0631L31.5949 3.40683ZM14.9169 0.369328L12.5106 11.6138H15.4197L17.8249 0.369047L14.9169 0.369328ZM10.6134 0.369328L7.58545 8.02284L6.36061 1.51514C6.21689 0.788672 5.64933 0.369187 5.01905 0.369187H0.0693281L0 0.695719C1.01616 0.916219 2.17069 1.27186 2.87016 1.65239C3.29822 1.88484 3.42028 2.08805 3.56091 2.64042L5.8808 11.614H8.955L13.6682 0.369187L10.6134 0.369328Z" fill="url(#paint0_linear_7171_91263)"/>
+  </g>
+  <defs>
+    <linearGradient id="paint0_linear_7171_91263" x1="1655.06" y1="35.1092" x2="1688.71" y2="-1158.81" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#222357"/>
+      <stop offset="1" stop-color="#254AA5"/>
+    </linearGradient>
+    <clipPath id="clip0_7171_91263">
+      <rect width="36" height="11.6719" fill="white" transform="translate(0 0.164062)"/>
+    </clipPath>
+  </defs>
+</svg>
+      </span>
+      <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="28" viewBox="0 0 36 28" fill="none">
+  <g clip-path="url(#clip0_7171_91266)">
+    <path d="M6.5446 27.8533V26.0011C6.5446 25.291 6.11232 24.828 5.37137 24.828C5.00096 24.828 4.59962 24.9515 4.32174 25.3528C4.10574 25.0132 3.79707 24.828 3.33399 24.828C3.02518 24.828 2.71665 24.9205 2.46957 25.2602V24.8898H1.82129V27.8533H2.46957V26.2171C2.46957 25.6924 2.74745 25.4454 3.17973 25.4454C3.61173 25.4454 3.82801 25.7232 3.82801 26.2171V27.8533H4.47629V26.2171C4.47629 25.6924 4.78482 25.4454 5.18616 25.4454C5.61845 25.4454 5.83445 25.7232 5.83445 26.2171V27.8533H6.5446ZM16.1452 24.8898H15.0957V23.9945H14.4474V24.8898H13.8609V25.4762H14.4473V26.8346C14.4473 27.5138 14.7252 27.915 15.4661 27.915C15.744 27.915 16.0525 27.8225 16.2688 27.699L16.0835 27.1433C15.8983 27.2667 15.6823 27.2977 15.5279 27.2977C15.2192 27.2977 15.0957 27.1125 15.0957 26.8037V25.4762H16.1452V24.8898ZM21.6403 24.8279C21.2699 24.8279 21.0229 25.0132 20.8685 25.2602V24.8898H20.2202V27.8533H20.8685V26.1863C20.8685 25.6924 21.0845 25.4146 21.4859 25.4146C21.6093 25.4146 21.7637 25.4455 21.8872 25.4763L22.0724 24.859C21.9489 24.828 21.7637 24.828 21.6403 24.828M13.3361 25.1368C13.0273 24.9207 12.5951 24.8282 12.1321 24.8282C11.3912 24.8282 10.8974 25.1986 10.8974 25.7851C10.8974 26.2791 11.2678 26.5569 11.9161 26.6495L12.2247 26.6805C12.5643 26.7421 12.7495 26.8347 12.7495 26.9891C12.7495 27.2051 12.5026 27.3595 12.0703 27.3595C11.638 27.3595 11.2986 27.2051 11.0824 27.0509L10.7738 27.5448C11.1134 27.7917 11.5764 27.9152 12.0394 27.9152C12.9038 27.9152 13.3978 27.514 13.3978 26.9582C13.3978 26.4334 12.9965 26.1555 12.379 26.063L12.0703 26.032C11.7924 26.0011 11.5764 25.9395 11.5764 25.7543C11.5764 25.5382 11.7924 25.4147 12.1321 25.4147C12.5026 25.4147 12.873 25.569 13.0582 25.6616L13.3361 25.1368ZM30.5619 24.8282C30.1914 24.8282 29.9445 25.0134 29.7901 25.2603V24.8899H29.1418V27.8534H29.7901V26.1865C29.7901 25.6926 30.0062 25.4147 30.4074 25.4147C30.531 25.4147 30.6854 25.4456 30.8089 25.4764L30.9941 24.8591C30.8706 24.8282 30.6854 24.8282 30.5619 24.8282ZM22.2886 26.3717C22.2886 27.2669 22.9059 27.9152 23.863 27.9152C24.2951 27.9152 24.6038 27.8226 24.9125 27.5757L24.6038 27.0509C24.3569 27.2361 24.1099 27.3286 23.8321 27.3286C23.3072 27.3286 22.9368 26.9582 22.9368 26.3717C22.9368 25.816 23.3072 25.4455 23.8321 25.4147C24.1099 25.4147 24.3569 25.5072 24.6038 25.6926L24.9125 25.1678C24.6038 24.9207 24.2951 24.8282 23.863 24.8282C22.9059 24.8282 22.2886 25.4764 22.2886 26.3717ZM28.2775 26.3717V24.8899H27.6292V25.2603C27.4131 24.9826 27.1044 24.8282 26.7031 24.8282C25.8696 24.8282 25.2213 25.4764 25.2213 26.3717C25.2213 27.2669 25.8696 27.9152 26.7031 27.9152C27.1352 27.9152 27.444 27.7609 27.6292 27.483V27.8534H28.2775V26.3717ZM25.9004 26.3717C25.9004 25.8468 26.24 25.4147 26.7956 25.4147C27.3204 25.4147 27.6909 25.816 27.6909 26.3717C27.6909 26.8965 27.3204 27.3286 26.7956 27.3286C26.24 27.2977 25.9004 26.8965 25.9004 26.3717ZM18.1519 24.8282C17.2875 24.8282 16.67 25.4455 16.67 26.3717C16.67 27.2978 17.2874 27.9152 18.1827 27.9152C18.6149 27.9152 19.0471 27.7917 19.3868 27.514L19.0779 27.0509C18.831 27.2361 18.5223 27.3595 18.2137 27.3595C17.8123 27.3595 17.411 27.1743 17.3183 26.6494H19.5102V26.4026C19.5412 25.4455 18.9856 24.8282 18.1519 24.8282ZM18.1518 25.3838C18.553 25.3838 18.831 25.6308 18.8926 26.0939H17.3491C17.4108 25.6926 17.6887 25.3838 18.1518 25.3838ZM34.2354 26.3717V23.7168H33.5871V25.2603C33.3709 24.9826 33.0623 24.8282 32.6609 24.8282C31.8274 24.8282 31.1791 25.4764 31.1791 26.3717C31.1791 27.2669 31.8274 27.9152 32.6609 27.9152C33.0932 27.9152 33.4019 27.7609 33.5871 27.483V27.8534H34.2354V26.3717ZM31.8584 26.3717C31.8584 25.8468 32.1978 25.4147 32.7536 25.4147C33.2784 25.4147 33.6488 25.816 33.6488 26.3717C33.6488 26.8965 33.2784 27.3286 32.7536 27.3286C32.1978 27.2977 31.8584 26.8965 31.8584 26.3717ZM10.1871 26.3717V24.8899H9.53879V25.2603C9.32265 24.9826 9.01398 24.8282 8.61263 24.8282C7.77915 24.8282 7.13087 25.4764 7.13087 26.3717C7.13087 27.2669 7.77915 27.9152 8.61263 27.9152C9.04491 27.9152 9.35359 27.7609 9.53879 27.483V27.8534H10.1871V26.3717ZM7.77915 26.3717C7.77915 25.8468 8.11876 25.4147 8.67437 25.4147C9.19918 25.4147 9.56973 25.816 9.56973 26.3717C9.56973 26.8965 9.19918 27.3286 8.67437 27.3286C8.11876 27.2977 7.77915 26.8965 7.77915 26.3717Z" fill="black"/>
+    <path d="M13.1201 2.38477H22.8443V19.8576H13.1201V2.38477Z" fill="#FF5F00"/>
+    <path d="M13.7375 11.1213C13.7375 7.57119 15.4045 4.42231 17.9667 2.3848C16.0837 0.903031 13.7067 0.0078125 11.1136 0.0078125C4.97011 0.0078125 0 4.97792 0 11.1213C0 17.2646 4.97011 22.2347 11.1135 22.2347C13.7066 22.2347 16.0836 21.3395 17.9667 19.8576C15.4045 17.851 13.7375 14.6713 13.7375 11.1213Z" fill="#EB001B"/>
+    <path d="M35.9647 11.1213C35.9647 17.2645 30.9946 22.2347 24.8513 22.2347C22.2581 22.2347 19.8812 21.3395 17.998 19.8576C20.5912 17.8202 22.2273 14.6713 22.2273 11.1213C22.2273 7.57119 20.5602 4.42231 17.998 2.3848C19.881 0.903031 22.2581 0.0078125 24.8513 0.0078125C30.9946 0.0078125 35.9647 5.00886 35.9647 11.1213Z" fill="#F79E1B"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_7171_91266">
+      <rect width="36" height="27.9844" fill="white" transform="translate(0 0.0078125)"/>
+    </clipPath>
+  </defs>
+</svg>
+      </span>
+      <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="72" height="12" viewBox="0 0 72 12" fill="none">
+  <g clip-path="url(#clip0_7171_91272)">
+    <path d="M37.7235 0.0507812C34.3772 0.0507812 31.6621 2.66497 31.6621 5.89129C31.6621 9.32162 34.2593 11.8857 37.7235 11.8857C41.1014 11.8857 43.7684 9.28757 43.7684 5.95869C43.7684 2.64948 41.1192 0.0507812 37.7235 0.0507812Z" fill="url(#paint0_linear_7171_91272)"/>
+    <g filter="url(#filter0_i_7171_91272)">
+      <path d="M37.7235 0.0507812C34.3772 0.0507812 31.6621 2.66497 31.6621 5.89129C31.6621 9.32162 34.2593 11.8857 37.7235 11.8857C41.1014 11.8857 43.7684 9.28757 43.7684 5.95869C43.7684 2.64948 41.1192 0.0507812 37.7235 0.0507812Z" fill="#FDE009"/>
+    </g>
+    <path d="M3.31325 0.264138H0.0546875V11.6298H3.29622C5.01613 11.6298 6.25994 11.2224 7.35111 10.3185C8.64571 9.24474 9.41343 7.62572 9.41343 5.95242C9.41343 2.59688 6.90669 0.264138 3.31325 0.264138ZM5.90469 8.80046C5.20408 9.43256 4.30199 9.70577 2.86841 9.70577H2.27287V2.18874H2.86841C4.30199 2.18874 5.16948 2.44465 5.90469 3.10856C6.67143 3.79032 7.12869 4.84605 7.12869 5.93623C7.12869 7.02879 6.67143 8.12135 5.90469 8.80046ZM10.4368 11.6298H12.6515V0.264138H10.4371L10.4368 11.6298ZM18.0732 4.62391C16.7422 4.13079 16.3505 3.80553 16.3505 3.19423C16.3505 2.47786 17.0479 1.93298 18.0039 1.93298C18.6685 1.93298 19.2138 2.20549 19.795 2.85111L20.9524 1.33674C19.998 0.499952 18.8565 0.0745102 17.6111 0.0745102C15.6021 0.0745102 14.0671 1.47265 14.0671 3.32846C14.0671 4.89767 14.7823 5.69791 16.8622 6.44972C17.7318 6.75488 18.1739 6.95846 18.396 7.09758C18.839 7.38739 19.0616 7.79498 19.0616 8.27177C19.0616 9.19353 18.328 9.87418 17.3382 9.87418C16.2813 9.87418 15.4302 9.34646 14.9186 8.35814L13.4887 9.74009C14.5092 11.2377 15.7366 11.9046 17.4255 11.9046C19.7262 11.9046 21.3442 10.3687 21.3442 8.17088C21.3442 6.36405 20.5963 5.54539 18.0732 4.62391ZM22.0427 5.95256C22.0427 9.29651 24.6682 11.8863 28.0436 11.8863C28.9979 11.8863 29.8158 11.6976 30.8224 11.2222V8.61335C29.935 9.50051 29.1508 9.85744 28.1447 9.85744C25.9127 9.85744 24.3266 8.238 24.3266 5.93623C24.3266 3.75586 25.9623 2.03428 28.0436 2.03428C29.0986 2.03428 29.9009 2.40893 30.8224 3.31214V0.703533C29.851 0.210975 29.0486 0.0078125 28.0942 0.0078125C24.736 0.0078125 22.0427 2.64991 22.0427 5.95256ZM48.7849 7.89879L45.751 0.264138H43.3306L48.1557 11.9202H49.3478L54.257 0.263999H51.8546L48.7849 7.89879ZM55.2649 11.63H61.553V9.70577H57.4801V6.63586H61.3972V4.71139H57.4801V2.1886H61.553V0.264278H55.2647L55.2649 11.63ZM70.3282 3.61842C70.3282 1.48925 68.8645 0.264138 66.3064 0.264138H63.0166V11.6298H65.2345V7.06186H65.5247L68.591 11.6298H71.3181L67.7366 6.84237C69.4094 6.50023 70.3282 5.35786 70.3282 3.61842ZM65.8796 5.49544H65.2345V2.05144H65.915C67.2985 2.05144 68.0481 2.6326 68.0481 3.7387C68.0481 4.87967 67.2985 5.49544 65.8796 5.49544Z" fill="#0B1015"/>
+  </g>
+  <defs>
+    <filter id="filter0_i_7171_91272" x="31.6621" y="0.0507812" width="13.5855" height="13.314" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dx="3.62791" dy="3.90698"/>
+      <feGaussianBlur stdDeviation="0.739535"/>
+      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.583333 0 0 0 0 0 0 0 0 1 0"/>
+      <feBlend mode="normal" in2="shape" result="effect1_innerShadow_7171_91272"/>
+    </filter>
+    <linearGradient id="paint0_linear_7171_91272" x1="266.694" y1="107.311" x2="1084.71" y2="971.29" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F34F26"/>
+      <stop offset="1" stop-color="#F69E35"/>
+    </linearGradient>
+    <clipPath id="clip0_7171_91272">
+      <rect width="71.4419" height="12" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+      </span>
+      <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="37" height="36" viewBox="0 0 37 36" fill="none">
+  <g clip-path="url(#clip0_7171_91277)">
+    <path d="M24.4652 21.5685C24.4652 21.0881 24.2594 20.8249 23.9489 20.637C23.6327 20.4559 23.2514 20.4311 22.7294 20.4311H20.4152V24.6611H21.4289V23.121H22.5134C22.87 23.121 23.0939 23.157 23.2277 23.3089C23.4089 23.5024 23.3864 23.877 23.3864 24.1358V24.6578H24.3707V23.8253C24.3707 23.4506 24.3482 23.2628 24.2132 23.0513C24.0807 22.8927 23.9088 22.7716 23.7149 22.7003L23.743 22.6879C24.0186 22.5833 24.4652 22.2424 24.4652 21.5685ZM23.158 22.1771L23.1164 22.1715C22.9814 22.2536 22.8239 22.2604 22.618 22.2604H21.4064V21.3165H22.6427C22.8239 21.3165 22.9994 21.3165 23.1411 21.393C23.2119 21.4272 23.2709 21.4818 23.3103 21.5497C23.3498 21.6177 23.3681 21.6959 23.3627 21.7744C23.3627 21.9555 23.2919 22.095 23.1636 22.1783L23.158 22.1771ZM30.8867 23.7544H28.9416V24.6578H30.8991C31.9116 24.6578 32.4741 24.2404 32.4741 23.3336C32.4741 22.9106 32.3751 22.6586 32.194 22.4606C31.9656 22.2615 31.6011 22.167 31.0994 22.1501L30.5357 22.1265C30.3782 22.1265 30.2669 22.1265 30.1499 22.0804C30.0831 22.0595 30.025 22.0172 29.9846 21.9601C29.9441 21.903 29.9235 21.8342 29.926 21.7643C29.926 21.6293 29.9496 21.5179 30.061 21.4538C30.1861 21.3839 30.3285 21.3511 30.4716 21.3593H32.311V20.4581H30.2894C29.2352 20.4581 28.8539 21.114 28.8539 21.7181C28.8539 23.0715 30.0149 23.0006 30.9644 23.0243C31.1162 23.0243 31.2332 23.0468 31.2974 23.1109C31.3682 23.1593 31.42 23.2695 31.42 23.3809C31.42 23.4979 31.3671 23.6093 31.303 23.6509C31.2164 23.7319 31.0814 23.7555 30.8879 23.7555L30.8867 23.7544ZM0.440875 0V15.147L1.65475 12.3289H4.27937L4.618 13.0264V12.3289H7.6825L8.35637 13.8578L9.01337 12.3413H18.7694C19.2092 12.3413 19.6064 12.4279 19.9 12.6979V12.3514H22.5831V12.6979C23.0387 12.4403 23.608 12.3514 24.2582 12.3514H28.1654L28.5299 13.0489V12.3514H31.4065L31.7856 13.0489V12.3458H34.5756V18.2711H31.7451L31.2062 17.3678V18.2464H27.6726L27.2912 17.3025H26.4126L26.0087 18.2216H24.1919C23.4707 18.2216 22.9319 18.0698 22.5685 17.865V18.2216H18.2316V16.8986C18.2316 16.7175 18.1911 16.7175 18.0797 16.6928H17.9211V18.2453H9.5365V17.5309L9.22037 18.2453H7.47437L7.1695 17.5309V18.2273H3.78887L3.4075 17.2901H2.5345L2.15537 18.2273H0.4375V35.9989H36.1146V25.335C35.7107 25.5386 35.1955 25.6039 34.6555 25.6039H32.0725V25.2225C31.7564 25.4689 31.2175 25.6039 30.7011 25.6039H22.5032V24.2573C22.5032 24.0761 22.4729 24.0761 22.3221 24.0761H22.2107V25.6106H19.5096V24.012C19.0641 24.2179 18.5421 24.2336 18.1146 24.2179H17.7985V25.5893H14.5304L13.7159 24.6623L12.8597 25.5656H7.55087V19.6706H12.9655L13.744 20.574L14.5765 19.6706H18.1911C18.613 19.6706 19.2981 19.719 19.603 20.0115V19.6481H22.8666C23.1715 19.6481 23.8341 19.719 24.2256 19.9868V19.6301H29.1182V19.9868C29.3646 19.7404 29.8866 19.6301 30.3254 19.6301H33.1604V19.9868C33.454 19.7651 33.8579 19.6301 34.4204 19.6301H36.1844V0.001125L0.440875 0ZM32.1749 22.4291C32.1805 22.4415 32.1805 22.4528 32.1872 22.4595C32.2052 22.4696 32.2277 22.4696 32.2401 22.4876L32.176 22.4348L32.1749 22.4291ZM36.1832 19.6234H36.2834V20.4559H36.1832V19.6234ZM36.235 22.5461V22.5338C36.1945 22.4989 36.1709 22.4651 36.1236 22.4291C35.902 22.2008 35.5375 22.1063 34.9806 22.095L34.4361 22.0781C34.2606 22.0781 34.1492 22.0658 34.0322 22.032C33.9656 22.0109 33.9076 21.9686 33.8672 21.9116C33.8268 21.8545 33.8061 21.7858 33.8084 21.7159C33.8084 21.5809 33.8545 21.474 33.9434 21.4099C34.0547 21.3458 34.165 21.3345 34.3472 21.3345H36.1821L36.1832 20.4559H34.2606C33.2222 20.4559 32.8195 21.1118 32.8195 21.7159C32.8195 23.0625 33.9906 22.9984 34.9345 23.022C35.0931 23.022 35.2045 23.0389 35.2686 23.1086C35.3395 23.157 35.3856 23.2673 35.3856 23.3786C35.3848 23.4309 35.3722 23.4823 35.3488 23.529C35.3255 23.5757 35.2919 23.6166 35.2506 23.6486C35.1797 23.7296 35.0447 23.7533 34.8467 23.7533H32.9117V24.6611H34.8411C35.4722 24.6611 35.9425 24.4856 36.1945 24.1223H36.235C36.37 23.9164 36.4409 23.6711 36.4409 23.3381C36.4409 22.9736 36.37 22.752 36.235 22.5461ZM28.3375 21.3109V20.4379H24.985V24.6859H28.3375V23.8073H25.9806V22.9579H28.279V22.0793H25.9806V21.3176L28.3375 21.3109ZM20.7089 13.1771H21.7337V17.4026H20.7089V13.1771ZM20.1284 14.3145L20.116 14.3269C20.116 13.851 19.9225 13.5765 19.6064 13.3898C19.2835 13.2019 18.9044 13.1839 18.3947 13.1839H16.0862V17.4139H17.0987V15.8614H18.1776C18.5342 15.8614 18.7637 15.9075 18.91 16.0425C19.0934 16.2484 19.0686 16.6106 19.0686 16.8626V17.397H20.0822V16.5701C20.0822 16.1955 20.0586 16.0076 19.9169 15.7905C19.7845 15.6347 19.6156 15.5141 19.4252 15.4395C19.6419 15.3437 19.8252 15.1855 19.9516 14.9852C20.0781 14.7848 20.1419 14.5513 20.1351 14.3145H20.1284ZM18.8459 14.9074H18.8279C18.6872 14.9884 18.5342 14.994 18.3295 14.994H17.0931V14.0569H18.3295C18.5106 14.0569 18.6861 14.0625 18.8211 14.1334C18.9561 14.1919 19.0495 14.3269 19.0495 14.508C19.0495 14.6891 18.9786 14.8365 18.8459 14.9074ZM24.3235 14.0569H25.2674V13.1603H24.2999C23.608 13.1603 23.0984 13.3189 22.771 13.6541C22.3435 14.1041 22.231 14.6903 22.231 15.3236C22.231 16.092 22.4121 16.5713 22.771 16.929C23.1164 17.2856 23.7374 17.3981 24.2234 17.3981H25.3967L25.7781 16.4543H27.8627L28.2554 17.3981H30.2939V14.2335L32.2052 17.3981H33.6351V13.1783H32.6035V16.1257L30.835 13.1839H29.305V17.0978L27.6051 13.1141H26.0987L24.6869 16.4486H24.2357C23.9736 16.4486 23.6912 16.4025 23.5337 16.2428C23.3459 16.0211 23.2581 15.7039 23.2581 15.2528C23.2581 14.8252 23.3751 14.4844 23.545 14.3089C23.7441 14.103 23.9556 14.0569 24.319 14.0569H24.3235ZM26.8255 13.8994L27.5174 15.5745V15.5801H26.1224L26.8255 13.8994ZM4.00937 16.4531L4.39075 17.397H6.44162V14.0929L7.90075 17.397H8.77375L10.2317 14.0929L10.2554 17.397H11.2915V13.1839H9.61637L8.40925 16.0369L7.09187 13.1783H5.45725V17.1742L3.74612 13.1783H2.25212L0.46 17.3981H1.53662L1.92362 16.461H4.0105L4.00937 16.4531ZM2.97775 13.8994L3.66962 15.5745L3.664 15.5801H2.29262L2.97775 13.8994ZM18.2237 20.4311H15.0141L13.7361 21.8138L12.4997 20.4311H8.46325V24.6611H12.4412L13.7237 23.2616L14.9612 24.6566H16.9109V23.2493H18.1709C19.0675 23.2493 19.9225 23.0029 19.9225 21.8318L19.9169 21.8261C19.9169 20.655 19.0214 20.4311 18.2237 20.4311ZM11.9485 23.778H9.47012V22.9399H11.6717V22.0793H9.47012V21.3176H11.989L13.0915 22.5473L11.9429 23.7836L11.9485 23.778ZM15.9085 24.2764L14.3616 22.5529L15.9085 20.8958V24.2764ZM18.235 22.3886H16.9109V21.3098H18.235C18.5984 21.3098 18.8684 21.4571 18.8684 21.8261C18.8684 22.1951 18.6467 22.3886 18.235 22.3886ZM15.3944 14.0569V13.1783H12.0362V17.4038H15.3944V16.5308H13.0375V15.6859H15.3291V14.8185H13.0375V14.0569H15.3944Z" fill="#0BA5EC"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_7171_91277">
+      <rect width="36" height="36" fill="white" transform="translate(0.441406)"/>
+    </clipPath>
+  </defs>
+</svg>
+      </span>
+      <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="37" height="28" viewBox="0 0 37 28" fill="none">
+  <g clip-path="url(#clip0_7171_91280)">
+    <path d="M36.4414 22.215C36.4414 25.2957 33.9328 27.8043 30.8521 27.8043H0.441406V5.66741C0.441406 2.58673 2.95002 0.078125 6.03069 0.078125H36.4414V22.215Z" fill="white"/>
+    <path d="M26.5391 16.5378H28.8495C28.9156 16.5378 29.0696 16.5158 29.1357 16.5158C29.5759 16.4278 29.9499 16.0317 29.9499 15.4815C29.9499 14.9535 29.5759 14.5573 29.1357 14.4474C29.0696 14.4253 28.9377 14.4253 28.8497 14.4253H26.5392L26.5391 16.5378Z" fill="url(#paint0_linear_7171_91280)"/>
+    <path d="M28.5855 1.94824C26.385 1.94824 24.5805 3.7308 24.5805 5.95324V10.1122H30.2359C30.368 10.1122 30.5219 10.1122 30.6319 10.1342C31.9082 10.2003 32.8545 10.8604 32.8545 12.0045C32.8545 12.9067 32.2163 13.6769 31.028 13.8311V13.8749C32.3263 13.963 33.3166 14.6891 33.3166 15.8113C33.3166 17.0217 32.2163 17.8138 30.764 17.8138H24.5586V25.9557H30.4339C32.6344 25.9557 34.4389 24.1733 34.4389 21.9507V1.94824H28.5855Z" fill="url(#paint1_linear_7171_91280)"/>
+    <path d="M29.6638 12.2691C29.6638 11.7409 29.2897 11.3888 28.8495 11.3227C28.8057 11.3227 28.6955 11.3008 28.6296 11.3008H26.5391V13.2372H28.6296C28.6957 13.2372 28.8276 13.2372 28.8497 13.2152C29.2898 13.1492 29.6639 12.7972 29.6639 12.269" fill="url(#paint2_linear_7171_91280)"/>
+    <path d="M6.44881 1.94824C4.24831 1.94824 2.44381 3.7308 2.44381 5.95324V15.8336C3.56614 16.3835 4.73234 16.7357 5.89869 16.7357C7.28497 16.7357 8.03309 15.8995 8.03309 14.7552V10.0901H11.4659V14.7332C11.4659 16.5375 10.3437 18.012 6.53684 18.012C4.22638 18.012 2.42188 17.5057 2.42188 17.5057V25.9337H8.29719C10.4977 25.9337 12.3022 24.1512 12.3022 21.9287V1.94852L6.44881 1.94824Z" fill="url(#paint3_linear_7171_91280)"/>
+    <path d="M17.5177 1.94824C15.3172 1.94824 13.5127 3.7308 13.5127 5.95324V11.1904C14.5251 10.3322 16.2854 9.78204 19.1241 9.91409C20.6424 9.98018 22.2707 10.3983 22.2707 10.3983V12.0926C21.4565 11.6746 20.4884 11.3004 19.234 11.2123C17.0775 11.0584 15.7793 12.1146 15.7793 13.963C15.7793 15.8334 17.0775 16.8896 19.234 16.7136C20.4884 16.6256 21.4566 16.2296 22.2707 15.8334V17.5278C22.2707 17.5278 20.6643 17.9459 19.1241 18.012C16.2854 18.1439 14.5251 17.5938 13.5128 16.7357V25.9777H19.3881C21.5886 25.9777 23.393 24.1953 23.393 21.9727V1.94852L17.5177 1.94824Z" fill="url(#paint4_linear_7171_91280)"/>
+  </g>
+  <defs>
+    <linearGradient id="paint0_linear_7171_91280" x1="-169.677" y1="120.311" x2="819.192" y2="120.311" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#007940"/>
+      <stop offset="0.2285" stop-color="#00873F"/>
+      <stop offset="0.7433" stop-color="#40A737"/>
+      <stop offset="1" stop-color="#5CB531"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_7171_91280" x1="26.3667" y1="1201.36" x2="1015.29" y2="1201.36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#007940"/>
+      <stop offset="0.2285" stop-color="#00873F"/>
+      <stop offset="0.7433" stop-color="#40A737"/>
+      <stop offset="1" stop-color="#5CB531"/>
+    </linearGradient>
+    <linearGradient id="paint2_linear_7171_91280" x1="-169.706" y1="107.846" x2="819.217" y2="107.846" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#007940"/>
+      <stop offset="0.2285" stop-color="#00873F"/>
+      <stop offset="0.7433" stop-color="#40A737"/>
+      <stop offset="1" stop-color="#5CB531"/>
+    </linearGradient>
+    <linearGradient id="paint3_linear_7171_91280" x1="4.16081" y1="1201.36" x2="1008.32" y2="1201.36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F286F"/>
+      <stop offset="0.4751" stop-color="#004E94"/>
+      <stop offset="0.8261" stop-color="#0066B1"/>
+      <stop offset="1" stop-color="#006FBC"/>
+    </linearGradient>
+    <linearGradient id="paint4_linear_7171_91280" x1="7.82164" y1="1201.35" x2="983.097" y2="1201.35" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6C2C2F"/>
+      <stop offset="0.1735" stop-color="#882730"/>
+      <stop offset="0.5731" stop-color="#BE1833"/>
+      <stop offset="0.8585" stop-color="#DC0436"/>
+      <stop offset="1" stop-color="#E60039"/>
+    </linearGradient>
+    <clipPath id="clip0_7171_91280">
+      <rect width="36" height="27.8438" fill="white" transform="translate(0.441406 0.078125)"/>
+    </clipPath>
+  </defs>
+</svg>
+      </span>
+      <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="49" height="48" viewBox="0 0 49 48" fill="none">
+  <path d="M14.6869 22.3918C14.7109 24.5998 16.6909 25.3318 16.7069 25.3418C16.6909 25.3898 16.3889 26.3918 15.6649 27.4198C15.0369 28.3078 14.3849 29.1958 13.3589 29.2118C12.3469 29.2278 12.0209 28.6318 10.8729 28.6318C9.7149 28.6318 9.3569 29.1958 8.4029 29.2278C7.4089 29.2598 6.6589 28.2678 6.0229 27.3778C4.7269 25.5698 3.7429 22.2598 5.0709 20.0278C5.7309 18.9198 6.9109 18.2178 8.1909 18.1938C9.1609 18.1778 10.0829 18.8298 10.6769 18.8298C11.2709 18.8298 12.3889 18.0478 13.5609 18.1618C14.0509 18.1778 15.4369 18.3578 16.3169 19.6118C16.2429 19.6518 14.6709 20.5418 14.6869 22.3918ZM12.7869 16.9638C13.3169 16.3438 13.6669 15.4878 13.5709 14.6318C12.8109 14.6658 11.8909 15.1218 11.3529 15.7418C10.8649 16.2878 10.4409 17.1598 10.5529 17.9978C11.4029 18.0638 12.2669 17.5818 12.7869 16.9638ZM20.4109 15.9038C20.7989 15.8398 21.2369 15.7838 21.7069 15.7278C22.1776 15.6732 22.6942 15.6465 23.2569 15.6478C24.0636 15.6492 24.7589 15.7425 25.3429 15.9278C25.9269 16.1218 26.4049 16.3878 26.7849 16.7518C27.1076 17.0678 27.3609 17.4412 27.5449 17.8718C27.7262 18.3052 27.8169 18.8038 27.8169 19.3678C27.8169 20.0518 27.6929 20.6505 27.4449 21.1638C27.2107 21.6662 26.8637 22.1076 26.4309 22.4538C25.9759 22.8123 25.4546 23.0773 24.8969 23.2338C24.2662 23.4107 23.6139 23.4983 22.9589 23.4938C22.4249 23.5004 21.8916 23.4535 21.3669 23.3538V29.0258H20.4209V15.9058L20.4109 15.9038ZM21.3589 22.5258C21.5909 22.5912 21.8469 22.6372 22.1269 22.6638C22.4096 22.6878 22.7116 22.7012 23.0329 22.7038C24.2422 22.7052 25.1796 22.4285 25.8449 21.8738C26.5116 21.3245 26.8442 20.5165 26.8429 19.4498C26.8429 18.9352 26.7549 18.4892 26.5789 18.1118C26.4147 17.7432 26.1602 17.422 25.8389 17.1778C25.4941 16.9246 25.1046 16.7387 24.6909 16.6298C24.2093 16.5031 23.7129 16.4413 23.2149 16.4458C22.7869 16.4458 22.4156 16.4618 22.1009 16.4938C21.853 16.5193 21.6062 16.554 21.3609 16.5978L21.3589 22.5258ZM35.3529 26.7778C35.3542 27.1605 35.3596 27.5418 35.3689 27.9218C35.3849 28.3032 35.4262 28.6712 35.4929 29.0258H34.6029L34.4629 27.6898H34.4209C34.2892 27.8896 34.1341 28.0729 33.9589 28.2358C33.7629 28.4292 33.5456 28.5958 33.3069 28.7358C33.0432 28.8968 32.7576 29.0187 32.4589 29.0978C32.1456 29.1885 31.7989 29.2345 31.4189 29.2358C30.9496 29.2358 30.5376 29.1605 30.1829 29.0098C29.8545 28.8755 29.5571 28.6754 29.3089 28.4218C29.0773 28.1846 28.9022 27.8982 28.7969 27.5838C28.6852 27.2822 28.6264 26.9635 28.6229 26.6418C28.6229 25.5245 29.1042 24.6652 30.0669 24.0638C31.0282 23.4598 32.4769 23.1698 34.4129 23.1938V22.9358C34.4129 22.6892 34.3882 22.4052 34.3389 22.0838C34.293 21.7602 34.1865 21.448 34.0249 21.1638C33.8499 20.8635 33.5997 20.614 33.2989 20.4398C32.9776 20.2438 32.5409 20.1445 31.9889 20.1418C31.15 20.1426 30.3297 20.3887 29.6289 20.8498L29.3249 20.1578C29.7542 19.8698 30.1969 19.6632 30.6529 19.5378C31.1062 19.4165 31.5842 19.3545 32.0869 19.3518C32.7616 19.3518 33.3082 19.4652 33.7269 19.6918C34.1469 19.9158 34.4869 20.2058 34.7269 20.5598C34.9642 20.9145 35.1289 21.3118 35.2209 21.7518C35.3102 22.1945 35.3542 22.6325 35.3529 23.0658V26.7778ZM34.4049 23.9678C33.8709 23.956 33.3367 23.9747 32.8049 24.0238C32.2449 24.0798 31.7309 24.1952 31.2629 24.3698C30.8159 24.5332 30.4142 24.8006 30.0909 25.1498C29.7856 25.4925 29.6322 25.9472 29.6309 26.5138C29.6309 27.1832 29.8256 27.6738 30.2149 27.9858C30.6016 28.3018 31.0389 28.4605 31.5269 28.4618C31.9162 28.4605 32.2649 28.4072 32.5729 28.3018C32.8796 28.1952 33.1489 28.0525 33.3809 27.8738C33.6102 27.6952 33.8029 27.4938 33.9589 27.2698C34.1085 27.0568 34.2276 26.8238 34.3129 26.5778C34.3675 26.3915 34.401 26.1996 34.4129 26.0058L34.4049 23.9678ZM37.1989 19.5698L39.6569 25.7158C39.9214 26.3903 40.1576 27.0756 40.3649 27.7698H40.4069C40.6296 27.068 40.8717 26.3724 41.1329 25.6838L43.4329 19.5778H44.4389L41.6349 26.5138C41.3522 27.2472 41.0856 27.9125 40.8349 28.5098C40.6065 29.0609 40.3536 29.6014 40.0769 30.1298C39.8448 30.5695 39.5857 30.9943 39.3009 31.4018C39.0518 31.7591 38.7589 32.0836 38.4289 32.3678C38.0489 32.6985 37.7022 32.9378 37.3889 33.0858C37.1831 33.1913 36.9714 33.2848 36.7549 33.3658L36.4329 32.6018C36.6729 32.4978 36.9422 32.3612 37.2409 32.1918C37.5382 32.0198 37.8269 31.7965 38.1069 31.5218C38.3482 31.2885 38.6149 30.9772 38.9069 30.5878C39.1936 30.2025 39.4516 29.7325 39.6809 29.1778C39.7404 29.0473 39.7821 28.9094 39.8049 28.7678C39.7885 28.6248 39.7465 28.486 39.6809 28.3578L36.1929 19.5938H37.1989V19.5698Z" fill="black"/>
+</svg>
+      </span>
+      <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="51" height="20" viewBox="0 0 51 20" fill="none">
+  <g clip-path="url(#clip0_7171_91291)">
+    <path d="M36.0221 5.39772C37.402 5.39772 38.4684 5.77409 39.2839 6.52683C40.0993 7.27948 40.4755 8.28311 40.4755 9.53762V15.5592H38.7193V14.1794H38.6565C37.9039 15.3085 36.8375 15.873 35.583 15.873C34.5166 15.873 33.5757 15.5593 32.8231 14.9321C32.1331 14.3049 31.694 13.4267 31.694 12.4859C31.694 11.4822 32.0704 10.6667 32.8231 10.0395C33.5757 9.41223 34.6421 9.16134 35.8966 9.16134C37.0256 9.16134 37.9039 9.34958 38.5938 9.7886V9.34958C38.5938 8.76409 38.3753 8.1787 37.9381 7.79723L37.841 7.7187C37.3393 7.27958 36.712 7.0287 36.0221 7.0287C34.9558 7.0287 34.1403 7.46778 33.5757 8.34595L31.945 7.34213C32.9485 6.02487 34.2657 5.39772 36.0221 5.39772ZM27.1778 1.13232C28.3033 1.13232 29.3729 1.52399 30.2281 2.25438L30.3768 2.38674C31.255 3.13948 31.694 4.2686 31.694 5.46036C31.694 6.65213 31.255 7.7185 30.3768 8.53389C29.4987 9.34928 28.4323 9.7884 27.1778 9.7884L24.167 9.72566V15.5592H22.2852V1.13232H27.1778ZM36.2729 10.6666C35.5202 10.6666 34.893 10.8548 34.3912 11.2311C33.8894 11.5447 33.6385 11.9838 33.6385 12.5483C33.6385 13.0502 33.8895 13.4892 34.2657 13.7402C34.7049 14.0538 35.2066 14.2419 35.7085 14.2419C36.4109 14.2419 37.1135 13.9687 37.663 13.4733L37.7784 13.3638C38.4056 12.7993 38.7193 12.1093 38.7193 11.3565C38.1548 10.9175 37.3393 10.6665 36.273 10.6665M27.3034 2.8885H24.1671V7.90683H27.3034C27.9933 7.90683 28.6833 7.65595 29.1224 7.15419C30.1259 6.2133 30.1259 4.64517 29.1852 3.70419L29.1224 3.64144C28.6205 3.13968 27.9933 2.82605 27.3033 2.88879M50.6371 5.71134L44.4273 19.9501H42.5455L44.8663 14.9948L40.7892 5.77409H42.7964L45.7445 12.862H45.8072L48.6926 5.77409H50.6371V5.71134Z" fill="#5F6368"/>
+    <path d="M16.7033 8.47136C16.7033 7.90685 16.6405 7.34234 16.5778 6.77783H8.7373V9.97685H13.1907C13.0026 10.9804 12.4381 11.9213 11.56 12.4859V14.5558H14.2571C15.8252 13.1131 16.7034 10.9804 16.7034 8.47146" fill="#4285F4"/>
+    <path d="M8.73653 16.5627C10.9946 16.5627 12.8763 15.81 14.2563 14.5555L11.5592 12.4856C10.8064 12.9873 9.86555 13.301 8.73653 13.301C6.60378 13.301 4.72202 11.8583 4.09476 9.85107H1.33496V11.9837C2.77761 14.8064 5.60026 16.5627 8.73653 16.5627Z" fill="#34A853"/>
+    <path d="M4.09511 9.8512C3.71883 8.84757 3.71883 7.71855 4.09511 6.65218V4.51953H1.3353C0.143441 6.84041 0.143441 9.60032 1.3353 11.9838L4.09511 9.8512Z" fill="#FBBC04"/>
+    <path d="M8.73638 3.26513C9.92815 3.26513 11.0572 3.70425 11.9354 4.51964L14.3189 2.13611C12.8134 0.756112 10.8063 -0.0592803 8.79903 0.00336671C5.66276 0.00336671 2.77746 1.75974 1.39746 4.58239L4.15736 6.71503C4.72187 4.70778 6.60364 3.26513 8.73638 3.26513Z" fill="#EA4335"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_7171_91291">
+      <rect width="50.1961" height="20" fill="white" transform="translate(0.441406)"/>
+    </clipPath>
+  </defs>
+</svg>
+      </span>
+      </div>
+
+      {/* Card Number Input */}
+      <div className="">
+        <label className="block text-gray-700 font-medium">Card Number <span className="text-yellow-400">*</span></label>
+        <Input
+          type="text"
+          className="w-full p-2 border rounded-md"
+          placeholder="Enter Your Card Number"
+        />
+      </div>
+
+      {/* Expiry & CVV */}
+      <div className="flex gap-2.5">
+        <div className="w-1/2">
+          <label className="block text-gray-700 font-medium">Expiration Date <span className="text-yellow-400">*</span></label>
+          <div className="flex gap-2">
+          <Select
+        options={options}
+        value={selectedOption}
+        onChange={(e) => setSelectedOption(e.target.value)}
+        placeholder="Month"
+           />
+           <Select
+        options={options}
+        value={selectedOption}
+        onChange={(e) => setSelectedOption(e.target.value)}
+        placeholder="Year"
+           />
+         </div>
+        </div>
+        <div className="w-1/2">
+          <label className="block text-gray-700 font-medium">CVV <span className="text-yellow-400">*</span></label>
+          <Input type="text" className="w-full p-2 border rounded-md" placeholder="3-4 digit code" />
+        </div>
+      </div>
+      <hr className="border-t-[1px] border-[#CCD1D2]" />
+      {/* Billing Address */}
+      <div className=" flex justify-between">
+        <div className="flex flex-col gap-2">
+        <label className="block text-gray-700 font-medium">Billing Address <span className="text-red-500">*</span></label>
+        <p className="text-gray-600 text-sm">farmanharis66@gmail.com</p>
+        <p className="text-gray-600 text-sm">135- Mian House, Garden Town Lahore, Pakistan</p>
+        </div>
+       <button className="flex gap-1 bg-transparent text-[#002882]"  onClick={() => setbillingAddressOpen(true)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M13 3C13.2549 3.00028 13.5 3.09788 13.6854 3.27285C13.8707 3.44782 13.9822 3.68695 13.9972 3.94139C14.0121 4.19584 13.9293 4.44638 13.7657 4.64183C13.6021 4.83729 13.3701 4.9629 13.117 4.993L13 5H5V19H19V11C19.0003 10.7451 19.0979 10.5 19.2728 10.3146C19.4478 10.1293 19.687 10.0178 19.9414 10.0028C20.1958 9.98789 20.4464 10.0707 20.6418 10.2343C20.8373 10.3979 20.9629 10.6299 20.993 10.883L21 11V19C21.0002 19.5046 20.8096 19.9906 20.4665 20.3605C20.1234 20.7305 19.6532 20.9572 19.15 20.995L19 21H5C4.49542 21.0002 4.00943 20.8096 3.63945 20.4665C3.26947 20.1234 3.04284 19.6532 3.005 19.15L3 19V5C2.99984 4.49542 3.19041 4.00943 3.5335 3.63945C3.87659 3.26947 4.34684 3.04284 4.85 3.005L5 3H13ZM19.243 3.343C19.423 3.16365 19.6644 3.05953 19.9184 3.05177C20.1723 3.04402 20.4197 3.13322 20.6103 3.30125C20.8008 3.46928 20.9203 3.70355 20.9444 3.95647C20.9685 4.2094 20.8954 4.46201 20.74 4.663L20.657 4.758L10.757 14.657C10.577 14.8363 10.3356 14.9405 10.0816 14.9482C9.82767 14.956 9.58029 14.8668 9.38972 14.6988C9.19916 14.5307 9.07969 14.2964 9.0556 14.0435C9.03151 13.7906 9.10459 13.538 9.26 13.337L9.343 13.243L19.243 3.343Z" fill="#002882"/>
+              </svg> Edit</button>
+      </div>
+
+     
+      <FormButton 
+          className="bg-[#002882] text-white w-full py-2 mt-4 rounded" 
+         
+        >
+          Add Your Card
+        </FormButton>
+
+      {/* Security Information */}
+      <div className=" text-sm flex flex-col gap-2.5">
+        <span className="text-[16px] text-[#039855] flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <path d="M10 0.833496L2.5 4.16683V9.16683C2.5 13.7918 5.7 18.1168 10 19.1668C14.3 18.1168 17.5 13.7918 17.5 9.16683V4.16683L10 0.833496ZM10 7.4085C11.3333 7.4085 12.4083 8.4835 12.4083 9.81683C12.4083 11.1502 11.3333 12.2252 10 12.2252C8.66667 12.2252 7.59167 11.1418 7.59167 9.81683C7.59167 8.49183 8.675 7.4085 10 7.4085ZM10 5.00016L11.15 6.66683C10.8 6.51683 10.4167 6.44183 10 6.44183C9.375 6.44183 9.20833 6.51683 8.85 6.66683L10 5.00016ZM5.83333 7.4085L7.83333 7.24183C7.55 7.50016 7.28333 7.7835 7.08333 8.1335C6.875 8.4835 6.75 8.85016 6.66667 9.2335L5.83333 7.4085ZM5.83333 12.2252L6.69167 10.4168C6.75833 10.7752 6.89167 11.1502 7.08333 11.5002C7.29167 11.8585 7.55 12.1585 7.83333 12.4002L5.83333 12.2252ZM14.1667 7.4085L13.3333 9.2335C13.25 8.85016 13.1167 8.4835 12.9167 8.1335C12.7167 7.7835 12.4583 7.50016 12.1667 7.2335L14.1667 7.4085ZM14.1667 12.2252L12.1667 12.3918C12.45 12.1502 12.7083 11.8502 12.9167 11.5002C13.1167 11.1502 13.2417 10.7752 13.3083 10.4168L14.1667 12.2252ZM10 14.6252L8.84167 12.9752C9.2 13.1002 9.58333 13.1835 10 13.1835C10.4167 13.1835 10.7917 13.1002 11.1417 12.9752L10 14.6252Z" fill="#039855"/>
+</svg> ValueBox protects your card information</span>
+       <span className="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg> Card information is secure and uncompromised</span> 
+       <span className="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+   </svg>  All data is encrypted</span>
+        <span className="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> ValueBox never sells your card information</span>
+        </div>
+      </div>
+    )}
+  </div>
+)}
+{/* Modal 5 */}
+{showOffersModal && (
+        <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[400px] relative">
+           <div className="max-w-lg mx-auto ">
+            {/* Close Button */}
+      <button 
+        className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+        onClick={() => {setShowOffersModal(false) }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <g clip-path="url(#clip0_7135_111246)">
+            <rect width="36" height="36" fill="url(#paint0_radial_7135_111246)"/>
+            <path d="M18 0C7.97143 0 0 7.97143 0 18C0 28.0286 7.97143 36 18 36C28.0286 36 36 28.0286 36 18C36 7.97143 28.0286 0 18 0ZM24.9429 27L18 20.0571L11.0571 27L9 24.9429L15.9429 18L9 11.0571L11.0571 9L18 15.9429L24.9429 9L27 11.0571L20.0571 18L27 24.9429L24.9429 27Z" fill="#002882"/>
+          </g>
+          <defs>
+            <radialGradient id="paint0_radial_7135_111246" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 18) rotate(90) scale(18)">
+              <stop offset="0.80208" stop-color="white"/>
+              <stop offset="1" stop-color="white" stop-opacity="0"/>
+            </radialGradient>
+            <clipPath id="clip0_7135_111246">
+              <rect width="36" height="36" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </button>
+           <h2 className="text-2xl font-bold text-center">Available Offers</h2>
+           <p className="text-gray-500 text-center italic">Download ValueBox App to get more offers</p>
+
+      {/* Coupon Offers */}
+      <div className="mt-4">
+        <h3 className="font-semibold text-lg">Coupon Offers</h3>
+
+        <div className="border border-[#12B76A] rounded-lg p-3 mt-3 relative bg-[#F6FEF9]">
+          <div className="flex justify-between items-center">
+            <span className="text-[#12B76A] font-bold text-lg">10% OFF</span>
+            <span className="text-[#12B76A] text-sm">Expire on 28 Nov 2024</span>
+          </div>
+          <p className="text-[#12B76A] text-sm">Get Free Shipping over RS. 2,559 Order</p>
+          <div className="flex justify-between mt-3">
+            <button className=" bg-[#D1FADF] text-[#12B76A] px-3 py-1 rounded-md text-sm">T&C</button>
+            <button className="bg-green-500 text-[#D1FADF] px-4 py-1 rounded-md text-sm">Apply</button>
+          </div>
+          <div className="absolute top-1/2 -left-3 w-5 h-5 bg-[#FCFCFC] border-r-4 border-green-500 rounded-full"></div>
+          <div className="absolute top-1/2 -right-3 w-5 h-5 bg-[#FCFCFC] border-l-4 border-green-500 rounded-full"></div>
+        </div>
+
+        <div className="border border-[#12B76A] rounded-lg p-3 mt-3 relative bg-[#F6FEF9] ">
+          <div className="flex justify-between items-center">
+            <span className="text-[#12B76A] font-bold text-lg">Free Ship</span>
+            <span className="text-[#12B76A] text-sm">Expire on 28 Nov 2024</span>
+          </div>
+          <p className="text-[#12B76A] text-sm">Get Free Shipping over RS. 2,559 Order</p>
+          <div className="flex justify-between mt-3">
+          <button className=" bg-[#D1FADF] text-[#12B76A] px-3 py-1 rounded-md text-sm">T&C</button>
+          <button className="bg-green-500 text-[#D1FADF] px-4 py-1 rounded-md text-sm">Apply</button>
+          </div>
+          <div className="absolute top-1/2 -left-3 w-5 h-5 bg-[#FCFCFC] border-r-4 border-green-500 rounded-full"></div>
+          <div className="absolute top-1/2 -right-3 w-5 h-5 bg-[#FCFCFC] border-l-4 border-green-500 rounded-full"></div>
+        </div>
+      </div>
+
+      {/* Bank Offers */}
+      <div className="mt-6">
+        <h3 className="font-semibold text-lg">Bank Offers</h3>
+
+        <div className="border flex border-[#2E90FA] rounded-lg mt-3 relative bg-[#D1E9FF] ">
+        <div className='p-3 flex flex-col justify-center'>
+        <span className="text-[#175CD3] font-bold text-lg ">10% OFF</span>
+        <span className="text-[#175CD3] text-sm">No Min Spend</span>
+        </div>
+         <div className='flex flex-col items-center justify-between relative mx-3'>
+           <div className="absolute -top-3  w-5 h-5 bg-[#FCFCFC] border-b-4 border-[#2E90FA] rounded-full"></div>
+           <div className='w-px h-full border-dashed border-l-[1px] border-[#0BA5EC]'></div>
+           <div className="absolute -bottom-3  w-5 h-5 bg-[#FCFCFC] border-t-4 border-[#2E90FA] rounded-full"></div>
+         </div>
+          <div className="flex justify-between p-3 items-end">
+            
+          <div className="flex flex-col justify-between mt-3">
+          <span className="text-[#175CD3] text-sm">Bank Of Punjab</span>
+            <p className="text-[#175CD3] text-sm">Extra 15% off. Applied automatically at checkout.</p>
+          <p className="text-[#175CD3] text-xs">From: 26/11/2024 | To: 28/11/2024</p>
+          </div>
+          <button className="bg-[#F5FAFF] text-[#2E90FA] px-3 py-1 rounded-md text-sm">T&C</button>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+          </div>
+        </div>
+      )}
+
+
     </div>
   );
 }
