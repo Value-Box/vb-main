@@ -1,8 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { authAPI, getToken } from "./hooks/authAPI";
-import { HashRouter as Router, Route, Routes, useLocation } from "react-router-dom";
-
-
+import { HashRouter  as Router, Route, Routes, useLocation } from "react-router-dom";
 
 const Navbar=lazy(()=>import("./Components/Headers/Navbar"))
 const Footer=lazy(()=>import("./Components/Footer"))
@@ -18,6 +16,10 @@ const TrendyFashion=lazy(()=>import("./Pages/TrendyFashion"))
 const SingleProduct=lazy(()=>import("./Pages/SingleProduct"))
 const AddToCart=lazy(()=>import("./Pages/AddToCart"))
 const Checkout=lazy(()=>import("./Pages/Checkout"))
+const ThankYouPage=lazy(()=>import("./Pages/ThankYouPage"))
+const BundleDealPage=lazy(()=>import("./Pages/Deals/BundleDealPage"))
+const FlashDealPage=lazy(()=>import("./Pages/Deals/FlashDealPage"))
+
 
 
 const Layout=()=>{
@@ -37,9 +39,12 @@ const Layout=()=>{
           <Route path="/FindYourAccount" element={<FindYourAccount/>} />
           <Route path="/GetCode" element={<GetCode/>} />
           <Route path="/TrendyFashion" element={<TrendyFashion/>} />
+          <Route path="/BundleDealPage" element={<BundleDealPage/>} />
+          <Route path="/FlashDealPage" element={<FlashDealPage/>} />
           <Route path="/SingleProduct" element={<SingleProduct/>} />
           <Route path="/AddToCart" element={<AddToCart/>} />
           <Route path="/Checkout" element={<Checkout/>} />
+          <Route path="/ThankYouPage" element={<ThankYouPage/>} />
 
         </Routes>
         {isLogin?'':<Footer />}

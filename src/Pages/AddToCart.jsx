@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CheckBox from '../Components/CheckBox';
 import MoreToLove from '../Components/MoreToLove';
+import { NavLink } from 'react-router-dom';
 
 function AddToCart() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -662,9 +663,10 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
 <span className="text-gray-800 text-lg 2xl:text-xl"><small className='text-xs 2xl:text-sm'>PKR</small> 20,000</span>
 </div>
 {/* Checkout Button */}
-<button className="mt-4 w-full bg-[#002882] text-white font-bold py-3 rounded-md">
+
+<NavLink to='/ThankYouPage' className="block text-center mt-4 w-full bg-[#002882] text-white font-bold py-3 rounded-md">
 CHECKOUT (03)
-</button>
+</NavLink>
             </div>
 
             <div className=" w-full max-w-sm bg-white p-4  rounded-md border border-[#CCD1D2] ">
@@ -1130,7 +1132,7 @@ CHECKOUT (03)
           </button>
         
           
-          <button className='bg-[#002882] text-white px-4 py-1 rounded-[5px] text-sm'>Checkout</button>
+          <NavLink to='/ThankYouPage' className='bg-[#002882] text-white px-4 py-1 rounded-[5px] text-sm'>Checkout</NavLink>
         </div>
         {openPopup==='summery' && (
         <div

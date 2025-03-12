@@ -316,7 +316,7 @@ function Navbar() {
               </button>
             </div> */}
             <div className="flex shrink-0 items-center ml-2 sm:ml-0">
-              <NavLink>
+              <NavLink to="/">
               <img 
                 className="xl:h-9 h-8 w-auto sm:mr-4"
                 src={Logo}

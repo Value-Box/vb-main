@@ -78,8 +78,8 @@ if (networkInfo.macAddress === "Error" || networkInfo.publicIP === "Error") {
       body: JSON.stringify({
         UserName: "arshad",
         Password: "arshad",
-        MACAddress: networkInfo.macAddress,
-        IPAddress: networkInfo.publicIP,
+        MACAddress: "E4-54-E8-91-4E-33",
+        IPAddress: '192.168.1.196',
         Source: "1",
       }),
     });

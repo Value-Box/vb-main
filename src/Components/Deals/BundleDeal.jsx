@@ -25,7 +25,7 @@ function BundleDeal() {
   ];
   return (
     <div className='bg-[#FFF6DF] sm:rounded-2xl sm:p-4 w-full md:w-[50%] xl:w-full pb-4'>
-        <Link to='/DealsPage' state={{ name: "Bundle Deals" }} >
+        <Link to='/BundleDealPage' state={{ name: "Bundle Deals" }} >
         <div className='flex justify-between items-center mb-1 px-4 pt-2 sm:p-0'>
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl '>3 From 3000 PKR</h3>
           <span className='bg-[#FFEB71] rounded-full p-2 2xl:p-3 flex items-center justify-center h-full w-max'>

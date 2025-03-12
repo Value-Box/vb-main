@@ -22,25 +22,25 @@ function DealsPage() {
         {
           title: "Bundle Deals",
           products: [
-            { id: 1, name: "Wireless Mouse & Keyboard Combo", price: 25, image: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-            { id: 2, name: "Gaming Headset + Mousepad", price: 40, image: "https://images.unsplash.com/photo-1620917669788-be691b2db72a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D" },
-            { id: 3, name: "Laptop Stand + Cooling Pad", price: 30, image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIwfHx8ZW58MHx8fHx8" },
+            { id: 1, name: "Wireless Mouse & Keyboard Combo", price: 25, image: "https://plus.unsplash.com/premium_photo-1679513691474-73102089c117?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D" },
+            { id: 2, name: "Gaming Headset + Mousepad", price: 40, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D" },
+            { id: 3, name: "Laptop Stand + Cooling Pad", price: 30, image: "https://plus.unsplash.com/premium_photo-1678099940967-73fe30680949?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D" },
           ],
         },
         {
           title: "Flash Deals",
           products: [
-            { id: 4, name: "Bluetooth Speaker", price: 15, image: "https://plus.unsplash.com/premium_photo-1677159499898-b061fb5bd2d7?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            { id: 4, name: "Bluetooth Speaker", price: 15, image: "https://plus.unsplash.com/premium_photo-1668418188837-d40b734ed6d2?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGhlYWRwaG9uZXN8ZW58MHx8MHx8fDA%3D" },
             { id: 5, name: "Smart LED Bulb", price: 10, image: "https://images.unsplash.com/photo-1574169208507-84376144848b?w=400&auto=format&fit=crop&q=60" },
-            { id: 6, name: "USB Fast Charger", price: 12, image: "https://images.unsplash.com/photo-1616578273577-5d54546f4dec?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            { id: 6, name: "USB Fast Charger", price: 12, image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGhlYWRwaG9uZXN8ZW58MHx8MHx8fDA%3D" },
           ],
         },
         {
             title: "One Dollar Shop",
             products: [
-              { id: 7, name: "Mini USB Light", price: 1, image: "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-              { id: 8, name: "Cable Organizer", price: 1, image: "https://images.unsplash.com/photo-1603145733257-30b94cee5c64?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-              { id: 9, name: "Keychain Flashlight", price: 1, image: "https://plus.unsplash.com/premium_photo-1679826780004-6323e2b1567a?q=80&w=1527&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+              { id: 7, name: "Mini USB Light", price: 1, image: "https://plus.unsplash.com/premium_photo-1668418188837-d40b734ed6d2?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGhlYWRwaG9uZXN8ZW58MHx8MHx8fDA%3D" },
+              { id: 8, name: "Cable Organizer", price: 1, image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGhlYWRwaG9uZXN8ZW58MHx8MHx8fDA%3D" },
+              { id: 9, name: "Keychain Flashlight", price: 1, image: "https://plus.unsplash.com/premium_photo-1679513691474-73102089c117?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGVhZHBob25lc3xlbnwwfHwwfHx8MA%3D%3D" },
             ],
           }
       ];

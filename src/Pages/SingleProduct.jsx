@@ -19,6 +19,36 @@ function ProductPage() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // sale CountDown Timer start
+  const targetDate = new Date("April 15, 2025 23:59:59").getTime(); // Sale ends on 3/15/2025
+
+  const calculateTimeLeft = () => {
+    const now = Date.now();
+    const timeDiff = targetDate - now;
+
+    if (timeDiff <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return {
+      days: Math.floor(timeDiff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((timeDiff / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((timeDiff / (1000 * 60)) % 60),
+      seconds: Math.floor((timeDiff / 1000) % 60),
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+// sale CountDown Timer end
+
   const [quantity, setQuantity] = useState(1);
 
   const [activeModal, setActiveModal] = useState(null);
@@ -501,7 +531,21 @@ function ProductPage() {
             </span>
           </div>
 
+          <div className="flex justify-between" >
           <h1 className="text-2xl 2xl:text-3xl font-bold text-[#002882]">PKR 7,100</h1>
+          <div className="flex items-center space-x-2 2xl:text-lg text-md font-semibold">
+      <span>ENDS:</span>
+      <div className="flex space-x-1">
+        {/* <div className="bg-[#F04438] text-white px-2 2xl:px-3 py-1 text-sm 2xl:text-base rounded-[3px] ">{timeLeft.days}</div>
+        <span>:</span> */}
+        <div className="bg-[#F04438] text-white px-2 2xl:px-3 py-1 text-sm 2xl:text-base rounded-[3px]">{timeLeft.hours.toString().padStart(2, "0")}</div>
+        <span>:</span>
+        <div className="bg-[#F04438] text-white px-2 2xl:px-3 py-1 text-sm 2xl:text-base rounded-[3px]">{timeLeft.minutes.toString().padStart(2, "0")}</div>
+        <span>:</span>
+        <div className="bg-red-500 text-white px-2 2xl:px-3 py-1 text-sm 2xl:text-base rounded-[3px]">{timeLeft.seconds.toString().padStart(2, "0")}</div>
+      </div>
+    </div>
+          </div>
           <div className="flex items-center">
             <del className="text-[#999] text-lg md:text-xl 2xl:text-2xl">PKR 8,500</del>
             <span className="ml-2 text-[#F04438] text-sm md:text-md 2xl:text-lg">26% OFF</span>
@@ -1242,7 +1286,7 @@ function ProductPage() {
         <div className="w-full md:w-[32%] xl:w-[30%] 2xl:w-25 flex flex-col gap-2 flex-1">
         <div className="border rounded-lg border-[#CCC]">
           <div className="px-3 py-6">
-            <div className="flex items-center justify-between gap-15">
+            <div className="flex items-center justify-between">
               <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1276,7 +1320,7 @@ function ProductPage() {
 
             <div className="flex gap-4 my-4 bg-[#CCC] h-[1px]"></div>
 
-            <div className="flex items-center justify-between gap-15">
+            <div className="flex items-center justify-between">
               <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1808,7 +1852,7 @@ function ProductPage() {
         
         <div className="border rounded-lg border-[#CCC] mt-6 md:mt-0 sticky top-[8%]">
         <div className="px-3 py-6">
-            <div className="flex items-center justify-between gap-15">
+            <div className="flex items-center justify-between">
               <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1842,7 +1886,7 @@ function ProductPage() {
 
             <div className="flex gap-4 my-4 bg-[#CCC] h-[1px]"></div>
 
-            <div className="flex items-center justify-between gap-15">
+            <div className="flex items-center justify-between ">
               <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
