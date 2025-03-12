@@ -70,7 +70,7 @@ export const authAPI = async () => {
 //   console.error("Network info could not be fetched. Skipping API call.");
 //   return null;
 // }
-    const response = await fetch("https://182.176.166.222:8081/api/GetSecurityKey/SecurityKey", {
+    const response = await fetch("/api/GetSecurityKey/SecurityKey", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
