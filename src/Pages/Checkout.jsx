@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState} from "react";
+import { NavLink } from 'react-router-dom';
 import Select from "../Components/Select"
 import FormButton from '../Components/FormButton';
 import Input from '../Components/Input';
@@ -151,7 +152,6 @@ const [cartData, setCartData] = useState([
       }
       // modal 1
       const [isModalOpen, setIsModalOpen] = useState(false);
-
       const collectionPoints = [
         {
           name: "ValueBox Shop Lahore - Model Town",
@@ -245,13 +245,23 @@ const bankData = {
   },
 };
 // modal 4
-
- const [isCardModalOpen, setIsCardModalOpen] = useState(false);
+const [isCardModalOpen, setIsCardModalOpen] = useState(false);
  const [billingAddressOpen, setbillingAddressOpen] = useState(false);
 // modal 5
 const [showOffersModal, setShowOffersModal] = useState(false);
+// mobile view
+const [currentPage, setCurrentPage] = useState(1);
+
+  const nextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
+  };
   return (
-    <div className="w-full p-10 bg-[#FCFCFC]">
+    <div>
+ <div className="w-full p-10 bg-[#FCFCFC] hidden md:flex">
       <div className="flex flex-col md:flex-row gap-10">
         {/* Left Section - col-9 */}
         <div className="w-full md:w-3/4 space-y-5">
@@ -284,13 +294,9 @@ const [showOffersModal, setShowOffersModal] = useState(false);
                 <span className="text-[#002882] text-[16px] font-medium">Collect your parcels at a location close to you at a fraction of the delivery fee!</span>
                 <span className="text-[#F1B733] text-[16px] font-medium">4 Suggested Collection Point(s) Nearby</span>
               </div>
-
-               </div>
-
-            
-            </div>
-
-            <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
+           </div>
+             </div>
+           <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
               <h3 className="text-[20px] font-normal">Delivery Time: 7-11 Business Days</h3>
               <hr className="border-t-[1px] border-[#CCD1D2]" />
             <p className="flex gap-1 text-[18px] items-center font-semibold"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -326,10 +332,8 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     View more details
   </a>
 </p>
-
-            </div>
-        
-            </div>
+       </div>
+         </div>
           </div>
           <div className="w-full flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
           <h3 className="text-[24px] font-semibold">Payment Method</h3>
@@ -507,8 +511,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     </clipPath>
   </defs>
 </svg> Note: Installments are available for one product at a time during checkout</p>
-         
-            </div>
+       </div>
             <div className="w-full flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
             <div className="w-full flex flex-col gap-1">
            <label className="text-gray-600 text-[16px] font-medium">Order Note (Optional)<span className="text-yellow-400">*</span></label>
@@ -516,11 +519,8 @@ const [showOffersModal, setShowOffersModal] = useState(false);
               </div>
              <div>
              {cartData.map((store, index) => (
-     
-      <div key={index} >
-       
-     
-        {store.items.map((item,storeIndex) => (
+       <div key={index} >
+     {store.items.map((item,storeIndex) => (
           <>
           <div key={item.id} className="flex items-center gap-2 xl:gap-4 mt-2 w-full">
             
@@ -610,9 +610,8 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         ))}
       </div>
     ))}
-             </div>
-
-            </div>
+    </div>
+      </div>
         </div>
 
         {/* Right Section - col-3 */}
@@ -630,7 +629,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     </button>
   </div>
   {/* Offers Section */}
-  <div className="flex items-center justify-between mt-4 border bg-[#E6EAF3] border-gray-300 rounded-md px-3 py-2 cursor-pointer"  onClick={() => setShowOffersModal(true)}>
+  <div className="flex items-center justify-between border bg-[#E6EAF3] border-gray-300 rounded-md px-3 py-2 cursor-pointer"  onClick={() => setShowOffersModal(true)}>
     <div className="flex items-center space-x-2 cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <g clip-path="url(#clip0_7213_113152)">
@@ -665,11 +664,8 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       <span>PKR 20,000</span>
     </div>
   </div>
-
-  <hr className="border-t-[1px] border-[#CCD1D2]" />
-
-
-  <div className="text-sm flex flex-col gap-2.5">
+ <hr className="border-t-[1px] border-[#CCD1D2]" />
+ <div className="text-sm flex flex-col gap-2.5">
     <div className="flex justify-between">
       <span className="text-black font-semibold">Shipping Fee</span>
       <span className="text-[#12B76A] text-sm">FREE</span>
@@ -707,10 +703,12 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     <span>Total</span>
     <span className="text-gray-800 text-lg 2xl:text-xl"><small className='text-xs 2xl:text-sm'>PKR</small> 20,000</span>
   </div>
+  <NavLink to='/ThankYouPage'>
   <button className="w-full bg-[#002882] text-white font-bold py-3 rounded-md">
   Place Order
   </button>
-  <p className="text-[#999] text-[14px] font-normal text-center">Upon clicking 'Place Order', I confirm I have read and acknowledged <a href="" className="text-[#002882] underline"> all terms and policies.</a></p>
+  </NavLink>
+ <p className="text-[#999] text-[14px] font-normal text-center">Upon clicking 'Place Order', I confirm I have read and acknowledged <a href="" className="text-[#002882] underline"> all terms and policies.</a></p>
         </div>
       </div>
       {/* Modal 1 */}
@@ -883,13 +881,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           </div>
         </div>
       )}
-
-       {/* Modal 2 */}
-
-
+      {/* Modal 2 */}
        {isOpen && (
-  <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
-    {formOpen ? (  
+       <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
+       {formOpen ? (  
       
       <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[1000px] max-w-full min-h-[700px] flex flex-col gap-5 relative">
       <h2 className="text-[24px] font-semibold mb-4">Add New Address</h2>
@@ -1040,12 +1035,9 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       </div>
     )}
   </div>
-)}
-
- {/* Modal 3 */}
-      
-
- {isInstalmentModalOpen && (
+      )}
+       {/* Modal 3 */}
+       {isInstalmentModalOpen && (
   <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm">
     <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] relative flex flex-col">
       
@@ -1142,11 +1134,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       </div>
     </div>
   </div>
-)}
-
-{/* Modal 4 */}
-{isCardModalOpen && (
-  <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
+      )}
+       {/* Modal 4 */}
+       {isCardModalOpen && (
+    <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
     {billingAddressOpen ? (  
       
       <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[700px] flex flex-col gap-5 relative">
@@ -1166,11 +1157,12 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       </div>
       <div className="">
         <label className="block text-gray-700 font-medium">Address<span className="text-yellow-400">*</span></label>
-        <Input
-          type="text"
-          className="w-full p-2 border rounded-md"
-          placeholder="135- Mian House, Garden Town Lahore, Lahore - Garden Town, Punjab, Pakistan"
-        />
+        <Select
+        options={options}
+        value={selectedOption}
+        onChange={(e) => setSelectedOption(e.target.value)}
+        placeholder="135- Mian House, Garden Town Lahore, Lahore - Garden Town, Punjab, Pakistan"
+           />
       </div>
       {/* Confirm Button (Always at Bottom) */}
         <button type="submit" className="bg-[#002882] text-white w-full py-2 rounded mt-auto">Update Billing Address</button>
@@ -1453,11 +1445,11 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       </div>
     )}
   </div>
-)}
-{/* Modal 5 */}
-{showOffersModal && (
+      )}
+      {/* Modal 5 */}
+      {showOffersModal && (
         <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-[400px] relative">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[430px] relative">
            <div className="max-w-lg mx-auto ">
             {/* Close Button */}
       <button 
@@ -1547,9 +1539,80 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           </div>
         </div>
       )}
+</div>
+{/* Mobile View */}
+ <div className="flex md:hidden">
+ <div className="max-w-md mx-auto bg-white w-full">
+     {currentPage === 1 && (
+     <div>
+          <div className="flex items-center self-stretch border-b border-[#F2F2F2] bg-[#FCFCFC] px-[10px] py-[15px]">
+        <h2 className="text-[20px] font-semibold flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg> Checkout</h2>
+      </div>
+        <div className="py-2.5 px-5">
+           <span className="flex items-center gap-1">Farman Haris,<span>+92123456789</span><span className="flex px-[10px] py-[3px] justify-center items-center gap-[10px] 
+   rounded-[5px] bg-gradient-to-r from-[#0032A3] via-[#1A51CB] via-[#3B66C8] via-[#1A51CB] to-[#0032A3] text-white">
+   Office
+  </span></span>
+  <p className="text-sm text-gray-600">135-Mian House, Garden Town Lahore</p>
 
+          </div>
 
+          <div className="mt-4 border-b pb-2">
+            <h3 className="font-semibold">Zahir Clothing</h3>
+            <div className="flex items-center justify-between mt-2">
+              <div>
+                <p className="text-sm font-medium">4pcs Quartz Watches</p>
+                <p className="text-xs text-red-500">Save PKR 5,999</p>
+              </div>
+              <p className="font-semibold">PKR 5,699</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {currentPage === 2 && (
+        <div>
+          <div className="mt-4 border-b pb-2">
+            <h3 className="text-sm font-semibold">Delivery Type</h3>
+            <p className="text-xs text-green-600">Enjoy Bundle & Save shipping promotion RS. 149</p>
+          </div>
+        </div>
+      )}
+
+      {currentPage === 3 && (
+        <div>
+          <div className="mt-4 border-b pb-2">
+            <p className="text-red-500 font-semibold">Total Discount: PKR 3,000</p>
+            <p className="font-bold">Total: PKR 20,000</p>
+          </div>
+          <button className="w-full mt-4 bg-blue-600 text-white py-2 rounded-lg">Place Order</button>
+        </div>
+      )}
+      
+      <div className="flex justify-between mt-4">
+        {currentPage > 1 && (
+          <button onClick={prevPage} className="text-blue-500 flex items-center">
+            <span className="mr-1">&#x276E;</span> Back
+          </button>
+        )}
+        {currentPage < 3 && (
+          <button onClick={nextPage} className="text-blue-500 flex items-center">
+            Next <span className="ml-1">&#x276F;</span>
+          </button>
+        )}
+      </div>
     </div>
+ </div>
+    </div>
+   
+
+
+
+
+
+
   );
 }
 
