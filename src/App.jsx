@@ -19,6 +19,8 @@ const Checkout=lazy(()=>import("./Pages/Checkout"))
 const ThankYouPage=lazy(()=>import("./Pages/ThankYouPage"))
 const BundleDealPage=lazy(()=>import("./Pages/Deals/BundleDealPage"))
 const FlashDealPage=lazy(()=>import("./Pages/Deals/FlashDealPage"))
+const OneDollarShopePage=lazy(()=>import("./Pages/Deals/OneDollarShopePage"))
+
 
 
 
@@ -41,6 +43,7 @@ const Layout=()=>{
           <Route path="/TrendyFashion" element={<TrendyFashion/>} />
           <Route path="/BundleDealPage" element={<BundleDealPage/>} />
           <Route path="/FlashDealPage" element={<FlashDealPage/>} />
+          <Route path="/OneDollarShopePage" element={<OneDollarShopePage/>} />
           <Route path="/SingleProduct" element={<SingleProduct/>} />
           <Route path="/AddToCart" element={<AddToCart/>} />
           <Route path="/Checkout" element={<Checkout/>} />
