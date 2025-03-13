@@ -30,7 +30,7 @@ function OneDollarShop() {
   return (
     
     <div className='sm:bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] sm:rounded-2xl p-4 w-full md:w-[45%] '>
-        <Link to='/DealsPage' state={{name:'One Dollar Shop'}}>
+        <Link to='/OneDollarShopePage' state={{name:'One Dollar Shop'}}>
         <div className='flex justify-between items-center mb-1'>
           <h3 className='text-[#1A1A1A] font-semibold 2xl:font-bold text-xl lg:text-2xl 2xl:text-3xl flex'>
           <svg xmlns="http://www.w3.org/2000/svg" className='hidden sm:inline-flex' width="36" height="36" viewBox="0 0 36 36" fill="none">
