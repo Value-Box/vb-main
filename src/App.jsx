@@ -15,10 +15,11 @@ const Collection=lazy(()=>import("./Pages/Collection"))
 const TrendyFashion=lazy(()=>import("./Pages/TrendyFashion"))
 const SingleProduct=lazy(()=>import("./Pages/SingleProduct"))
 const AddToCart=lazy(()=>import("./Pages/AddToCart"))
-const Checkout=lazy(()=>import("./Pages/Checkout"))
+const Checkout=lazy(()=>import("./Pages/CheckoutPages/Checkout"))
 const ThankYouPage=lazy(()=>import("./Pages/ThankYouPage"))
 const BundleDealPage=lazy(()=>import("./Pages/Deals/BundleDealPage"))
 const FlashDealPage=lazy(()=>import("./Pages/Deals/FlashDealPage"))
+
 
 
 
