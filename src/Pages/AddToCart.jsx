@@ -664,8 +664,8 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
 </div>
 {/* Checkout Button */}
 
-<NavLink to='/ThankYouPage' className="block text-center mt-4 w-full bg-[#002882] text-white font-bold py-3 rounded-md">
-CHECKOUT (03)
+<NavLink to='/Checkout' className="block text-center mt-4 w-full bg-[#002882] text-white font-bold py-3 rounded-md">
+  CHECKOUT (03)
 </NavLink>
             </div>
 
