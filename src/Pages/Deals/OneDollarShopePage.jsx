@@ -187,7 +187,7 @@ function OneDollarShopePage() {
           </div>
         </div>
         </div>
-    <div className="bg-gradient-to-r from-[#E4AE86] via-[#F5D4A8] to-[#F6D0B2] rounded-[10px] md:rounded-[15px] 2xl:rounded-[20px] relative w-full mx-auto mt-2 md:mt-6 px-2 md:px-4">
+    <div className="bg-gradient-to-r from-[#E4AE86] via-[#F5D4A8] to-[#F6D0B2] rounded-[10px] py-2 md:rounded-[15px] 2xl:rounded-[20px] relative w-full mx-auto mt-2 md:mt-6 px-2 md:px-4">
         <div className='hidden md:flex justify-between py-2'>
             <p className='text-[#631E01] text-xl 2xl:text-2xl font-bold'>Limited Time Offer Only for today!</p>
         <div className="flex items-center justify-center space-x-2 2xl:text-3xl text-md font-semibold">
