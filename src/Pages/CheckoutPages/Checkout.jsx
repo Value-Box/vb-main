@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useState} from "react";
 import { NavLink } from 'react-router-dom';
-import Select from "../Components/Select"
-import FormButton from '../Components/FormButton';
-import Input from '../Components/Input';
-import CheckBox from '../Components/CheckBox';
+
+import FormButton from '../../Components/FormButton';
+import Input from '../../Components/Input';
+import CheckBox from '../../Components/CheckBox';
 import SAsvg from "/src/Images/SAsvg.svg";
 import jazzcash from "/src/Images/jazzcash.svg";
 import CheckoutDt1 from "/src/Images/CheckoutDt1.png";
@@ -14,6 +14,7 @@ import Faysalbank from "/src/Images/faysalbank.png";
 import Alfalahbank from "/src/Images/Alfalah.png";
 import Meezanbank from "/src/Images/Meezanbank.png";
 import Askaribank from "/src/Images/Askaribank.png";
+import Select from "../../Components/Select";
 
 
 
@@ -1550,13 +1551,13 @@ const [currentPage, setCurrentPage] = useState(1);
       <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg> Checkout</h2>
       </div>
-        <div className="py-2.5 px-5">
+        <div className="flex flex-col gap-1 py-2.5 px-5">
            <span className="flex items-center gap-1">Farman Haris,<span>+92123456789</span><span className="flex px-[10px] py-[3px] justify-center items-center gap-[10px] 
    rounded-[5px] bg-gradient-to-r from-[#0032A3] via-[#1A51CB] via-[#3B66C8] via-[#1A51CB] to-[#0032A3] text-white">
    Office
-  </span></span>
-  <p className="text-sm text-gray-600">135-Mian House, Garden Town Lahore</p>
-
+          </span></span>
+          <span className="text-sm text-gray-600">135- Mian House, Garden Town Lahore</span>
+          <span className="text-sm text-gray-600">Lahore - Garden Town, Punjab, Pakistan</span>
           </div>
 
           <div className="mt-4 border-b pb-2">
