@@ -310,7 +310,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     }, [promoCodePopup]);
     return (
     <div>
- <div className="w-full p-10 bg-[#FCFCFC] hidden md:flex">
+ <div className="w-full p-7.5 bg-[#FCFCFC] hidden md:flex">
       <div className="flex flex-col items-start md:flex-row gap-10">
         {/* Left Section - col-9 */}
         <div className="w-full md:w-3/4 space-y-5">
@@ -368,7 +368,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             <path d="M10 1.25L2.5 3.75V11.25C2.5 15.3926 5.85742 18.75 10 18.75C14.1426 18.75 17.5 15.3926 17.5 11.25V3.75L10 1.25ZM16.0938 11.25C16.0938 14.6152 13.3652 17.3438 10 17.3438C6.63477 17.3438 3.90625 14.6152 3.90625 11.25V4.80469L10 2.65625L16.0938 4.80469V11.25Z" fill="black"/>
             <path d="M7.39015 9.2793C7.32498 9.21383 7.24752 9.16188 7.16222 9.12643C7.07692 9.09099 6.98545 9.07274 6.89308 9.07274C6.80071 9.07274 6.70924 9.09099 6.62394 9.12643C6.53864 9.16188 6.46118 9.21383 6.39601 9.2793C6.33054 9.34447 6.27859 9.42193 6.24315 9.50723C6.2077 9.59253 6.18945 9.68399 6.18945 9.77637C6.18945 9.86874 6.2077 9.96021 6.24315 10.0455C6.27859 10.1308 6.33054 10.2083 6.39601 10.2734L8.92335 12.8008L8.96437 12.8418C9.02601 12.9036 9.09923 12.9526 9.17983 12.986C9.26043 13.0194 9.34684 13.0366 9.4341 13.0366C9.52136 13.0366 9.60776 13.0194 9.68836 12.986C9.76896 12.9526 9.84218 12.9036 9.90382 12.8418L14.2691 8.47656C14.3308 8.41492 14.3798 8.3417 14.4132 8.2611C14.4467 8.1805 14.4639 8.0941 14.4639 8.00684C14.4639 7.91958 14.4467 7.83317 14.4132 7.75257C14.3798 7.67197 14.3308 7.59875 14.2691 7.53711L14.2144 7.48242C14.1527 7.42066 14.0795 7.37167 13.9989 7.33824C13.9183 7.3048 13.8319 7.2876 13.7446 7.2876C13.6574 7.2876 13.571 7.3048 13.4904 7.33824C13.4098 7.37167 13.3366 7.42066 13.2749 7.48242L9.43312 11.3223L7.39015 9.2793Z" fill="black"/>
             </svg>Buy Now Pay Later</p>
-            <p className="text-[#666] text-[18px] flex gap-1">
+            <p className="text-[#666] text-[16px] flex gap-1">
   Installment Offers available up to 36 months
   <a 
     href="#" 
@@ -1791,7 +1791,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             </button>
 
             {/* Header */}
-            <h3 className="text-[20px] font-semibold text-black mb-4">Shipping</h3>
+            <h3 className="text-[20px] font-semibold text-black mb-2">Shipping</h3>
 
             <div className="max-w-md mx-auto bg-white">
               {/* Ship to Section */}
@@ -1820,7 +1820,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
               </div>
 
               {/* Shipping Method Section */}
-              <h3 className="text-sm text-gray-500 mt-4">Shipping Method</h3>
+              <h3 className="text-sm text-gray-500 mt-2">Shipping Method</h3>
               <div className="mt-2 space-y-3">
                 <label className="block p-4 rounded-lg bg-gray-100 cursor-pointer">
                   <div className="flex justify-between items-center">
@@ -2074,13 +2074,13 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         >
           {/* Popup Content */}
            <div
-            className={`w-full p-6 bg-white rounded-t-2xl shadow-lg transform transition-transform duration-300 ${
+            className={`w-full p-5 bg-white rounded-t-2xl shadow-lg transform transition-transform duration-300 ${
               isAnimating ? "translate-y-0" : "translate-y-full"
             }`}
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
             
           >
-            <div className="flex justify-between items-center mb-3">
+            <div className="flex justify-between items-center mb-2">
             <h2 className="text-2xl font-bold text-center">Available Offers</h2>
             <button
               onClick={handleClose}
@@ -2092,7 +2092,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             </button>
     </div>
            <div className="w-full">
-      <div className="mt-4">
+      <div className="mt-2">
         <h3 className="font-semibold text-lg">Coupon Offers</h3>
 
         <div className="border border-[#12B76A] rounded-lg p-3 mt-3 relative bg-[#F6FEF9]">
