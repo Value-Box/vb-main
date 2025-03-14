@@ -251,19 +251,67 @@ const [isCardModalOpen, setIsCardModalOpen] = useState(false);
 // modal 5
 const [showOffersModal, setShowOffersModal] = useState(false);
 // mobile view
-const [currentPage, setCurrentPage] = useState(1);
+// delivery popup
+ 
+// available offer
+    const [openPopup, setOpenPopup] = useState(null);
+    const [isAnimating, setIsAnimating] = useState(false);
+    
+    // Handle Open Popup
+    const handleOpen = (popupName) => {
+      if (openPopup === popupName) {
+        handleClose(); // If same popup clicked, close it
+      } else {
+        setOpenPopup(popupName);
+        setTimeout(() => setIsAnimating(true), 10);
+      }
+    };
+    
+    // Handle Close Popup
+    const handleClose = () => {
+      setIsAnimating(false);
+      setTimeout(() => setOpenPopup(null), 300);
+    };
+     
+    // delivery type popup
+    const [deliveryTypePopup, setDeliveryTypePopup] = useState(false);
+  const [showShippingPopup, setShowShippingPopup] = useState(false);
 
-  const nextPage = () => {
-    setCurrentPage((prev) => prev + 1);
-  };
+  useEffect(() => {
+    if (deliveryTypePopup) {
+      setTimeout(() => setShowShippingPopup(true), 10); // Small delay for animation
+    } else {
+      setShowShippingPopup(false);
+    }
+  }, [deliveryTypePopup]);
 
-  const prevPage = () => {
-    setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
-  };
-  return (
+   // invoice and contact info Code popup
+   const [infoPopup, setinfoPopup] = useState(false);
+   const [showShippingPopup2, setShowShippingPopup2] = useState(false);
+ 
+   useEffect(() => {
+     if (infoPopup) {
+       setTimeout(() => setShowShippingPopup2(true), 10); // Small delay for animation
+     } else {
+       setShowShippingPopup2(false);
+     }
+   }, [infoPopup]);
+
+    // Promo Code popup
+    const [promoCodePopup, setpromoCodePopup] = useState(false);
+    const [showShippingPopup1, setShowShippingPopup1] = useState(false);
+  
+    useEffect(() => {
+      if (promoCodePopup) {
+        setTimeout(() => setShowShippingPopup1(true), 10); // Small delay for animation
+      } else {
+        setShowShippingPopup1(false);
+      }
+    }, [promoCodePopup]);
+    return (
     <div>
  <div className="w-full p-10 bg-[#FCFCFC] hidden md:flex">
-      <div className="flex flex-col md:flex-row gap-10">
+      <div className="flex flex-col items-start md:flex-row gap-10">
         {/* Left Section - col-9 */}
         <div className="w-full md:w-3/4 space-y-5">
           {/* Two Equal Columns inside col-9 */}
@@ -616,7 +664,7 @@ const [currentPage, setCurrentPage] = useState(1);
         </div>
 
         {/* Right Section - col-3 */}
-        <div className="w-full md:w-1/4 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5 h-auto">
+        <div className="sticky top-20 w-full md:w-1/4 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5 min-h-0 h-auto">
         <h1 className='text-md md:text-xl 2xl:text-2xl font-bold'>Order Summery</h1>
         
     <div className="flex items-center ">
@@ -1543,70 +1591,599 @@ const [currentPage, setCurrentPage] = useState(1);
 </div>
 {/* Mobile View */}
  <div className="flex md:hidden">
- <div className="max-w-md mx-auto bg-white w-full">
-     {currentPage === 1 && (
-     <div>
-          <div className="flex items-center self-stretch border-b border-[#F2F2F2] bg-[#FCFCFC] px-[10px] py-[15px]">
-        <h2 className="text-[20px] font-semibold flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg> Checkout</h2>
+ <div className="max-w-md mx-auto bg-[#F2F2F2] shadow-lg rounded-lg border">
+      {/* Header */}
+      <div className="flex items-center border-b border-[#F2F2F2] bg-[#FCFCFC] px-2 py-4">
+        <button className="mr-2 text-gray-600 text-xl"> <NavLink to="/AddToCart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+     <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+       </svg></NavLink></button>
+        <h2 className="text-[20px] font-semibold">Checkout</h2>
       </div>
-        <div className="flex flex-col gap-1 py-2.5 px-5">
-           <span className="flex items-center gap-1">Farman Haris,<span>+92123456789</span><span className="flex px-[10px] py-[3px] justify-center items-center gap-[10px] 
-   rounded-[5px] bg-gradient-to-r from-[#0032A3] via-[#1A51CB] via-[#3B66C8] via-[#1A51CB] to-[#0032A3] text-white">
-   Office
-          </span></span>
-          <span className="text-sm text-gray-600">135- Mian House, Garden Town Lahore</span>
-          <span className="text-sm text-gray-600">Lahore - Garden Town, Punjab, Pakistan</span>
-          </div>
 
-          <div className="mt-4 border-b pb-2">
-            <h3 className="font-semibold">Zahir Clothing</h3>
-            <div className="flex items-center justify-between mt-2">
-              <div>
-                <p className="text-sm font-medium">4pcs Quartz Watches</p>
-                <p className="text-xs text-red-500">Save PKR 5,999</p>
+      {/* User Info */}
+      <div className="flex flex-col gap-2 px-4 pb-4 pt-2 border-b border-gray-200 bg-[#FCFCFC]">
+      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-2">
+       <span className="flex items-center gap-2 font-semibold text-black text-[16px]">Farman Haris, <span className="text-[#999] font-normal">+92123456789</span> 
+          <span className="flex px-3 py-1 rounded bg-gradient-to-r from-[#0032A3] via-[#1A51CB] to-[#0032A3] text-white text-sm">
+            Office
+          </span>
+          </span>
+          <span className="text-gray-600 text-sm">135-Mian House, Garden Town, Lahore</span>
+        <span className="text-gray-600 text-sm">Lahore - Garden Town, Punjab</span>
+        </div>
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M10 8L14 12L10 16" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
+      </div>
+       
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col gap-1">
+          <span className="text-[#002882] text-sm font-medium">
+          Collect your parcels at a location close to you at a fraction of the delivery fee!
+        </span>
+        <span className="text-gray-600 text-sm">
+        4 Suggested Collection Point(s) Nearby
+        </span>
+          </div>
+      <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M10 8L14 12L10 16" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span> 
+       </div>
+      </div>
+
+      {/* Product List */}
+      <div className=" border-b border-gray-200 bg-[#F2F2F2]">
+     {cartData.map((store, index) => (
+                 store.items.some(item=>item.delivery==='Standard')&&(
+                   <div key={index} className="bg-white w-full px-4 py-2 mt-2.5">
+                   <div className='flex justify-between'>
+                   <h3 className="font-semibold text-gray-700 flex gap-1.5 items-center">
+                     
+                     <label htmlFor="stStoreSelect" className='flex gap-1.5 items-center'>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                     <path d="M3 21.0002H5M5 21.0002H19M5 21.0002V9.32824M21 21.0002H19M19 21.0002V9.32824M5 9.32824C4.96261 9.30677 4.92592 9.28409 4.89 9.26024L4.35 8.90024C3.96826 8.64562 3.68568 8.26746 3.54967 7.82921C3.41366 7.39096 3.43249 6.91926 3.603 6.49324L4.497 4.25724C4.64549 3.88615 4.90176 3.56806 5.23276 3.34401C5.56376 3.11995 5.9543 3.00022 6.354 3.00024H17.646C18.0457 3.00022 18.4362 3.11995 18.7672 3.34401C19.0982 3.56806 19.3545 3.88615 19.503 4.25724L20.397 6.49324C20.5675 6.91926 20.5863 7.39096 20.4503 7.82921C20.3143 8.26746 20.0317 8.64562 19.65 8.90024L19.11 9.26024C19.0741 9.28409 19.0374 9.30677 19 9.32824M5 9.32824C5.32305 9.51483 5.69184 9.60733 6.0647 9.59532C6.43757 9.5833 6.79964 9.46724 7.11 9.26024L9 8.00024L10.89 9.26024C11.2187 9.47952 11.6049 9.59654 12 9.59654C12.3951 9.59654 12.7813 9.47952 13.11 9.26024L15 8.00024L16.89 9.26024C17.2004 9.46724 17.5624 9.5833 17.9353 9.59532C18.3082 9.60733 18.677 9.51483 19 9.32824" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M13.998 20.9999V15.9999C13.998 15.4694 13.7873 14.9607 13.4123 14.5857C13.0372 14.2106 12.5285 13.9999 11.998 13.9999C11.4676 13.9999 10.9589 14.2106 10.5838 14.5857C10.2088 14.9607 9.99805 15.4694 9.99805 15.9999V20.9999" stroke="#1A1A1A" stroke-width="1.5"/>
+                   </svg> {store.store}  
+                     </label> </h3>
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+         <path d="M10 8L14 12L10 16" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+       </svg>
+                   </div>
+                   
+                <div className='bg-[#CCC] h-px my-4'></div>
+                   {store.items.filter(stItem=>stItem.delivery==='Standard').map(item => (
+                     <>
+                     <div key={item.id} className="flex items-center gap-2 xl:gap-4 mt-2 w-full">
+                     <img src={item.image} className='w-18 h-18 sm:w-20 sm:h-20 rounded-lg select-none' alt="" />
+                       <div className="flex-1 flex flex-col gap-3 select-none min-w-0">
+                       <p className="text-sm w-full min-w-0 overflow-hidden text-ellipsis whitespace-nowrap">
+                             {item.name}
+                           </p>
+                       <div className='flex gap-2'>
+                           <span className='text-xs text-[#999] bg-[#F2F2F2] px-4 py-1 rounded-[5px] inline-block '>Red/42</span>
+                           <span className='text-xs text-[#999] bg-[#F2F2F2] px-4 py-1 rounded-[5px] inline-block '>{item.delivery}</span>
+                       </div>
+       
+                       <div className='flex gap-1'>
+                       <div className='flex xl:flex-row gap-1 items-center'>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+         <g clip-path="url(#clip0_7192_111265)">
+           <path d="M13.6126 1.33317C11.6215 2.96428 10.4918 4.41273 10.2233 5.6785C9.95487 6.94428 9.91432 8.14939 10.1017 9.29384L13.6673 9.29384L7.84898 14.6665L2.33398 9.29384L5.72298 9.29384C5.73965 7.17762 6.49887 5.3785 8.00065 3.8965C9.50243 2.41473 11.3731 1.56028 13.6126 1.33317Z" stroke="#F04438" stroke-linejoin="round"/>
+         </g>
+         <defs>
+           <clipPath id="clip0_7192_111265">
+             <rect width="16" height="16" fill="white" transform="translate(0 16) rotate(-90)"/>
+           </clipPath>
+         </defs>
+       </svg>
+                       <span className='text-[#F04438] text-[10px] md:text-xs'>Save PKR 5,999</span>
+                       </div>
+                       <p className='bg-[#CCC] h-5 w-px '></p>
+                       <div className='flex gap-1 items-center'>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+         <path d="M6.33424 9.66683L9.66757 6.3335M6.33424 6.3335H6.34157M9.66024 9.66683H9.66757M1.64357 6.2295C1.47824 6.2295 1.32691 6.09483 1.33424 5.9195C1.37891 4.8915 1.50424 4.22216 1.85424 3.69283C2.05388 3.39118 2.30425 3.12638 2.59424 2.91016C3.37091 2.3335 4.46757 2.3335 6.66224 2.3335H9.33824C11.5329 2.3335 12.6296 2.3335 13.4076 2.91016C13.6949 3.1235 13.9456 3.38816 14.1469 3.69283C14.4969 4.22216 14.6222 4.8915 14.6669 5.9195C14.6742 6.09483 14.5229 6.2295 14.3569 6.2295C13.4329 6.2295 12.6836 7.02216 12.6836 8.00016C12.6836 8.97816 13.4329 9.77083 14.3569 9.77083C14.5229 9.77083 14.6742 9.9055 14.6669 10.0815C14.6222 11.1088 14.4969 11.7782 14.1469 12.3082C13.9472 12.6096 13.6968 12.8741 13.4069 13.0902C12.6296 13.6668 11.5329 13.6668 9.33824 13.6668H6.66291C4.46824 13.6668 3.37157 13.6668 2.59357 13.0902C2.30382 12.8739 2.05368 12.6091 1.85424 12.3075C1.50424 11.7782 1.37891 11.1088 1.33424 10.0808C1.32691 9.9055 1.47824 9.77083 1.64357 9.77083C2.56757 9.77083 3.31691 8.97816 3.31691 8.00016C3.31691 7.02216 2.56757 6.2295 1.64357 6.2295Z" stroke="#F04438" stroke-linecap="round" stroke-linejoin="round"/>
+       </svg>
+                       <span className='text-[10px] md:text-xs text-[#F04438]'>Coupons applicable</span>
+                       </div>
+                       
+                       </div>
+                         <div className='flex justify-between'>
+                         <div className='flex gap-2'>
+                         <p className="text-[#002882] font-bold text-xl 2xl:text-3xl">
+                           <small className='text-xs md:text-sm font-medium'>PKR</small> {item.price}</p>
+                         <small className="line-through text-gray-400 flex items-center">PKR {item.oldPrice}</small>
+                         </div>
+                         <div className="flex items-center bg-[#FDFDFD] border border-[#CCD1D2] rounded-full ">
+                         <button className="px-1 py-1 cursor-pointer" onClick={()=>decreaseQuantity(item.id)}>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+         <path d="M11.6654 7H2.33203" stroke="#999999" stroke-width="1.16667" stroke-linecap="round"/>
+       </svg>
+                           </button>
+                         <span className="px-0 text-sm">{item.quantity}</span>
+                         <button className="px-1 py-1 cursor-pointer" onClick={()=>increaseQuantity(item.id)}>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+         <path d="M10.4993 7.58317H7.58268V10.4998C7.58268 10.8207 7.32018 11.0832 6.99935 11.0832C6.67852 11.0832 6.41602 10.8207 6.41602 10.4998V7.58317H3.49935C3.17852 7.58317 2.91602 7.32067 2.91602 6.99984C2.91602 6.679 3.17852 6.4165 3.49935 6.4165H6.41602V3.49984C6.41602 3.179 6.67852 2.9165 6.99935 2.9165C7.32018 2.9165 7.58268 3.179 7.58268 3.49984V6.4165H10.4993C10.8202 6.4165 11.0827 6.679 11.0827 6.99984C11.0827 7.32067 10.8202 7.58317 10.4993 7.58317Z" fill="#1A1A1A"/>
+       </svg>
+                         </button>
+                       </div> 
+                         </div>
+                       </div>
+                       
+                     </div>
+                     <div className='bg-[#CCC] h-px my-4'>
+                       
+                     </div>
+                     </>
+                   ))}
+                   <div className="pb-4"  onClick={() => setDeliveryTypePopup(true)}>
+{/* Delivery Type Heading */}
+<h3 className="text-[16px] font-semibold text-black">Delivery Type</h3>
+  <div className="px-2 py-1 mt-2 bg-white rounded-md border border-gray-200">
+      
+      
+
+      {/* Bundle Offer */}
+      <div className="flex items-center gap-2 mt-2 p-3 rounded-md bg-[#D1FADF]">
+        <span className="text-green-700 text-sm font-medium">
+          Enjoy Bundle & Save shipping promotion RS. 149
+        </span>
+      </div>
+
+      {/* Standard Delivery */}
+      <div className="mt-2">
+        <div className="flex items-center justify-between mt-2">
+        <h4 className="text-[15px] font-medium text-black">Standard Delivery</h4>
+          {/* Truck Icon + Pricing */}
+          <div className="flex items-center gap-2 text-[#12B76A] text-sm font-medium">
+            {/* Truck SVG */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16" fill="none">
+  <g clip-path="url(#clip0_7228_113897)">
+    <path d="M19.5 11H19V7.62187C19 7.225 18.8406 6.84375 18.5594 6.5625L15.4375 3.44062C15.1562 3.15937 14.775 3 14.3781 3H13V1.5C13 0.671875 12.3281 0 11.5 0H3.5C2.67188 0 2 0.671875 2 1.5V3H0.25C0.1125 3 0 3.1125 0 3.25V3.75C0 3.8875 0.1125 4 0.25 4H8.75C8.8875 4 9 4.1125 9 4.25V4.75C9 4.8875 8.8875 5 8.75 5H1.25C1.1125 5 1 5.1125 1 5.25V5.75C1 5.8875 1.1125 6 1.25 6H7.75C7.8875 6 8 6.1125 8 6.25V6.75C8 6.8875 7.8875 7 7.75 7H0.25C0.1125 7 0 7.1125 0 7.25V7.75C0 7.8875 0.1125 8 0.25 8H6.75C6.8875 8 7 8.1125 7 8.25V8.75C7 8.8875 6.8875 9 6.75 9H2V13C2 14.6562 3.34375 16 5 16C6.65625 16 8 14.6562 8 13H12C12 14.6562 13.3438 16 15 16C16.6562 16 18 14.6562 18 13H19.5C19.775 13 20 12.775 20 12.5V11.5C20 11.225 19.775 11 19.5 11ZM5 14.5C4.17188 14.5 3.5 13.8281 3.5 13C3.5 12.1719 4.17188 11.5 5 11.5C5.82812 11.5 6.5 12.1719 6.5 13C6.5 13.8281 5.82812 14.5 5 14.5ZM15 14.5C14.1719 14.5 13.5 13.8281 13.5 13C13.5 12.1719 14.1719 11.5 15 11.5C15.8281 11.5 16.5 12.1719 16.5 13C16.5 13.8281 15.8281 14.5 15 14.5ZM17.5 8H13V4.5H14.3781L17.5 7.62187V8Z" fill="#12B76A"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_7228_113897">
+      <rect width="20" height="16" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+
+            {/* Pricing */}
+            <span className="line-through text-gray-400">RS. 149</span>
+            <span className="text-[#12B76A]">RS. 0</span>
+          </div>
+</div>
+  {/* Delivery Time */}
+  <div className="mt-2 flex items-center gap-1 text-blue-600 text-sm">
+            {/* Clock SVG */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <path d="M10.0013 1.66663C8.90695 1.66663 7.82332 1.88217 6.81227 2.30096C5.80123 2.71975 4.88257 3.33358 4.10875 4.1074C2.54594 5.67021 1.66797 7.78982 1.66797 9.99996C1.66797 12.2101 2.54594 14.3297 4.10875 15.8925C4.88257 16.6663 5.80123 17.2802 6.81227 17.699C7.82332 18.1177 8.90695 18.3333 10.0013 18.3333C12.2114 18.3333 14.3311 17.4553 15.8939 15.8925C17.4567 14.3297 18.3346 12.2101 18.3346 9.99996C18.3346 8.90561 18.1191 7.82198 17.7003 6.81093C17.2815 5.79988 16.6677 4.88122 15.8939 4.1074C15.12 3.33358 14.2014 2.71975 13.1903 2.30096C12.1793 1.88217 11.0957 1.66663 10.0013 1.66663ZM13.5013 13.5L9.16797 10.8333V5.83329H10.418V10.1666L14.168 12.4166L13.5013 13.5Z" fill="#002882"/>
+</svg>
+
+            {/* Date Text */}
+            <span className="text-[#002882]">Get it by <strong>06 - 16 DEC</strong></span>
+          </div>
+      </div>
+    </div>
+                   </div>
+                       {/* Popup Overlay & Modal */}
+                       {deliveryTypePopup && (
+        <div
+          className={`fixed inset-0 z-[9999] bg-[rgba(0,0,0,0.3)] bg-opacity-50 flex items-end justify-center transition-opacity duration-300 ${
+            deliveryTypePopup ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div
+            className={`bg-white w-full max-w-md h-[80vh] rounded-t-2xl p-4 shadow-lg transform transition-transform duration-500 ease-out ${
+              showShippingPopup ? "translate-y-0" : "translate-y-full"
+            }`}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
+              onClick={() => {
+                setShowShippingPopup(false); // First hide with animation
+                setTimeout(() => setDeliveryTypePopup(false), 300); // Then remove from DOM
+              }}
+            >
+              ✖
+            </button>
+
+            {/* Header */}
+            <h3 className="text-[20px] font-semibold text-black mb-4">Shipping</h3>
+
+            <div className="max-w-md mx-auto bg-white">
+              {/* Ship to Section */}
+              <div className="mb-3">
+                <h3 className="text-sm text-gray-500">Ship to Pakistan</h3>
+                <button className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-100">
+                  <span className="flex items-center gap-2">
+                  <span>Johar town, Lahore</span>
+                  </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M10 8L14 12L10 16"
+                      stroke="#1A1A1A"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
               </div>
-              <p className="font-semibold">PKR 5,699</p>
+
+              {/* Shipping Method Section */}
+              <h3 className="text-sm text-gray-500 mt-4">Shipping Method</h3>
+              <div className="mt-2 space-y-3">
+                <label className="block p-4 rounded-lg bg-gray-100 cursor-pointer">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="font-semibold">Free shipping over PKR 2,570</h4>
+                      <p className="text-sm text-gray-600">
+                        Standard Delivery: <span className="font-bold">DEC 06 - 16</span>
+                      </p>
+                    </div>
+                <CheckBox name="shipping"/>
+                  </div>
+
+                  {/* Tracking Available */}
+                  <button
+                    className="mt-2 px-3 py-1 text-sm bg-gray-200 text-gray-600 rounded-md"
+                    disabled
+                  >
+                    Tracking Available
+                  </button>
+                </label>
+
+                <label className="block p-4 rounded-lg bg-gray-100 cursor-pointer">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="font-semibold">Express Delivery</h4>
+                      <p className="text-sm text-gray-600">
+                        Standard Delivery: <span className="font-bold">24 Hours Delivery</span>
+                      </p>
+                    </div>
+                    <CheckBox name="shipping"/>
+                   
+                  </div>
+
+                  {/* Tracking Available */}
+                  <button
+                    className="mt-2 px-3 py-1 text-sm bg-gray-200 text-gray-600 rounded-md"
+                    disabled
+                  >
+                    Tracking Available
+                  </button>
+                </label>
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {currentPage === 2 && (
-        <div>
-          <div className="mt-4 border-b pb-2">
-            <h3 className="text-sm font-semibold">Delivery Type</h3>
-            <p className="text-xs text-green-600">Enjoy Bundle & Save shipping promotion RS. 149</p>
+                 </div>
+                 
+                 )
+                 
+               ))}
+      </div>
+
+      {/* Summary */}
+      <div className="relative p-5 my-2.5 bg-white border border-gray-200">
+  {/* Heading */}
+  <h3 className="text-[20px] font-semibold text-black">Summery</h3>
+
+  {/* Subtotal */}
+  <div className="flex justify-between items-center py-3 border-b border-gray-300">
+    <span className="text-sm text-black">Subtotal</span>
+    <span className="text-sm font-medium text-black">PKR 20,000</span>
+  </div>
+
+  {/* Item(s) Total */}
+  <div className="flex justify-between items-center py-3 border-b border-gray-300">
+    <span className="text-sm text-black">Item(s) Total</span>
+    <span className="text-sm text-gray-400 line-through">PKR 24,900</span>
+  </div>
+
+  {/* Bundle & Save Promotion */}
+  <div className="flex justify-between items-center py-3 border-b border-gray-300">
+    <span className="text-sm text-black">Bundle & Save Promotion</span>
+    <span className="flex text-sm font-medium text-red-500" onClick={() => handleOpen("availableOffers")}>-PKR 4,900 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <path d="M8.33301 6.66671L11.6663 10L8.33301 13.3334" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
+  </div>
+
+  {/* Promo Codes */}
+  <div className="flex justify-between items-center py-3 border-b border-gray-300">
+    <span className="text-sm text-black" >Promo Codes</span>
+
+
+<div className="flex items-center gap-1">
+      <span className="flex text-sm font-medium text-black"  onClick={() => setpromoCodePopup(true)}>Enter <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <path d="M8.33301 6.66671L11.6663 10L8.33301 13.3334" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
+     {/* Popup Overlay & Modal */}
+  {promoCodePopup && (
+        <div
+          className={`fixed inset-0 z-[9999] bg-[rgba(0,0,0,0.3)] bg-opacity-50 flex items-end justify-center transition-opacity duration-300 ${
+            promoCodePopup ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div
+            className={`bg-white w-full max-w-md h-[40vh] rounded-t-2xl p-4 shadow-lg transform transition-transform duration-500 ease-out ${
+              showShippingPopup1 ? "translate-y-0" : "translate-y-full"
+            }`}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
+              onClick={() => {
+                setShowShippingPopup1(false); // First hide with animation
+                setTimeout(() => setpromoCodePopup(false), 300); // Then remove from DOM
+              }}
+            >
+              ✖
+            </button>
+
+            {/* Header */}
+            <h2 className="text-2xl font-bold text-gray-900">Promo Codes</h2>
+
+{/* Description */}
+<p className="text-[#999] text-sm mt-2">
+  Promo codes are made up of case-sensitive letters and numbers without any spaces. Keep in mind that they
+  come with limitations and expiration dates, so they might not work if they’ve expired or already reached
+  their usage limit.
+</p>
+
+{/* Input Field */}
+<div className="mt-4">
+  <Input
+    type="text"
+    placeholder="Enter Code"
+    className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#002882]"
+  />
+</div>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+
+  {/* Shipping Fee */}
+  <div className="flex justify-between items-center py-3">
+    <span className="text-sm text-black">Shipping Fee</span>
+    <span className="text-sm font-medium text-black">PKR 500</span>
+  </div>
+
+  {/* Zigzag Border */}
+  <div className="absolute bottom-[-10px] left-0 w-full">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 11" fill="none" className="w-full h-[11px]">
+      <path d="M11 11L0.174683 -0.25H21.8253L11 11Z" fill="#F2F2F2" />
+    </svg>
+  </div>
+</div>
+
+{/* Invoice and Contact Info */}
+       <div className="flex  justify-between items-center gap-2  p-5 my-2.5 bg-white border border-gray-200 cursor-pointer" onClick={() => setinfoPopup(true)}>
+        {/* Invoice Icon */}
+     
+        <span className="flex gap-1 text-sm font-medium text-black">   <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-black"
+        >
+          <path d="M4 21v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"></path>
+          <path d="M16 3h3a2 2 0 0 1 2 2v4"></path>
+          <path d="M4 11V5a2 2 0 0 1 2-2h3"></path>
+          <rect x="8" y="11" width="8" height="5" rx="1"></rect>
+        </svg> Invoice and Contact Info </span>
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <path d="M8.33301 6.66671L11.6663 10L8.33301 13.3334" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
+      </div>
+      {infoPopup && (
+        <div
+          className={`fixed inset-0 z-[9999] bg-[rgba(0,0,0,0.3)] bg-opacity-50 flex items-end justify-center transition-opacity duration-300 ${
+            infoPopup ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div
+            className={`bg-white w-full max-w-md h-[40vh] rounded-t-2xl p-4 shadow-lg transform transition-transform duration-500 ease-out ${
+              showShippingPopup2 ? "translate-y-0" : "translate-y-full"
+            }`}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
+              onClick={() => {
+                setShowShippingPopup2(false); // First hide with animation
+                setTimeout(() => setinfoPopup(false), 300); // Then remove from DOM
+              }}
+            >
+              ✖
+            </button>
+
+            {/* Header */}
+            <h2 className="text-2xl font-bold text-gray-900">Billing Address</h2>
+
+{/* Email Section */}
+<div className="mt-4">
+  <label className="text-sm font-medium text-gray-800 flex items-center">
+    Email: <span className="text-yellow-500 ml-1">*</span>
+  </label>
+  <Input
+    type="email"
+    value="farmanharis66@gmail.com"
+    placeholder="farmanharis66@gmail.com"
+    readOnly
+  />
+  <p className="text-sm text-gray-500 mt-1">
+    Enter your email to get delivery status updates
+  </p>
+</div>
+
+{/* Billing Address Section */}
+<div className="mt-4">
+  <label className="text-sm font-medium text-gray-800 flex items-center">
+    Billing Address: <span className="text-yellow-500 ml-1">*</span>
+  </label>
+  <Input
+  placeholder="  135- Mian House, Garden Town Lahore Lahore - Garden Town, Punjab, Pakistan"
+  />
+  
+ 
+  <p className="text-sm text-gray-500 mt-1">
+    Please edit your billing address
+  </p>
+</div>
           </div>
         </div>
       )}
 
-      {currentPage === 3 && (
-        <div>
-          <div className="mt-4 border-b pb-2">
-            <p className="text-red-500 font-semibold">Total Discount: PKR 3,000</p>
-            <p className="font-bold">Total: PKR 20,000</p>
+
+
+
+      {/* Place Order Button */}
+      <div className="fixed bottom-0 left-0 w-full bg-white shadow-md border-t border-gray-300  z-50">
+      {/* Discount Section */}
+      <button className="bg-red-100 text-red-600 w-full text-sm font-semibold px-4 py-2 text-center" onClick={() => handleOpen("availableOffers")}>
+        Total Discount : <span className="font-bold">PKR 3,000</span>
+      </button>
+
+      {openPopup==='availableOffers' && (
+        <div
+          className={`fixed inset-0 z-1050 bg-[rgba(0,0,0,0.3)]  bg-opacity-50
+            flex items-end justify-center transition-opacity duration-300 ${
+            isAnimating ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={handleClose}
+        >
+          {/* Popup Content */}
+           <div
+            className={`w-full p-6 bg-white rounded-t-2xl shadow-lg transform transition-transform duration-300 ${
+              isAnimating ? "translate-y-0" : "translate-y-full"
+            }`}
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+            
+          >
+            <div className="flex justify-between items-center mb-3">
+            <h2 className="text-2xl font-bold text-center">Available Offers</h2>
+            <button
+              onClick={handleClose}
+              className=" text-white rounded-lg"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+  <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
+</svg>
+            </button>
+    </div>
+           <div className="w-full">
+      <div className="mt-4">
+        <h3 className="font-semibold text-lg">Coupon Offers</h3>
+
+        <div className="border border-[#12B76A] rounded-lg p-3 mt-3 relative bg-[#F6FEF9]">
+          <div className="flex justify-between items-center">
+            <span className="text-[#12B76A] font-bold text-lg">10% OFF</span>
+            <span className="text-[#12B76A] text-sm">Expire on 28 Nov 2024</span>
           </div>
-          <button className="w-full mt-4 bg-blue-600 text-white py-2 rounded-lg">Place Order</button>
+          <p className="text-[#12B76A] text-sm">Get Free Shipping over RS. 2,559 Order</p>
+          <div className="flex justify-between mt-3">
+            <button className=" bg-[#D1FADF] text-[#12B76A] px-3 py-1 rounded-md text-sm">T&C</button>
+            <button className="bg-green-500 text-[#D1FADF] px-4 py-1 rounded-md text-sm">Apply</button>
+          </div>
+          <div className="absolute top-1/2 -left-3 w-5 h-5 bg-[#FCFCFC] border-r-4 border-green-500 rounded-full"></div>
+          <div className="absolute top-1/2 -right-3 w-5 h-5 bg-[#FCFCFC] border-l-4 border-green-500 rounded-full"></div>
+        </div>
+
+        <div className="border border-[#999] rounded-lg  mt-3 relative bg-[#F2F2F2] ">
+          <div className="flex justify-between items-center px-3 pt-3">
+            <span className="text-[#999] font-bold text-lg">Free Ship</span>
+            <span className="text-[#999] text-sm">Expire on 28 Nov 2024</span>
+          </div>
+          <p className="text-[#999] text-sm px-3 pb-3">Get Free Shipping over RS. 2,559 Order</p>
+          <div className="flex justify-between mt-3">
+          
+          <button className="bg-[#999] text-[#FCFCFC] px-4 py-1 rounded-md text-sm flex gap-2 items-center w-full"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <path d="M8.375 8.375L8.40917 8.35833C8.51602 8.30495 8.63594 8.2833 8.75472 8.29596C8.8735 8.30862 8.98616 8.35505 9.07937 8.42976C9.17258 8.50446 9.24242 8.60432 9.28064 8.71749C9.31885 8.83066 9.32384 8.95242 9.295 9.06833L8.705 11.4317C8.67595 11.5476 8.68078 11.6695 8.71891 11.7828C8.75704 11.8961 8.82687 11.9961 8.92011 12.071C9.01336 12.1458 9.12611 12.1923 9.245 12.205C9.36388 12.2177 9.4839 12.196 9.59083 12.1425L9.625 12.125M16.5 9C16.5 9.98491 16.306 10.9602 15.9291 11.8701C15.5522 12.7801 14.9997 13.6069 14.3033 14.3033C13.6069 14.9997 12.7801 15.5522 11.8701 15.9291C10.9602 16.306 9.98491 16.5 9 16.5C8.01509 16.5 7.03982 16.306 6.12987 15.9291C5.21993 15.5522 4.39314 14.9997 3.6967 14.3033C3.00026 13.6069 2.44781 12.7801 2.0709 11.8701C1.69399 10.9602 1.5 9.98491 1.5 9C1.5 7.01088 2.29018 5.10322 3.6967 3.6967C5.10322 2.29018 7.01088 1.5 9 1.5C10.9891 1.5 12.8968 2.29018 14.3033 3.6967C15.7098 5.10322 16.5 7.01088 16.5 9ZM9 5.875H9.00667V5.88167H9V5.875Z" stroke="#FCFCFC" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> This voucher is not applicable on selected items</button>
+          </div>
+          <div className="absolute top-1/2 -left-3 w-5 h-5 bg-[#FCFCFC] border-r-4 border-green-500 rounded-full"></div>
+          <div className="absolute top-1/2 -right-3 w-5 h-5 bg-[#FCFCFC] border-l-4 border-green-500 rounded-full"></div>
+        </div>
+      </div>
+
+      {/* Bank Offers */}
+      <div className="mt-6">
+        <h3 className="font-semibold text-lg">Bank Offers</h3>
+
+        <div className="border flex border-[#2E90FA] rounded-lg mt-3 relative bg-[#D1E9FF] ">
+        <div className='p-3 flex flex-col justify-center'>
+        <span className="text-[#175CD3] font-bold text-lg ">10% OFF</span>
+        <span className="text-[#175CD3] text-sm">No Min Spend</span>
+        </div>
+         <div className='flex flex-col items-center justify-between relative mx-3'>
+           <div className="absolute -top-3  w-5 h-5 bg-[#FCFCFC] border-b-4 border-[#2E90FA] rounded-full"></div>
+           <div className='w-px h-full border-dashed border-l-[1px] border-[#0BA5EC]'></div>
+           <div className="absolute -bottom-3  w-5 h-5 bg-[#FCFCFC] border-t-4 border-[#2E90FA] rounded-full"></div>
+         </div>
+          <div className="flex justify-between p-3 items-end">
+            
+          <div className="flex flex-col justify-between mt-3">
+          <span className="text-[#175CD3] text-sm">Bank Of Punjab</span>
+            <p className="text-[#175CD3] text-sm">Extra 15% off. Applied automatically at checkout.</p>
+          <p className="text-[#175CD3] text-xs">From: 26/11/2024 | To: 28/11/2024</p>
+          </div>
+          <button className="bg-[#F5FAFF] text-[#2E90FA] px-3 py-1 rounded-md text-sm">T&C</button>
+          </div>
+          
+          
+        </div>
+      </div>
+
+    </div>
+    
+          </div>
         </div>
       )}
-      
-      <div className="flex justify-between mt-4">
-        {currentPage > 1 && (
-          <button onClick={prevPage} className="text-blue-500 flex items-center">
-            <span className="mr-1">&#x276E;</span> Back
-          </button>
-        )}
-        {currentPage < 3 && (
-          <button onClick={nextPage} className="text-blue-500 flex items-center">
-            Next <span className="ml-1">&#x276F;</span>
-          </button>
-        )}
+      {/* Order Details */}
+      <div className="flex justify-between p-5">
+      <div className="">
+<h3 className="text-lg font-semibold text-black mb-1">
+          Total : <span className="text-[#002882]">PKR 20,000</span>
+        </h3>
+        <p className="text-xs text-gray-500">Tax Excluded, add if applicable.</p>
       </div>
+
+     <div>
+      <NavLink to='/ThankYouPage'>
+      <FormButton className=" bg-[#002882] text-white py-2 rounded-md text-lg font-semibold">
+        Place Order
+      </FormButton>
+      </NavLink>
+    
+     </div>
+     
+      </div>
+     
+    </div>
     </div>
  </div>
-    </div>
+
+</div>
    
 
 
