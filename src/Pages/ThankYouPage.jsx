@@ -16,8 +16,8 @@ function ThankYouPage() {
         <div className='bg-[#FCFCFC] md:px-6 lg:px-15 2xl:px-32 py-9'>
           
         <div className="flex flex-col items-center justify-center relative p-6 border-b border-[#F2F2F2] md:border-b-0 w-full md:max-w-sm mx-auto bg-white md:bg-transparent">
-        <img src={thankyounimation} className='absolute left-[-8%] z-0' alt="" />
-        <img src={thankyounimation} className='absolute right-[-8%]' alt="" />
+        <img src={thankyounimation} className='absolute left-0 md:left-[-8%] z-0' alt="" />
+        <img src={thankyounimation} className='absolute right-0 md:right-[-8%]' alt="" />
       <h2 className="text-red-500 flex items-center gap-1 2xl:text-xl font-medium">
         <span><svg xmlns="http://www.w3.org/2000/svg" className='h-6 w-6 2xl:w-8 2xl:h-8' viewBox="0 0 37 36" fill="none">
   <path d="M7.25284 6.75005C12.501 4.12655 16.8153 7.31255 18.5028 9.56255C20.1903 7.31255 24.5047 4.12655 29.7528 6.75005C36.5028 10.1251 34.8153 18.5626 29.7528 23.6251C27.2823 26.0956 22.932 30.4459 19.7505 32.8658C19.3951 33.1358 18.9591 33.2781 18.5128 33.2697C18.0666 33.2613 17.6362 33.1028 17.2912 32.8197C14.3741 30.4651 9.68847 26.0607 7.25284 23.6251C2.19034 18.5626 0.502844 10.1251 7.25284 6.75005Z" fill="#F8312F"/>

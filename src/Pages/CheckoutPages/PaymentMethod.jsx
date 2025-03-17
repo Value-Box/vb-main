@@ -11,12 +11,40 @@ import cashondelivery from "/src/Images/cashondelivery.svg";
 import buynowlater from "/src/Images/buynowlater.svg";
 import Input from '../../Components/Input';
 import Select from '../../Components/Select';
+import { Link } from 'react-router-dom';
 
 function PaymentMethod() {
     const [selectedMethod, setSelectedMethod] = useState('');
     const [paymentMethod,setPaymentMethod]=useState(true)
     const [cardDetail,setCardDetail]=useState(false)
     const [installmentPayment,setInstallmentPayment]=useState(false)
+
+      const [imageFront, setImageFront] = useState(null);
+      const [imageBack, setImageBack] = useState(null);
+    
+      const handleImageChange = (event, setImage) => {
+        const file = event.target.files[0];
+        const allowedTypes = ["image/png", "image/jpeg", "image/jpg", "application/pdf"];
+
+        if (file) {
+          if(allowedTypes.includes(file.type)){
+            if(file.size<=500000){
+              setImage(URL.createObjectURL(file));
+            }else{
+              alert('Please upload an image smaller than 500KB.')
+            }
+          }else{
+            alert('Please upload a JPEG, PNG, JPG, or PDF file.')
+          }
+          
+          
+        }
+        console.log(file.size)
+      };
+    
+      const removeImage = (setImage) => {
+        setImage(null); // Remove the selected image
+      };
 
     const paymentOptions = [
         { id: 1, name: "Easypaisa", icon: easypaisa },
@@ -36,9 +64,9 @@ function PaymentMethod() {
 
   return (
     <>
-    {paymentMethod&& <div className="bg-[#F2F2F2] shadow-md flex flex-col h-[94vh] justify-between ">
+    {paymentMethod&& <div className="relative bg-[#F2F2F2] shadow-md flex flex-col min-h-[94vh] justify-between ">
       <div className='flex flex-col gap-2'>
-      <div className='bg-[#FCFCFC] flex items-center gap-2 py-2 '>
+      <Link to="/Checkout" className='bg-[#FCFCFC] flex items-center gap-2 py-2 '>
       <svg xmlns="http://www.w3.org/2000/svg" width="36" height="37" viewBox="0 0 36 37" fill="none">
   <path d="M21 12.5L15 18.5L21 24.5" stroke="#333333" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
@@ -48,7 +76,7 @@ function PaymentMethod() {
   <path d="M6 8.5C6.26522 8.5 6.51957 8.39464 6.70711 8.20711C6.89464 8.01957 7 7.76522 7 7.5C7 7.23478 6.89464 6.98043 6.70711 6.79289C6.51957 6.60536 6.26522 6.5 6 6.5C5.73478 6.5 5.48043 6.60536 5.29289 6.79289C5.10536 6.98043 5 7.23478 5 7.5C5 7.76522 5.10536 8.01957 5.29289 8.20711C5.48043 8.39464 5.73478 8.5 6 8.5ZM9 4C9.26522 4 9.51957 4.10536 9.70711 4.29289C9.89464 4.48043 10 4.73478 10 5V10C10 10.2652 9.89464 10.5196 9.70711 10.7071C9.51957 10.8946 9.26522 11 9 11H3C2.73478 11 2.48043 10.8946 2.29289 10.7071C2.10536 10.5196 2 10.2652 2 10V5C2 4.73478 2.10536 4.48043 2.29289 4.29289C2.48043 4.10536 2.73478 4 3 4H3.5V3C3.5 2.33696 3.76339 1.70107 4.23223 1.23223C4.70107 0.763392 5.33696 0.5 6 0.5C6.3283 0.5 6.65339 0.564664 6.95671 0.690301C7.26002 0.815938 7.53562 1.00009 7.76777 1.23223C7.99991 1.46438 8.18406 1.73998 8.3097 2.04329C8.43534 2.34661 8.5 2.6717 8.5 3V4H9ZM6 1.5C5.60218 1.5 5.22064 1.65804 4.93934 1.93934C4.65804 2.22064 4.5 2.60218 4.5 3V4H7.5V3C7.5 2.60218 7.34196 2.22064 7.06066 1.93934C6.77936 1.65804 6.39782 1.5 6 1.5Z" fill="#12B76A"/>
 </svg>  Your Payment information is safe with us</p>
       </div>
-      </div>
+      </Link>
       <div className="bg-[#D1E9FF] text-[#175CD3] text-sm p-2 flex gap-1 items-center">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
   <path d="M8 1C6.61553 1 5.26216 1.41054 4.11101 2.17971C2.95987 2.94888 2.06266 4.04213 1.53285 5.32122C1.00303 6.6003 0.86441 8.00776 1.13451 9.36563C1.4046 10.7235 2.07129 11.9708 3.05026 12.9497C4.02922 13.9287 5.2765 14.5954 6.63437 14.8655C7.99224 15.1356 9.3997 14.997 10.6788 14.4672C11.9579 13.9373 13.0511 13.0401 13.8203 11.889C14.5895 10.7378 15 9.38447 15 8C15 6.14348 14.2625 4.36301 12.9497 3.05025C11.637 1.7375 9.85652 1 8 1ZM8 4C8.14834 4 8.29334 4.04399 8.41668 4.1264C8.54002 4.20881 8.63615 4.32594 8.69291 4.46299C8.74968 4.60003 8.76453 4.75083 8.73559 4.89632C8.70665 5.0418 8.63522 5.17544 8.53033 5.28033C8.42544 5.38522 8.29181 5.45665 8.14632 5.48559C8.00083 5.51453 7.85004 5.49968 7.71299 5.44291C7.57595 5.38614 7.45881 5.29001 7.3764 5.16668C7.29399 5.04334 7.25 4.89834 7.25 4.75C7.25 4.55109 7.32902 4.36032 7.46967 4.21967C7.61033 4.07902 7.80109 4 8 4ZM10 12.0625H6V10.9375H7.4375V8.0625H6.5V6.9375H8.5625V10.9375H10V12.0625Z" fill="#175CD3"/>
@@ -176,14 +204,14 @@ function PaymentMethod() {
         </label>
      
       </div>
-      <div className="flex justify-between items-center shadow-[0px_-3px_6px_rgba(0,0,0,0.1)] mt-4 bg-white p-3">
+      <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-between items-center shadow-[0px_-3px_6px_rgba(0,0,0,0.1)] mt-4 bg-white p-3">
         <p className="text-lg font-semibold">Total: <span className="text-[#002882]">PKR 20,000</span></p>
         <button className="bg-[#002882] text-white px-6 py-2 rounded-md">Pay Now</button>
       </div>
     </div>}
 
     {cardDetail && <div>
-      <button className='bg-[#FCFCFC] flex items-center w-full gap-2 py-2' onClick={()=>{setPaymentMethod(true);setCardDetail(false);}}>
+      <button className='bg-[#FCFCFC] relative flex items-center w-full gap-2 py-2' onClick={()=>{setPaymentMethod(true);setCardDetail(false);}}>
       <svg xmlns="http://www.w3.org/2000/svg" width="36" height="37" viewBox="0 0 36 37" fill="none">
   <path d="M21 12.5L15 18.5L21 24.5" stroke="#333333" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
@@ -194,7 +222,7 @@ function PaymentMethod() {
 </svg>  Your Payment information is safe with us</p>
       </div>
       </button>
-      <div className='flex flex-col justify-between h-[88vh]'>
+      <div className='flex flex-col justify-between min-h-[88vh]'>
       <div className='p-3'>
           <div className='flex mt-1 gap-2'>
             <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
@@ -228,7 +256,7 @@ function PaymentMethod() {
 </label>
       </div>
       </div>
-      <div className="flex justify-between items-center shadow-[0px_-3px_6px_rgba(0,0,0,0.1)] mt-4 bg-white p-3">
+      <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-between items-center shadow-[0px_-3px_6px_rgba(0,0,0,0.1)] mt-4 bg-white p-3">
         <p className="text-lg font-semibold">Total: <span className="text-[#002882]">PKR 20,000</span></p>
         <button className="bg-[#002882] text-white px-6 py-2 rounded-md">Pay Now</button>
       </div>
@@ -236,7 +264,7 @@ function PaymentMethod() {
       
       </div>}
     {installmentPayment && <div>
-      <button className='bg-[#FCFCFC] flex items-center w-full gap-2 py-2' onClick={()=>{setPaymentMethod(true);setCardDetail(false);}}>
+      <button className='bg-[#FCFCFC] flex items-center w-full gap-2 py-2' onClick={()=>{setPaymentMethod(true);setInstallmentPayment(false);}}>
       <svg xmlns="http://www.w3.org/2000/svg" width="36" height="37" viewBox="0 0 36 37" fill="none">
   <path d="M21 12.5L15 18.5L21 24.5" stroke="#333333" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
@@ -244,7 +272,7 @@ function PaymentMethod() {
       <h2 className="text-lg font-semibold text-start">Add Details</h2>
       </div>
       </button>
-      <div className='flex flex-col justify-between h-[88vh]'>
+      <div className='relative flex flex-col justify-between min-h-screen'>
       <form action="" className='p-4'>
 
       <div>
@@ -281,7 +309,7 @@ function PaymentMethod() {
         <p className="block mb-1">
           Upload ID Front Side<span className="text-[#EEA500]">*</span>
         </p>
-        <Input id='frontSidePic' type="file" placeholder='XXXXX-XXXXXXX-X' className="hidden" />
+        <Input id='frontSidePic' onChange={(e) => handleImageChange(e, setImageFront)} type="file" placeholder='XXXXX-XXXXXXX-X' className="hidden" />
         <label htmlFor='frontSidePic' className="border-2 border-[#EEA500] rounded-lg p-3 flex items-center gap-2 justify-center cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
   <g clip-path="url(#clip0_7286_120186)">
@@ -297,8 +325,19 @@ function PaymentMethod() {
           <span className="text-[#002882] font-medium">Upload Image</span>
         </label>
         <p className="text-gray-500 text-sm mt-1">
-          Image format should be JPEG, PNG, JPG, PDF and less than 2MB
+          Image format should be JPEG, PNG, JPG, PDF and less than 500KB
         </p>
+        {imageFront && (
+          <div className="relative w-32 h-32 mt-3">
+            <img src={imageFront} alt="Front Preview" className="w-full h-full rounded-md object-cover border border-gray-300" />
+            <button
+              className="absolute -top-2 -right-2 bg-[#002882] text-white w-6 h-6 rounded-full flex items-center justify-center shadow-md hover:bg-[#002882]"
+              onClick={() => removeImage(setImageFront)}
+            >
+              ✖
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Upload ID Back Side */}
@@ -306,7 +345,7 @@ function PaymentMethod() {
         <p className="block mb-1">
           Upload ID Back Side<span className="text-[#EEA500]">*</span>
         </p>
-        <Input id='backSidePic' type="file" placeholder='XXXXX-XXXXXXX-X' className="hidden" />
+        <Input id='backSidePic' type="file" onChange={(e) => handleImageChange(e, setImageBack)} placeholder='XXXXX-XXXXXXX-X' className="hidden" />
         <label htmlFor='backSidePic' className="border-2 border-[#EEA500] rounded-lg p-3 flex items-center gap-2 justify-center cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
   <g clip-path="url(#clip0_7286_120186)">
@@ -322,8 +361,19 @@ function PaymentMethod() {
           <span className="text-[#002882] font-medium">Upload Image</span>
         </label>
         <p className="text-gray-500 text-sm mt-1">
-          Image format should be JPEG, PNG, JPG, PDF and less than 2MB
+          Image format should be JPEG, PNG, JPG, PDF and less than 500KB
         </p>
+        {imageBack && (
+          <div className="relative w-32 h-32 mt-3">
+            <img src={imageBack} alt="Front Preview" className="w-full h-full rounded-md object-cover border border-gray-300" />
+            <button
+              className="absolute -top-2 -right-2 bg-[#002882] text-white w-6 h-6 rounded-full flex items-center justify-center shadow-md hover:bg-[#002882]"
+              onClick={() => removeImage(setImageBack)}
+            >
+              ✖
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Note */}
@@ -345,7 +395,7 @@ function PaymentMethod() {
       </div>
     </div>
       </form>
-      <div className="flex justify-between items-center shadow-[0px_-3px_6px_rgba(0,0,0,0.1)] mt-4 bg-white p-3">
+      <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-between items-center shadow-[0px_-3px_6px_rgba(0,0,0,0.1)] mt-4 bg-white p-3">
         <p className="text-lg font-semibold">Total: <span className="text-[#002882]">PKR 20,000</span></p>
         <button className="bg-[#002882] text-white px-6 py-2 rounded-md">Pay Now</button>
       </div>

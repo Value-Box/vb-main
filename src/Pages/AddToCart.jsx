@@ -884,7 +884,7 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
           
         ))}
 
-<div className=' bg-gradient-to-b from-[#FFE09E] to-[#FFFCF4]] p-3 '>
+<div className=' bg-gradient-to-b from-[#FFE09E] to-[#FFFCF4] p-3 '>
            <div className='flex items-center gap-1.5 '>
            <CheckBox id='expressDelItems' checked={cartData.every(store => 
         store.items.filter(item => item.delivery === "Express").every(item => item.checked)

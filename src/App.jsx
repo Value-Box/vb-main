@@ -23,6 +23,7 @@ const ThankYouPage=lazy(()=>import("./Pages/ThankYouPage"))
 const BundleDealPage=lazy(()=>import("./Pages/Deals/BundleDealPage"))
 const FlashDealPage=lazy(()=>import("./Pages/Deals/FlashDealPage"))
 const OneDollarShopePage=lazy(()=>import("./Pages/Deals/OneDollarShopePage"))
+const Orders=lazy(()=>import("./Pages/Orders"))
 
 const Layout=()=>{
   const location=useLocation()
@@ -51,6 +52,7 @@ const Layout=()=>{
           <Route path="/PickUpPoints" element={<PickUpPoints/>} />
           <Route path="/PaymentMethod" element={<PaymentMethod/>} />
           <Route path="/ThankYouPage" element={<ThankYouPage/>} />
+          <Route path="/Orders" element={<Orders/>} />
 
         </Routes>
         {isLogin?'':<Footer />}
