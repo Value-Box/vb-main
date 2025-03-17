@@ -1,3 +1,17 @@
+:root {
+  --secondary-color-mon-yellow-gradient-straight: linear-gradient(90deg, #FFC136 0%, #FAC142 19.76%, #FFD168 52.5%, #F5BC3A 77.13%, #E09B00 100%);
+  --primary-color-blue-gradient-straight: linear-gradient(90deg, #0032A3 0%, #1A51CB 25%, #3B66C8 50%, #1A51CB 75%, #0032A3 100%);
+  --Natural-Color-10: #F2F2F2;
+  --secondary-color-mon-yellow: #EEA500;
+  --Primary-Color-Dark-Blue: #002882;
+  --Primary-Color-Dark-Blue-10: #E6EAF3;
+  --Error-500: #F04438;
+  --Natural-color-black: #1A1A1A;
+  --Natural-color-gray: #999;
+  --Natural-color-gray-20: #CCC;
+}
+
+
 body{
     font-family: Sarabun;
 }
@@ -8,4 +22,101 @@ body{
 
 button{
   cursor: pointer;
+}
+
+.bg-yelow-gradient{
+  background-color: var(--secondary-color-mon-yellow-gradient-straight);
+}
+.text-yelow-gradient{
+  background: var(--secondary-color-mon-yellow-gradient-straight);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-blue-gradient{
+  background-color: var(--primary-color-blue-gradient-straight);
+}
+.text-blue-gradient{
+  background: var(--primary-color-blue-gradient-straight);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-natural-color{
+  color: var(--Natural-Color-10);
+}
+.bg-natural-color{
+  background-color: var(--Natural-Color-10);
+}
+.text-mon-yelow{
+  color: var(--secondary-color-mon-yellow);
+}
+.bg-mon-yelow{
+  background-color: var(--secondary-color-mon-yellow);
+}
+.text-dark-blue{
+  color: var(--Primary-Color-Dark-Blue);
+}
+.bg-dark-blue{
+  background-color: var(--Primary-Color-Dark-Blue);
+}
+.text-dark-blue-10{
+  color: var(--Primary-Color-Dark-Blue-10);
+}
+.bg-dark-blue-10{
+  background-color: var(--Primary-Color-Dark-Blue-10);
+}
+.text-error-500{
+  color: var(--Error-500);
+}
+.bg-error-500{
+  background-color: var(--Error-500);
+}
+.text-natural-black{
+  color: var(--Natural-color-black);
+}
+.bg-natural-black{
+  background-color: var(--Natural-color-black);
+}
+.text-natural-gray{
+  color: var(--Natural-color-gray);
+}
+.bg-natural-gray{
+  background-color: var(--Natural-color-gray);
+}
+.text-natural-gray-20{
+  color: var(--Natural-color-gray-20);
+}
+.bg-natural-gray-20{
+  background-color: var(--Natural-color-gray-20);
+}
+
+.border-natural-color {
+  border: 2px solid var(--Natural-Color-10);
+}
+
+.border-mon-yellow {
+  border: 2px solid var(--secondary-color-mon-yellow);
+}
+
+.border-dark-blue {
+  border: 2px solid var(--Primary-Color-Dark-Blue);
+}
+
+.border-dark-blue-10 {
+  border: 2px solid var(--Primary-Color-Dark-Blue-10);
+}
+
+.border-error-500 {
+  border: 2px solid var(--Error-500);
+}
+
+.border-natural-black {
+  border: 2px solid var(--Natural-color-black);
+}
+
+.border-natural-gray {
+  border: 2px solid var(--Natural-color-gray);
+}
+
+.border-natural-gray-20 {
+  border: 2px solid var(--Natural-color-gray-20);
 }

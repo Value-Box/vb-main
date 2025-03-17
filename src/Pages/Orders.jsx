@@ -488,8 +488,8 @@ const closeModal = () => setActiveModal(null);
         </div>
         
     </div>):(
-      <div>
-        <div className="flex space-x-6 py-2 overflow-x-auto overflow-y-hidden scrollbar-hidden">
+      <div className='overflow-hidden'>
+        <div className="flex space-x-6 py-2 overflow-x-auto overflow-y-hidden scrollbar-hidden w-[400px]">
       {tabs.map((tab) => (
         <button
           key={tab}
@@ -503,6 +503,20 @@ const closeModal = () => setActiveModal(null);
           {tab}
         </button>
       ))}
+    </div>
+
+    <div className="flex justify-between items-start border-b border-gray-300 py-3 px-4 w-full">
+      {/* Left Section (Order Details) */}
+      <div>
+        <h2 className="text-sm font-semibold text-gray-900">#PO-153-18926398341670452</h2>
+        <p className="text-xs text-gray-500 mt-1">Order split into 2 packages:</p>
+      </div>
+
+      {/* Right Section (Date & Amount) */}
+      <div className="text-right">
+        <p className="text-xs text-gray-500">Nov 4, 2024 at 17:45:00</p>
+        <p className="text-sm font-bold text-gray-900 mt-1">PKR 41,200</p>
+      </div>
     </div>
       </div>
     )}
