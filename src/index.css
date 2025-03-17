@@ -88,3 +88,35 @@ button{
 .bg-natural-gray-20{
   background-color: var(--Natural-color-gray-20);
 }
+
+.border-natural-color {
+  border: 2px solid var(--Natural-Color-10);
+}
+
+.border-mon-yellow {
+  border: 2px solid var(--secondary-color-mon-yellow);
+}
+
+.border-dark-blue {
+  border: 2px solid var(--Primary-Color-Dark-Blue);
+}
+
+.border-dark-blue-10 {
+  border: 2px solid var(--Primary-Color-Dark-Blue-10);
+}
+
+.border-error-500 {
+  border: 2px solid var(--Error-500);
+}
+
+.border-natural-black {
+  border: 2px solid var(--Natural-color-black);
+}
+
+.border-natural-gray {
+  border: 2px solid var(--Natural-color-gray);
+}
+
+.border-natural-gray-20 {
+  border: 2px solid var(--Natural-color-gray-20);
+}
