@@ -47,8 +47,8 @@ function AccountSideBar() {
           </svg>) },
       ];
   return (
-    <div className='sticky top-[8%] w-max lg:w-[280px]'>
-        <div className=" bg-white rounded-lg border border-[#CCC]">
+    <div className='sticky top-[8%] w-[280px]'>
+        <div className=" bg-white rounded-lg border border-[#F2F2F2]">
       {/* Account Section */}
       <h2 className="text-xl font-semibold mb-4 px-4 mt-4">Account</h2>
       <div className='bg-[#F2F2F2] h-[2px] my-5 w-[90%] mx-auto '></div>
@@ -72,7 +72,7 @@ function AccountSideBar() {
       {/* Mobile App Section */}
      
     </div>
-    <div className="mt-5 bg-white  rounded-lg text-center border border-[#CCC] p-4">
+    <div className="mt-5 bg-white  rounded-lg text-center border border-[#F2F2F2] p-4">
         <h3 className="text-md font-semibold mb-2">ValueBox Mobile App</h3>
         <p className="text-gray-500 text-sm">Shop Anywhere, Anytime</p>
         <div className="w-20 h-20 bg-gray-300 mx-auto my-3"></div>

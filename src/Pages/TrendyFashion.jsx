@@ -110,8 +110,7 @@ const images = [TFcard1, TFcard2, TFcard3, TFcard4, TFcard5];
 function TrendyFashion() {
   
 
-  
-  const [currentIndex, setCurrentIndex] = useState(0);
+   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
     if (currentIndex > 0) {

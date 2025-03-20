@@ -26,10 +26,9 @@ const FlashDealPage=lazy(()=>import("./Pages/Deals/FlashDealPage"))
 const OneDollarShopePage=lazy(()=>import("./Pages/Deals/OneDollarShopePage"))
 const Orders=lazy(()=>import("./Pages/Orders"))
 const OrderDetails=lazy(()=>import("./Pages/OrderDetails"))
-const PackageDetail=lazy(()=>import("./Pages/Orders/PackageDetail"))
-const FindParcel=lazy(()=>import("./Pages/Orders/FindParcel"))
-const MyProfile=lazy(()=>import("./Pages/MyProfile"))
-const Reviews=lazy(()=>import("./Pages/Reviews"))
+const Recipt=lazy(()=>import("./Pages/Recipt"))
+const ShareOrder=lazy(()=>import("./Pages/ShareOrder"))
+
 
 const Layout=()=>{
   const location=useLocation()
@@ -60,10 +59,8 @@ const Layout=()=>{
           <Route path="/ThankYouPage" element={<ThankYouPage/>} />
           <Route path="/Orders" element={<Orders/>} />
           <Route path="/OrderDetails" element={<OrderDetails/>} />
-          <Route path="/PackageDetail" element={<PackageDetail/>} />
-          <Route path="/FindParcel" element={<FindParcel/>} />
-          <Route path="/MyProfile" element={<MyProfile/>} />
-          <Route path="/Reviews" element={<Reviews/>} />
+          <Route path="/Recipt" element={<Recipt/>} />
+          <Route path="/ShareOrder" element={<ShareOrder/>} />
 
         </Routes>
         {isLogin?'':<Footer />}
