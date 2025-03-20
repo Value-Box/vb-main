@@ -32,6 +32,8 @@ const Reviews=lazy(()=>import("./Pages/Reviews"))
 const PackageDetail=lazy(()=>import("./Pages/Orders/PackageDetail"))
 const FindParcel=lazy(()=>import("./Pages/Orders/FindParcel"))
 const MyProfile=lazy(()=>import("./Pages/MyProfile"))
+const EditReview=lazy(()=>import("./Pages/EditReview"))
+
 
 const Layout=()=>{
   const location=useLocation()
@@ -68,6 +70,7 @@ const Layout=()=>{
           <Route path="/FindParcel" element={<FindParcel/>} />
           <Route path="/MyProfile" element={<MyProfile/>} />
           <Route path="/Reviews" element={<Reviews/>} />
+          <Route path="/EditReview" element={<EditReview/>} />
 
         </Routes>
         {isLogin?'':<Footer />}
