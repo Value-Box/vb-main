@@ -594,9 +594,11 @@ function OrderDetails() {
         <div className="w-full bg-white shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.10),0px_2px_4px_-2px_rgba(16,24,40,0.06)]">
       {/* Search Bar */}
       <div className="flex items-center p-4 pr-6 ">
-       <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <NavLink to="/Orders">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
   <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
+      </NavLink>
         <div className="relative flex-1 items-center">
           <span className="absolute left-3 top-3 text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
   <path d="M10.3536 9.64645C10.1583 9.45118 9.84171 9.45118 9.64645 9.64645C9.45118 9.84171 9.45118 10.1583 9.64645 10.3536L10.3536 9.64645ZM13.6464 14.3536C13.8417 14.5488 14.1583 14.5488 14.3536 14.3536C14.5488 14.1583 14.5488 13.8417 14.3536 13.6464L13.6464 14.3536ZM6.66667 10.8333C4.36548 10.8333 2.5 8.96785 2.5 6.66667H1.5C1.5 9.52014 3.8132 11.8333 6.66667 11.8333V10.8333ZM2.5 6.66667C2.5 4.36548 4.36548 2.5 6.66667 2.5V1.5C3.8132 1.5 1.5 3.8132 1.5 6.66667H2.5ZM6.66667 2.5C8.96785 2.5 10.8333 4.36548 10.8333 6.66667H11.8333C11.8333 3.8132 9.52014 1.5 6.66667 1.5V2.5ZM10.8333 6.66667C10.8333 8.96785 8.96785 10.8333 6.66667 10.8333V11.8333C9.52014 11.8333 11.8333 9.52014 11.8333 6.66667H10.8333ZM9.64645 10.3536L13.6464 14.3536L14.3536 13.6464L10.3536 9.64645L9.64645 10.3536Z" fill="#1A1A1A"/>
@@ -686,14 +688,16 @@ function OrderDetails() {
         {/* Package 02 */}
         <div className="border border-[#F2F2F2] p-2 rounded-lg flex justify-between items-center">
           <div>
-          <div className="text-sm font-semibold flex items-center">
+      <NavLink to="/PackageDetail"> <div className="text-sm font-semibold flex items-center">
       <span className="text-[12px]">Package 02</span>
       <span className="border-l border-gray-300 px-1 ml-1 text-[#002882] text-[12px]">Standard</span>
       <span className="border-l border-gray-300 px-1 text-[12px]">Pending</span>
       <span className=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
   <path d="M6.66602 5.33329L9.33268 7.99996L6.66602 10.6666" stroke="#1A1A1A" stroke-width="1.06667" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></span>
-    </div>
+        </div>
+        </NavLink> 
+        
             <p className="text-xs text-gray-500">Estimated Delivery on Nov 13 - Nov 21</p>
           </div>
           <div className="flex space-x-2">
@@ -1083,9 +1087,9 @@ function OrderDetails() {
    
     <div className="flex justify-between items-center px-5 py-2.5 text-[16px] font-medium ">
     <span>#PO-153-18926398341670452</span>
-   <span className="flex items-center text-[14px]">Order Details <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+ <NavLink to="/Orders"><span className="flex items-center text-[14px]" >Order Details <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
   <path d="M15 24L21 18L15 12" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></span>
+</svg></span></NavLink>  
     </div>
     </div>
     <div className="w-full flex flex-col gap-5 mb-5 p-5  bg-white shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.10),0px_2px_4px_-2px_rgba(16,24,40,0.06)]">
@@ -1112,6 +1116,7 @@ function OrderDetails() {
         fee, estimated delivery date, or any free shipping promotions.
       </p>
     </div>
+    <NavLink to="/PackageDetail">
     {trackingData.map((data) => (
         <div key={data.id} className="bg-white rounded-lg border border-gray-300">
           {/* Header */}
@@ -1156,6 +1161,8 @@ function OrderDetails() {
        
         </div>
       ))}
+    </NavLink>
+   
     </div>
   
 
