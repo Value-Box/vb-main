@@ -2,6 +2,7 @@
   --secondary-color-mon-yellow-gradient-straight: linear-gradient(90deg, #FFC136 0%, #FAC142 19.76%, #FFD168 52.5%, #F5BC3A 77.13%, #E09B00 100%);
   --primary-color-blue-gradient-straight: linear-gradient(90deg, #0032A3 0%, #1A51CB 25%, #3B66C8 50%, #1A51CB 75%, #0032A3 100%);
   --Natural-Color-10: #F2F2F2;
+  --Natural-Color-0: #FCFCFC;
   --secondary-color-mon-yellow: #EEA500;
   --Primary-Color-Dark-Blue: #002882;
   --Primary-Color-Dark-Blue-10: #E6EAF3;
@@ -25,7 +26,7 @@ button{
 }
 
 .bg-yelow-gradient{
-  background-color: var(--secondary-color-mon-yellow-gradient-straight);
+  background: var(--secondary-color-mon-yellow-gradient-straight);
 }
 .text-yelow-gradient{
   background: var(--secondary-color-mon-yellow-gradient-straight);
@@ -46,10 +47,10 @@ button{
 .bg-natural-color{
   background-color: var(--Natural-Color-10);
 }
-.text-mon-yelow{
+.text-mon-yellow{
   color: var(--secondary-color-mon-yellow);
 }
-.bg-mon-yelow{
+.bg-mon-yellow{
   background-color: var(--secondary-color-mon-yellow);
 }
 .text-dark-blue{
@@ -88,35 +89,44 @@ button{
 .bg-natural-gray-20{
   background-color: var(--Natural-color-gray-20);
 }
+.text-natural-0{
+  color: var(--Natural-Color-0);
+}
+.bg-natural-0{
+  background-color: var(--Natural-Color-0);
+}
 
 .border-natural-color {
-  border: 2px solid var(--Natural-Color-10);
+  border-color: var(--Natural-Color-10);
 }
 
 .border-mon-yellow {
-  border: 2px solid var(--secondary-color-mon-yellow);
+  border-color: var(--secondary-color-mon-yellow);
 }
 
 .border-dark-blue {
-  border: 2px solid var(--Primary-Color-Dark-Blue);
+  border-color: var(--Primary-Color-Dark-Blue);
 }
 
 .border-dark-blue-10 {
-  border: 2px solid var(--Primary-Color-Dark-Blue-10);
+  border-color: var(--Primary-Color-Dark-Blue-10);
 }
 
 .border-error-500 {
-  border: 2px solid var(--Error-500);
+  border-color: var(--Error-500);
 }
 
 .border-natural-black {
-  border: 2px solid var(--Natural-color-black);
+  border-color: var(--Natural-color-black);
 }
 
 .border-natural-gray {
-  border: 2px solid var(--Natural-color-gray);
+  border-color: var(--Natural-color-gray);
 }
 
 .border-natural-gray-20 {
-  border: 2px solid var(--Natural-color-gray-20);
+  border-color: var(--Natural-color-gray-20);
+}
+.border-natural-0 {
+  border-color: var(--Natural-Color-0);
 }

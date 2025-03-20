@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import { authAPI, getToken } from "./hooks/authAPI";
 import { HashRouter  as Router, Route, Routes, useLocation } from "react-router-dom";
 
+
 const Navbar=lazy(()=>import("./Components/Headers/Navbar"))
 const Footer=lazy(()=>import("./Components/Footer"))
 const Home=lazy(()=>import("./Pages/Home"))
@@ -25,6 +26,10 @@ const FlashDealPage=lazy(()=>import("./Pages/Deals/FlashDealPage"))
 const OneDollarShopePage=lazy(()=>import("./Pages/Deals/OneDollarShopePage"))
 const Orders=lazy(()=>import("./Pages/Orders"))
 const OrderDetails=lazy(()=>import("./Pages/OrderDetails"))
+const PackageDetail=lazy(()=>import("./Pages/Orders/PackageDetail"))
+const FindParcel=lazy(()=>import("./Pages/Orders/FindParcel"))
+const MyProfile=lazy(()=>import("./Pages/MyProfile"))
+const Reviews=lazy(()=>import("./Pages/Reviews"))
 
 const Layout=()=>{
   const location=useLocation()
@@ -55,6 +60,10 @@ const Layout=()=>{
           <Route path="/ThankYouPage" element={<ThankYouPage/>} />
           <Route path="/Orders" element={<Orders/>} />
           <Route path="/OrderDetails" element={<OrderDetails/>} />
+          <Route path="/PackageDetail" element={<PackageDetail/>} />
+          <Route path="/FindParcel" element={<FindParcel/>} />
+          <Route path="/MyProfile" element={<MyProfile/>} />
+          <Route path="/Reviews" element={<Reviews/>} />
 
         </Routes>
         {isLogin?'':<Footer />}
