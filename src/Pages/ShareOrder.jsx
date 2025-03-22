@@ -7,6 +7,7 @@ import circleImage from "/src/Images/circleimage.png";
 import AccountSideBar from '../Components/AccountSideBar'
 import CheckBox from '../Components/CheckBox';
 import DetailProductCard from '../Components/Cards/DetailProductCard';
+import { NavLink } from 'react-router-dom';
 
 
 const products = [
@@ -83,17 +84,17 @@ function ShareOrder() {
 
   return (
     <>
-      <div className="w-full p-7.5 bg-[#FCFCFC] hidden md:flex">
+      <div className="w-full  md:p-7.5 p-0 bg-[#FCFCFC] ">
     <div className="flex flex-col md:flex-row gap-10 w-full">
         {/* Left Section - Sidebar */}
-  <div className="">
+  <div className="hidden md:flex">
     <AccountSideBar />
   </div>
   <div className="w-full flex-1 space-y-5">
     {/* Main Content */}
     <main className=" flex flex-col gap-5">
       {/* Order Summary Section */}
-      <div className="text-center flex flex-col gap-5">
+      <div className="text-center flex flex-col gap-5 hidden md:flex">
       <h2 className="text-[36px] font-semibold">Share your order</h2>
       <div className="flex justify-center gap-4">
         {/* Instagram Button */}
@@ -146,10 +147,36 @@ function ShareOrder() {
         </button>
       </div>
     </div>
+    <div className="w-full  flex flex-col md:hidden bg-white shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.10),0px_2px_4px_-2px_rgba(16,24,40,0.06)]">
+      {/* Search Bar */}
+      <div className="flex items-center p-4 pr-6 ">
+      <NavLink to="/OrderDetails">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+      </NavLink>
+        <div className="relative flex-1 items-center">
+          <span className="absolute left-3 top-3 text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <path d="M10.3536 9.64645C10.1583 9.45118 9.84171 9.45118 9.64645 9.64645C9.45118 9.84171 9.45118 10.1583 9.64645 10.3536L10.3536 9.64645ZM13.6464 14.3536C13.8417 14.5488 14.1583 14.5488 14.3536 14.3536C14.5488 14.1583 14.5488 13.8417 14.3536 13.6464L13.6464 14.3536ZM6.66667 10.8333C4.36548 10.8333 2.5 8.96785 2.5 6.66667H1.5C1.5 9.52014 3.8132 11.8333 6.66667 11.8333V10.8333ZM2.5 6.66667C2.5 4.36548 4.36548 2.5 6.66667 2.5V1.5C3.8132 1.5 1.5 3.8132 1.5 6.66667H2.5ZM6.66667 2.5C8.96785 2.5 10.8333 4.36548 10.8333 6.66667H11.8333C11.8333 3.8132 9.52014 1.5 6.66667 1.5V2.5ZM10.8333 6.66667C10.8333 8.96785 8.96785 10.8333 6.66667 10.8333V11.8333C9.52014 11.8333 11.8333 9.52014 11.8333 6.66667H10.8333ZM9.64645 10.3536L13.6464 14.3536L14.3536 13.6464L10.3536 9.64645L9.64645 10.3536Z" fill="#1A1A1A"/>
+</svg></span>
+          <input
+            type="text"
+            placeholder="Order ID, product or store name"
+            className="w-full pl-10 pr-4 py-2 rounded-full border focus:outline-none"
+          />
+        </div>
+    </div>
+    <hr className="border-t-[1px] border-[#F2F2F2]" />
+   
+    <div className="flex flex-col items-center gap-1 px-5 py-2.5 text-[18px] font-medium ">
+   <span className='text-[18px] '>Share your Order</span>
+   <span className='text-sm text-[#999]'>Deselect any details you don’t want to share</span>
     
+    </div>
+         </div>
 <div className="flex flex-col gap-3">
       {/* Left Section - Payment Details */}
-      <div className="bg-white p-6 rounded-lg border border-[#F2F2F2] flex flex-col gap-5">
+      <div className="bg-white md:p-6 p-2.5 rounded-lg border border-[#F2F2F2] flex flex-col md:gap-5 gap-3">
       {/* Logo */}
       <div className="flex justify-center">
       <h1 className="text-2xl font-bold">
@@ -163,7 +190,7 @@ function ShareOrder() {
 
       {/* Order Summary Title */}
       <hr className="border-t-[1px] border-[#F2F2F2] " />
-    <div className=" flex flex-col gap-5">
+    <div className=" flex flex-col md:gap-5 gap-2.5">
       {/* Header */}
       <div className="flex justify-between items-center ">
         <h3 className="text-lg font-semibold">Order Summary</h3>
@@ -182,11 +209,11 @@ function ShareOrder() {
       {/* Shipping */}
       <div className="flex justify-between items-center ">
         <p className="text-gray-600">Shipping:</p>
-        <p className="text-green-600 font-medium">FREE</p>
+       <p className="text-green-600 font-medium">FREE</p>
       </div>
     </div>
     <hr className="border-t-[1px] border-[#F2F2F2] " />
-    <div className="flex flex-col gap-5 ">
+    <div className="flex flex-col md:gap-5 gap-2.5 ">
       {/* Header */}
       <div className="flex justify-between items-center gap-5">
         <h3 className="text-lg font-semibold">Shipping info</h3>
@@ -218,7 +245,7 @@ function ShareOrder() {
     {items.map((item) => (
       <div
         key={item.id}
-        className="flex items-center bg-[#FCFCFC] border border-[#F2F2F2] p-4 rounded-lg"
+        className="flex items-center md:bg-[#FCFCFC] md:border border-b-1 border-[#F2F2F2] md:p-4 p-2 rounded-lg"
       >
         {/* Image */}
         <img
@@ -228,18 +255,27 @@ function ShareOrder() {
         />
 
         {/* Product Details */}
-        <div className="ml-4 flex-1 flex flex-col gap-2">
-          <div className="flex items-center space-x-2">
-            {item.deal && (
-            <span className="bg-gradient-to-r from-red-600 to-orange-500 text-white text-xs px-2 py-1 rounded">
+        <div className="ml-4 flex-1 flex flex-col justify-between gap-2">
+         <div className="flex items-center space-x-2 justify-between">
+          <div  className='flex'>
+          {item.deal && (
+            <span className="md:flex hidden bg-gradient-to-r from-red-600 to-orange-500 text-white text-xs px-2 py-1 rounded">
             {item.deal}
           </span>
           
             )}
-            <p className="text-sm font-medium">{item.name}</p>
+            <p className="md:text-sm text-[12px] font-medium">{item.name}</p>
           </div>
-          <p className="text-gray-500 text-xs">{item.color}</p>
+          
+            <CheckBox />   
+          </div>
+          <div className='flex justify-between'>
+          <p className="text-gray-500 md:text-xs text-[12px]">{item.color}</p>
+          <p className="text-gray-500 md:text-sm text-[12px]">{item.qty}</p>
+          </div>
+        
            {/* Brand with Circular Image */}
+           <div className='flex justify-between'> 
     <div className="flex items-center gap-2">
       <img
         src={item.brandImg} // 👈 Brand Image dynamically render ho raha hai
@@ -248,24 +284,15 @@ function ShareOrder() {
       />
       <p className="text-xs">{item.brand}</p>
     </div>
-        </div>
-
-        {/* Quantity & Price */}
-        <div className="text-right flex flex-col gap-2">
-        <div className="flex justify-end">
-    <CheckBox />
-  </div>
-          <p className="text-gray-500 text-sm">{item.qty}</p>
-          <p className="text-lg font-semibold">{item.price}</p>
-
-        </div>
+      <p className="text-lg font-semibold">{item.price}</p>
+    </div>
+   </div>
+      {/* Quantity & Price */}
+        <hr />
       </div>
     ))}
   </div>
-
-  
-
-</div>
+ </div>
     </div>
  </div>
    </main>
@@ -274,6 +301,17 @@ function ShareOrder() {
     </div>
     
    </div>
+   <div className="fixed bottom-0 left-0 w-full z-50 p-5 border border-white bg-white md:hidden flex">
+   
+    <button className="w-full flex items-center justify-center gap-2 rounded-[5px] text-white py-3 bg-[#002882]">
+    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+  <path d="M3.625 10.625V15.625C3.625 15.9565 3.7567 16.2745 3.99112 16.5089C4.22554 16.7433 4.54348 16.875 4.875 16.875H16.125C16.4565 16.875 16.7745 16.7433 17.0089 16.5089C17.2433 16.2745 17.375 15.9565 17.375 15.625V10.625M10.5 12.5V2.1875M14.25 5.625L10.5 1.875L6.75 5.625" stroke="#FCFCFC" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+    Share Order
+  </button>
+   
+ 
+</div>
    <div className='flex flex-wrap py-10 bg-[#FCFCFC]'>
    <DetailProductCard products={products} style={`flex-wrap justify-center `}/>
    </div>
