@@ -2,9 +2,6 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import { authAPI, getToken } from "./hooks/authAPI";
 import { HashRouter  as Router, Route, Routes, useLocation } from "react-router-dom";
 
-
-
-
 const Navbar=lazy(()=>import("./Components/Headers/Navbar"))
 const Footer=lazy(()=>import("./Components/Footer"))
 const Home=lazy(()=>import("./Pages/Home"))
@@ -37,7 +34,7 @@ const MyProfile=lazy(()=>import("./Pages/MyProfile"))
 const EditReview=lazy(()=>import("./Pages/EditReview"))
 const CouponOffers=lazy(()=>import("./Pages/CouponOffers"))
 const BrowsingHistory =lazy(()=>import("./Pages/BrowsingHistory "))
-const PaymentMethodPage =lazy(()=>import("./Pages/PaymentMethodPage"))
+const ShippingAddress =lazy(()=>import("./Pages/ShippingAddress"))
 
 
 const Layout=()=>{
@@ -78,7 +75,7 @@ const Layout=()=>{
           <Route path="/EditReview" element={<EditReview/>} />
           <Route path="/CouponOffers" element={<CouponOffers/>} />
           <Route path="/BrowsingHistory" element={<BrowsingHistory/>} />
-          <Route path="/PaymentMethodPage" element={<PaymentMethodPage/>} />
+          <Route path="/ShippingAddress" element={<ShippingAddress/>} />
 
         </Routes>
         {isLogin?'':<Footer />}
