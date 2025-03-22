@@ -1,0 +1,2 @@
+import{j as i}from"./index-BlamLMfv.js";function f({type:r,placeholder:e,name:t,value:n="",onChange:o,className:s="",id:u=""}){return i.jsx("input",{id:u,name:t,type:r,value:n,onChange:o,placeholder:e,className:`w-full flex px-4 py-2 items-center gap-3 self-stretch rounded-md border border-gray-300
+        bg-white text-gray-700 focus:outline-none focus:ring-0 focus:ring-gray-400 ${s}`})}export{f as I};
