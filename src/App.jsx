@@ -33,6 +33,7 @@ const PackageDetail=lazy(()=>import("./Pages/Orders/PackageDetail"))
 const FindParcel=lazy(()=>import("./Pages/Orders/FindParcel"))
 const MyProfile=lazy(()=>import("./Pages/MyProfile"))
 const EditReview=lazy(()=>import("./Pages/EditReview"))
+const CouponOffers=lazy(()=>import("./Pages/CouponOffers"))
 
 
 const Layout=()=>{
@@ -71,6 +72,7 @@ const Layout=()=>{
           <Route path="/MyProfile" element={<MyProfile/>} />
           <Route path="/Reviews" element={<Reviews/>} />
           <Route path="/EditReview" element={<EditReview/>} />
+          <Route path="/CouponOffers" element={<CouponOffers/>} />
 
         </Routes>
         {isLogin?'':<Footer />}

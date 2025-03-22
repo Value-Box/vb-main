@@ -287,7 +287,8 @@ function OrderDetails() {
     {packages.map((pkg) => (
       <div key={pkg.id} className="bg-white p-5 rounded-[5px] border-1 border-[#F2F2F2] w-full">
         {/* Package Header */}
-        <div className="flex items-center justify-between mb-2">
+      <NavLink to="/PackageDetail">
+      <div className="flex items-center justify-between mb-2">
           <p className="font-medium">Package 01</p>
           <p
             className={`text-sm font-medium flex ${
@@ -299,6 +300,8 @@ function OrderDetails() {
 </svg>
           </p>
         </div>
+        </NavLink>  
+     
         <hr className="border-t-[1px] border-[#CCD1D2] mb-3" />
         {/* Product Images - Full Width Inside Container */}
         <div className="grid grid-cols-3 gap-2 w-full">
@@ -396,9 +399,9 @@ function OrderDetails() {
 
         {/* Right: Action Buttons */}
         <div className=" flex flex-col space-y-2 w-1/5">
-          <button className="bg-[#002882] text-white px-6 py-2 rounded-lg">
+        <NavLink to="/PackageDetail" ><button className="bg-[#002882] w-full text-white px-6 py-2 rounded-lg">
             Track Order
-          </button>
+          </button></NavLink>
           <button className="border border-[#002882] text-[#002882] px-6 py-2 rounded-lg">
             Edit Address
           </button>
@@ -618,9 +621,12 @@ function OrderDetails() {
     ) : (
     <span>Order Paid Successfully</span>
     )}
-    <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+   <NavLink to="/ShareOrder">
+   <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M3.75 12.75V18.75C3.75 19.1478 3.90804 19.5294 4.18934 19.8107C4.47064 20.092 4.85218 20.25 5.25 20.25H18.75C19.1478 20.25 19.5294 20.092 19.8107 19.8107C20.092 19.5294 20.25 19.1478 20.25 18.75V12.75M12 15V2.625M16.5 6.75L12 2.25L7.5 6.75" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg></button>
+    </NavLink> 
+   
     </div>
          </div>
          <div className="w-full flex flex-col gap-5 bg-[#FFF] shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.10),0px_2px_4px_-2px_rgba(16,24,40,0.06)] px-5 py-2.5">
