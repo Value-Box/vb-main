@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 function AccountSideBar() {
         const [activeItem, setActiveItem] = useState("All Orders");
-        
+        const location=useLocation()
       const menuItems = [
         { name: "All Orders", icon: (<svg xmlns="http://www.w3.org/2000/svg" className='w-5 lg:w-6' viewBox="0 0 24 24" fill="none">
             <path d="M17 4.00024H7C5.89543 4.00024 5 4.89567 5 6.00024V19.0002C5 20.1048 5.89543 21.0002 7 21.0002H17C18.1046 21.0002 19 20.1048 19 19.0002V6.00024C19 4.89567 18.1046 4.00024 17 4.00024Z" stroke="#1A1A1A" strokeWidth="1.5"/>
@@ -46,6 +46,18 @@ function AccountSideBar() {
             <path d="M19.936 8.00002H20.998C21.5285 8.00002 22.0372 8.21074 22.4123 8.58581C22.7873 8.96088 22.998 9.46959 22.998 10V14C22.998 14.5305 22.7873 15.0392 22.4123 15.4142C22.0372 15.7893 21.5285 16 20.998 16H19.936C19.6925 17.9334 18.7516 19.7114 17.29 21.0003C15.8285 22.2891 13.9467 23.0002 11.998 23V21C13.5893 21 15.1155 20.3679 16.2407 19.2427C17.3659 18.1174 17.998 16.5913 17.998 15V9.00002C17.998 7.40872 17.3659 5.8826 16.2407 4.75738C15.1155 3.63216 13.5893 3.00002 11.998 3.00002C10.4067 3.00002 8.88062 3.63216 7.75541 4.75738C6.63019 5.8826 5.99805 7.40872 5.99805 9.00002V16H2.99805C2.46761 16 1.95891 15.7893 1.58383 15.4142C1.20876 15.0392 0.998047 14.5305 0.998047 14V10C0.998047 9.46959 1.20876 8.96088 1.58383 8.58581C1.95891 8.21074 2.46761 8.00002 2.99805 8.00002H4.06005C4.30408 6.06692 5.24513 4.2893 6.70662 3.0007C8.16811 1.7121 10.0496 1.0011 11.998 1.0011C13.9465 1.0011 15.828 1.7121 17.2895 3.0007C18.751 4.2893 19.692 6.06692 19.936 8.00002ZM2.99805 10V14H3.99805V10H2.99805ZM19.998 10V14H20.998V10H19.998ZM7.75805 15.785L8.81805 14.089C9.77108 14.6862 10.8734 15.0019 11.998 15C13.1227 15.0019 14.225 14.6862 15.178 14.089L16.238 15.785C14.9674 16.5813 13.4976 17.0025 11.998 17C10.4985 17.0025 9.02872 16.5813 7.75805 15.785Z" fill="#1A1A1A"/>
           </svg>) },
       ];
+      const ordersPages = [
+        "orders",
+        "findparcel",
+        "receipt",
+        "shareorder",
+        "packagedetail",
+        "orderdetail"
+      ];
+    
+      // Extract pathname or hash-based route
+      const currentPath = location.pathname + location.hash; // Handle both cases
+      console.log("Current Path:", currentPath); // Debugging
   return (
     <div className='sticky top-[8%] w-[280px]'>
         <div className=" bg-white rounded-lg border border-[#F2F2F2]">
@@ -53,28 +65,35 @@ function AccountSideBar() {
       <h2 className="text-xl font-semibold mb-4 px-4 mt-4">Account</h2>
       <div className='bg-[#F2F2F2] h-[2px] my-5 w-[90%] mx-auto '></div>
       <ul className="space-y-2 pb-6">
-        {menuItems.map((item) => (
-           <Link to={item.link}>
+        {menuItems.map((item) => {
+          const isActive =
+          currentPath.includes(item.link) ||
+          (item.name === "Orders" &&
+            ordersPages.some((page) => currentPath.includes(page)));
+            console.log(isActive)
+          return(
+            <Link to={item.link}>
           
-        <li
-            key={item.name}
-            onClick={() => setActiveItem(item.name)}
-            className={`flex items-center space-x-2 p-2 cursor-pointer transition space-y-2 mb-2  ${
-              activeItem === item.name
-                ? "bg-[#E6EAF3] border-l-[5px] border-[#002882] "
-                : "border-l-[5px] border-white"
-            }`}
-          >
+            <li
+                key={item.name}
+                onClick={() => setActiveItem(item.name)}
+                className={`flex items-center space-x-2 p-2 cursor-pointer transition space-y-2 mb-2  ${
+                  isActive
+                    ? "bg-[#E6EAF3] border-l-[5px] border-[#002882] "
+                    : "border-l-[5px] border-white"
+                }`}
+              >
+            
+             <div className='flex items-center space-x-2 cursor-pointer'>
+             <span>{item.icon}</span>
+             <span className="text-sm lg:text-base">{item.name}</span>
+              </div>
         
-         <div className='flex items-center space-x-2 cursor-pointer'>
-         <span>{item.icon}</span>
-         <span className="text-sm lg:text-base">{item.name}</span>
-          </div>
-    
- 
-          </li>
-          </Link>
-        ))}
+     
+              </li>
+              </Link>
+          )
+        })}
       </ul>
 
       {/* Mobile App Section */}
