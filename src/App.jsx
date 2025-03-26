@@ -37,14 +37,13 @@ const CouponOffers=lazy(()=>import("./Pages/CouponOffers"))
 const FollowedAndProvider=lazy(()=>import("./Pages/FollowedAndProvider"))
 const ShippingAddress=lazy(()=>import("./Pages/ShippingAddress"))
 const SellerStore=lazy(()=>import("./Pages/SellerStore"))
-
-
 const BrowsingHistory =lazy(()=>import("./Pages/BrowsingHistory "))
 const YourPaymentMethod =lazy(()=>import("./Pages/YourPaymentMethod"))
 const AccountSecurity =lazy(()=>import("./Pages/AccountSecurity"))
 const Notification =lazy(()=>import("./Pages/Notification"))
 const SearchPage =lazy(()=>import("./Pages/SearchPage"))
 const CompanyPolicy =lazy(()=>import("./Pages/CompanyPolicy"))
+const MobCategories =lazy(()=>import("./Pages/MobCategories"))
 
 const Layout=()=>{
   const location=useLocation()
@@ -94,6 +93,7 @@ const Layout=()=>{
           <Route path="/Notification" element={<Notification/>} />
           <Route path="/SearchPage" element={<SearchPage/>} />
           <Route path="/CompanyPolicy" element={<CompanyPolicy/>} />
+          <Route path="/MobCategories" element={<MobCategories/>} />
 
         </Routes>
         {isLogin?'':<Footer />}
