@@ -220,7 +220,7 @@ function OrderDetails() {
 
   return (
     <>
-      <div className="w-full p-7.5 bg-[#FCFCFC] hidden md:flex ">
+      <div className="w-full p-10 bg-[#FCFCFC] hidden md:flex ">
      
       <div className="flex flex-col md:flex-row gap-10 w-full">
   {/* Left Section - Sidebar */}
@@ -1177,9 +1177,9 @@ function OrderDetails() {
 
          
          {!showTrackOrder && !showPaymentDetails ? (
-  <div className="flex flex-wrap py-10 bg-[#FCFCFC]">
-    <DetailProductCard products={products} style="flex-wrap justify-center" />
-  </div>
+  <div className=" bg-[#FCFCFC] py-10 px-10">
+  <DetailProductCard products={products} style="flex-wrap justify-center !px-0 sm:px-0" />
+</div>
 ) : showTrackOrder ? (
   <span></span>
 ) : showPaymentDetails ? (
