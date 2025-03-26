@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from "react";
 import AccountSideBar from '../Components/AccountSideBar'
+import { NavLink } from 'react-router-dom';
+
 export default function CouponOffers() {
  
  
@@ -16,12 +18,28 @@ export default function CouponOffers() {
     
   return (
     <>
+
+<div className="w-full flex flex-col md:hidden bg-white shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.10),0px_2px_4px_-2px_rgba(16,24,40,0.06)]">
+      {/* Search Bar */}
+      <div className="flex items-center p-4 pr-6 ">
+      <NavLink to="/OrderDetails">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+      </NavLink>
+        <div className="relative flex-1 items-center">
+       <span className='text-[18px]'>Coupons & Offers</span>
+        </div>
+    </div>
+   
+    </div>    
       <div className="w-full md:p-7.5 p-5 bg-[#FCFCFC] ">
     <div className="flex flex-col md:flex-row gap-10  w-full">
         {/* Left Section - Sidebar */}
   <div className="hidden md:flex">
     <AccountSideBar />
   </div>
+ 
   <div className="w-full flex-1 md:space-y-7.5 space-y-5">
     {/* Main Content */}
   <div className='flex justify-between items-center'>

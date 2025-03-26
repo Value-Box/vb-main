@@ -935,9 +935,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
        <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
        {formOpen ? (  
       
-      <div className="bg-[#F
-      
-      CFCFC] p-6 rounded-lg shadow-lg w-[1000px] max-w-full min-h-[700px] flex flex-col gap-5 relative">
+      <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[1000px] max-w-full min-h-[700px] flex flex-col gap-5 relative">
       <h2 className="text-[24px] font-semibold mb-4">Add New Address</h2>
     
       {/* Location Type */}
