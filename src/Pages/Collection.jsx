@@ -234,7 +234,7 @@ function Collection() {
   </button>
 </div>
 {/* Product Grid */}
-<div className="flex flex-wrap gap-3 mt-6 mb-6 px-2 md:px-4 max-w-[1920px] mx-auto">
+<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-2 sm:gap-4 mt-6 mb-6 px-2 md:px-4 max-w-[1920px] mx-auto">
         
         <DetailProductCard2 products={filteredProducts} loadProducts={loadProducts} />
 

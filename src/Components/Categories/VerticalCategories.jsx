@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function VerticalCategories() {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,7 +96,7 @@ export default function VerticalCategories() {
       
       {/* Button for mobile */}
       <button
-        className="bg-[#002882] text-[#E6EAF3] flex gap-2 w-max p-1 rounded-lg"
+        className="hidden sm:flex bg-[#002882] text-[#E6EAF3] gap-2 w-max p-1 rounded-lg"
         onClick={() => {
           if (window.innerWidth < 640) {
             setIsOpen((prev) => !prev);
@@ -112,6 +113,16 @@ export default function VerticalCategories() {
           />
         </svg>
       </button>
+      <Link to="/MobCategories" className="flex sm:hidden bg-[#002882] text-[#E6EAF3] gap-2 w-max p-1 rounded-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M5 17L19 17M5 12H19M5 7L13 7"
+            stroke="#E6EAF3"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg></Link>
 
       {/* Dropdown Menu */}
       <div
@@ -168,7 +179,7 @@ export default function VerticalCategories() {
       </div>
 
 
-      <div
+      {/* <div
   className={`fixed inset-0 z-[9999] duration-400 ${
     sidebarOpen ? "opacity-100 visible" : "opacity-0 delay-100 invisible"
   }`}
@@ -191,10 +202,7 @@ export default function VerticalCategories() {
 <div className="w-[30%]"
     onClick={(e) => e.stopPropagation()} // Prevent closing sidebar when clicking inside
   >
-    {/* Close Button */}
-    
 
-    {/* Sidebar Content */}
     <div className="block sm:hidden">
       {verticleCategory.map((items, index) =>
         subCategory === index ? (
@@ -225,7 +233,7 @@ export default function VerticalCategories() {
 
   </div>
 </div>
-</div>
+</div> */}
 
 
 

@@ -34,13 +34,14 @@ const FindParcel=lazy(()=>import("./Pages/Orders/FindParcel"))
 const MyProfile=lazy(()=>import("./Pages/MyProfile"))
 const EditReview=lazy(()=>import("./Pages/EditReview"))
 const CouponOffers=lazy(()=>import("./Pages/CouponOffers"))
+const ShippingAddress=lazy(()=>import("./Pages/ShippingAddress"))
 const BrowsingHistory =lazy(()=>import("./Pages/BrowsingHistory "))
-const ShippingAddress =lazy(()=>import("./Pages/ShippingAddress"))
 const YourPaymentMethod =lazy(()=>import("./Pages/YourPaymentMethod"))
 const AccountSecurity =lazy(()=>import("./Pages/AccountSecurity"))
 const Notification =lazy(()=>import("./Pages/Notification"))
 const SearchPage =lazy(()=>import("./Pages/SearchPage"))
 const CompanyPolicy =lazy(()=>import("./Pages/CompanyPolicy"))
+const MobCategories =lazy(()=>import("./Pages/MobCategories"))
 const FollowedAndProvider=lazy(()=>import("./Pages/FollowedAndProvider"))
 const SellerStore=lazy(()=>import("./Pages/SellerStore"))
 
@@ -84,6 +85,9 @@ const Layout=()=>{
           <Route path="/Reviews" element={<Reviews/>} />
           <Route path="/EditReview" element={<EditReview/>} />
           <Route path="/CouponOffers" element={<CouponOffers/>} />
+          <Route path="/FollowedAndProvider" element={<FollowedAndProvider/>}/>
+          <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
+          <Route path="/SellerStore" element={<SellerStore/>}/>
           <Route path="/BrowsingHistory" element={<BrowsingHistory/>} />
           <Route path="/ShippingAddress" element={<ShippingAddress/>} />
           <Route path="/YourPaymentMethod" element={<YourPaymentMethod/>} />
@@ -91,6 +95,7 @@ const Layout=()=>{
           <Route path="/Notification" element={<Notification/>} />
           <Route path="/SearchPage" element={<SearchPage/>} />
           <Route path="/CompanyPolicy" element={<CompanyPolicy/>} />
+          <Route path="/MobCategories" element={<MobCategories/>} />
 
           <Route path="/FollowedAndProvider" element={<FollowedAndProvider/>}/>
           <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
