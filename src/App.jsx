@@ -41,9 +41,11 @@ const AccountSecurity =lazy(()=>import("./Pages/AccountSecurity"))
 const Notification =lazy(()=>import("./Pages/Notification"))
 const SearchPage =lazy(()=>import("./Pages/SearchPage"))
 const CompanyPolicy =lazy(()=>import("./Pages/CompanyPolicy"))
+const MobCategories =lazy(()=>import("./Pages/MobCategories"))
 const FollowedAndProvider=lazy(()=>import("./Pages/FollowedAndProvider"))
 const SellerStore=lazy(()=>import("./Pages/SellerStore"))
-const MobCategories =lazy(()=>import("./Pages/MobCategories"))
+
+
 
 const Layout=()=>{
   const location=useLocation()
