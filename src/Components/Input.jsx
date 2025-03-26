@@ -1,9 +1,9 @@
 
-function Input({ type, placeholder, name,value='', onChange ,className='',id=''}) {
+function Input({ type, placeholder, name,value='',checked='', onChange ,className='',id=''}) {
     return (
       <input
         id={id}
-        name={name}
+        name={name} checked={checked}
         type={type}
         value={value} onChange={onChange}
         placeholder={placeholder}

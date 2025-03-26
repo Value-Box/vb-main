@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { authAPI, getToken } from "./hooks/authAPI";
 import { HashRouter  as Router, Route, Routes, useLocation } from "react-router-dom";
-
+import ScrollToTop from "./ScrollToTop";
 
 const Navbar=lazy(()=>import("./Components/Headers/Navbar"))
 const Footer=lazy(()=>import("./Components/Footer"))
@@ -34,8 +34,14 @@ const FindParcel=lazy(()=>import("./Pages/Orders/FindParcel"))
 const MyProfile=lazy(()=>import("./Pages/MyProfile"))
 const EditReview=lazy(()=>import("./Pages/EditReview"))
 const CouponOffers=lazy(()=>import("./Pages/CouponOffers"))
+const BrowsingHistory =lazy(()=>import("./Pages/BrowsingHistory "))
+const ShippingAddress =lazy(()=>import("./Pages/ShippingAddress"))
+const YourPaymentMethod =lazy(()=>import("./Pages/YourPaymentMethod"))
+const AccountSecurity =lazy(()=>import("./Pages/AccountSecurity"))
+const Notification =lazy(()=>import("./Pages/Notification"))
+const SearchPage =lazy(()=>import("./Pages/SearchPage"))
+const CompanyPolicy =lazy(()=>import("./Pages/CompanyPolicy"))
 const FollowedAndProvider=lazy(()=>import("./Pages/FollowedAndProvider"))
-const ShippingAddress=lazy(()=>import("./Pages/ShippingAddress"))
 const SellerStore=lazy(()=>import("./Pages/SellerStore"))
 
 
@@ -49,6 +55,7 @@ const Layout=()=>{
       <>
       {isLogin?<LoginNavbar/>:<Navbar />}
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/LoginSignup" element={<LoginSignup />} />
           <Route path="/DealsPage" element={<DealsPage />} />
@@ -77,6 +84,14 @@ const Layout=()=>{
           <Route path="/Reviews" element={<Reviews/>} />
           <Route path="/EditReview" element={<EditReview/>} />
           <Route path="/CouponOffers" element={<CouponOffers/>} />
+          <Route path="/BrowsingHistory" element={<BrowsingHistory/>} />
+          <Route path="/ShippingAddress" element={<ShippingAddress/>} />
+          <Route path="/YourPaymentMethod" element={<YourPaymentMethod/>} />
+          <Route path="/AccountSecurity" element={<AccountSecurity/>} />
+          <Route path="/Notification" element={<Notification/>} />
+          <Route path="/SearchPage" element={<SearchPage/>} />
+          <Route path="/CompanyPolicy" element={<CompanyPolicy/>} />
+
           <Route path="/FollowedAndProvider" element={<FollowedAndProvider/>}/>
           <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
           <Route path="/SellerStore" element={<SellerStore/>}/>
@@ -94,6 +109,7 @@ const Layout=()=>{
     return (
       <Suspense>
       <Router>
+      <ScrollToTop/>
         <Layout />
       </Router>
       </Suspense>

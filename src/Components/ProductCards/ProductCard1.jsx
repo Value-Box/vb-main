@@ -6,43 +6,147 @@ import {Link} from 'react-router-dom'
 
 
 function ProductCard1() {
-    const[currentIndex,setCurrentIndex]=useState(0)
+    const[loadMore,setLoadMore]=useState(5)
+    const [activeCategory,setActiveCategory]=useState('All')
+    const categories=[
+      
+          {
+              "id": 1,
+              "name": "Clothing",
+              "parentID": null,
+              "imagepath": null
+          },
+          {
+              "id": 2,
+              "name": "Mens Cloth",
+              "parentID": 1,
+              "imagepath": null
+          },
+          {
+              "id": 3,
+              "name": "Female Cloth",
+              "parentID": 1,
+              "imagepath": "/CollectionImages/Female Cloth-fc541a9d-c427-4034-9f82-32ea7164684c.png"
+          },
+          {
+              "id": 4,
+              "name": "Mens Casual",
+              "parentID": 2,
+              "imagepath": null
+          },
+          {
+              "id": 9,
+              "name": "Paints",
+              "parentID": 5,
+              "imagepath": null
+          },
+          {
+              "id": 10,
+              "name": "ygyg",
+              "parentID": null,
+              "imagepath": null
+          },
+          {
+              "id": 11,
+              "name": "Steel",
+              "parentID": null,
+              "imagepath": null
+          },
+          {
+              "id": 12,
+              "name": "Custom Bottle",
+              "parentID": 11,
+              "imagepath": null
+          },
+          {
+              "id": 13,
+              "name": "Water Bottle",
+              "parentID": 12,
+              "imagepath": null
+          },
+          {
+              "id": 1012,
+              "name": "Electronics",
+              "parentID": 11,
+              "imagepath": "/CollectionImages/Electronics-ec25dc43-b46b-49bc-9352-f81108547a65.jpg"
+          },
+          {
+              "id": 5,
+              "name": "Mens Formal",
+              "parentID": 2,
+              "imagepath": null
+          },
+          {
+              "id": 6,
+              "name": "Grocery",
+              "parentID": null,
+              "imagepath": null
+          },
+          {
+              "id": 7,
+              "name": "Atta",
+              "parentID": 6,
+              "imagepath": "/CollectionImages/Atta-f5ad628a-d175-4fdb-b95e-04e327e1f4e0.jpg"
+          },
+          {
+              "id": 8,
+              "name": "Fine Atta",
+              "parentID": null,
+              "imagepath": null
+          }
+        ]
 
-    const { response: proData, loading: proLoading, error: proError } = useFetchHomeProducts();
+    // const { response: proData, loading: proLoading, error: proError } = useFetchHomeProducts();
     const [Products, setProducts] = useState([]); // ✅ Empty array instead of null
-    
-    useEffect(() => {
-      if (proData?.data) {
-        console.log("Products:", proData);
-        setProducts(proData.data);
-      }
-    }, [proData]);
+    const [error, setError] = useState(null);
+    useEffect(()=>{
+      fetch("https://api.escuelajs.co/api/v1/products")
+      .then((res)=>res.json())
+      .then((result)=>{
+        setProducts(result)
+      })
+      .catch((err)=>{
+        setError(err)
+      })
+      
+    },[])
 
-    const { response: categoryData, loading: catLoading, error: catError } = useFetchHomeCategories();
+    // useEffect(() => {
+    //   if (proData?.data) {
+    //     console.log("Products:", proData);
+    //     setProducts(proData.data);
+    //   }
+    // }, [proData]);
+
+    // const { response: categoryData, loading: catLoading, error: catError } = useFetchHomeCategories();
     
-    const [category,setCategory]=useState([])
-    useEffect(() => {
-      if ( categoryData?.data) {
-        console.log("Setting Category Data:", categoryData);
-        setCategory(categoryData.data);
+    // const [category,setCategory]=useState([])
+    // useEffect(() => {
+    //   if ( categoryData?.data) {
+    //     console.log("Setting Category Data:", categoryData);
+    //     setCategory(categoryData.data);
         
-      }
-    }, [categoryData]); // ✅ `catLoading` ko bhi add kiya
+    //   }
+    // }, [categoryData]); // ✅ `catLoading` ko bhi add kiya
 
-    
-  const visibleItems = 10; // Ek sath kitne dikhane hain (Customize kar sakte ho)
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + visibleItems < category.length ? prevIndex + 1 : prevIndex
-    );
+  const catSlideRef  = useRef(null);
+  const catScrollLeft = () => {
+    if (catSlideRef.current) {
+      catSlideRef.current.scrollBy({ left: -150, behavior: "smooth" });
+    }
   };
   
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : prevIndex
-    );
+  const catScrollRight = () => {
+    if (catSlideRef.current) {
+      catSlideRef.current.scrollBy({ left: 150, behavior: "smooth" });
+    }
   };
   
+  const onDragCategoryScroll = (e) => {
+    if (e.buttons !== 1 || !catSlideRef.current) return;
+    catSlideRef.current.scrollLeft -= e.movementX;
+  };
+
   
   const items = [
     { text: "Welcome Deal", icon: "🎁" },
@@ -84,65 +188,72 @@ function ProductCard1() {
   return (
     <>
 
-<div className="bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] max-w-[1920px] relative w-full mx-auto overflow-hidden px-7 sm:px-[60px] py-1 sm:py-3"> 
- 
 
-  <div className="relative w-full overflow-hidden">
-    <div
-      className=" flex transition-transform duration-500 ease-in-out"
-      style={{
-        transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`, // ✅ Left & Right padding to prevent items from hitting edge
-      }}
-    >
-      {category.map((item, index) => (
-        <div
-          key={index}
-          className="flex-shrink-0 w-auto h-max px-2 xl:px-5 py-1 sm:py-2 flex items-center justify-center bg-[#FCFCFC] border-[#999] border rounded-full mx-1 sm:mx-2"
-          style={{ flex: `0 0 ${100 / visibleItems}%` }}
-        >
-          <span className="text-xs sm:text-sm lg:text-base w-max font-medium text-[#666]">{item.name}</span>
-        </div>
-      ))}
-    </div>
-  </div>
 
-  {/* ✅ Navigation Buttons */}
+<div className="sticky top-14 md:top-0 z-20 md:relative max-w-[1920px] mx-auto flex items-center mt-3 ">
+  {/* Left Scroll Button */}
   <button
-    onClick={prevSlide}
-    className="absolute left-1 sm:left-2 top-1/2 cursor-pointer transform -translate-y-1/2 bg-[#FCFCFC] border-[#999] border bg-opacity-50 text-white sm:p-2 rounded-full z-10"
+    onClick={catScrollLeft}
+    className="absolute left-2 z-10 hidden md:block bg-[#FCFCFC] border border-[#999] rounded-full p-1 2xl:p-2 shadow-md"
   >
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M14.2894 18.2929C13.8989 18.6834 13.2657 18.6834 12.8752 18.2929L7.98782 13.4006C7.20742 12.6195 7.20772 11.3537 7.98842 10.5729L12.8788 5.68254C13.2693 5.29202 13.9025 5.29202 14.293 5.68254C14.6836 6.07307 14.6836 6.70623 14.293 7.09676L10.1074 11.2824C9.71682 11.6729 9.71682 12.3061 10.1074 12.6966L14.2894 16.8787C14.68 17.2692 14.68 17.9023 14.2894 18.2929Z" fill="#999999"/>
-    </svg>
+  <path d="M14.2894 18.2929C13.8989 18.6834 13.2657 18.6834 12.8752 18.2929L7.98782 13.4006C7.20742 12.6195 7.20772 11.3537 7.98842 10.5729L12.8788 5.68254C13.2693 5.29202 13.9025 5.29202 14.293 5.68254C14.6836 6.07307 14.6836 6.70623 14.293 7.09676L10.1074 11.2824C9.71682 11.6729 9.71682 12.3061 10.1074 12.6966L14.2894 16.8787C14.68 17.2692 14.68 17.9023 14.2894 18.2929Z" fill="#999999"/>
+</svg>
   </button>
 
+  {/* Categories Scrollable Container */}
+  <div ref={catSlideRef} onMouseMove={onDragCategoryScroll}
+    className="flex overflow-x-auto space-x-2 2xl:space-x-4 px-2 md:px-12 scrollbar-hide bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] shadow py-3"
+  >
+    {categories.map((category, index) => (
+      <button
+        key={index}
+        onClick={() => setActiveCategory(category.name)}
+        className={`px-4 2xl:px-6 py-2 2xl:py-2 select-none text-sm 2xl:text-base rounded-full border 
+          font-medium whitespace-nowrap flex items-center ${
+          activeCategory === category.name
+            ? "bg-[#002882] text-white font-medium border-dark-blue"
+            : "bg-[#FCFCFC] text-gray-600 border-[#999]"
+        }`}
+      >
+        {category.name}
+      </button>
+    ))}
+  </div>
+
+  {/* Right Scroll Button */}
   <button
-    onClick={nextSlide}
-    className="absolute right-1 sm:right-2 top-1/2 cursor-pointer transform -translate-y-1/2 bg-[#FCFCFC] border-[#999] border bg-opacity-50 text-white sm:p-2 rounded-full z-10"
+    onClick={catScrollRight}
+    className="absolute right-2 z-10 hidden md:block bg-[#FCFCFC] border border-[#999] rounded-full p-1 2xl:p-2 shadow-md"
   >
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M9.71057 18.2929C10.1011 18.6834 10.7343 18.6834 11.1248 18.2929L16.0122 13.4006C16.7926 12.6195 16.7923 11.3537 16.0116 10.5729L11.1212 5.68254C10.7307 5.29202 10.0975 5.29202 9.70696 5.68254C9.31643 6.07307 9.31643 6.70623 9.70696 7.09676L13.8926 11.2824C14.2832 11.6729 14.2832 12.3061 13.8926 12.6966L9.71057 16.8787C9.32004 17.2692 9.32004 17.9023 9.71057 18.2929Z" fill="#999999"/>
-    </svg>
+  <path d="M9.71057 18.2929C10.1011 18.6834 10.7343 18.6834 11.1248 18.2929L16.0122 13.4006C16.7926 12.6195 16.7923 11.3537 16.0116 10.5729L11.1212 5.68254C10.7307 5.29202 10.0975 5.29202 9.70696 5.68254C9.31643 6.07307 9.31643 6.70623 9.70696 7.09676L13.8926 11.2824C14.2832 11.6729 14.2832 12.3061 13.8926 12.6966L9.71057 16.8787C9.32004 17.2692 9.32004 17.9023 9.71057 18.2929Z" fill="#999999"/>
+</svg>
   </button>
 </div>
 
     <div className="antialiased text-gray-900 max-w-[1920px] mx-auto ">
-  <div className="bg-[#FCFCFC] p-3 sm:p-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid xl:grid-cols-5 gap-5">
+  <div className="bg-[#FCFCFC] p-3 sm:p-5 2xl:p-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid xl:grid-cols-5 gap-3 2xl:gap-5">
   
       
-        {Products.map((items, index) => (
+        {Products.slice(0,loadMore).map((items, index) => (
           
 <div key={index} className="bg-white rounded-lg overflow-hidden duration-400 hover:shadow-lg group ">
       <div className="relative ">
-      <img
+      {/* <img
         className="h-48 w-full object-cover object-end"
         src={`http://182.176.166.222:8081${items.imagePath}`}
         alt="Home in Countryside"
+      /> */}
+      <img
+        className="h-48 w-full object-cover object-end"
+        src={items.images[0]}
+        alt="Home in Countryside"
       />
-      <Link className='flex items-center gap-1 bg-white px-3 py-2 whitespace-nowrap rounded-full absolute bottom-2 left-2  opacity-0 transition-opacity duration-300 group-hover:opacity-100' to="SingleProduct">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
-  <path d="M12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9ZM12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17ZM12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5Z" fill="#1A1A1A"/>
-</svg> See Preview</Link>
+      <Link className='flex items-center gap-1 text-sm 2xl:text-base bg-white px-3 py-1 2xl:py-2 whitespace-nowrap rounded-full absolute bottom-2 left-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100' to="/SingleProduct">
+            <svg xmlns="http://www.w3.org/2000/svg" className='w-4 2xl:w-5' viewBox="0 0 24 24" fill="none">
+        <path d="M12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9ZM12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17ZM12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5Z" fill="#1A1A1A"/>
+      </svg> See Preview</Link>
       </div>
       <div className="p-2 flex flex-col gap-2">
 
@@ -223,14 +334,14 @@ function ProductCard1() {
       <span className="bg-[#F04438] text-[13px] text-white flex justify-center items-center rounded-md px-[10px] py-[3px] gap-[10px]">
   Sale
 </span>
-        <span className="text-red-500 px-2">•</span> 
+        <span className="text-red-500 px-1 2xl:px-2">•</span> 
         <span className="bg-[#E6EAF3] text-[13px] text-black flex justify-center items-center rounded-md px-[10px] py-[3px]">
   Super<span className='text-[#33539B]'>Deal</span>
 </span>
-        <span className="text-red-500 px-2">•</span> 
-        <span className='flex flex-row items-center text-[13px] font-bold text-[#F04438]'><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <span className="text-red-500 px-1 2xl:px-2">•</span> 
+        <span className='flex flex-row items-center text-[10px] 2xl:text-[13px] font-bold text-[#F04438]'><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
   <path d="M7.5493 10.0003H5.4168C5.25211 10.0006 5.09119 10.0496 4.95431 10.1412C4.81744 10.2327 4.71073 10.3628 4.64763 10.5149C4.58454 10.667 4.56788 10.8344 4.59977 10.996C4.63165 11.1576 4.71065 11.3061 4.8268 11.4228L10.0001 16.667L15.1726 11.4228C15.2503 11.3456 15.3119 11.2538 15.354 11.1527C15.396 11.0516 15.4177 10.9432 15.4177 10.8337C15.4177 10.7242 15.396 10.6157 15.354 10.5146C15.3119 10.4135 15.2503 10.3217 15.1726 10.2445C15.0164 10.0882 14.8045 10.0004 14.5835 10.0003H12.5093C12.566 7.70866 12.981 5.20449 15.8335 3.33366H15.0001C11.1393 3.33366 7.9643 6.25033 7.5493 10.0003Z" fill="#F04438"/>
-</svg> Save 4,456</span>
+</svg>Save 4,456</span>
       </div>
 
       {animation}
@@ -255,8 +366,10 @@ function ProductCard1() {
   </div>
 
 </div>
-    <div className='flex justify-center'>
-    <LoadMoreButton className="bg-[#00171F] text-white "> Load More </LoadMoreButton>
+    <div className='flex justify-center mb-5'>
+    <LoadMoreButton className="bg-[#00171F] text-white " onClick={()=>setLoadMore(loadMore+5)}> Load More <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M19 8.5L12 15.5L5 8.5" stroke="#EEA500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></LoadMoreButton>
     </div>
    
     </>
