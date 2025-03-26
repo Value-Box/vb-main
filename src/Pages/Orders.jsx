@@ -11,6 +11,8 @@ import applepay from "/src/Images/applepay.svg";
 import googlepay from "/src/Images/googlepay.svg";
 import Input from '../Components/Input';
 import Select from '../Components/Select';
+import { Link } from 'react-router-dom';
+
 
 function Orders() {
     const [selectedOption, setSelectedOption] = useState("");
@@ -174,10 +176,10 @@ function Orders() {
             <p className="text-sm 2xl:text-base text-[#999]">Order Subtotal: <span className="text-[#1A1A1A] font-medium ml-1">PKR 41,200</span></p>
             </div>
             <p className='hidden xl:block bg-[#CCC] w-px self-stretch '></p>
-            <button className="text-base 2xl:text-lg text-[#002882] flex items-center ">View Order Details 
+            <Link className="text-base 2xl:text-lg text-[#002882] flex items-center" to="/OrderDetails">View Order Details 
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
   <path d="M12.5 10L17.5 15L12.5 20" stroke="#002882" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></button>
+</svg></Link>
           </div>
         
         </div>
