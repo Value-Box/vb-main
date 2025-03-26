@@ -34,15 +34,15 @@ const FindParcel=lazy(()=>import("./Pages/Orders/FindParcel"))
 const MyProfile=lazy(()=>import("./Pages/MyProfile"))
 const EditReview=lazy(()=>import("./Pages/EditReview"))
 const CouponOffers=lazy(()=>import("./Pages/CouponOffers"))
-const FollowedAndProvider=lazy(()=>import("./Pages/FollowedAndProvider"))
 const ShippingAddress=lazy(()=>import("./Pages/ShippingAddress"))
-const SellerStore=lazy(()=>import("./Pages/SellerStore"))
 const BrowsingHistory =lazy(()=>import("./Pages/BrowsingHistory "))
 const YourPaymentMethod =lazy(()=>import("./Pages/YourPaymentMethod"))
 const AccountSecurity =lazy(()=>import("./Pages/AccountSecurity"))
 const Notification =lazy(()=>import("./Pages/Notification"))
 const SearchPage =lazy(()=>import("./Pages/SearchPage"))
 const CompanyPolicy =lazy(()=>import("./Pages/CompanyPolicy"))
+const FollowedAndProvider=lazy(()=>import("./Pages/FollowedAndProvider"))
+const SellerStore=lazy(()=>import("./Pages/SellerStore"))
 const MobCategories =lazy(()=>import("./Pages/MobCategories"))
 
 const Layout=()=>{
@@ -95,6 +95,9 @@ const Layout=()=>{
           <Route path="/CompanyPolicy" element={<CompanyPolicy/>} />
           <Route path="/MobCategories" element={<MobCategories/>} />
 
+          <Route path="/FollowedAndProvider" element={<FollowedAndProvider/>}/>
+          <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
+          <Route path="/SellerStore" element={<SellerStore/>}/>
         </Routes>
         {isLogin?'':<Footer />}
       </>

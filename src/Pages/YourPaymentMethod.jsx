@@ -127,14 +127,14 @@ function YourPaymentMethod() {
             </div>
             </>
     ):(
-        <div className='sm:flex items-start gap-2 sm:gap-4 sm:p-4 sm:bg-natural-0'>
+        <div className='sm:flex items-start gap-2 sm:gap-10 sm:p-4 sm:bg-natural-0'>
         <div className='hidden md:block'><AccountSideBar/></div>
         <div className='w-full'>
             
-        <div className="sm:border border-natural-gray-20 p-3 sm:p-5 rounded-lg bg-white w-full">
+        <div className="sm:border border-[#F2F2F2] p-3 sm:p-5 rounded-lg bg-white w-full">
             <div className='hidden sm:flex items-center justify-between'>
             
-            <h1>Your payment methods</h1>
+            <h1 className='text-2xl font-semibold'>Your payment methods</h1>
             <button className="bg-dark-blue text-white px-4 py-2 rounded flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
   <path d="M15.0013 10.8334H10.8346V15.0001C10.8346 15.4584 10.4596 15.8334 10.0013 15.8334C9.54297 15.8334 9.16797 15.4584 9.16797 15.0001V10.8334H5.0013C4.54297 10.8334 4.16797 10.4584 4.16797 10.0001C4.16797 9.54175 4.54297 9.16675 5.0013 9.16675H9.16797V5.00008C9.16797 4.54175 9.54297 4.16675 10.0013 4.16675C10.4596 4.16675 10.8346 4.54175 10.8346 5.00008V9.16675H15.0013C15.4596 9.16675 15.8346 9.54175 15.8346 10.0001C15.8346 10.4584 15.4596 10.8334 15.0013 10.8334Z" fill="#FCFCFC"/>
 </svg> Add a new address</button>
@@ -277,7 +277,7 @@ function YourPaymentMethod() {
                    </div>
                  )}
 
-        <div className="hidden sm:flex items-start gap-10 border-natural-gray-20 mt-4 p-6 bg-white rounded-lg border">
+        <div className="hidden sm:flex items-start gap-10 border-[#F2F2F2] mt-4 p-6 bg-white rounded-lg border">
 <div className='w-full'>
 <h2 className="text-lg font-semibold mb-4">Add a new card</h2>
 <p className="text-[#12B76A] mb-5 hidden sm:flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

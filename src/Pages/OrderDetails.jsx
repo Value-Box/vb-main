@@ -7,7 +7,7 @@ import ODproduct1 from "/src/Images/ODproduct1.png";
 import ODproduct2 from "/src/Images/ODproduct2.png";
 import ODproduct3 from "/src/Images/ODproduct3.png";
 import Leopard from "/src/Images/Leopard.png";
-import DetailProductCard from '../Components/Cards/DetailProductCard';
+import DetailProductCard2 from '../Components/Cards/DetailProductCard';
 
 
 const products = [
@@ -233,7 +233,7 @@ function OrderDetails() {
     {/* Main Content */}
     <main className=" flex flex-col gap-10">
       {/* Order Summary Section */}
-      <div className="flex flex-col gap-3 p-4 rounded-lg">
+      <div className="flex flex-col gap-3 rounded-lg">
         <div className="flex justify-between">
         <h2 className="text-[30px] font-semibold">Order Placed Successfully</h2>
         <NavLink to="/ShareOrder"> <button className="ml-2 text-black px-5 py-2.5 border rounded-full flex gap-1 items-center">
@@ -1178,7 +1178,7 @@ function OrderDetails() {
          
          {!showTrackOrder && !showPaymentDetails ? (
   <div className=" bg-[#FCFCFC] py-10 px-10">
-  <DetailProductCard products={products} style="flex-wrap justify-center !px-0 sm:px-0" />
+  <DetailProductCard2 products={products} style="flex-wrap justify-center !px-0 sm:px-0" />
 </div>
 ) : showTrackOrder ? (
   <span></span>
