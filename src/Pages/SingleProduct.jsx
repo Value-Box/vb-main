@@ -785,7 +785,7 @@ function ProductPage() {
               </div>
             )}
           </div>
-          <div className="flex gap-4 mt-4 bg-[#CCC] h-[1px]"></div>
+          <div className="flex gap-4 mt-4 bg-[#F2F2F2] h-[1px]"></div>
           <p className="text-[#333] text-sm md:text-md 2xl:text-lg font-semibold ">
             Cabinet Color: EU Ship
           </p>
@@ -825,7 +825,7 @@ function ProductPage() {
         {/* New Section - Delivery Details */}
        
       </div>
-          <div className="flex gap-4 mt-4 bg-[#CCC] h-[1px]"></div>
+          <div className="flex gap-4 mt-4 bg-[#F2F2F2] h-[1px]"></div>
           <div className="flex items-center gap-2 mt-2">
             <svg className="hidden lg:flex"
               xmlns="http://www.w3.org/2000/svg"
@@ -854,7 +854,7 @@ function ProductPage() {
           </div>
           <h2 className="text-xl 2xl:text-2xl font-semibold my-4">Customer Feedback</h2>
           <div className="flex flex-wrap lg:flex-nowrap gap-5 mt-5">
-            <div className="flex items-center gap-2 bg-white border border-[#CCD1D2] rounded-lg p-6 w-full ">
+            <div className="flex items-center gap-2 bg-white border border-[#F2F2F2] rounded-lg p-6 w-full ">
               {/* Overall Rating */}
               <div className="flex items-center flex-col w-max">
                 <div className="text-3xl 2xl:text-4xl font-bold">4.8</div>
@@ -889,7 +889,7 @@ function ProductPage() {
                 ))}
               </div>
             </div>
-            <div className="bg-white border border-[#CCD1D2] rounded-lg p-6 w-full ">
+            <div className="bg-white border border-[#F2F2F2] rounded-lg p-6 w-full ">
               <h2 className="text-lg font-semibold mb-4">Customer Show</h2>
 
               {/* Scrollable Image Row */}
@@ -949,7 +949,7 @@ function ProductPage() {
               {reviews.map((review) => (
                 <div
                   key={review.id}
-                  className="mb-4 w-full lg:w-[49%] p-4 bg-white border rounded-lg border-[#CCC] flex flex-col items-start gap-2 2xl:gap-4"
+                  className="mb-4 w-full lg:w-[49%] p-4 bg-white border rounded-lg border-[#F2F2F2] flex flex-col items-start gap-2 2xl:gap-4"
                 >
                   <div className="flex gap-2">
                     <img
@@ -1001,13 +1001,13 @@ function ProductPage() {
               ))}
             </div>
             <ViewMoreButton />
-            <div className="flex gap-4 mt-4 bg-[#CCC] h-[1px]"></div>
+            <div className="flex gap-4 mt-4 bg-[#F2F2F2] h-[1px]"></div>
             {/* Specification Section */}
             
           </div>
           <h2 className="text-xl 2xl:text-2xl font-semibold text-black mb-4 mt-2">Related Items</h2>
           <ProductsCarousel products={products} CardType="DetailProductCard" />
-          <div className="flex gap-4 mt-4 bg-[#CCC] h-[1px]"></div>
+          <div className="flex gap-4 mt-4 bg-[#F2F2F2] h-[1px]"></div>
 
           <div className="mt-2">
       {/* Title */}
@@ -1153,7 +1153,7 @@ function ProductPage() {
   <path d="M11.9996 1.59973H3.99957V4.93306L7.99957 6.59973L11.9996 4.93306V1.59973Z" fill="#FCEDCD" stroke="#EEA500" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round"/>
 </svg> Top Rated</span>
           </div>
-          <a href="#" className="text-[#002882] text-sm underline">Visit Store</a>
+          <a href="/vb-main/#/SellerStore" className="text-[#002882] text-sm underline">Visit Store</a>
         </div>
       </div>
 
@@ -1284,7 +1284,7 @@ function ProductPage() {
                   </div>
         </div>
         <div className="w-full md:w-[32%] xl:w-[30%] 2xl:w-25 flex flex-col gap-2 flex-1">
-        <div className="border rounded-lg border-[#CCC]">
+        <div className="border rounded-lg border-[#F2F2F2]">
           <div className="px-3 py-6">
             <div className="flex items-center justify-between">
               <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
@@ -1318,7 +1318,7 @@ function ProductPage() {
               </p>
             </div>
 
-            <div className="flex gap-4 my-4 bg-[#CCC] h-[1px]"></div>
+            <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
 
             <div className="flex items-center justify-between">
               <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
@@ -1742,7 +1742,7 @@ function ProductPage() {
           </div>
 
           <div className="px-3">
-            <div className="flex gap-4 my-4 bg-[#CCC] h-[1px]"></div>
+            <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
             <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
               Select Quantity
             </span>
@@ -1848,9 +1848,9 @@ function ProductPage() {
             </div>
           </div>
         </div>
-        <div className="flex gap-4 my-4 bg-[#CCC] h-[1px]"></div>
+        <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
         
-        <div className="border rounded-lg border-[#CCC] mt-6 md:mt-0 sticky top-[8%]">
+        <div className="border rounded-lg border-[#F2F2F2] mt-6 md:mt-0 sticky top-[8%]">
         <div className="px-3 py-6">
             <div className="flex items-center justify-between">
               <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
@@ -1884,7 +1884,7 @@ function ProductPage() {
               </p>
             </div>
 
-            <div className="flex gap-4 my-4 bg-[#CCC] h-[1px]"></div>
+            <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
 
             <div className="flex items-center justify-between ">
               <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
@@ -2156,7 +2156,7 @@ function ProductPage() {
           </div>
 
           <div className="px-3">
-            <div className="flex gap-4 my-4 bg-[#CCC] h-[1px]"></div>
+            <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
             <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
               Select Quantity
             </span>
@@ -2360,7 +2360,7 @@ function ProductPage() {
             <span className="text-[#1A1A1A] ml-1 text-sm 2xl:text-base">4.3</span>{" "}
             <span className="text-[#666] ml-1 text-sm 2xl:text-base">20 Reviews | 1,000+ Sold</span>
           </div>
-          <div className="flex gap-4 mt-4 bg-[#CCC] h-[1px]"></div>
+          <div className="flex gap-4 mt-4 bg-[#F2F2F2] h-[1px]"></div>
           <p className="text-[#333] text-sm md:text-md 2xl:text-lg font-semibold ">
             Cabinet Color: EU Ship
           </p>
@@ -2970,7 +2970,7 @@ function ProductPage() {
           </div>
         ))}
       </div>
-      <div className="flex gap-2 my-4 bg-[#CCC] h-[1px]"></div>
+      <div className="flex gap-2 my-4 bg-[#F2F2F2] h-[1px]"></div>
       <div className="flex justify-between items-center w-full pb-2">
       {/* Left Section */}
       <div className="flex items-center space-x-2">
