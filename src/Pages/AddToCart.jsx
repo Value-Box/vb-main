@@ -1132,7 +1132,7 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
           </button>
         
           
-          <NavLink to='/ThankYouPage' className='bg-[#002882] text-white px-4 py-1 rounded-[5px] text-sm'>Checkout</NavLink>
+          <NavLink to='/Checkout' className='bg-[#002882] text-white px-4 py-1 rounded-[5px] text-sm'>Checkout</NavLink>
         </div>
         {openPopup==='summery' && (
         <div
