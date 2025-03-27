@@ -1,7 +1,8 @@
 import React, { useRef } from 'react'
 import MoreToLove from '../Components/MoreToLove'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import thankyounimation from "/src/Images/thankyounimation.gif";
+
 
 function ThankYouPage() {
     const productImgCarousel = useRef(null);
@@ -147,10 +148,10 @@ function ThankYouPage() {
   <path d="M21.9961 3.94006L11.9961 0.440063L1.99609 3.94006V12.0001C1.99609 16.1271 4.53009 19.0121 6.89209 20.8031C8.31817 21.8735 9.88231 22.7464 11.5421 23.3981C11.6554 23.4407 11.7694 23.4814 11.8841 23.5201L11.9961 23.5601L12.1101 23.5201C12.3287 23.4441 12.5455 23.3628 12.7601 23.2761C14.3058 22.6392 15.7642 21.8082 17.1001 20.8031C19.4631 19.0121 21.9961 16.1271 21.9961 12.0001V3.94006ZM10.9971 15.4151L6.75609 11.1721L8.17009 9.75706L10.9981 12.5861L16.6551 6.92906L18.0701 8.34306L10.9971 15.4151Z" fill="#12B76A"/>
 </svg> ValueBox does not ask customers for additional fees via SMS or email
       </p>
-      <button className="bg-gradient-to-r from-[#FFC136] via-[#FAC142] via-[#FFD168] via-[#F5BC3A] to-[#E09B00] 
+      <Link to='/OrderDetails' className="bg-gradient-to-r from-[#FFC136] via-[#FAC142] via-[#FFD168] via-[#F5BC3A] to-[#E09B00] 
  text-[#1A1A1A] px-2 md:px-4 py-1 md:py-2 rounded-md font-medium text-xs md:text-base">
           View Order
-        </button>
+        </Link>
       </div>
 
       {/* Buttons */}

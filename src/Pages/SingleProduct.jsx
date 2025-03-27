@@ -470,8 +470,8 @@ function ProductPage() {
     
       
       {!isMobile ? (
-        <div className="flex flex-col md:flex-row p-3 xl:p-6 gap-3 xl:gap-6 max-w-[1920px] mx-auto">
-        <div className="w-full md:w-[63%] lg:w-[68%] xl:w-[70%] 2xl:w-[75%] ">
+        <div className="flex flex-col md:flex-row p-3 xl:p-6 gap-3 2xl:gap-6 max-w-[1920px] mx-auto">
+        <div className="w-full md:w-[68%] lg:w-[78%] ">
         <div className="flex items-start flex-col lg:flex-row gap-3 xl:gap-6 ">
         {/* Left Section - Images */}
         <div className="flex lg:w-max flex-row-reverse gap-2 xl:gap-4 lg:sticky top-[8%]">
@@ -570,7 +570,7 @@ function ProductPage() {
             <span className="w-1.5 h-1.5 bg-[#12B76A] rounded-full inline-block"></span>
             <span className="text-[#666]">30+ Sold Recently</span>
           </div>
-          <p className="text-[#1A1A1A] text-sm md:text-md 2xl:text-lg font-semibold leading-6">
+          <p className="text-[#1A1A1A] text-lg 2xl:text-xl font-semibold leading-6">
             4K UHD DLED Smart Television 43Inch (2023 Model) 43A61K Black nch
             (2023 Model) 43A61K Black
           </p>
@@ -1171,11 +1171,13 @@ function ProductPage() {
                   <ProductsCarousel products={products} CardType="DetailProductCard" />
                   </div>
         </div>
-        <div className="w-full md:w-[32%] xl:w-[30%] 2xl:w-25 flex flex-col gap-2 flex-1">
+
+        <div className="w-full md:w-[35%] flex flex-col gap-2 flex-1">
+
         <div className="border rounded-lg border-[#F2F2F2]">
-          <div className="px-3 py-6">
+          <div className="px-2 2xl:px-3 py-4 2xl:py-6">
             <div className="flex items-center justify-between">
-              <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
+              <span className="flex text-[#333] font-bold items-center text-xs xl:text-sm 2xl:text-base">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -1198,7 +1200,7 @@ function ProductPage() {
                 </svg>{" "}
                 Sold By
               </span>
-              <p className="text-[#1A1A1A] inline text-xs md:text-sm xl:text-base">
+              <p className="text-[#1A1A1A] inline text-xs xl:text-sm 2xl:text-base">
                 Zahir Clothing
                 <Link className="text-[#002882] underline inline ml-1">
                   Visit
@@ -1209,7 +1211,7 @@ function ProductPage() {
             <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
 
             <div className="flex items-center justify-between">
-              <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
+              <span className="flex text-[#333] font-bold items-center text-xs xl:text-sm 2xl:text-base text-nowrap">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -1233,7 +1235,7 @@ function ProductPage() {
                 </svg>{" "}
                 Ship to
               </span>
-              <p className="text-[#1A1A1A] inline text-xs md:text-sm xl:text-base">
+              <p className="text-[#1A1A1A] inline text-xs xl:text-sm 2xl:text-base text-nowrap">
                 Johar town, Lahore
                 <Link className="text-[#002882] underline inline ml-1">
                   Change
@@ -1243,21 +1245,21 @@ function ProductPage() {
           </div>
 
           <div className="px-3 py-2 bg-gradient-to-b from-[#FCEDCD] to-[#FFF] flex gap-2 items-center">
-            <span className="bg-[linear-gradient(90deg,#0032A3_0%,#1A51CB_25%,#3B66C8_50%,#1A51CB_75%,#0032A3_100%)] rounded-sm py-1 px-2 text-[#FCFCFC] text-xs md:text-sm xl:text-base">
+            <span className="text-nowrap bg-[linear-gradient(90deg,#0032A3_0%,#1A51CB_25%,#3B66C8_50%,#1A51CB_75%,#0032A3_100%)] rounded-sm py-1 px-2 text-[#FCFCFC] text-xs xl:text-sm 2xl:text-base">
               VB MALL
             </span>
-            <span className="text-[#1A1A1A] font-semibold text-xs md:text-sm xl:text-base">
+            <span className="text-nowrap text-[#1A1A1A] font-semibold text-xs xl:text-sm 2xl:text-base">
               ValueBox Commitment
             </span>
           </div>
 
-          <div className="px-3 py-5 flex flex-col gap-5">
+          <div className="px-2 2xl:px-3 py-2 2xl:py-5 flex flex-col gap-3 2xl:gap-5">
             <button
               className="flex justify-between cursor-pointer"
               onClick={() => openModal("warentyReturn")}
             >
-              <span className="flex items-center gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-3 md:w-4 xl:w-5"
+              <span className="flex items-center gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-3 xl:w-4 2xl:w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   
                   viewBox="0 0 19 22"
@@ -1359,8 +1361,8 @@ function ProductPage() {
               className="flex justify-between cursor-pointer"
               onClick={() => openModal("freeShipping")}
             >
-              <span className="flex items-center gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-4 md:w-6 xl:w-7"
+              <span className="flex items-center gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-4 md:w-4 xl:w-7"
                   xmlns="http://www.w3.org/2000/svg"
                   
                   viewBox="0 0 24 24"
@@ -1468,8 +1470,8 @@ function ProductPage() {
               </div>
             )}
             <div className="flex justify-between">
-              <span className="flex items-center gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-4 md:w-5 xl:w-6"
+              <span className="flex items-center gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-4 xl:w-5 2xl:w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -1494,8 +1496,8 @@ function ProductPage() {
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="flex gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-4 md:w-5 xl:w-6"
+              <span className="flex gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-4 xl:w-5 2xl:w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -1519,8 +1521,8 @@ function ProductPage() {
               </span>
             </div>
             <button className="flex justify-between" onClick={() => openModal("deliveryGuarantee")}>
-              <span className="flex items-center gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-4 md:w-5 xl:w-6"
+              <span className="flex items-center gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-4 xl:w-5 2xl:w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -1736,12 +1738,13 @@ function ProductPage() {
             </div>
           </div>
         </div>
+
         <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
         
-        <div className="border rounded-lg border-[#F2F2F2] mt-6 md:mt-0 sticky top-[8%]">
-        <div className="px-3 py-6">
+        <div className="border rounded-lg border-[#F2F2F2]">
+          <div className="px-2 2xl:px-3 py-4 2xl:py-6">
             <div className="flex items-center justify-between">
-              <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
+              <span className="flex text-[#333] font-bold items-center text-xs xl:text-sm 2xl:text-base">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -1764,7 +1767,7 @@ function ProductPage() {
                 </svg>{" "}
                 Sold By
               </span>
-              <p className="text-[#1A1A1A] inline text-xs md:text-sm xl:text-base">
+              <p className="text-[#1A1A1A] inline text-xs xl:text-sm 2xl:text-base">
                 Zahir Clothing
                 <Link className="text-[#002882] underline inline ml-1">
                   Visit
@@ -1774,8 +1777,8 @@ function ProductPage() {
 
             <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
 
-            <div className="flex items-center justify-between ">
-              <span className="flex text-[#333] font-bold items-center text-xs md:text-sm xl:text-base">
+            <div className="flex items-center justify-between">
+              <span className="flex text-[#333] font-bold items-center text-xs xl:text-sm 2xl:text-base text-nowrap">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -1799,7 +1802,7 @@ function ProductPage() {
                 </svg>{" "}
                 Ship to
               </span>
-              <p className="text-[#1A1A1A] inline text-xs md:text-sm xl:text-base">
+              <p className="text-[#1A1A1A] inline text-xs xl:text-sm 2xl:text-base text-nowrap">
                 Johar town, Lahore
                 <Link className="text-[#002882] underline inline ml-1">
                   Change
@@ -1809,21 +1812,21 @@ function ProductPage() {
           </div>
 
           <div className="px-3 py-2 bg-gradient-to-b from-[#FCEDCD] to-[#FFF] flex gap-2 items-center">
-            <span className="bg-[linear-gradient(90deg,#0032A3_0%,#1A51CB_25%,#3B66C8_50%,#1A51CB_75%,#0032A3_100%)] rounded-sm py-1 px-2 text-[#FCFCFC] text-xs md:text-sm xl:text-base">
+            <span className="text-nowrap bg-[linear-gradient(90deg,#0032A3_0%,#1A51CB_25%,#3B66C8_50%,#1A51CB_75%,#0032A3_100%)] rounded-sm py-1 px-2 text-[#FCFCFC] text-xs xl:text-sm 2xl:text-base">
               VB MALL
             </span>
-            <span className="text-[#1A1A1A] font-semibold text-xs md:text-sm xl:text-base">
+            <span className="text-nowrap text-[#1A1A1A] font-semibold text-xs xl:text-sm 2xl:text-base">
               ValueBox Commitment
             </span>
           </div>
 
-          <div className="px-3 py-5 flex flex-col gap-5">
+          <div className="px-2 2xl:px-3 py-2 2xl:py-5 flex flex-col gap-3 2xl:gap-5">
             <button
               className="flex justify-between cursor-pointer"
               onClick={() => openModal("warentyReturn")}
             >
-              <span className="flex items-center gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-3 md:w-4 xl:w-5"
+              <span className="flex items-center gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-3 xl:w-4 2xl:w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   
                   viewBox="0 0 19 22"
@@ -1866,11 +1869,17 @@ function ProductPage() {
             </button>
 
             {activeModal === "warentyReturn" && (
-              <div className="fixed inset-0 flex items-center justify-center bg-white/30 bg-opacity-50 px-5 md:p-0 z-1050">
-                <div className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-lg shadow-lg relative">
+             <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.4)] 
+              bg-opacity-50 px-5 md:p-0 z-1050"
+             onClick={closeModal}
+           >
+                <div
+                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   {/* Close Button */}
                   <button
-                    className="absolute top-4 right-4 text-white cursor-pointer"
+                    className="absolute -top-4 -right-4 text-white cursor-pointer"
                     onClick={closeModal}
                   >
                     <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white">
@@ -1879,8 +1888,38 @@ function ProductPage() {
                   </button>
 
                   {/* Modal Content */}
-                  <h2 className="text-xl font-semibold">Modal Warenty</h2>
-                  <p>Modal message</p>
+                  <div className="w-full">
+      {accordianItems.map((item, index) => (
+        <div key={index}>
+          <button
+            onClick={() => toggleAccordion(index)}
+            className="flex justify-between w-full p-4 text-left font-semibold"
+          >
+            
+            <span className="flex gap-1">{item.icon}{item.title}</span>
+            <span
+              className={`h-fit text-xl transition-transform duration-300 ${
+                openIndex === index ? "rotate-180" : ""
+              }`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 20 10" fill="none">
+  <g clipPath="url(#clip0_7006_127218)">
+    <path fillRule="evenodd" clipRule="evenodd" d="M9.4081 8.46428L4.69393 3.75011L5.87226 2.57178L9.99727 6.69678L14.1223 2.57178L15.3006 3.75011L10.5864 8.46428C10.4302 8.6205 10.2182 8.70827 9.99727 8.70827C9.77629 8.70827 9.56437 8.6205 9.4081 8.46428Z" fill="#1A1A1A"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_7006_127218">
+      <rect width="10" height="20" fill="white" transform="translate(20) rotate(90)"/>
+    </clipPath>
+  </defs>
+</svg>
+            </span>
+          </button>
+          {openIndex === index && item.content && (
+            <div className="p-4 text-gray-600 transition-transform duration-300">{item.content}</div>
+          )}
+        </div>
+      ))}
+    </div>
                 </div>
               </div>
             )}
@@ -1889,8 +1928,8 @@ function ProductPage() {
               className="flex justify-between cursor-pointer"
               onClick={() => openModal("freeShipping")}
             >
-              <span className="flex items-center gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-4 md:w-6 xl:w-7"
+              <span className="flex items-center gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-4 md:w-4 xl:w-7"
                   xmlns="http://www.w3.org/2000/svg"
                   
                   viewBox="0 0 24 24"
@@ -1930,10 +1969,76 @@ function ProductPage() {
                 />
               </svg>
             </button>
-            
+            {activeModal === "freeShipping" && (
+              <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.4)] 
+                 bg-opacity-50 px-5 md:p-0 z-1050"
+                onClick={closeModal}
+              >
+                <div
+                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Close Button */}
+                  <button
+                    className="absolute -top-4 -right-4 text-white cursor-pointer"
+                    onClick={closeModal}
+                  >
+                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white">
+                      ✖
+                    </span>
+                  </button>
+
+                  {/* Modal Content */}
+                  <h2 className="text-xl font-semibold">Shipping Method</h2>
+                  <div className="space-y-4 w-full">
+      {deliveryOptions.map((option) => (
+        <label
+          key={option.id}
+          className={`block p-4 rounded-lg bg-[#F2F2F2] cursor-pointer transition-all border-0 ${
+            selected === option.id ? "" : "border-gray-300"
+          }`}
+        >
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="font-medium text-gray-800">
+                {option.title.includes("PKR") ? (
+                  <>
+                    Free Shipping over{" "}
+                    <span className="text-[#0032A3] font-semibold">PKR 2,570</span>
+                  </>
+                ) : (
+                  option.title
+                )}
+              </h3>
+              <p className="text-sm text-[#1A1A1A]">
+                Standard Delivery:{" "}
+                <span className="font-bold">{option.extraBold}</span>
+              </p>
+            </div>
+            <input
+              type="radio"
+              name="shipping"
+              value={option.id}
+              checked={selected === option.id}
+              onChange={() => setSelected(option.id)}
+              className="w-5 h-5 accent-[#0032A3] cursor-pointer"
+            />
+          </div>
+          <button
+            className="mt-2 px-4 py-2 text-sm text-gray-500 bg-[#FCFCFC] rounded-md cursor-not-allowed"
+            disabled
+          >
+            Tracking Available
+          </button>
+        </label>
+      ))}
+    </div>
+                </div>
+              </div>
+            )}
             <div className="flex justify-between">
-              <span className="flex items-center gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-4 md:w-5 xl:w-6"
+              <span className="flex items-center gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-4 xl:w-5 2xl:w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -1958,8 +2063,8 @@ function ProductPage() {
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="flex gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-4 md:w-5 xl:w-6"
+              <span className="flex gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-4 xl:w-5 2xl:w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -1982,9 +2087,9 @@ function ProductPage() {
                 Cash on Delivery Available
               </span>
             </div>
-            <div className="flex justify-between">
-              <span className="flex items-center gap-1 text-xs md:text-sm xl:text-base">
-                <svg className="w-4 md:w-5 xl:w-6"
+            <button className="flex justify-between" onClick={() => openModal("deliveryGuarantee")}>
+              <span className="flex items-center gap-1 text-xs xl:text-sm 2xl:text-base">
+                <svg className="w-4 xl:w-5 2xl:w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -2015,7 +2120,82 @@ function ProductPage() {
                   strokeLinejoin="round"
                 />
               </svg>
-            </div>
+            </button>
+            {activeModal === "deliveryGuarantee" && (
+              <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.4)] 
+                bg-opacity-50 px-5 md:p-0 z-1050"
+                onClick={closeModal}
+              >
+                <div
+                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Close Button */}
+                  <button
+                    className="absolute -top-4 -right-4 text-white cursor-pointer"
+                    onClick={closeModal}
+                  >
+                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white">
+                      ✖
+                    </span>
+                  </button>
+
+                  {/* Modal Content */}
+                  <h2 className="text-xl font-semibold">Delivery Guarantee</h2>
+                  <div className=" text-gray-800">
+      {/* Delivery Guarantee */}
+
+      <ul className="mt-2 space-y-2">
+        <li className="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+          <span>Refund if no delivery in 30 days</span>
+        </li>
+        <li className="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+          <span>Refund if items damaged</span>
+        </li>
+        <li className="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+          <span>Refund if package lost</span>
+        </li>
+      </ul>
+
+      {/* Valuebox Assurance */}
+      <h2 className="text-lg font-bold mt-6">Valuebox Assurance</h2>
+      <ul className="mt-2 space-y-2">
+        <li className="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M12 22.4967C12 22.4967 20.9986 19.4971 20.9986 11.9983" stroke="#EEA500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M20.9986 11.9984V2.99977C20.9986 2.99977 17.9991 1.5 12 1.5" stroke="#EEA500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M11.9996 22.4967C11.9996 22.4967 3.00101 19.4971 3.00101 11.9983" stroke="#EEA500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M3.00098 11.9984V2.99977C3.00098 2.99977 6.00051 1.5 11.9996 1.5" stroke="#EEA500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M17.9984 5.99927C11.9993 10.4986 10.4995 16.4976 10.4995 16.4976C10.4995 16.4976 8.99977 14.7075 7.5 13.4981" stroke="#EEA500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+          <span>We provide safe and secure payment method</span>
+        </li>
+        <li className="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 22C5.45 22 4.97933 21.8043 4.588 21.413C4.19667 21.0217 4.00067 20.5507 4 20V10C4 9.45 4.196 8.97933 4.588 8.588C4.98 8.19667 5.45067 8.00067 6 8H7V6C7 4.61667 7.48767 3.43767 8.463 2.463C9.43833 1.48833 10.6173 1.00067 12 1C13.3833 1 14.5627 1.48767 15.538 2.463C16.5133 3.43833 17.0007 4.61733 17 6V8H18C18.55 8 19.021 8.196 19.413 8.588C19.805 8.98 20.0007 9.45067 20 10V20C20 20.55 19.8043 21.021 19.413 21.413C19.0217 21.805 18.5507 22.0007 18 22H6ZM6 20H18V10H6V20ZM12 17C12.55 17 13.021 16.8043 13.413 16.413C13.805 16.0217 14.0007 15.5507 14 15C14 14.45 13.8043 13.9793 13.413 13.588C13.0217 13.1967 12.5507 13.0007 12 13C11.45 13 10.9793 13.196 10.588 13.588C10.1967 13.98 10.0007 14.4507 10 15C10 15.55 10.196 16.021 10.588 16.413C10.98 16.805 11.4507 17.0007 12 17ZM9 8H15V6C15 5.16667 14.7083 4.45833 14.125 3.875C13.5417 3.29167 12.8333 3 12 3C11.1667 3 10.4583 3.29167 9.875 3.875C9.29167 4.45833 9 5.16667 9 6V8Z" fill="#EEA500"/>
+</svg>
+          <span>We ensure your Security & Privacy.</span>
+        </li>
+        <li className="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M14.4847 5.22666C14.0685 5.22966 13.6552 5.24991 13.2188 5.36691C12.7432 5.49599 12.292 5.70196 11.883 5.97666C11.3085 5.63916 10.752 5.36166 10.2188 5.29641C9.5565 5.21466 8.9415 5.25891 8.22675 5.27391C7.37925 5.29116 6.8265 5.72391 5.9295 6.07041C5.03325 6.41541 3.879 6.74991 2.25 6.74991H1.5V13.9687L1.92225 14.1794L3.3045 14.8597L8.22675 20.3437L8.25 20.3669C8.8125 20.9234 9.5715 21.0614 10.242 21.0232C10.9132 20.9857 11.5433 20.7892 12.0465 20.4847C13.1543 19.8164 16.1715 17.7187 16.1715 17.7187L16.242 17.6714L16.2892 17.6249C16.6462 17.2702 16.8255 16.8374 16.9455 16.3829L19.8278 14.9294L21.984 14.2034L22.5 14.0384V6.74991H21.75C20.4893 6.75853 19.2391 6.51951 18.0705 6.04641C17.1735 5.69616 16.629 5.26791 15.7725 5.24991C15.315 5.24091 14.9002 5.22366 14.4847 5.22666ZM14.5072 6.72666C14.8448 6.72366 15.2347 6.74166 15.7267 6.74991C15.8055 6.75291 16.5262 7.06041 17.5312 7.45341C18.381 7.78716 19.5615 8.08341 21 8.17941V12.9607L19.2653 13.5472H19.2188L19.1715 13.5697L16.899 14.7187C16.7784 14.3706 16.5868 14.0514 16.3365 13.7812L16.2892 13.7107L13.1017 9.79716L12.633 9.21066L12.0465 9.67941L10.0312 11.3204C9.35475 11.7892 8.8065 11.6542 8.25 11.3909C8.08875 11.3144 8.09775 11.2912 7.96875 11.2034L11.391 8.36691L11.4375 8.32041C12.4537 7.31241 13.0785 6.96366 13.617 6.82041C13.887 6.74691 14.1705 6.72966 14.5072 6.72666ZM9.282 6.74991C9.53224 6.74048 9.78283 6.74825 10.032 6.77316C10.2285 6.79641 10.4513 6.96366 10.6418 7.03116C10.5653 7.10166 10.5097 7.14216 10.4303 7.21866L10.3837 7.26591L6.282 10.6634L5.649 11.1794L6.2115 11.7652C6.2115 11.7652 6.75375 12.3517 7.5945 12.7499C8.43525 13.1482 9.7335 13.3739 10.899 12.5624L10.9462 12.5152L12.399 11.3204L15.165 14.7187L15.1882 14.7659L15.2115 14.7884C15.7065 15.2782 15.6952 16.0484 15.2115 16.5472C15.2055 16.5524 15.2175 16.5644 15.2115 16.5697C15.2055 16.5734 15.1065 16.6319 15.0945 16.6409L14.1097 15.3044L12.891 16.1954L13.8525 17.4839C13.4625 17.7479 13.287 17.8859 12.8678 18.1642L11.8605 16.8044L10.641 17.6954L11.6025 18.9839C11.517 19.0364 11.3415 19.1542 11.274 19.1954C11.037 19.3387 10.5795 19.4999 10.1722 19.5232C9.789 19.5442 9.49575 19.4557 9.3525 19.3357L9.32925 19.3124L4.31325 13.7579L4.2195 13.6402L3 13.0312V8.17941C4.4325 8.08566 5.622 7.80141 6.46875 7.47666C7.47075 7.09266 8.18625 6.77616 8.27325 6.77316L9.282 6.74991Z" fill="#EEA500"/>
+</svg>
+          <span>We provide buyers protection so that they get their money back.</span>
+        </li>
+      </ul>
+    </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="px-3">
@@ -2125,6 +2305,7 @@ function ProductPage() {
             </div>
           </div>
         </div>
+
         </div>
       </div>
       ) : (
