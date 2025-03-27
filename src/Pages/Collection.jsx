@@ -204,7 +204,7 @@ function Collection() {
   <div ref={catSlideRef} onMouseMove={onDragCategoryScroll}
     className="flex overflow-x-auto space-x-2 2xl:space-x-4 px-2 md:px-12 scrollbar-hide bg-[#FFF] shadow py-3"
   >
-    {["Filters", ...categories].map((category, index) => (
+    {["Filters","All", ...categories].map((category, index) => (
       <button
         key={index}
         onClick={() => {index===0 ?setFilterSideBar(!filterSideBar):setActiveCategory(category)}}

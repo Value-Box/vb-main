@@ -53,9 +53,78 @@ export default function VerticalCategories() {
       ],
     },
   ];
-  
+  const Categories=[
+    {"id": 1,"name": "Clothing","parentID": null,"imagepath": null},
+    {"id": 2,"name": "Mens Cloth","parentID": 1,"imagepath": "https://i.imgur.com/QkIa5tT.jpeg"},
+    {"id": 3,"name": "Female Cloth","parentID": 1,"imagepath": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"},
+    {"id": 4,"name": "Mens Casual","parentID": 2,"imagepath": "https://i.imgur.com/mcW42Gi.jpeg"},
+    {"id": 9,"name": "Paints","parentID": 5,"imagepath": "https://i.imgur.com/qNOjJje.jpeg"},
+    {
+        "id": 10,
+        "name": "ygyg",
+        "parentID": null,
+        "imagepath": null
+    },
+    {
+        "id": 11,
+        "name": "Steel",
+        "parentID": null,
+        "imagepath": null
+    },
+    {
+        "id": 12,
+        "name": "Custom Bottle",
+        "parentID": 11,
+        "imagepath": "https://i.imgur.com/BG8J0Fj.jpg"
+    },
+    {
+        "id": 13,
+        "name": "Water Bottle",
+        "parentID": 12,
+        "imagepath": "https://i.imgur.com/sC0ztOB.jpeg"
+    },
+    {
+        "id": 1012,
+        "name": "Electronics",
+        "parentID": 11,
+        "imagepath": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Mens Formal",
+        "parentID": 2,
+        "imagepath": "https://i.imgur.com/BG8J0Fj.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Grocery",
+        "parentID": null,
+        "imagepath": null
+    },
+    {
+        "id": 7,
+        "name": "Atta",
+        "parentID": 6,
+        "imagepath": "https://i.imgur.com/62gGzeF.jpeg"
+    },
+    {
+        "id": 8,
+        "name": "Fine Atta",
+        "parentID": null,
+        "imagepath": null
+    }
+]
 
-  // Function to handle clicks outside the dropdown
+const parentCategory = Categories
+  .filter(category => category.parentID === null)
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+const parentWithSubcategories = parentCategory.map(parent => ({
+  ...parent,
+  subCategories: Categories.filter(category => category.parentID === parent.id)
+})); 
+
+// Function to handle clicks outside the dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -134,7 +203,7 @@ export default function VerticalCategories() {
         ${isOpen ? "opacity-100 visible z-[1055]" : "opacity-0 invisible"}`}
         onClick={(e) => e.stopPropagation()} // 🛑 Prevent closing on click inside
       >
-        <ul className="w-full h-[600px] overflow-y-auto">
+        {/* <ul className="w-full h-[600px] overflow-y-auto">
 
           {verticleCategory.map((items, index) => (
             <li className="py-2 px-3 flex items-center justify-between cursor-pointer text-xs 2xl:text-base" key={index}
@@ -162,7 +231,10 @@ export default function VerticalCategories() {
                 key={childIndex} 
                 className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer"
               >
+                <Link to='/Collection'>
                 {child.name}
+                </Link>
+                
               </div>
             ))}
           </div>
@@ -175,7 +247,46 @@ export default function VerticalCategories() {
               
             </li>
           ))}
-        </ul>
+        </ul> */}
+
+<ul className="w-full h-[600px] overflow-y-auto">
+  {parentWithSubcategories.map((items, index) => (
+    <li className="py-2 px-3 flex items-center justify-between cursor-pointer text-xs 2xl:text-base" key={index}
+      onMouseEnter={() => setHoveredCategory(index)} 
+      onMouseLeave={() => setHoveredCategory(null)}
+      onClick={() => { if (window.innerWidth < 640) setSidebarOpen(true); setSubCategory(index); }}
+    >
+      {items.name}
+      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="20" viewBox="0 0 10 20" fill="none">
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M8.46476 10.592L3.7506 15.3061L2.57226 14.1278L6.69726 10.0028L2.57227 5.8778L3.7506 4.69946L8.46476 9.41363C8.62099 9.5699 8.70875 9.78183 8.70875 10.0028C8.70875 10.2238 8.62099 10.4357 8.46476 10.592Z"
+          fill="#CCCCCC"
+        />
+      </svg>
+
+      {hoveredCategory === index && parentWithSubcategories[index]?.subCategories?.length > 0 && (
+        <div className="hidden sm:flex absolute left-[99%] top-0 bg-white rounded-r-lg gap-4 w-max h-full 
+        min-h-full">
+          {parentWithSubcategories[hoveredCategory]?.subCategories.map((subcategory, subIndex) => (
+            <div key={subIndex} className="px-4 py-2 transition-colors duration-200">
+              <h3 className="font-semibold lg:text-sm 2xl:text-base text-gray-800">{subcategory.name}</h3>
+              <div className="flex items-start flex-wrap gap-4 p-2">
+                {Categories.filter(child => child.parentID === subcategory.id).map((child, childIndex) => (
+                  <div key={childIndex} className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer">
+                    <img className='w-20 h-20 object-cover rounded-full' src={child.imagepath} />
+                    <Link to='/Collection'>{child.name}</Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </li>
+  ))}
+</ul>
       </div>
 
 

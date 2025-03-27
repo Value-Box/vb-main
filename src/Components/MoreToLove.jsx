@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import DetailProductCard2 from './Cards/DetailProductCard2'
+import LoadMoreButton from './Buttons/LoadMoreButton';
 
 function MoreToLove() {
+  const[loadMore,setLoadMore]=useState(5)
     const products = [
         { id: 1, name: "Men'S Other Running Shoes Korean Style", price: 5000, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080' },
         { id: 2, name: "Men'S Other Running Shoes Korean Style", price: 4500, image: "https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMnx8aGVhZHBob25lfGVufDB8MHx8fDE3MjEzMDM2OTB8MA&ixlib=rb-4.0.3&q=80&w=1080" },
@@ -14,6 +16,7 @@ function MoreToLove() {
         { id: 9, name: "Men'S Other Running Shoes Korean Style", price: 5500, image: "https://media.istockphoto.com/id/1472421626/photo/3d-rendering-of-wireless-headphones-on-blue-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=OQwzpKJLs-82MoYwYViaHPFGh9jOSGbPlgFM77uJ5Fs=" }
       ];
 
+
       const [shuffleProduct,setShuffleProduct]=useState([])
       
       useEffect(()=>{
@@ -24,9 +27,13 @@ function MoreToLove() {
     
     
       <div className='flex flex-wrap justify-center sm:justify-start gap-3 px-3 sm:px-8 mb-3 max-w-[1920px] mx-auto'>
-      <DetailProductCard2 products={shuffleProduct} style={`flex-1`} />
+      <DetailProductCard2 products={shuffleProduct} style={`flex-1`} loadProducts={loadMore} />
       </div>
-     
+      <div className='flex justify-center mb-5'>
+    <LoadMoreButton className="bg-[#00171F] text-white px-10" onClick={()=>setLoadMore(loadMore+5)}> Load More <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M19 8.5L12 15.5L5 8.5" stroke="#EEA500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></LoadMoreButton>
+    </div>
     {/* <DetailProductCard2 products={products} style={`flex-wrap`} /> */}
     </>
     
