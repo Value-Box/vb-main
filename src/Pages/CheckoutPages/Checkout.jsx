@@ -21,6 +21,7 @@ import Select from "../../Components/Select";
 
 function Checkout() {
  
+ 
   const [selectedValue, setSelectedValue] = useState(""); // State for selected value
 
   const handleChange = (event) => {
@@ -151,6 +152,31 @@ const [cartData, setCartData] = useState([
           ),
         })))
       }
+      const [selected, setSelected] = useState(null);
+      const [selectedPayment, setSelectedPayment] = useState(null);
+      
+      const handleCheckboxChange = (value) => {
+        setSelected(value);
+        setSelectedPayment(value === selectedPayment ? null : value);
+      };
+        const [cnic, setCnic] = useState("");
+         
+       
+         const handleCnicChange = (e) => {
+          const value = e.target.value.replace(/[^0-9-]/g, ""); // Sirf numbers aur dashes allow
+          setCnic(value);
+        };
+
+        const [installmentPhone, setInstallmentPhone] = useState("");
+
+        const handlePhoneChange = (e) => {
+          let value = e.target.value.replace(/[^0-9+]/g, ""); // Sirf numbers aur "+" allow
+          if (!value.startsWith("+92")) {
+            value = "+92"; // Ensure ke hamesha "+92" se shuru ho
+          }
+          setInstallmentPhone(value);
+        };
+        
       // modal 1
       const [isModalOpen, setIsModalOpen] = useState(false);
       const collectionPoints = [
@@ -388,7 +414,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           <h3 className="text-[24px] font-semibold">Payment Method</h3>
         
           <div className="flex gap-2.5 items-baseline">
-           <CheckBox/>
+           <CheckBox 
+           checked={selected === "card"}
+           onChange={() => handleCheckboxChange("card")}
+           />
            <div className="flex flex-col gap-1">
            <div className="flex gap-2.5 items-center ">
            <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
@@ -414,7 +443,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
            </div>
        </div>
            <div className="flex gap-2.5 items-center">
-           <CheckBox/>
+           <CheckBox
+            checked={selected === "jazzcash"}
+            onChange={() => handleCheckboxChange("jazzcash")}
+           />
            <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
            <img src={jazzcash} className="w-[34px] h-[24px]" alt="Icon"/>
             </span>
@@ -422,7 +454,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
 
            </div>
            <div className="flex gap-2.5 items-center">
-           <CheckBox/>
+           <CheckBox
+           checked={selected === "easypaisa"}
+           onChange={() => handleCheckboxChange("easypaisa")}
+           />
            <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 32 36" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5461 0.747803C24.2681 0.747803 30.528 5.9315 30.528 12.3259C30.528 18.7203 24.2681 22.6131 16.5461 22.6131C8.93447 22.4587 3.62582 19.9768 0.620117 15.1673C2.24324 6.04772 7.5519 1.24122 16.5461 0.747803ZM16.0253 7.95075C11.5854 8.40012 8.86832 10.5137 7.87412 14.2915C9.2282 15.4859 11.9453 16.1487 16.0253 16.28C20.1242 16.2154 22.6077 15.0203 22.6566 12.2429C22.4007 9.17384 19.417 7.83483 16.0253 7.95075Z" fill="black"/>
@@ -434,7 +469,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
            </div>
            <hr className="border-t-[1px] border-[#CCD1D2]" />
            <div className="flex gap-2.5 items-center">
-           <CheckBox/>
+           <CheckBox
+           checked={selected === "cashondelivery"}
+           onChange={() => handleCheckboxChange("cashondelivery")}
+           />
            <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 36 36" fill="none">
   <path d="M27.75 21.015L27.765 20.9985M11.25 21.015L11.265 20.9985M6 27V15C6 14.2044 6.31607 13.4413 6.87868 12.8787C7.44129 12.3161 8.20435 12 9 12H30C30.7956 12 31.5587 12.3161 32.1213 12.8787C32.6839 13.4413 33 14.2044 33 15V27C33 27.7956 32.6839 28.5587 32.1213 29.1213C31.5587 29.6839 30.7956 30 30 30H9C8.20435 30 7.44129 29.6839 6.87868 29.1213C6.31607 28.5587 6 27.7956 6 27Z" stroke="#1A1A1A" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -446,7 +484,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
            </div>
            <hr className="border-t-[1px] border-[#CCD1D2]" />
            <div className="flex gap-2.5 items-center">
-           <CheckBox/>
+           <CheckBox
+            checked={selectedPayment === "buynowpaylater"}
+            onChange={() => handleCheckboxChange("buynowpaylater")}
+           />
            <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC]">
            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 36 36" fill="none">
   <path d="M21 27.75C21 27.75 22.5 27.75 24 30.75C24 30.75 28.7655 23.25 33 21.75M8.25 17.25H8.2365M16.5 29.25H15.75C10.1115 29.25 7.293 29.25 5.4105 27.765C5.11134 27.528 4.8333 27.2655 4.5795 26.9805C3 25.2105 3 22.5555 3 17.25C3 11.9445 3 9.291 4.5795 7.5195C4.8325 7.2355 5.1095 6.9745 5.4105 6.7365C7.293 5.25 10.1115 5.25 15.75 5.25H20.25C25.8885 5.25 28.707 5.25 30.588 6.735C30.89 6.975 31.1675 7.2365 31.4205 7.5195C32.844 9.1155 32.985 11.427 33 15.75V16.5" stroke="#1A1A1A" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -455,7 +496,9 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             </span>
             <span className="text-black text-[18px] font-medium">Buy Now Pay Later</span>              
            </div>
-           <div className="flex justify-between gap-10">
+           {selectedPayment === "buynowpaylater" && (
+            <div className="flex flex-col gap-5">
+  <div className="flex justify-between gap-10">
            <div className="w-full flex flex-col gap-1">
                 <label className="text-gray-600 text-[16px] font-medium">Choose an Installment Partner <span className="text-yellow-400">*</span></label>
                 <Select
@@ -475,14 +518,26 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       />
               </div>
            </div>
+          
            <div className="flex justify-between gap-10">
            <div className="w-full flex flex-col gap-1">
            <label className="text-gray-600 text-[16px] font-medium">Customer CNIC<span className="text-yellow-400">*</span></label>
-           <Input type="text" placeholder="XXXX-XXXXXXX-X" />
+           <Input 
+            type="text" 
+            placeholder="XXXX-XXXXXXX-X" 
+            value={cnic} 
+            onChange={handleCnicChange} 
+          />
               </div>
               <div className="w-full flex flex-col gap-1">
               <label className="text-gray-600 text-[16px] font-medium">Customer Phone Number  <span className="text-yellow-400">*</span></label>
-                <Input type="text" placeholder=" +92312-3456452" />
+              <Input 
+  type="text" 
+  placeholder="+92312-3456452" 
+  value={installmentPhone} 
+  onChange={handlePhoneChange} 
+  maxLength={13} 
+/>
               </div>
            </div>
       <div className="flex justify-between gap-10">
@@ -548,7 +603,6 @@ const [showOffersModal, setShowOffersModal] = useState(false);
          <p className="text-[#999] text-[14px] font-normal italic">Only PNG, JPG and WEBp with File size less then 500kb are accepted.</p>
       </div>
     </div>
-       
     <p className="text-[#999] text-[16px] font-normal flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
   <g clip-path="url(#clip0_7110_93676)">
     <path d="M10 18.75C7.67936 18.75 5.45376 17.8281 3.81282 16.1872C2.17187 14.5462 1.25 12.3206 1.25 10C1.25 7.67936 2.17187 5.45376 3.81282 3.81282C5.45376 2.17187 7.67936 1.25 10 1.25C12.3206 1.25 14.5462 2.17187 16.1872 3.81282C17.8281 5.45376 18.75 7.67936 18.75 10C18.75 12.3206 17.8281 14.5462 16.1872 16.1872C14.5462 17.8281 12.3206 18.75 10 18.75ZM10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 7.34784 18.9464 4.8043 17.0711 2.92893C15.1957 1.05357 12.6522 0 10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20Z" fill="#999999"/>
@@ -560,6 +614,11 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     </clipPath>
   </defs>
 </svg> Note: Installments are available for one product at a time during checkout</p>
+            </div>
+         
+      )}
+       
+  
        </div>
             <div className="w-full flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
             <div className="w-full flex flex-col gap-1">
@@ -567,6 +626,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
            <Input type="text" placeholder="Please Input" />
               </div>
              <div>
+             <h3 className="text-[20px] font-semibold">ORDER ITEMS</h3>
              {cartData.map((store, index) => (
        <div key={index} >
      {store.items.map((item,storeIndex) => (
