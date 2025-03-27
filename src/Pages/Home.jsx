@@ -126,8 +126,8 @@ function Home() {
     </div>
   )}
     {showModal && (
-  <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm z-[9999] ">
-    <div className="bg-[#FCFCFC] p-10 rounded-lg shadow-lg  max-w-full w-[700px] flex flex-col gap-5 relative">
+  <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm z-[9999] " onClick={() => setShowModal(false)}>
+    <div className="bg-[#FCFCFC] p-7 rounded-lg shadow-lg  max-w-full w-[550px] flex flex-col gap-5 relative">
     {/* Close Button */}
       <button 
         className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
@@ -150,9 +150,9 @@ function Home() {
         </svg>
       </button>
       <div className="w-full flex items-center justify-center">
-        <form className="px-5 md:px-0">
+        <form className="px-5 md:px-2">
         <div className='hidden md:block'>
-        <h2 className="text-2xl text-center font-bold mb-1">Register/Sign in</h2>
+        <h2 className="text-2xl text-center font-bold">Register/Sign in</h2>
         <div className="py-2 text-center flex items-center justify-center gap-1">
   <div className="w-4 h-4 flex items-center justify-center bg-[#12B76A] rounded-full border border-[#12B76A]">
     <svg
@@ -193,17 +193,17 @@ function Home() {
               Continue
             </FormButton>
             <p 
-              className="mt-3 text-center  cursor-pointer" 
+              className="mt-2 text-center  cursor-pointer" 
               onClick={() => setIsModalOpen(true)}
             >
               Trouble Signing in?
             </p>
-          <div className="flex items-center w-full mt-5">
+          <div className="flex items-center w-full mt-2">
       <div className="flex-1 h-px bg-gray-300"></div>
       <span className="px-3 text-gray-500 text-1xl">Or continue with</span>
        <div className="flex-1 h-px bg-gray-300"></div>
        </div>
-       <div className='flex flex-col gap-3 mt-5'>
+       <div className='flex flex-col gap-2 mt-2'>
        <FormButton className="bg-white font-semibold text-black border border-gray-300 !rounded-full py-2 px-4 w-full mb-1 cursor-pointer">
        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 36 36" fill="none">
   <path d="M9.93 16.185C12.09 20.43 15.57 23.91 19.815 26.07L23.115 22.77C23.535 22.35 24.12 22.23 24.645 22.395C26.325 22.95 28.125 23.25 30 23.25C30.3978 23.25 30.7794 23.408 31.0607 23.6893C31.342 23.9706 31.5 24.3522 31.5 24.75V30C31.5 30.3978 31.342 30.7794 31.0607 31.0607C30.7794 31.342 30.3978 31.5 30 31.5C23.237 31.5 16.751 28.8134 11.9688 24.0312C7.1866 19.249 4.5 12.763 4.5 6C4.5 5.60218 4.65804 5.22064 4.93934 4.93934C5.22064 4.65804 5.60218 4.5 6 4.5H11.25C11.6478 4.5 12.0294 4.65804 12.3107 4.93934C12.592 5.22064 12.75 5.60218 12.75 6C12.75 7.875 13.05 9.675 13.605 11.355C13.77 11.88 13.65 12.465 13.23 12.885L9.93 16.185Z" fill="#1A1A1A"/>
@@ -241,13 +241,13 @@ function Home() {
 </FormButton>
        </div>
      
-       <p className="text-center mt-10 text-gray-500">
+       <p className="text-center mt-3 text-gray-500">
   By continuing, you confirm that you‘re an adult and you’ve read and accepted our   
   <a href="#" className="underline text-gray mx-1">AliExpress</a>
   <a href="#" className="underline text-gray mx-1">Membership Agreement</a> and 
   <a href="#" className="underline text-gray mx-1">Privacy Policy</a>.
 </p>
-   <p className='text-center mt-2 text-gray-500'>Why choose a location?</p>
+   <p className='text-center mt-1 text-gray-500'>Why choose a location?</p>
 
         </form>
       </div>
