@@ -45,7 +45,7 @@ function LoginSignup() {
     alt="Login Page"
   />
 </div>
-      <div className="w-full flex items-center  w-[50%] justify-center">
+      <div className="w-full flex items-center w-[50%] justify-center">
         <form className="max-w-[400px] 2xl:max-w-[500px] px-5 md:px-0">
         <div className='hidden md:block'>
         <h2 className="text-2xl text-center font-bold mb-1">Register/Sign in</h2>
