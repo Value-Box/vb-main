@@ -543,12 +543,12 @@ function OrderDetails() {
 </div>
 {isOpen && (
         <div
-          className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm z-999 "
+          className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 backdrop-blur-sm z-999 "
           onClick={() => setIsOpen(false)}
         >
           {/* Modal Box */}
           <div
-            className="bg-white p-7 rounded-lg shadow-lg w-[500px] relative flex flex-col gap-5"
+            className="bg-white p-7 rounded-lg shadow-lg w-[500px] relative flex flex-col gap-3"
             onClick={(e) => e.stopPropagation()} // Prevents closing modal when clicking inside
           >
             {/* Close Button */}
@@ -560,10 +560,10 @@ function OrderDetails() {
             </button>
 
             {/* Modal Header */}
-            <h2 className="text-[24px] font-bold text-center mb-4">Cancel Order</h2>
+            <h2 className="text-[24px] font-bold text-center mb-2">Cancel Order</h2>
 
             {/* Reasons List */}
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-3">
               {reasons.map((reason, index) => (
                 <label key={index} className="flex items-center justify-between space-x-2 cursor-pointer">
                  
@@ -579,7 +579,7 @@ function OrderDetails() {
 
             {/* Confirm Button */}
             <button
-              className="w-full bg-[#002882] text-white py-2 mt-4 rounded-md transition"
+              className="w-full bg-[#002882] text-white py-2 mt-2 rounded-md transition"
               onClick={() => {
                 setIsOpen(false);
                 console.log("Selected Reasons:", selectedReasons);
