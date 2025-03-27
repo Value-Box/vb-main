@@ -91,9 +91,9 @@ function Home() {
     <ProductCard1 />
    
     {visible && (
-    <div className="fixed bottom-2 right-2 w-44 bg-white p-2 rounded-xl shadow-lg border border-gray-300 z-9999">
+    <div className="fixed bottom-2 right-2 w-35 bg-white p-2 rounded-xl shadow-lg border border-gray-300 z-9999">
       {/* Blue Box with GIF */}
-      <div className="w-full h-35 bg-[#002882] rounded-lg flex justify-center items-center">
+      <div className="w-full h-25 bg-[#002882] rounded-lg flex justify-center items-center">
         <img
           src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXAzbDVrNjB0aDZ2YXUwaTcxcmd1NXlpYzAwcnJ5ZnpvN2FwdXd4NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mIzhcjFBGFmOhkoVEn/giphy.gif"
           alt="GIF"
@@ -103,13 +103,13 @@ function Home() {
 
       {/* Close Button */}
       <button
-        className="flex justify-center items-center mx-auto mt-1 w-8 h-8"
+        className="flex justify-center items-center mx-auto mt-1 w-6 h-6"
         onClick={() => setVisible(false)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="25"
+          width="20"
+          height="20"
           viewBox="0 0 24 25"
           fill="none"
         >
