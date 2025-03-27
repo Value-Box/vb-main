@@ -762,11 +762,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       </div>
       {/* Modal 1 */}
       {isModalOpen && (
-        <div className=" fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
-          <div className="relative bg-white rounded-lg shadow-lg ">
+        <div className=" fixed inset-0 flex items-center p-4 justify-center bg-black/70 backdrop-blur-sm" >
+          <div className="relative bg-white rounded-2xl shadow-lg ">
             {/* Modal Header */}
             <div className="flex justify-end items-center">
-              
             <button  className="absolute -top-4 -right-4 z-1050 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
   onClick={() => {
     setIsModalOpen(false);
@@ -794,10 +793,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             </div>
 
             {/* Modal Body */}
-            <div className="max-h-[100vh] w-[1500px] overflow-y-auto rounded-2xl border border-gray-300">
+            <div className="overflow-y-auto rounded-2xl border border-gray-300">
               {mapTrue?(
-                <div className="flex items-center justify-center">
-                <div className="relative w-full bg-white shadow-lg rounded-lg">
+                <div className="flex  items-center justify-center">
+                <div className="relative w-[1000px] bg-white shadow-lg rounded-lg">
                   {/* Google Maps Embed */}
                   <iframe
                     className="w-full h-[500px] rounded-t-lg "
@@ -833,15 +832,15 @@ const [showOffersModal, setShowOffersModal] = useState(false);
                     </svg> {collectionPoint.name}
                     </h3>
                     <div className="flex gap-1 items-center">
-                    <span className="w-1/4 flex px-[10px] py-[5px] justify-center items-center gap-[10px] rounded-full bg-gradient-to-r from-[#FFC136] via-[#FAC142] via-[#FFD168] via-[#F5BC3A] to-[#E09B00] text-black text-sm">
+                    <span className="w-3/6 flex px-[5px] py-[5px] justify-center items-center gap-[10px] rounded-full bg-gradient-to-r from-[#FFC136] via-[#FAC142] via-[#FFD168] via-[#F5BC3A] to-[#E09B00] text-black text-xs">
                     Collection Point
                     </span>
 
-                    <p className="text-gray-600">{collectionPoint.address}</p>
+                    <p className="text-gray-600 text-sm">{collectionPoint.address}</p>
                     </div>
                    
                      </div>
-                   <div className="mt-3 flex flex-col gap-2 text-gray-600">
+                   <div className="mt-3 flex flex-col gap-2 text-sm text-gray-600">
                       <p className="text-[]18px[">{collectionPoint.phone}</p>
                       <p className="text-18px"> {collectionPoint.openingHours}</p>
                     </div>
@@ -852,16 +851,16 @@ const [showOffersModal, setShowOffersModal] = useState(false);
               </div>
               ):(
                 
-                <div className="p-6">
-                  <table className="w-full border-collapse rounded-2xl overflow-hidden">
+                <div className="p-4">
+                  <table className="w-[1000px] border-collapse rounded-2xl text-sm overflow-hidden">
                 <thead className="bg-gray-200">
                   <tr className="border-b border-gray-300">
-                    <th className="p-3 text-left rounded-tl-2xl">Full Name</th>
-                    <th className="p-3 text-left">Address</th>
-                    <th className="p-3 text-left">Region & Area</th>
-                    <th className="p-3 text-left">Opening Hours</th>
-                    <th className="p-3 text-left">Phone Number</th>
-                    <th className="p-3 text-left rounded-tr-2xl">Location</th>
+                    <th className="p-2 text-left rounded-tl-2xl">Full Name</th>
+                    <th className="p-2 text-left">Address</th>
+                    <th className="p-2 text-left">Region & Area</th>
+                    <th className="p-2 text-left">Opening Hours</th>
+                    <th className="p-2 text-left">Phone Number</th>
+                    <th className="p-2 text-left rounded-tr-2xl">Location</th>
                   </tr>
                 </thead>
                 <tbody className="text-[#999]">
@@ -871,12 +870,12 @@ const [showOffersModal, setShowOffersModal] = useState(false);
                         <CheckBox />
                         {point.name}
                       </td>
-                      <td className="p-3">{point.address}</td>
-                      <td className="p-3">{point.region}</td>
-                      <td className="p-3">{point.openingHours}</td>
-                      <td className="p-3">{point.phone}</td>
+                      <td className="p-2">{point.address}</td>
+                      <td className="p-2">{point.region}</td>
+                      <td className="p-2">{point.openingHours}</td>
+                      <td className="p-2">{point.phone}</td>
                       <td className="w-[10%]">
-                        <div className="bg-[#F2F2F2] rounded-[5px] flex gap-1 items-center p-2 cursor-pointer text-yellow-400 w-[50%]" onClick={()=>isMapTrue(true)}>  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <div className="bg-[#F2F2F2] rounded-[5px] flex gap-1 items-center p-2 cursor-pointer text-yellow-400 w-[50%]" onClick={()=>isMapTrue(true)}>  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M7.29688 8.33333C7.29688 7.61504 7.58222 6.92616 8.09013 6.41825C8.59804 5.91034 9.28691 5.625 10.0052 5.625C10.7235 5.625 11.4124 5.91034 11.9203 6.41825C12.4282 6.92616 12.7135 7.61504 12.7135 8.33333C12.7135 9.05163 12.4282 9.7405 11.9203 10.2484C11.4124 10.7563 10.7235 11.0417 10.0052 11.0417C9.28691 11.0417 8.59804 10.7563 8.09013 10.2484C7.58222 9.7405 7.29688 9.05163 7.29688 8.33333Z" fill="url(#paint0_linear_7298_123697)"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M3.14933 7.3975C3.28795 5.72229 4.05119 4.16039 5.28764 3.02165C6.52409 1.88292 8.1434 1.25055 9.82433 1.25H10.1843C11.8653 1.25055 13.4846 1.88292 14.721 3.02165C15.9575 4.16039 16.7207 5.72229 16.8593 7.3975C17.0132 9.26784 16.4357 11.125 15.2485 12.5783L11.2543 17.4633C11.1029 17.6486 10.9123 17.7979 10.6961 17.9005C10.4799 18.003 10.2436 18.0562 10.0043 18.0562C9.76506 18.0562 9.52878 18.003 9.3126 17.9005C9.09641 17.7979 8.90572 17.6486 8.75433 17.4633L4.761 12.5783C3.57347 11.1251 2.99575 9.26795 3.14933 7.3975ZM10.0043 4.375C8.95452 4.375 7.9477 4.79204 7.20537 5.53437C6.46304 6.2767 6.046 7.28352 6.046 8.33333C6.046 9.38315 6.46304 10.39 7.20537 11.1323C7.9477 11.8746 8.95452 12.2917 10.0043 12.2917C11.0541 12.2917 12.061 11.8746 12.8033 11.1323C13.5456 10.39 13.9627 9.38315 13.9627 8.33333C13.9627 7.28352 13.5456 6.2767 12.8033 5.53437C12.061 4.79204 11.0541 4.375 10.0043 4.375Z" fill="url(#paint1_linear_7298_123697)"/>
               <defs>
@@ -901,7 +900,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
                   ))}
                 </tbody>
               </table>
-              <div className="flex justify-end p-4 w-full mt-5">
+              <div className="flex justify-end mt-5 w-full">
   <div className="flex gap-2">
     <FormButton
       onClick={() => setIsModalOpen(false)}
@@ -935,11 +934,11 @@ const [showOffersModal, setShowOffersModal] = useState(false);
        <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
        {formOpen ? (  
       
-      <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[1000px] max-w-full min-h-[700px] flex flex-col gap-5 relative">
-      <h2 className="text-[24px] font-semibold mb-4">Add New Address</h2>
+      <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] max-w-full min-h-[600px] flex flex-col gap-2 relative">
+      <h2 className="text-[24px] font-semibold mb-2">Add New Address</h2>
     
       {/* Location Type */}
-      <div className="mb-4 flex gap-4">
+      <div className="mb-2 flex gap-2">
         <label className="flex items-center gap-1">
           <CheckBox value="home" checked={locationType === "home"} onChange={() => setLocationType("home")}/>
           Home
@@ -952,7 +951,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       <hr className="border-t-[1px] border-[#CCD1D2]" />
     
       {/* Default Address Checkboxes */}
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-2">
         <label className="flex items-center gap-1">
           <CheckBox checked={defaultShipping} onChange={() => setDefaultShipping(!defaultShipping)}/>
           Default Shipping Address
@@ -964,7 +963,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       </div>
     
       {/* Form Content */}
-      <form onSubmit={handleSubmit} className="flex flex-col flex-grow space-y-3">
+      <form onSubmit={handleSubmit} className="flex flex-col flex-grow space-y-2">
         <div className="grid grid-cols-2 gap-2">
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-600 text-[16px] font-medium">Country/region </label>
@@ -1023,7 +1022,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     </div>
     
     ) : (
-      <div className="bg-white p-6 rounded-lg shadow-lg w-[1000px] max-w-full min-h-[700px] flex flex-col relative">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-[700px] max-w-full min-h-[500px] flex flex-col relative">
         
         {/* Close Button */}
         <button 
@@ -1087,7 +1086,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       )}
        {/* Modal 3 */}
        {isInstalmentModalOpen && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+  <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm"  onClick={() => setIsInstalmentModalOpen(false)}>
     <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] relative flex flex-col">
       
       {/* Close Button */}
@@ -1186,10 +1185,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       )}
        {/* Modal 4 */}
        {isCardModalOpen && (
-    <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
+    <div className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 backdrop-blur-sm">
     {billingAddressOpen ? (  
       
-      <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[700px] flex flex-col gap-5 relative">
+      <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative">
       <h2 className="text-[24px] font-semibold">Billing Address</h2>
     
    
@@ -1241,7 +1240,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     </div>
     
     ) : (
-      <div className="bg-white p-6 rounded-lg shadow-lg w-[600px] max-w-full flex flex-col relative gap-5">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-[600px] max-w-full flex flex-col relative gap-3">
         
         {/* Close Button */}
         <button 
@@ -1470,14 +1469,14 @@ const [showOffersModal, setShowOffersModal] = useState(false);
 
      
       <FormButton 
-          className="bg-[#002882] text-white w-full py-2 mt-4 rounded" 
+          className="bg-[#002882] text-white w-full py-2 mt-2 rounded" 
          
         >
           Add Your Card
         </FormButton>
 
       {/* Security Information */}
-      <div className=" text-sm flex flex-col gap-2.5">
+      <div className=" text-sm flex flex-col gap-1">
         <span className="text-[16px] text-[#039855] flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
   <path d="M10 0.833496L2.5 4.16683V9.16683C2.5 13.7918 5.7 18.1168 10 19.1668C14.3 18.1168 17.5 13.7918 17.5 9.16683V4.16683L10 0.833496ZM10 7.4085C11.3333 7.4085 12.4083 8.4835 12.4083 9.81683C12.4083 11.1502 11.3333 12.2252 10 12.2252C8.66667 12.2252 7.59167 11.1418 7.59167 9.81683C7.59167 8.49183 8.675 7.4085 10 7.4085ZM10 5.00016L11.15 6.66683C10.8 6.51683 10.4167 6.44183 10 6.44183C9.375 6.44183 9.20833 6.51683 8.85 6.66683L10 5.00016ZM5.83333 7.4085L7.83333 7.24183C7.55 7.50016 7.28333 7.7835 7.08333 8.1335C6.875 8.4835 6.75 8.85016 6.66667 9.2335L5.83333 7.4085ZM5.83333 12.2252L6.69167 10.4168C6.75833 10.7752 6.89167 11.1502 7.08333 11.5002C7.29167 11.8585 7.55 12.1585 7.83333 12.4002L5.83333 12.2252ZM14.1667 7.4085L13.3333 9.2335C13.25 8.85016 13.1167 8.4835 12.9167 8.1335C12.7167 7.7835 12.4583 7.50016 12.1667 7.2335L14.1667 7.4085ZM14.1667 12.2252L12.1667 12.3918C12.45 12.1502 12.7083 11.8502 12.9167 11.5002C13.1167 11.1502 13.2417 10.7752 13.3083 10.4168L14.1667 12.2252ZM10 14.6252L8.84167 12.9752C9.2 13.1002 9.58333 13.1835 10 13.1835C10.4167 13.1835 10.7917 13.1002 11.1417 12.9752L10 14.6252Z" fill="#039855"/>
 </svg> ValueBox protects your card information</span>
@@ -1497,7 +1496,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       )}
       {/* Modal 5 */}
       {showOffersModal && (
-        <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
+        <div className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 backdrop-blur-sm"  onClick={() => {setShowOffersModal(false) }}>
           <div className="bg-white p-6 rounded-lg shadow-lg w-[430px] relative">
            <div className="max-w-lg mx-auto ">
             {/* Close Button */}
@@ -1525,10 +1524,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
            <p className="text-gray-500 text-center italic">Download ValueBox App to get more offers</p>
 
       {/* Coupon Offers */}
-      <div className="mt-4">
+      <div className="mt-2">
         <h3 className="font-semibold text-lg">Coupon Offers</h3>
 
-        <div className="border border-[#12B76A] rounded-lg p-3 mt-3 relative bg-[#F6FEF9]">
+        <div className="border border-[#12B76A] rounded-lg p-3 mt-2 relative bg-[#F6FEF9]">
           <div className="flex justify-between items-center">
             <span className="text-[#12B76A] font-bold text-lg">10% OFF</span>
             <span className="text-[#12B76A] text-sm">Expire on 28 Nov 2024</span>
@@ -1542,7 +1541,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           <div className="absolute top-1/2 -right-3 w-5 h-5 bg-[#FCFCFC] border-l-4 border-green-500 rounded-full"></div>
         </div>
 
-        <div className="border border-[#12B76A] rounded-lg p-3 mt-3 relative bg-[#F6FEF9] ">
+        <div className="border border-[#12B76A] rounded-lg p-3 mt-2 relative bg-[#F6FEF9] ">
           <div className="flex justify-between items-center">
             <span className="text-[#12B76A] font-bold text-lg">Free Ship</span>
             <span className="text-[#12B76A] text-sm">Expire on 28 Nov 2024</span>
@@ -1558,10 +1557,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       </div>
 
       {/* Bank Offers */}
-      <div className="mt-6">
+      <div className="mt-2">
         <h3 className="font-semibold text-lg">Bank Offers</h3>
 
-        <div className="border flex border-[#2E90FA] rounded-lg mt-3 relative bg-[#D1E9FF] ">
+        <div className="border flex border-[#2E90FA] rounded-lg mt-2 relative bg-[#D1E9FF] ">
         <div className='p-3 flex flex-col justify-center'>
         <span className="text-[#175CD3] font-bold text-lg ">10% OFF</span>
         <span className="text-[#175CD3] text-sm">No Min Spend</span>
