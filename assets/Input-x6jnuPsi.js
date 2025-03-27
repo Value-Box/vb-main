@@ -1,2 +1,0 @@
-import{j as a}from"./index-C7xoX8Ov.js";function p({type:r,placeholder:e,name:t,value:n="",checked:o="",onChange:s,className:u="",id:i=""}){return a.jsx("input",{id:i,name:t,checked:o,type:r,value:n,onChange:s,placeholder:e,className:`w-full flex px-4 py-2 items-center gap-3 self-stretch rounded-md border border-gray-300
-        bg-white text-gray-700 focus:outline-none focus:ring-0 focus:ring-gray-400 ${u}`})}export{p as I};
