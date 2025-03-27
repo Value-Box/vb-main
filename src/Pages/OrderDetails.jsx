@@ -283,7 +283,7 @@ function OrderDetails() {
 </div>
 <div className="w-full">
   <h2 className="text-lg font-semibold mb-3">Order split into 03 packages:</h2>
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
     {packages.map((pkg) => (
       <div key={pkg.id} className="bg-white p-5 rounded-[5px] border-1 border-[#F2F2F2] w-full">
         {/* Package Header */}
@@ -399,14 +399,14 @@ function OrderDetails() {
 
         {/* Right: Action Buttons */}
         <div className=" flex flex-col space-y-2 w-1/5">
-        <NavLink to="/PackageDetail" ><button className="bg-[#002882] w-full text-white px-6 py-2 rounded-lg">
+        <NavLink to="/PackageDetail" ><button className="bg-[#002882] w-full text-white lg:text-[16px] text-[14px] lg:px-6 py-2 rounded-lg">
             Track Order
           </button></NavLink>
-          <button className="border border-[#002882] text-[#002882] px-6 py-2 rounded-lg">
+          <button className="border border-[#002882] text-[#002882] lg:text-[16px] text-[14px] lg:px-6 py-2 rounded-lg">
             Edit Address
           </button>
           <button 
-  className="border border-gray-300 text-gray-500 px-6 py-2 rounded-lg" 
+  className="border border-gray-300 text-gray-500 lg:text-[16px] text-[14px] lg:px-6 py-2 rounded-lg" 
   onClick={() => setIsOpen(true)} // ✅ Opens the modal
 >
   Cancel Order

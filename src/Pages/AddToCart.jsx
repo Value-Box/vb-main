@@ -669,7 +669,7 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
 </NavLink>
             </div>
 
-            <div className=" bg-white p-4  rounded-md border border-[#F2F2F2] ">
+            <div className=" bg-white p-4  rounded-md border border-[#CCD1D2] ">
 {/* Pay With Section */}
 <h2 className="text-lg font-semibold mb-2">Pay With</h2>
 <div className="flex flex-wrap gap-2 mb-4 w-full">
