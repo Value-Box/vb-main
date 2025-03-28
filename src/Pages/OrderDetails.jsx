@@ -1,4 +1,4 @@
-import React, { useRef, useState,useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AccountSideBar from '../Components/AccountSideBar'
 import CheckBox from '../Components/CheckBox';
 import { NavLink } from 'react-router-dom';
@@ -217,6 +217,21 @@ function OrderDetails() {
     extraImagesCount: 8,
   },
 ];
+const [showTooltip, setShowTooltip] = useState(false);
+const tooltipRef = useRef(null);
+
+  // Close tooltip when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
+        setShowTooltip(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
+
 
   return (
     <>
@@ -751,8 +766,24 @@ function OrderDetails() {
       </div>
 
       {/* Footer Section */}
-      <div className="flex items-center justify-between mt-3">
-        <span className="text-lg">•••</span>
+      <div className="flex items-center justify-between ">
+      <div className="relative" ref={tooltipRef}>
+      {/* Three-dot icon */}
+      <span
+        className="text-lg cursor-pointer"
+        onClick={() => setShowTooltip(!showTooltip)}
+      >
+        •••
+      </span>
+
+      {/* Tooltip (Visible only when state is true) */}
+      {showTooltip && (
+       <div className="absolute left-3/2 -translate-x-1/3 bottom-full bg-white text-black text-xs px-2 py-1 rounded-md shadow-lg whitespace-nowrap">
+       Cancel Order
+     </div>
+     
+      )}
+    </div>
         <button className="border border-gray-300 text-gray-500 px-3 py-1 rounded-md text-sm"  onClick={() => setCancelPopup(true)}>
           Cancel Order
         </button>
@@ -1177,7 +1208,7 @@ function OrderDetails() {
 
          
          {!showTrackOrder && !showPaymentDetails ? (
-  <div className=" bg-[#FCFCFC] py-10 px-10">
+  <div className=" bg-[#FCFCFC] pb-10 px-10">
   <DetailProductCard2 products={products} style="flex-wrap justify-center !px-0 sm:px-0" />
 </div>
 ) : showTrackOrder ? (
