@@ -35,7 +35,23 @@ function VidCarousel() {
 
 
     return (
-        <div className="relative w-full max-w-[1920px] mx-auto overflow-hidden px-5">
+        <div className="relative w-full max-w-[1920px] mx-auto overflow-hidden px-5 mt-5">
+            <div className='my-3'>
+                <h1 className='flex items-center gap-2 text-natural-black text-xl md:text-3xl lg:text-4xl font-bold'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M32.625 29.25C32.625 29.5484 32.5065 29.8345 32.2955 30.0455C32.0845 30.2565 31.7984 30.375 31.5 30.375H4.5C4.20163 30.375 3.91548 30.2565 3.7045 30.0455C3.49353 29.8345 3.375 29.5484 3.375 29.25C3.375 28.9516 3.49353 28.6655 3.7045 28.4545C3.91548 28.2435 4.20163 28.125 4.5 28.125H31.5C31.7984 28.125 32.0845 28.2435 32.2955 28.4545C32.5065 28.6655 32.625 28.9516 32.625 29.25ZM32.625 7.875V23.625C32.625 24.2217 32.3879 24.794 31.966 25.216C31.544 25.6379 30.9717 25.875 30.375 25.875H5.625C5.02826 25.875 4.45597 25.6379 4.03401 25.216C3.61205 24.794 3.375 24.2217 3.375 23.625V7.875C3.375 7.27826 3.61205 6.70597 4.03401 6.28401C4.45597 5.86205 5.02826 5.625 5.625 5.625H30.375C30.9717 5.625 31.544 5.86205 31.966 6.28401C32.3879 6.70597 32.625 7.27826 32.625 7.875ZM23.0625 15.75C23.0624 15.5692 23.0188 15.3911 22.9354 15.2308C22.8519 15.0705 22.731 14.9326 22.583 14.8289L16.958 10.8914C16.7894 10.7733 16.5917 10.7037 16.3863 10.6902C16.181 10.6767 15.9758 10.7198 15.7933 10.8148C15.6107 10.9098 15.4577 11.053 15.3509 11.2289C15.2441 11.4049 15.1876 11.6067 15.1875 11.8125V19.6875C15.1876 19.8933 15.2441 20.0951 15.3509 20.2711C15.4577 20.447 15.6107 20.5902 15.7933 20.6852C15.9758 20.7802 16.181 20.8233 16.3863 20.8098C16.5917 20.7963 16.7894 20.7267 16.958 20.6086L22.583 16.6711C22.731 16.5674 22.8519 16.4295 22.9354 16.2692C23.0188 16.1089 23.0624 15.9308 23.0625 15.75Z" fill="url(#paint0_linear_5948_146548)"/>
+  <defs>
+    <linearGradient id="paint0_linear_5948_146548" x1="3.375" y1="18" x2="32.625" y2="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0032A3"/>
+      <stop offset="0.25" stop-color="#1A51CB"/>
+      <stop offset="0.5" stop-color="#3B66C8"/>
+      <stop offset="0.75" stop-color="#1A51CB"/>
+      <stop offset="1" stop-color="#0032A3"/>
+    </linearGradient>
+  </defs>
+</svg> Featured in Videos</h1>
+<p className='text-lg text-natural-gray xl:text-2xl'>See what creators are sharing</p>
+            </div>
             <div
                 ref={containerRef}
                 className="bg-white flex gap-5 overflow-x-auto w-full scrollbar-hide"

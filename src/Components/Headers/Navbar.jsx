@@ -37,7 +37,7 @@ function Navbar() {
           />
         </svg>
       ),
-      link: "",
+      link: "/Orders",
     },
     {
       name: "Coupons & Offers",
@@ -58,7 +58,7 @@ function Navbar() {
           />
         </svg>
       ),
-      link: "",
+      link: "/CouponOffers",
     },
     {
       name: "Your Reviews",
@@ -86,7 +86,7 @@ function Navbar() {
           />
         </svg>
       ),
-      link: "",
+      link: "/Reviews",
     },
     {
       name: "Followed Providers",
@@ -112,7 +112,7 @@ function Navbar() {
           />
         </svg>
       ),
-      link: "",
+      link: "/FollowedAndProvider",
     },
     {
       name: "Browsing History",
@@ -140,7 +140,7 @@ function Navbar() {
           />
         </svg>
       ),
-      link: "",
+      link: "/BrowsingHistory",
     },
     {
       name: "Addresses",
@@ -167,7 +167,7 @@ function Navbar() {
           />
         </svg>
       ),
-      link: "",
+      link: "/ShippingAddress",
     },
     {
       name: "Customer Support",
@@ -185,7 +185,7 @@ function Navbar() {
           />
         </svg>
       ),
-      link: "",
+      link: "https://wa.me/923111555374",
     },
     {
       name: "Settings",
@@ -455,9 +455,9 @@ function Navbar() {
                             <React.Fragment key={index}>
                            
                               <li >
-                                <a className="flex gap-2 cursor-pointer text-xs 2xl:text-base">
+                                <NavLink to={item.link} className="flex gap-2 cursor-pointer text-xs 2xl:text-base">
                                   {item.svg} {item.name}
-                                </a>
+                                </NavLink>
                               </li>
                               <p className="h-[1px] bg-[#F2F2F2] my-2"></p>
                             </React.Fragment>
