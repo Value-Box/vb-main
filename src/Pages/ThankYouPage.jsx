@@ -19,12 +19,12 @@ function ThankYouPage() {
         <div className="flex flex-col items-center justify-center relative p-6 border-b border-[#F2F2F2] md:border-b-0 w-full md:max-w-sm mx-auto bg-white md:bg-transparent">
         <img src={thankyounimation} className='absolute left-0 md:left-[-8%] z-0' alt="" />
         <img src={thankyounimation} className='absolute right-0 md:right-[-8%]' alt="" />
-      <h2 className="text-red-500 flex items-center gap-1 2xl:text-xl font-medium">
-        <span><svg xmlns="http://www.w3.org/2000/svg" className='h-6 w-6 2xl:w-8 2xl:h-8' viewBox="0 0 37 36" fill="none">
+      <h2 className="text-red-500 flex items-center gap-1 text-xl 2xl:text-2xl text-nowrap font-medium">
+        <svg xmlns="http://www.w3.org/2000/svg" className='h-6 w-6 2xl:w-8 2xl:h-8' viewBox="0 0 37 36" fill="none">
   <path d="M7.25284 6.75005C12.501 4.12655 16.8153 7.31255 18.5028 9.56255C20.1903 7.31255 24.5047 4.12655 29.7528 6.75005C36.5028 10.1251 34.8153 18.5626 29.7528 23.6251C27.2823 26.0956 22.932 30.4459 19.7505 32.8658C19.3951 33.1358 18.9591 33.2781 18.5128 33.2697C18.0666 33.2613 17.6362 33.1028 17.2912 32.8197C14.3741 30.4651 9.68847 26.0607 7.25284 23.6251C2.19034 18.5626 0.502844 10.1251 7.25284 6.75005Z" fill="#F8312F"/>
   <path d="M18.5028 9.56241V12.9937C19.9316 9.97304 23.481 5.93991 29.3681 6.56654C24.2943 4.28279 20.1487 7.36754 18.5028 9.56241ZM13.9421 6.22904C12.0453 5.56866 9.75597 5.49779 7.25284 6.74991C0.502843 10.1249 2.19034 18.5624 7.25284 23.6249C9.68847 26.0605 14.3741 30.4649 17.2912 32.8195C17.6364 33.1025 18.0668 33.2608 18.513 33.269C18.9593 33.2771 19.3952 33.1347 19.7505 32.8645C20.0362 32.647 20.3306 32.4153 20.6336 32.1693C17.4228 29.7584 12.9161 25.9604 10.4692 23.7745C4.89259 18.7897 3.03297 10.4827 10.4692 7.15941C11.5674 6.65941 12.741 6.34502 13.9421 6.22904Z" fill="#CA0B4A"/>
   <path d="M24.2243 18.8263C25.7503 19.7074 28.1914 18.3361 29.6766 15.7636C31.1619 13.191 31.1289 10.3913 29.6029 9.51029C28.0769 8.62926 25.6358 10.0005 24.1505 12.5731C22.6653 15.1456 22.6983 17.9453 24.2243 18.8263Z" fill="#F37366"/>
-</svg></span> Thank You for your purchase
+</svg> Thank You for your purchase
       </h2>
       <p className="text-2xl lg:text-3xl 2xl:text-4xl font-bold text-[#EEA500] mt-2">PKR 5,465</p>
       <p className="2xl:text-xl mt-1">Your order number is 20287894654</p>

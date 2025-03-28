@@ -161,7 +161,7 @@ function OneDollarShopePage() {
   return (
      <div className='w-full max-w-[1920px] mx-auto '>
           <div className='pb-2 md:mb-0'>
-          <div className={`md:bg-[url(${onedollarshopBanner})] bg-[url(${onedollarshopMobBanner})] bg-center bg-cover bg-no-repeat text-white w-full flex md:justify-center items-center px-6 py-2 `}>
+          <div className={`md:bg-[url(${onedollarshopBanner})] bg-[url(${onedollarshopMobBanner})] bg-center bg-cover bg-no-repeat text-white w-full flex md:justify-center items-center px-6 py-5 `}>
          
     <div className="rounded-lg flex justify-center text-xl lg:text-2xl 2xl:text-4xl ">
     <h1 className="text-white sm:text-4xl font-bold" style={{ textShadow: "3px 3px 0px red" }}>

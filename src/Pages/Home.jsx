@@ -29,7 +29,11 @@ function Home() {
       const goToNext = () => {
         setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
       };
-      
+
+      useEffect(()=>{
+        const interval=setInterval(goToNext,4000);
+        return ()=>clearInterval(interval)
+      },[currentIndex])
 
       const [showModal, setShowModal] = useState(false);
 
@@ -56,30 +60,49 @@ function Home() {
   return (
     <div>
     <HorizentolCategories  />
-    <div className="relative max-w-[1920px]  w-full mx-auto">
-      <div className="overflow-hidden">
-        <img
-          src={images[currentIndex]}
-          alt={`carousel-image-${currentIndex}`}
-          className="w-full lg:h-[600px]"
-        />
+    <div className="relative max-w-[1920px] w-full mx-auto mb-4">
+    <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden">
+        <div
+          className="flex transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {images.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`carousel-image-${index}`}
+              className="w-full flex-shrink-0 object-cover"
+            />
+          ))}
+        </div>
       </div>
       <button
         onClick={goToPrevious}
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 text-white bg-black opacity-50 hover:opacity-100 transition"
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 text-white bg-dark-blue rounded-r-[5px] transition"
       >
         &#8592;
       </button>
       <button
         onClick={goToNext}
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 px-4 py-2 text-white bg-black opacity-50 hover:opacity-100 transition"
+        className="absolute top-1/2 right-0 transform -translate-y-1/2 px-4 py-2 text-white bg-dark-blue rounded-l-[5px] transition"
       >
         &#8594;
       </button>
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-[10px] h-[10px] rounded-full transition ${
+              index === currentIndex ? "bg-white" : "bg-gray-400"
+            }`}
+          ></button>
+        ))}
+      </div>
     </div>
 
     <InfoSection/>
-    <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:px-4 py-0 max-w-[1920px] mx-auto'>
+    <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:px-4 py-0 max-w-[1920px] mx-auto mt-8'>
       <BundleDeal/>
       <FlashDeal/>
     </div>
@@ -93,9 +116,9 @@ function Home() {
     <ProductCard1 />
    
     {visible && (
-    <div className="fixed bottom-2 right-2 w-35 bg-white p-2 rounded-xl shadow-lg border border-gray-300 z-9999">
+    <div className="fixed bottom-2 right-2 w-25 sm:w-30 bg-white p-2 rounded-xl shadow-lg border border-gray-300 z-9999">
       {/* Blue Box with GIF */}
-      <div className="w-full h-25 bg-[#002882] rounded-lg flex justify-center items-center">
+      <div className="h-17 sm:h-20 bg-[#002882] rounded-lg flex justify-center items-center">
         <img
           src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXAzbDVrNjB0aDZ2YXUwaTcxcmd1NXlpYzAwcnJ5ZnpvN2FwdXd4NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mIzhcjFBGFmOhkoVEn/giphy.gif"
           alt="GIF"

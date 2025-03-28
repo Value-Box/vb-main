@@ -55,7 +55,7 @@ console.log(subSubCategories);
             </div>
 
             {/* Categories Button */}
-            <button className='flex items-center'>
+            <button className='flex items-center' onClick={()=>{window.history.back()}}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
                     <path d="M21 12L15 18L21 24" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg> Categories

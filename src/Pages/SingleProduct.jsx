@@ -1741,8 +1741,19 @@ function ProductPage() {
 
         <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
         
-        <div className="border rounded-lg border-[#F2F2F2]">
+        <div className="border sticky top-[8%] rounded-lg border-[#F2F2F2]">
           <div className="px-2 2xl:px-3 py-4 2xl:py-6">
+          <div className="flex items-center justify-between">
+            <h1 class="text-2xl 2xl:text-3xl font-bold text-[#002882]">PKR 7,100</h1>
+            </div>
+
+            <div class="flex items-center">
+              <del class="text-[#999] md:text-lg 2xl:text-2xl">PKR 8,500</del>
+              <span class="ml-2 text-[#F04438] text-sm md:text-md 2xl:text-lg">26% OFF</span>
+              <span class="ml-2 text-[#F04438] bg-[#FEE4E2] rounded-sm p-1 text-xs">Almost Sold Out</span>
+            </div>
+            <p className="text-natural-gray text-xs xl:text-sm 2xl:text-base">Tax Excluded, add at checkout if applicable.</p>
+            <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>
             <div className="flex items-center justify-between">
               <span className="flex text-[#333] font-bold items-center text-xs xl:text-sm 2xl:text-base">
                 <svg
@@ -1806,6 +1817,22 @@ function ProductPage() {
                 Johar town, Lahore
                 <Link className="text-[#002882] underline inline ml-1">
                   Change
+                </Link>
+              </p>
+            </div>
+            <div className="flex items-center justify-between mt-3">
+              <div className="flex gap-1">
+              <span className="flex text-[#333] font-bold items-center text-xs xl:text-sm 2xl:text-base text-nowrap">
+               Color</span> 
+               <p className="text-natural-gray text-xs xl:text-sm 2xl:text-base">RED</p>,
+              <span className="flex text-[#333] font-bold items-center text-xs xl:text-sm 2xl:text-base text-nowrap">
+              Size</span> 
+               <p className="text-natural-gray text-xs xl:text-sm 2xl:text-base">XXL</p>
+              </div>
+              <p className="text-[#1A1A1A] inline text-xs xl:text-sm 2xl:text-base text-nowrap">
+                
+                <Link className="text-[#002882] underline inline ml-1">
+                Edit
                 </Link>
               </p>
             </div>
@@ -2447,7 +2474,7 @@ function ProductPage() {
               {mobSections.map((section) => (
                 <button
                   key={section.id}
-                  className="text-sm"
+                  className="text-xs sm:text-sm"
                   onClick={() => handleScroll(section.id)}
                 >
                   {section.name}
@@ -3242,6 +3269,19 @@ function ProductPage() {
     
 <h1 className='text-xl lg:text-2xl mt-3 sm:mt-0 sm:mb-6 sm:py-0 p-3 sm:px-7 2xl:text-4xl font-semibold max-w-[1920px] mx-auto'>More To Love</h1>
     <MoreToLove/>
+
+    <div className="flex md:hidden gap-3 items-center fixed bottom-0 bg-white w-full p-2 z-1055">
+    <Link to='/SellerStore' className='text-center'>
+    <img
+          src="https://plus.unsplash.com/premium_photo-1689565611422-b2156cc65e47?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Profile"
+          className="w-[30px] h-[30px] rounded-full object-cover"
+        />
+        <p>Store</p>
+    </Link>
+        <Link to='/AddToCart' className="text-dark-blue border border-dark-blue h-max py-2 w-full rounded-[5px] text-center">Add to Cart</Link>
+        <Link to='/Checkout' className="bg-dark-blue text-white border border-dark-blue h-max py-2 w-full rounded-[5px] text-center">Buy Now</Link>
+    </div>
     </>
   );
 }

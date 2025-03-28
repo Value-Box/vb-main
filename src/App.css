@@ -10,4 +10,6 @@
       scrollbar-width: none; /* Firefox */
     }
   }
-  
+  @theme {
+    --breakpoint-xs: 25rem; /* ✅ 400px */
+  }

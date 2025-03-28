@@ -138,8 +138,8 @@ const filteredProducts=activeCategory==='All'?categoryProducts:categoryProducts.
   return (
     <>
     <div className='flex bg-[#FCFCFC] max-w-[1920px] mx-auto'>
-      <div className='w-full md:w-[75%]'>
-      <div className="bg-[#002f86] text-white w-full flex justify-between items-center px-6 py-2 text-sm">
+      <div className='w-full md:w-[78%]'>
+      <div className="bg-[#002f86] text-white w-full flex justify-between items-center px-6 py-4 text-sm">
       {/* Left Side Content */}
       <div className="md:flex items-center space-x-2">
         <span className="font-bold text-xl lg:text-2xl 2xl:text-3xl">03 From 3000 PKR</span>
