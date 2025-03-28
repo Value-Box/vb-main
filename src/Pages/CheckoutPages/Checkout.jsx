@@ -1832,6 +1832,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           className={`fixed inset-0 z-[9999] bg-[rgba(0,0,0,0.3)] bg-opacity-50 flex items-end justify-center transition-opacity duration-300 ${
             deliveryTypePopup ? "opacity-100" : "opacity-0"
           }`}
+          onClick={() => {
+            setShowShippingPopup(false); // First hide with animation
+            setTimeout(() => setDeliveryTypePopup(false), 300); // Then remove from DOM
+          }}
         >
           <div
             className={`bg-white w-full max-w-md h-[80vh] rounded-t-2xl p-4 shadow-lg transform transition-transform duration-500 ease-out ${
@@ -1974,6 +1978,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           className={`fixed inset-0 z-[9999] bg-[rgba(0,0,0,0.3)] bg-opacity-50 flex items-end justify-center transition-opacity duration-300 ${
             promoCodePopup ? "opacity-100" : "opacity-0"
           }`}
+          onClick={() => {
+            setShowShippingPopup1(false); // First hide with animation
+            setTimeout(() => setpromoCodePopup(false), 300); // Then remove from DOM
+          }}
         >
           <div
             className={`bg-white w-full max-w-md h-[40vh] rounded-t-2xl p-4 shadow-lg transform transition-transform duration-500 ease-out ${
@@ -2059,6 +2067,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           className={`fixed inset-0 z-[9999] bg-[rgba(0,0,0,0.3)] bg-opacity-50 flex items-end justify-center transition-opacity duration-300 ${
             infoPopup ? "opacity-100" : "opacity-0"
           }`}
+          onClick={() => {
+            setShowShippingPopup2(false); // First hide with animation
+            setTimeout(() => setinfoPopup(false), 300); // Then remove from DOM
+          }}
         >
           <div
             className={`bg-white w-full max-w-md h-[40vh] rounded-t-2xl p-4 shadow-lg transform transition-transform duration-500 ease-out ${
