@@ -92,7 +92,7 @@ function ShareOrder() {
   </div>
   <div className="w-full flex-1 space-y-5">
     {/* Main Content */}
-    <main className=" flex flex-col gap-5">
+    <main className=" flex flex-col gap-5 px-10">
       {/* Order Summary Section */}
       <div className="text-center flex flex-col gap-5 hidden md:flex">
       <h2 className="text-[36px] font-semibold">Share your order</h2>

@@ -16,6 +16,17 @@ function LoginSignup() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+   // Promo Code popup
+      const [ResetPasswordPopup, setResetPasswordPopup] = useState(false);
+      const [showShippingPopup1, setShowShippingPopup1] = useState(false);
+    
+      useEffect(() => {
+        if (ResetPasswordPopup) {
+          setTimeout(() => setShowShippingPopup1(true), 10); // Small delay for animation
+        } else {
+          setShowShippingPopup1(false);
+        }
+      }, [ResetPasswordPopup]);
  
   return (
     <>
@@ -89,11 +100,18 @@ function LoginSignup() {
               Continue
             </FormButton>
             <p 
-              className="mt-3 text-center  cursor-pointer" 
+              className="mt-3 md:flex hidden text-center  cursor-pointer" 
               onClick={() => setIsModalOpen(true)}
+             
             >
               Trouble Signing in?
             </p>
+          <span 
+           className="mt-3 md:hidden flex justify-center text-center cursor-pointer" 
+           onClick={() => setResetPasswordPopup(true)}
+          >
+            Trouble Signing in?
+          </span>
           <div className="flex items-center w-full mt-5">
       <div className="flex-1 h-px bg-gray-300"></div>
       <span className="px-3 text-gray-500 text-1xl">Or continue with</span>
@@ -145,7 +163,7 @@ function LoginSignup() {
 
 {/* Reset Password Modal */}
 {isModalOpen && (
-  <div className="fixed px-5 md:p-0 inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+  <div className="fixed inset-0 md:flex hidden items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
     <div className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-lg shadow-lg relative">
        {/* Close Icon */}
        <button 
@@ -178,6 +196,55 @@ function LoginSignup() {
     </div>
   </div>
 )}
+
+{ResetPasswordPopup && (
+        <div 
+          className={`fixed inset-0 z-[9999] bg-[rgba(0,0,0,0.3)] bg-opacity-50 flex md:hidden items-end justify-center transition-opacity duration-300 ${
+            ResetPasswordPopup ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => {
+            setShowShippingPopup1(false); // First hide with animation
+            setTimeout(() => setResetPasswordPopup(false), 300); // Then remove from DOM
+          }}
+        >
+          <div
+            className={`bg-white w-full max-w-md h-auto rounded-t-2xl p-4 shadow-lg transform transition-transform duration-500 ease-out ${
+              showShippingPopup1 ? "translate-y-0" : "translate-y-full"
+            }`}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
+              onClick={() => {
+                setShowShippingPopup1(false); // First hide with animation
+                setTimeout(() => setResetPasswordPopup(false), 300); // Then remove from DOM
+              }}
+            >
+              ✖
+            </button>
+
+            {/* Header */}
+            <div className='flex flex-col gap-3'>
+            <h2 className="text-xl font-semibold">Trouble signing in?</h2>
+      <p>If you remember your email address or phone number, you can reset your password.</p>
+      <NavLink to="/ResetPassword" className="w-full">
+      <FormButton className="bg-gray-300 text-black w-full border-none cursor-pointer">
+        Reset Your Password
+      </FormButton>
+      </NavLink>
+      
+      <p>If you forgot your account, you can retrieve it through either your email address or mobile phone number.</p>
+      <NavLink to="/FindYourAccount" className="w-full">
+      <FormButton className="bg-gray-300 text-black w-full border-none cursor-pointer">
+      Find your account
+      </FormButton>
+      </NavLink>
+            </div>
+         
+     
+          </div>
+        </div>
+      )}
 </>
   )
 }
