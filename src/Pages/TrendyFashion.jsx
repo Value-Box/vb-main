@@ -250,12 +250,12 @@ function TrendyFashion() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
        
        {/* Left Column */}
-            <div className="bg-white hidden md:flex">
-             <img src={TFstore1} alt="" className='hidden md:flex'/>
-             <div className="p-[30px] grid grid-cols-1 md:grid-cols-2 gap-x-[20px] gap-y-[20px]">
+            <div className="bg-white hidden md:flex rounded-2xl">
+             <img src={TFstore1} alt="" className='hidden md:flex w-full max-w-50 xl:max-w-70 2xl:max-w-100 h-auto  rounded-tl-2xl rounded-bl-2xl'/>
+             <div className="p-7.5 w-full grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5">
   {[...Array(6)].map((_, index) => (
-    <div key={index} className="flex flex-col items-start w-[180px] h-[152px]  gap-[10px] rounded-[10px] bg-[#F2F2F2]">
-      <span className="mt-auto flex justify-center bg-black text-white w-full rounded-b-[10px] py-2.5">
+    <div key={index} className="flex w-full flex-col items-start gap-5 rounded-lg bg-[#F2F2F2]">
+      <span className="mt-auto text-sm flex justify-center bg-black text-white w-full rounded-b-lg py-2.5">
         UP TO 80% OFF
       </span>
     </div>
@@ -298,12 +298,16 @@ function TrendyFashion() {
     
       
             {/* Right Column */}
-            <div className="bg-white hidden md:flex">
-             <img src={TFstore2} alt="" className='' />
-             <div className="p-[30px] grid grid-cols-1 md:grid-cols-2 gap-x-[20px] gap-y-[20px]">
+            <div className="bg-white hidden md:flex rounded-2xl">
+            <img 
+  src={TFstore2} 
+  alt="" 
+  className="hidden md:flex w-full max-w-50 xl:max-w-70 2xl:max-w-100 h-auto rounded-tl-2xl rounded-bl-2xl"
+/>
+             <div className="p-7.5 w-full grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5">
   {[...Array(6)].map((_, index) => (
-    <div key={index} className="flex flex-col items-start w-[180px] h-[152px]  gap-[10px] rounded-[10px] bg-[#F2F2F2]">
-      <span className="mt-auto flex justify-center bg-black text-white w-full rounded-b-[10px] py-2.5">
+    <div key={index} className="flex w-full flex-col items-start gap-5 rounded-lg bg-[#F2F2F2]">
+      <span className="mt-auto text-sm flex justify-center bg-black text-white w-full rounded-b-lg py-2.5">
         UP TO 80% OFF
       </span>
     </div>
