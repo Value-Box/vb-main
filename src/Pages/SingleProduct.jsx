@@ -1673,7 +1673,7 @@ function ProductPage() {
               </button>
             </div>
 
-            <button className="bg-[#002882] w-full flex items-center justify-center text-sm xl:text-base gap-0.5 md:gap-2 p-2 rounded-[5px] mt-4 text-[#FCFCFC] ">
+            <Link to="/Checkout" className="bg-[#002882] w-full flex items-center justify-center text-sm xl:text-base gap-0.5 md:gap-2 p-2 rounded-[5px] mt-4 text-[#FCFCFC] ">
               <svg className="w-4 md:w-5 xl:w-6"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 25 24"
@@ -1688,8 +1688,8 @@ function ProductPage() {
                 />
               </svg>{" "}
               Buy Now
-            </button>
-            <button className="border border-[#002882] w-full flex items-center justify-center text-sm xl:text-base font-medium gap-0.5 md:gap-2 p-2 rounded-[5px] mt-4 text-[#002882] ">
+            </Link>
+            <Link to="/AddToCart" className="border border-[#002882] w-full flex items-center justify-center text-sm xl:text-base font-medium gap-0.5 md:gap-2 p-2 rounded-[5px] mt-4 text-[#002882] ">
               <svg className="w-4 md:w-5 xl:w-6"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 25 24"
@@ -1701,7 +1701,7 @@ function ProductPage() {
                 />
               </svg>{" "}
               Add To Cart
-            </button>
+            </Link>
             <div className="flex space-x-2 md:space-x-4 mt-4 mb-6">
               <button className="flex text-center gap-0.5 md:gap-2 justify-center px-4 py-2 w-full text-sm xl:text-base rounded-md bg-[#F2F2F2] text-[#666]">
                 <svg className="w-4 md:w-5 xl:w-6"
@@ -2267,7 +2267,7 @@ function ProductPage() {
               </button>
             </div>
 
-            <button className="bg-[#002882] w-full flex items-center justify-center text-sm xl:text-base gap-0.5 md:gap-2 p-2 rounded-[5px] mt-4 text-[#FCFCFC] ">
+            <Link to="/Checkout" className="bg-[#002882] w-full flex items-center justify-center text-sm xl:text-base gap-0.5 md:gap-2 p-2 rounded-[5px] mt-4 text-[#FCFCFC] ">
               <svg className="w-4 md:w-5 xl:w-6"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 25 24"
@@ -2282,8 +2282,8 @@ function ProductPage() {
                 />
               </svg>{" "}
               Buy Now
-            </button>
-            <button className="border border-[#002882] w-full flex items-center justify-center text-sm xl:text-base font-medium gap-0.5 md:gap-2 p-2 rounded-[5px] mt-4 text-[#002882] ">
+            </Link>
+            <Link to="/AddToCart" className="border border-[#002882] w-full flex items-center justify-center text-sm xl:text-base font-medium gap-0.5 md:gap-2 p-2 rounded-[5px] mt-4 text-[#002882] ">
               <svg className="w-4 md:w-5 xl:w-6"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 25 24"
@@ -2295,7 +2295,7 @@ function ProductPage() {
                 />
               </svg>{" "}
               Add To Cart
-            </button>
+            </Link>
             <div className="flex space-x-2 md:space-x-4 mt-4 mb-6">
               <button className="flex text-center gap-0.5 md:gap-2 justify-center px-4 py-2 w-full text-sm xl:text-base rounded-md bg-[#F2F2F2] text-[#666]">
                 <svg className="w-4 md:w-5 xl:w-6"
