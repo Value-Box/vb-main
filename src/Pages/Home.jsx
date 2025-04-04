@@ -114,9 +114,9 @@ function Home() {
 
     <VidCarousel />
     <ProductCard1 />
-   
+    <div className='flex justify-center'>
     {visible && (
-    <div className="fixed bottom-2 right-2 w-25 sm:w-30 bg-white p-2 rounded-xl shadow-lg border border-gray-300 z-9999">
+    <div className="fixed top-1/2 right-2 items-center justify-center w-25 sm:w-30 bg-white p-2 rounded-xl shadow-lg border border-gray-300 z-9999">
       {/* Blue Box with GIF */}
       <div className="h-17 sm:h-20 bg-[#002882] rounded-lg flex justify-center items-center">
         <img
@@ -150,6 +150,8 @@ function Home() {
       </button>
     </div>
   )}
+    </div>
+  
     {showModal && (
  <div 
  className="fixed inset-0 flex items-center p-4 md:p-6 2xl:p-10 justify-center bg-black/70 z-[9999]" 
@@ -218,7 +220,7 @@ function Home() {
                 e.preventDefault(); 
                 setShowPassword(true); 
               }}
-              className="bg-blue-900 text-white w-full mb-1 cursor-pointer"
+              className="bg-blue-900 text-white w-full cursor-pointer"
             >
               Continue
             </FormButton>
@@ -230,7 +232,7 @@ function Home() {
             </p>
           <div className="flex items-center w-full mt-2">
       <div className="flex-1 h-px bg-gray-300"></div>
-      <span className="px-3 text-gray-500 text-lg 2xl:text-xl">Or continue with</span>
+      <span className="px-3 text-gray-500 mb-2 text-lg 2xl:text-xl">Or continue with</span>
        <div className="flex-1 h-px bg-gray-300"></div>
        </div>
        <div className='flex flex-col gap-1 mt-2'>

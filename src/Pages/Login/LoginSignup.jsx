@@ -205,7 +205,7 @@ function LoginSignup() {
           onClick={() => {
             setShowShippingPopup1(false); // First hide with animation
             setTimeout(() => setResetPasswordPopup(false), 300); // Then remove from DOM
-          }}
+          }}                             
         >
           <div
             className={`bg-white w-full max-w-md h-auto rounded-t-2xl p-4 shadow-lg transform transition-transform duration-500 ease-out ${
