@@ -180,7 +180,7 @@ function BrowsingHistory () {
       
   return (
     <>
-    <div className='sm:flex gap-2 sm:gap-4 p-3 sm:p-4'>
+    <div className='sm:flex gap-2 sm:gap-4 p-3 sm:p-6'>
         <div className='hidden md:block'><AccountSideBar/></div>
         <div>
         {browsingHistory.map((history, index) => (

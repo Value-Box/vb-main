@@ -70,8 +70,8 @@ function ShippingAddress() {
     
   return (
     <>
-       <div className="w-full mx-auto max-w-[1920px] md:p-7.5 hidden md:flex bg-[#FCFCFC] ">
-    <div className="flex flex-col md:flex-row gap-10 w-full">
+       <div className="w-full mx-auto max-w-[1920px] md:p-6 hidden md:flex bg-[#FCFCFC] ">
+    <div className="flex flex-col md:flex-row gap-5 w-full">
         {/* Left Section - Sidebar */}
   <div className="">
     <AccountSideBar />
