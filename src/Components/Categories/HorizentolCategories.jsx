@@ -22,7 +22,7 @@ function HorizentolCategories() {
     <>
     <div className='flex items-center justify-center bg-white sticky top-[55px] z-[1023]'>
     {/* <VerticalCategories/> */}
-    <div className="flex xl:gap-4 2xl:gap-10 p-2 bg-white justify-between overflow-x-auto">
+    <div className="flex xl:gap-4 2xl:gap-10 p-2 bg-white justify-between w-full overflow-x-auto">
       {limittedCategories.map((category, index) => (
         <div
           key={index}

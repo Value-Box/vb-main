@@ -459,7 +459,9 @@ function Navbar() {
                                   {item.svg} {item.name}
                                 </NavLink>
                               </li>
-                              <p className="h-[1px] bg-[#F2F2F2] my-2"></p>
+                              {index !== profilPopup.length - 1 && (
+      <p className="h-[1px] bg-[#F2F2F2] my-2"></p>
+    )}
                             </React.Fragment>
                           ))}
                         </ul>
@@ -468,7 +470,7 @@ function Navbar() {
                   </div>
                 </div>
                 <NavLink to="/LoginSignup">
-                <button className="hidden md:flex gap-1 text-sm xl:text-base cursor-pointer">
+                <button className="hidden md:flex items-center font-semibold gap-1 text-sm xl:text-base cursor-pointer">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 md:w-7 2xl:w-9"
                     viewBox="0 0 36 36"
                     fill="none"

@@ -68,7 +68,8 @@ function MyProfile() {
     const closeModal = () => setActiveModal(null);
     
   return (
-    <div className='flex gap-2 sm:gap-4 md:p-4 bg-natural-0'>
+    <div className='bg-natural-0'>
+    <div className='flex gap-2 sm:gap-4 md:p-4 max-w-[1920px] mx-auto'>
         <div className='hidden md:block'>
             <AccountSideBar/>
         </div>
@@ -237,6 +238,7 @@ function MyProfile() {
                      
                    </div>
                  )}
+    </div>
     </div>
   )
 }

@@ -16,12 +16,7 @@ import Meezanbank from "/src/Images/Meezanbank.png";
 import Askaribank from "/src/Images/Askaribank.png";
 import Select from "../../Components/Select";
 
-
-
-
 function Checkout() {
- 
- 
   const [selectedValue, setSelectedValue] = useState(""); // State for selected value
 
   const handleChange = (event) => {
@@ -335,14 +330,14 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       }
     }, [promoCodePopup]);
     return (
-    <div>
- <div className="w-full p-7.5 bg-[#FCFCFC] hidden md:flex">
+    <>
+ <div className="w-full p-7.5 bg-[#FCFCFC] hidden md:flex justify-center">
       <div className="flex flex-col items-start md:flex-row gap-10">
         {/* Left Section - col-9 */}
         <div className="w-full md:w-3/4 space-y-5">
           {/* Two Equal Columns inside col-9 */}
           <div className="flex flex-col md:flex-row gap-5">
-            <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
+            <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5">
               <h3 className="text-[24px] font-semibold">Shippind Address</h3>
               <div className="relative p-2.5 rounded-[10px] border-[1px] border-dashed border-gray-400 pl-5 space-y-[5px]">
               <div className="flex justify-between items-center">
@@ -371,7 +366,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
               </div>
            </div>
              </div>
-           <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
+           <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5">
               <h3 className="text-[20px] font-normal">Delivery Time: 7-11 Business Days</h3>
               <hr className="border-t-[1px] border-[#CCD1D2]" />
             <p className="flex gap-1 text-[18px] items-center font-semibold"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -410,7 +405,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
        </div>
          </div>
           </div>
-          <div className="w-full flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
+          <div className="w-full flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5">
           <h3 className="text-[24px] font-semibold">Payment Method</h3>
         
           <div className="flex gap-2.5 items-baseline">
@@ -620,7 +615,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
        
   
        </div>
-            <div className="w-full flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5">
+            <div className="w-full flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5">
             <div className="w-full flex flex-col gap-1">
            <label className="text-gray-600 text-[16px] font-medium">Order Note (Optional)<span className="text-yellow-400">*</span></label>
            <Input type="text" placeholder="Please Input" />
@@ -724,7 +719,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         </div>
 
         {/* Right Section - col-3 */}
-        <div className="sticky top-20 w-full md:w-1/4 flex flex-col bg-white p-5 rounded-[5px] border-1 border-[#CCC] gap-5 min-h-0 h-auto">
+        <div className="sticky top-20 w-full md:w-1/4 flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5 min-h-0 h-auto">
         <h1 className='text-md md:text-xl 2xl:text-2xl font-bold'>Order Summery</h1>
         
     <div className="flex items-center ">
@@ -2254,13 +2249,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     </div>
  </div>
 
-</div>
-   
-
-
-
-
-
+</>
 
   );
 }

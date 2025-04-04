@@ -52,7 +52,7 @@ function Reviews() {
 
     console.log(FilteringReview.length)
   return (
-    <div className='flex gap-2 sm:gap-4 md:p-4'>
+    <div className='flex gap-2 sm:gap-4 md:p-4 max-w-[1920px] mx-auto'>
         <div className='hidden md:block'><AccountSideBar/></div>
         <div className="w-full">
       {/* Tabs */}

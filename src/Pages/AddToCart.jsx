@@ -204,7 +204,7 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
   return (
     <div className='bg-[#FCFCFC] '>
       {!isMobile?(
-        <div className='flex flex-col lg:flex-row gap-6 p-4 xl:p-8 '>
+        <div className='flex flex-col lg:flex-row gap-6 p-4 xl:p-8 max-w-[1920px] mx-auto'>
         <div className='w-full lg:w-[70%]'>
         <div class="bg-white p-4 rounded-[10px] border border-[#CCD1D2] ">
            <h2 class="font-semibold text-lg">Shopping Cart (04)</h2>

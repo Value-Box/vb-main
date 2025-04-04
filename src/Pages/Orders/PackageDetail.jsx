@@ -207,7 +207,7 @@ const copyTrackingNum=()=>{
       };
   return (
     <>
-    {!isMobile?(<div className='relative flex p-2 lg:p-4 xl:p-6 gap-2 lg:gap-4 xl:gap-5'>
+    {!isMobile?(<div className='relative flex p-2 lg:p-4 xl:p-6 gap-2 lg:gap-4 xl:gap-5 max-w-[1920px] mx-auto'>
       <div>
       <AccountSideBar/>
       </div>

@@ -85,7 +85,7 @@ function ShareOrder() {
   return (
     <>
       <div className="w-full  md:p-7.5 p-0 bg-[#FCFCFC] ">
-    <div className="flex flex-col md:flex-row gap-10 w-full">
+    <div className="flex flex-col md:flex-row gap-10 w-full max-w-[1920px] mx-auto">
         {/* Left Section - Sidebar */}
   <div className="hidden md:flex">
     <AccountSideBar />
@@ -312,8 +312,8 @@ function ShareOrder() {
    
  
 </div>
-   <div className='flex flex-wrap py-10 bg-[#FCFCFC]'>
-   <DetailProductCard products={products} style={`flex-wrap justify-center `}/>
+   <div className='flex flex-wrap max-w-[1920px] mx-auto py-10 bg-[#FCFCFC]'>
+   <DetailProductCard products={products} style={`flex-wrap `}/>
    </div>
     </>
   )

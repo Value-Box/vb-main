@@ -234,8 +234,8 @@ const tooltipRef = useRef(null);
 
 
   return (
-    <>
-      <div className="w-full p-10 bg-[#FCFCFC] hidden md:flex ">
+    <div className="bg-[#FCFCFC]">
+      <div className="w-full max-w-[1920px] mx-auto p-10 hidden md:flex ">
      
       <div className="flex flex-col md:flex-row gap-10 w-full">
   {/* Left Section - Sidebar */}
@@ -1216,7 +1216,7 @@ const tooltipRef = useRef(null);
 ) : showPaymentDetails ? (
   <span></span>
 ) : null}
-    </>
+    </div>
   )
 }
 
