@@ -50,7 +50,7 @@ function FollowedAndProvider() {
     </div>
    
     </div>   
-       <div className="w-full md:p-7.5 p-5 bg-[#FCFCFC] ">
+       <div className="w-full mx-auto max-w-[1920px] md:p-7.5 p-5 bg-[#FCFCFC] ">
     <div className="flex flex-col md:flex-row gap-10  w-full">
         {/* Left Section - Sidebar */}
   <div className="hidden md:flex">

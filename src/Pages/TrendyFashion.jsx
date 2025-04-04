@@ -141,11 +141,11 @@ function TrendyFashion() {
   };
   
   return (
-    <div>
+    <div className='mx-auto max-w-[1920px] w-full'>
       <img src={TrendyFashionHS} alt="Trendy Fashion Header" className="w-full md:flex hidden" />
       <img src={TrendyFashionHS1} alt="Trendy Fashion Header" className="w-full md:hidden flex" />
 
-      <div className="w-full bg-[#7CD4FD] p-10 overflow-hidden">
+      <div className="w-full  bg-[#7CD4FD] p-10 overflow-hidden">
       {/* 🔹 Desktop View (Your Original Code - Unchanged) */}
       <div className="hidden md:flex w-full flex-nowrap justify-center gap-10">
         {images.map((image, index) => (
@@ -262,6 +262,10 @@ function TrendyFashion() {
   ))}
 </div>
     </div>
+
+
+
+
     <div className='md:hidden flex justify-between items-center '>
       <h2 className='text-[24px] font-bold'>Eastern Wear</h2>
       <button

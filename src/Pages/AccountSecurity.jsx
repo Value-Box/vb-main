@@ -5,7 +5,7 @@ import applepay from "/src/Images/applepay.svg";
 
 function AccountSecurity() {
   return (
-    <div className='sm:flex  items-start gap-2 sm:gap-4 sm:p-4 sm:bg-natural-0'>
+    <div className='sm:flex mx-auto max-w-[1920px] w-full items-start gap-2 sm:gap-4 sm:p-4 sm:bg-natural-0'>
         <div className='hidden sm:block'><AccountSideBar/></div>
         <div className='w-full'>
         <div className="sm:border border-[#F2F2F2] sm:rounded-[10px] p-4 flex items-start gap-3 bg-white">

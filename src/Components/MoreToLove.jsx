@@ -26,7 +26,7 @@ function MoreToLove() {
     <>
     
     
-      <div className='flex flex-wrap justify-center sm:justify-start gap-3 px-3 sm:px-8 mb-3 max-w-full mx-auto'>
+      <div className='flex flex-wrap justify-center sm:justify-start gap-3 px-3 sm:px-8 mb-3 max-w-[1920px] w-full mx-auto'>
       <DetailProductCard2 products={shuffleProduct} style={`flex-1`} loadProducts={loadMore} />
       </div>
       <div className='flex justify-center mb-5'>

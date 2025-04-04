@@ -56,9 +56,9 @@ export default function Notification() {
     const [userInfoSharing, setUserInfoSharing] = useState(false);
 
   return (
-    <div className='sm:flex  items-start gap-2 sm:gap-4 sm:p-4 bg-[#F2F2F2] sm:bg-[#FCFCFC]'>
+    <div className='sm:flex mx-auto justify-center gap-2 sm:gap-4 sm:p-4 bg-[#F2F2F2] sm:bg-[#FCFCFC]'>
             <div className='hidden md:block'><AccountSideBar/></div>
-        <div className='flex flex-col-reverse w-full sm:flex-col xl:flex-row gap-4 items-start'>
+        <div className='flex flex-col-reverse sm:flex-col xl:flex-row gap-4 items-start'>
         <div className="w-full p-4 sm:border border-[#F2F2F2] sm:rounded-[10px] bg-white">
       {/* Notification Banner */}
       <div className="mb-4 p-4 flex items-center justify-between bg-[#FEF6E6] rounded-[10px] border border-gray-200">
@@ -500,7 +500,7 @@ export default function Notification() {
       )}
 
     </div>
-    <div className="xl:max-w-sm mx-auto sm:border border-[#F2F2F2] sm:rounded-lg p-4 bg-white">
+    <div className="xl:max-w-sm mx-auto max-w-[1920px] sm:border border-[#F2F2F2] sm:rounded-lg p-4 bg-white">
       <h3 className="text-lg font-semibold">
         Receive SMS notifications about your order updates
       </h3>
