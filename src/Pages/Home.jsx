@@ -116,7 +116,7 @@ function Home() {
     <ProductCard1 />
     <div className='flex justify-center'>
     {visible && (
-    <div className="fixed top-1/2 right-2 items-center justify-center w-25 sm:w-30 bg-white p-2 rounded-xl shadow-lg border border-gray-300 z-999">
+    <div className="fixed bottom-1/3 right-5 items-center justify-center w-25 sm:w-30 bg-white p-2 rounded-xl shadow-lg border border-gray-300 z-999">
       {/* Blue Box with GIF */}
       <div className="h-17 sm:h-20 bg-[#002882] rounded-lg flex justify-center items-center">
         <img
