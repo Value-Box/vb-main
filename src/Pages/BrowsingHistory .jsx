@@ -180,9 +180,9 @@ function BrowsingHistory () {
       
   return (
     <>
-    <div className='sm:flex gap-2 sm:gap-4 p-3 sm:p-6'>
+    <div className='sm:flex gap-2 sm:gap-4 p-3 sm:p-6 max-w-[1920px] mx-auto'>
         <div className='hidden md:block'><AccountSideBar/></div>
-        <div>
+        <div className='w-full'>
         {browsingHistory.map((history, index) => (
         <div key={index} className="mb-5">
           <h2 className="text-lg font-semibold mb-3">{history.date}</h2>

@@ -69,8 +69,8 @@ function ShippingAddress() {
     const [showForm, setShowForm] = useState(false);
     
   return (
-    <>
-       <div className="w-full mx-auto max-w-[1920px] md:p-6 hidden md:flex bg-[#FCFCFC] ">
+    <div className="bg-[#FCFCFC]">
+       <div className="w-full mx-auto max-w-[1920px] md:p-6 hidden md:flex ">
     <div className="flex flex-col md:flex-row gap-5 w-full">
         {/* Left Section - Sidebar */}
   <div className="">
@@ -467,7 +467,7 @@ function ShippingAddress() {
     </div>
    </div>
 
-    </>
+    </div>
   )
 }
 
