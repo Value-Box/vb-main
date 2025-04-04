@@ -455,7 +455,7 @@ function Navbar() {
                             <React.Fragment key={index}>
                            
                               <li >
-                                <NavLink to={item.link} className="flex gap-2 cursor-pointer text-xs 2xl:text-base">
+                                <NavLink to={item.link} className="flex items-center gap-2 cursor-pointer text-xs 2xl:text-base">
                                   {item.svg} {item.name}
                                 </NavLink>
                               </li>

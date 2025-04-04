@@ -77,17 +77,49 @@ function Home() {
         </div>
       </div>
       <button
-        onClick={goToPrevious}
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 text-white bg-dark-blue rounded-r-[5px] transition"
-      >
-        &#8592;
-      </button>
-      <button
-        onClick={goToNext}
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 px-4 py-2 text-white bg-dark-blue rounded-l-[5px] transition"
-      >
-        &#8594;
-      </button>
+  onClick={goToPrevious}
+  className="group absolute top-1/2 left-0 transform -translate-y-1/2 overflow-hidden px-4 py-2 text-white bg-dark-blue rounded-r-[5px] transition-all duration-300 flex items-center justify-center w-[80px] h-[40px]"
+>
+  {/* Arrow with transition */}
+  <span
+    className="inline-block transition-all duration-300 group-hover:translate-x-[-30px] group-hover:opacity-0"
+  >
+    <span
+      className="inline-block transition-opacity duration-200 delay-200 group-hover:opacity-0"
+    >
+      &#8592;
+    </span>
+  </span>
+
+  {/* Text appears after the arrow hides */}
+  <span className="absolute opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-0 transition-all delay-200 duration-300">
+    Previous
+  </span>
+</button>
+
+<button
+  onClick={goToNext}
+  className="group absolute top-1/2 right-0 transform -translate-y-1/2 overflow-hidden px-4 py-2 text-white bg-dark-blue rounded-l-[5px] transition-all duration-300 flex items-center justify-center w-[80px] h-[40px]"
+>
+  {/* Arrow with transition */}
+  <span
+    className="inline-block transition-all duration-300 group-hover:translate-x-[30px] group-hover:opacity-0"
+  >
+    <span
+      className="inline-block transition-opacity duration-200 delay-200 group-hover:opacity-0"
+    >
+      &#8594;
+    </span>
+  </span>
+
+  {/* Text appears after the arrow hides */}
+  <span className="absolute opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-0 transition-all delay-200 duration-300">
+    Next
+  </span>
+</button>
+
+
+
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
         {images.map((_, index) => (
           <button
