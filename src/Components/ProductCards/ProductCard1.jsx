@@ -3,9 +3,12 @@ import useFetchHomeProducts from '../../services/productsAPI';
 import useFetchHomeCategories from '../../services/categoryAPI';
 import LoadMoreButton from '../Buttons/LoadMoreButton';
 import {Link} from 'react-router-dom'
+import Express from '../DeliveryTypes/Express';
+import FreeShip from '../DeliveryTypes/FreeShip';
 
 
 function ProductCard1() {
+    const [isOpen, setIsOpen] = useState(false);
     const[loadMore,setLoadMore]=useState(10)
     const [activeCategory,setActiveCategory]=useState('All')
     const categories=[
@@ -193,6 +196,44 @@ function ProductCard1() {
     </div>
   );
 
+    const thumbnails = [
+      { type: "image", src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" },
+      { type: "image", src: "https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" },
+      { type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4" }, // Example video
+      { type: "image", src: "https://images.unsplash.com/photo-1484704849700-f032a568e944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" },
+      { type: "image", src: "https://images.unsplash.com/photo-1496957961599-e35b69ef5d7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" }, // Another video
+    ];
+    const reorderedThumbnails = [
+      ...thumbnails.filter((item) => item.type === "video"), // Pehle sab videos le lo
+      ...thumbnails.filter((item) => item.type === "image") // Phir sab images le lo
+    ];
+    let defaultMedia = null;
+    for (let i = 0; i < thumbnails.length; i++) {
+      if (thumbnails[i].type === "video") {
+        defaultMedia = thumbnails[i]; // First video found
+        break;
+      } else if (!defaultMedia && thumbnails[i].type === "image") {
+        defaultMedia = thumbnails[i]; // First image if no video
+      }
+    }
+    
+    const [mainMedia, setMainMedia] = useState(defaultMedia);
+    
+    useEffect(() => {
+      setMainMedia(defaultMedia);
+    }, []);
+    const colors = ["Red", "Blue", "Green"];
+    const sizes = ["S", "M", "L", "XL"];
+  
+    const [selectedColor, setSelectedColor] = useState(colors[0]);
+    const [selectedSize, setSelectedSize] = useState(sizes[0]);
+
+    const heroSecScroll = useRef(null);
+  
+    const onDragheroSecScroll = (e) => {
+      if (e.buttons !== 1) return;
+      heroSecScroll.current.scrollLeft -= e.movementX;
+    };
   return (
     <>
 
@@ -258,10 +299,159 @@ function ProductCard1() {
         src={items.images[0]}
         alt="Home in Countryside"
       />
-      <Link className='flex items-center gap-1 text-sm 2xl:text-base bg-white px-3 py-1 2xl:py-2 whitespace-nowrap rounded-full absolute bottom-2 left-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100' to="/SingleProduct">
+      <span className='flex items-center gap-1 text-sm 2xl:text-base bg-white px-3 py-1 2xl:py-2 whitespace-nowrap rounded-full absolute bottom-2 left-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100' onClick={() => setIsOpen(true)}>
             <svg xmlns="http://www.w3.org/2000/svg" className='w-4 2xl:w-5' viewBox="0 0 24 24" fill="none">
         <path d="M12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9ZM12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17ZM12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5Z" fill="#1A1A1A"/>
-      </svg> See Preview</Link>
+      </svg> See Preview</span>
+      {isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4">Preview</h2>
+            <p>This is your modal content!</p>
+            <button
+              className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+              onClick={() => setIsOpen(false)}
+            >
+              Close
+            </button>
+
+            <div>
+               <div className="bg-[#F2F2F2] flex flex-col">
+                     <div ref={heroSecScroll} onMouseMove={onDragheroSecScroll} className="flex w-full overflow-auto 
+                     scrollbar-hidden p-3 gap-3 bg-[#FFF] select-none cursor-grab active:cursor-grabbing">
+                  {reorderedThumbnails.map((item, index) => (
+                    item.type === "video" ? (
+                      <video key={index} className="w-70 h-[400px] object-fill rounded-[10px] select-none" controls>
+                        <source src={item.src} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <img key={index} src={item.src} className="w-70 h-[400px] object-fill rounded-[10px] select-none pointer-events-none" />
+                    )
+                  ))}
+                     </div>
+                    <div className="px-3 flex flex-col gap-2 bg-[#FFF] pb-2.5">
+                <div className="flex items-center justify-between">
+                        <div className="flex gap-2">
+                        <h1 className="text-xl font-bold text-[#002882]">PKR 7,100</h1>
+                        <del className="text-[#999] text-lg md:text-xl 2xl:text-2xl">PKR 8,500</del>
+                        </div>
+                          
+                          <span className="ml-2 text-[#F04438] bg-[#FEE4E2] rounded-sm p-1 text-xs">
+                            Almost Sold Out
+                          </span>
+                        </div>
+                        <div className="flex items-center">
+                        <span className="flex flex-row items-center text-[12px] flex-wrap font-bold text-[#F04438]">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M7.5493 10.0003H5.4168C5.25211 10.0006 5.09119 10.0496 4.95431 10.1412C4.81744 10.2327 4.71073 10.3628 4.64763 10.5149C4.58454 10.667 4.56788 10.8344 4.59977 10.996C4.63165 11.1576 4.71065 11.3061 4.8268 11.4228L10.0001 16.667L15.1726 11.4228C15.2503 11.3456 15.3119 11.2538 15.354 11.1527C15.396 11.0516 15.4177 10.9432 15.4177 10.8337C15.4177 10.7242 15.396 10.6157 15.354 10.5146C15.3119 10.4135 15.2503 10.3217 15.1726 10.2445C15.0164 10.0882 14.8045 10.0004 14.5835 10.0003H12.5093C12.566 7.70866 12.981 5.20449 15.8335 3.33366H15.0001C11.1393 3.33366 7.9643 6.25033 7.5493 10.0003Z" fill="#F04438">
+                            </path>
+                          </svg> Save PKR 4,456 </span>
+                         <span className="ml-2 text-[#CCC]"> |</span><span className="ml-2 text-[#F04438] text-sm md:text-md 2xl:text-lg">26% OFF</span>
+                        </div>
+                        <p className="text-[#999] text-xs ">Tax Excluded, add at checkout if applicable.</p>
+                        <div className="flex gap-4">
+                          <Express />
+                          <FreeShip />
+                        </div>
+                        <p className="text-[#1A1A1A] text-sm md:text-md 2xl:text-lg font-semibold leading-6">
+                          4K UHD DLED Smart Television 43Inch (2023 Model) 43A61K Black nch
+                          (2023 Model) 43A61K Black
+                        </p>
+              
+                        <div className="flex gap-0.5">
+                          {[...Array(4)].map((_, index) => (
+                            <svg
+                              key={index}
+                              className="w-4"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              fill="none"
+                            >
+                              <g clipPath="url(#clip0_6953_113760)">
+                                <path
+                                  d="M9.10134 2.39C9.19305 2.23263 9.32441 2.10206 9.48233 2.01131C9.64025 1.92056 9.8192 1.8728 10.0013 1.8728C10.1835 1.8728 10.3624 1.92056 10.5203 2.01131C10.6783 2.10206 10.8096 2.23263 10.9013 2.39L13.2305 6.38833L17.7538 7.36833C17.9317 7.407 18.0964 7.49162 18.2314 7.61378C18.3664 7.73593 18.4671 7.89134 18.5233 8.06452C18.5796 8.2377 18.5894 8.42259 18.5519 8.60077C18.5144 8.77894 18.4309 8.94418 18.3096 9.08L15.2263 12.5308L15.693 17.135C15.7114 17.3163 15.6819 17.4992 15.6075 17.6656C15.5331 17.8319 15.4163 17.9758 15.2689 18.083C15.1215 18.1901 14.9485 18.2566 14.7673 18.276C14.5862 18.2954 14.403 18.2669 14.2363 18.1933L10.0013 16.3267L5.76636 18.1933C5.59963 18.2669 5.41653 18.2954 5.23533 18.276C5.05413 18.2566 4.88119 18.1901 4.73376 18.083C4.58634 17.9758 4.46959 17.8319 4.39518 17.6656C4.32077 17.4992 4.2913 17.3163 4.30971 17.135L4.77637 12.5308L1.69306 9.08083C1.57158 8.94502 1.48785 8.77972 1.45024 8.60143C1.41262 8.42314 1.42243 8.23811 1.47868 8.06479C1.53493 7.89148 1.63566 7.73596 1.77081 7.61375C1.90596 7.49154 2.07081 7.40692 2.24889 7.36833L6.77219 6.38833L9.10134 2.39Z"
+                                  fill="#EEA500"
+                                />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_6953_113760">
+                                  <rect width="19.9999" height="20" fill="white" />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          ))}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-4"
+                            width="21"
+                            height="20"
+                            viewBox="0 0 21 20"
+                            fill="none"
+                          >
+                            <g clipPath="url(#clip0_6953_113776)">
+                              <path
+                                d="M13.1635 6.64001L13.2744 6.83035L13.4897 6.87699L18.0127 7.85693C18.0127 7.85693 18.0127 7.85694 18.0127 7.85694C18.1052 7.87705 18.1908 7.92105 18.261 7.98456C18.3312 8.04808 18.3836 8.12889 18.4128 8.21894L18.8884 8.06452L18.4128 8.21895C18.4421 8.309 18.4472 8.40515 18.4277 8.49779C18.4082 8.59038 18.3648 8.67625 18.3018 8.74686C18.3018 8.7469 18.3017 8.74695 18.3017 8.747L15.2185 12.1977L15.0717 12.362L15.0939 12.5813L15.5606 17.1854L15.5606 17.1855C15.5702 17.2798 15.5548 17.3749 15.5161 17.4614C15.4774 17.5479 15.4167 17.6228 15.3401 17.6785L15.634 18.083L15.3401 17.6785C15.2634 17.7342 15.1735 17.7688 15.0793 17.7788C14.985 17.7889 14.8898 17.7741 14.8031 17.7358L14.803 17.7358L10.5681 15.8691L10.3664 15.7802L10.1647 15.8691L5.92975 17.7358L5.92966 17.7358C5.84296 17.7741 5.74774 17.7889 5.65352 17.7788C5.5593 17.7688 5.46937 17.7342 5.39271 17.6785L5.13483 18.0334L5.39271 17.6785C5.31605 17.6228 5.25534 17.5479 5.21665 17.4614C5.17795 17.3749 5.16263 17.2798 5.1722 17.1855L5.17221 17.1854L5.63887 12.5813L5.6611 12.362L5.51423 12.1976L2.43092 8.74765L2.43078 8.7475C2.36762 8.67687 2.32408 8.59092 2.30452 8.49821C2.28495 8.4055 2.29005 8.30928 2.31931 8.21915C2.34856 8.12903 2.40094 8.04816 2.47122 7.98461C2.54149 7.92106 2.62721 7.87706 2.71981 7.85699L7.24311 6.87699L7.4584 6.83035L7.56928 6.64001L9.89839 2.64174C9.89841 2.64172 9.89842 2.6417 9.89843 2.64168C9.94612 2.55987 10.0144 2.492 10.0965 2.44483C10.1786 2.39764 10.2717 2.3728 10.3664 2.3728C10.4611 2.3728 10.5542 2.39764 10.6363 2.44483C10.7184 2.492 10.7867 2.55987 10.8343 2.64168C10.8344 2.6417 10.8344 2.64172 10.8344 2.64174L13.1635 6.64001Z"
+                                stroke="#EEA500"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_6953_113776">
+                                <rect
+                                  width="19.9999"
+                                  height="20"
+                                  fill="white"
+                                  transform="translate(0.367004)"
+                                />
+                              </clipPath>
+                            </defs>
+                          </svg>
+                          <span className="text-[#1A1A1A] ml-1 text-sm 2xl:text-base">4.3</span>{" "}
+                          <span className="text-[#666] ml-1 text-sm 2xl:text-base">20 Reviews | 1,000+ Sold</span>
+                        </div>
+                        <div className="flex gap-4 mt-4 bg-[#F2F2F2] h-[1px]"></div>
+                        <p className="text-[#333] text-sm md:text-md 2xl:text-lg font-semibold ">
+                          Cabinet Color: EU Ship
+                        </p>
+                        <div className="flex gap-2">
+                          {colors.map((color) => (
+                            <button
+                              key={color}
+                              onClick={() => setSelectedColor(color)}
+                              className={`px-3 py-1 text-sm md:text-base rounded-md border font-medium ${
+                                selectedColor === color
+                                  ? "border border-[#EEA500] text-[#1A1A1A]"
+                                  : "border border-[#CCC] text-[#666] "
+                              }`}
+                            >
+                              {color}
+                            </button>
+                          ))}
+                        </div>
+                        <p className="text-[#333] text-sm md:text-md font-semibold ">Size: 80’</p>
+                        <div className="flex gap-2">
+                          {sizes.map((size) => (
+                            <button
+                              key={size}
+                              onClick={() => setSelectedSize(size)}
+                              className={`px-3 py-1 text-sm md:text-base rounded-md border font-medium ${
+                                selectedSize === size
+                                  ? "border border-[#EEA500] text-[#1A1A1A]"
+                                  : "border border-[#CCC] text-[#666] "
+                              }`}
+                            >
+                              {size}
+                            </button>
+                          ))}
+                        </div>
+                </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       </div>
       <div className="p-2 flex flex-col gap-2">
           
