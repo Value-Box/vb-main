@@ -7,7 +7,7 @@ function AccountSecurity() {
   return (
     <div className='sm:flex  items-start gap-2 sm:gap-4 sm:p-4 sm:bg-natural-0'>
         <div className='hidden sm:block'><AccountSideBar/></div>
-        <div>
+        <div className='w-full'>
         <div className="sm:border border-[#F2F2F2] sm:rounded-[10px] p-4 flex items-start gap-3 bg-white">
       <div className="bg-[#D1FADF] p-2 rounded-full">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">

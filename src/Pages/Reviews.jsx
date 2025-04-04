@@ -52,7 +52,7 @@ function Reviews() {
 
     console.log(FilteringReview.length)
   return (
-    <div className='flex gap-2 sm:gap-4 md:p-4 max-w-[1920px] mx-auto'>
+    <div className='flex gap-2 sm:gap-4 md:p-4 max-w-full mx-auto'>
         <div className='hidden md:block'><AccountSideBar/></div>
         <div className="w-full">
       {/* Tabs */}
@@ -98,13 +98,13 @@ function Reviews() {
       </div>
 
       {/* Title */}
-      <div className='md:border border-natural-color p-4 sm:rounded-[10px]'>
-      <buutom className='flex justify-between'>
+      <div className='md:border border-[#F2F2F2] p-4 sm:rounded-[10px]'>
+      <button className='flex justify-between'>
       <p className="md:text-lg font-semibold ">Quick Review All Items Below</p>
-      <p className="md:text-lg font-semibold  flex items-center">Review <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <p className="md:text-lg font-semibold pl-1 flex items-center"> Review <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M10 8L14 12L10 16" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></p>
-      </buutom>
+      </button>
 
 {/* Review Items */}
 <div className="mt-4 space-y-4">
@@ -112,7 +112,7 @@ function Reviews() {
   {FilteringReview.length>0 ?(
   
       FilteringReview.map((review) => (
-          <div key={review.id} className="flex w-full items-center gap-4 py-2 sm:p-4 border-y sm:border sm:rounded-md border-natural-color">
+          <div key={review.id} className="flex w-full items-center gap-4 py-2 sm:p-4 border-y sm:border sm:rounded-md border-[#F2F2F2]">
             {/* Image */}
             <img src={review.image} alt="Product" className="w-16 h-16 rounded-md" />
 

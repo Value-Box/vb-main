@@ -35,7 +35,7 @@ function VidCarousel() {
 
 
     return (
-        <div className="relative w-full max-w-[1920px] mx-auto overflow-hidden px-5 mt-5">
+        <div className="relative w-full max-w-full mx-auto overflow-hidden px-5 mt-5">
             <div className='my-3'>
                 <h1 className='flex items-center gap-2 text-natural-black text-xl md:text-3xl lg:text-4xl font-bold'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
