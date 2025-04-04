@@ -33,8 +33,8 @@ export default function CouponOffers() {
     </div>
    
     </div>    
-      <div className="w-full mx-auto max-w-[1920px]  md:p-7.5 p-5 bg-[#FCFCFC] ">
-    <div className="flex flex-col md:flex-row gap-10  w-full">
+      <div className="w-full mx-auto max-w-[1920px]  md:p-6 p-5 bg-[#FCFCFC] ">
+    <div className="flex flex-col md:flex-row gap-5  w-full">
         {/* Left Section - Sidebar */}
   <div className="hidden md:flex">
     <AccountSideBar />

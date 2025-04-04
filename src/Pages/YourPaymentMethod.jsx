@@ -127,7 +127,7 @@ function YourPaymentMethod() {
             </div>
             </>
     ):(
-        <div className='sm:flex mx-auto max-w-[1920px] w-full items-start gap-2 sm:gap-10 sm:p-4 sm:bg-natural-0'>
+        <div className='sm:flex mx-auto max-w-[1920px] w-full items-start gap-2 sm:gap-5 sm:p-6 sm:bg-natural-0'>
         <div className='hidden md:block'><AccountSideBar/></div>
         <div className='w-full'>
             
