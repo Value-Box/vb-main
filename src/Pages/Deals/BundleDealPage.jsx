@@ -137,7 +137,7 @@ const filteredProducts=activeCategory==='All'?categoryProducts:categoryProducts.
 
   return (
     <>
-    <div className='flex bg-[#FCFCFC] max-w-[1920px] mx-auto'>
+    <div className='flex bg-[#FCFCFC] max-w-full mx-auto'>
       <div className='w-full md:w-[78%]'>
       <div className="bg-[#002f86] text-white w-full flex justify-between items-center px-6 py-4 text-sm">
       {/* Left Side Content */}

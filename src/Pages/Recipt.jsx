@@ -66,7 +66,7 @@ function Recipt() {
 
   return (
     <div className='bg-[#FCFCFC]'>
-   <div className="w-full md:p-7.5 max-w-[1920px] mx-auto">
+   <div className="w-full md:p-7.5 max-w-full mx-auto">
     <div className="flex flex-col md:flex-row gap-10 w-full">
         {/* Left Section - Sidebar */}
   <div className="hidden md:flex">

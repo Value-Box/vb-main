@@ -332,7 +332,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     return (
     <>
  <div className="w-full p-7.5 bg-[#FCFCFC] hidden md:flex justify-center">
-      <div className="flex flex-col items-start md:flex-row gap-10">
+      <div className="flex  w-full flex-col items-start md:flex-row gap-10">
         {/* Left Section - col-9 */}
         <div className="w-full md:w-3/4 space-y-5">
           {/* Two Equal Columns inside col-9 */}

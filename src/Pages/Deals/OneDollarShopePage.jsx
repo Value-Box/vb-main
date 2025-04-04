@@ -162,7 +162,7 @@ function OneDollarShopePage() {
       }, []);
 
   return (
-     <div className='w-full max-w-[1920px] mx-auto '>
+     <div className='w-full max-w-full mx-auto '>
           <div className='pb-2 md:mb-0'>
           <div className={`md:bg-[url(${onedollarshopBanner})] bg-[url(${onedollarshopMobBanner})] bg-center bg-cover bg-no-repeat text-white w-full flex md:justify-center items-center px-6 py-5 `}>
          
@@ -283,7 +283,7 @@ function OneDollarShopePage() {
         </div>
           </div>
         
-        <div className="sticky top-14 md:top-0 z-20 md:relative w-full mx-auto flex items-center mt-3 ">
+        <div className="sticky top-14 md:top-0 z-20 md:relative w-full mx-auto flex items-center mt-3 justify-content-center">
       {/* Left Scroll Button */}
       <button
         onClick={catScrollLeft}

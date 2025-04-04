@@ -159,7 +159,7 @@ function FlashDealPage() {
     return () => clearInterval(timer);
   }, []);
   return (
-    <div className='w-full max-w-[1920px] mx-auto'>
+    <div className='w-full max-w-full mx-auto'>
       <div className='bg-[#FCEDCD] pb-2 md:mb-0 md:p-4'>
       <div className={`bg-[url(${flashdealbg})] bg-center bg-contain text-white w-full flex justify-center items-center px-6 py-2`}>
       <svg xmlns="http://www.w3.org/2000/svg" className='w-7 2xl:w-9 2xl:h-16' viewBox="0 0 38 68" fill="none">

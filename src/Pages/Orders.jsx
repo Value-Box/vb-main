@@ -98,12 +98,12 @@ function Orders() {
 
   return (
     <div className='bg-[#FCFCFC]'>
-    {!isMobile?(<div className='relative flex p-4 xl:p-6 gap-4 xl:gap-5 items-start max-w-[1920px] mx-auto '>
+    {!isMobile?(<div className='relative flex p-4 xl:p-6 gap-4 xl:gap-5 items-start max-w-full mx-auto '>
       <AccountSideBar/>
         
         
         <div className='w-full'>
-        <div className="bg-white p-4 border border-[#CCD1D2] rounded-lg flex flex-col">
+        <div className="bg-white p-4 border border-[#F2F2F2] rounded-lg flex flex-col">
       {/* Tabs Section */}
       <div className="flex space-x-6 ">
         {tabs.map((tab) => (
@@ -154,7 +154,7 @@ function Orders() {
 
         </div>
           
-        <div className=" mt-4 border border-[#CCC] rounded-lg ">
+        <div className=" mt-4 border border-[#F2F2F2] rounded-lg ">
         <div className="bg-[#F2F2F2] border-b border-[#F2F2F2] p-3 2xl:p-4 rounded-lg">
         <div className="flex justify-between items-center pb-2 gap-2">
           <div className='xl:flex gap-2 xl:gap-4'>
@@ -417,7 +417,7 @@ function Orders() {
       ))}
     </div>
 
-    <div className=" mt-4 border border-[#CCC] rounded-lg ">
+    <div className=" mt-4 border border-[#F2F2F2] rounded-lg ">
         <div className="bg-[#F2F2F2] border-b border-[#F2F2F2] p-3 2xl:p-4 rounded-lg">
         <div className="flex justify-between items-center pb-2 gap-2">
           <div className='xl:flex gap-2 xl:gap-4'>
@@ -439,10 +439,10 @@ function Orders() {
             <p className="text-sm 2xl:text-base text-[#999]">Order Subtotal: <span className="text-[#1A1A1A] font-medium ml-1">PKR 41,200</span></p>
             </div>
             <p className='hidden xl:block bg-[#CCC] w-px self-stretch '></p>
-            <button className="text-base 2xl:text-lg text-[#002882] flex items-center ">View Order Details 
+            <Link className="text-base 2xl:text-lg text-[#002882] flex items-center" to="/OrderDetails">View Order Details 
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
   <path d="M12.5 10L17.5 15L12.5 20" stroke="#002882" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></button>
+</svg></Link>
           </div>
         
         </div>
@@ -529,7 +529,7 @@ function Orders() {
       ))}
     </div>
 
-    <div className=" mt-4 border border-[#CCC] rounded-lg ">
+    <div className=" mt-4 border border-[#F2F2F2] rounded-lg ">
         <div className="bg-[#F2F2F2] border-b border-[#F2F2F2] p-3 2xl:p-4 rounded-lg">
         <div className="flex justify-between items-center pb-2 gap-2">
           <div className='xl:flex gap-2 xl:gap-4'>
@@ -551,10 +551,10 @@ function Orders() {
             <p className="text-sm 2xl:text-base text-[#999]">Order Subtotal: <span className="text-[#1A1A1A] font-medium ml-1">PKR 41,200</span></p>
             </div>
             <p className='hidden xl:block bg-[#CCC] w-px self-stretch '></p>
-            <button className="text-base 2xl:text-lg text-[#002882] flex items-center ">View Order Details 
+             <Link className="text-base 2xl:text-lg text-[#002882] flex items-center" to="/OrderDetails">View Order Details 
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
   <path d="M12.5 10L17.5 15L12.5 20" stroke="#002882" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></button>
+</svg></Link>
           </div>
         
         </div>
@@ -933,8 +933,8 @@ function Orders() {
           </div>
         </div>
       ))}
-       <div className='bg-[#FCFCFC] pt-4'>
-        <div className="text-xl text-natural-black md:text-2xl 2xl:text-4xl font-bold flex gap-1 justify-center mb-4">
+       <div className='bg-[#FCFCFC] pt-4 '>
+       <div className="text-xl text-natural-black md:text-2xl 2xl:text-4xl font-bold flex gap-1 justify-center mb-4">
   <span >MORE TO LOVE</span> 
 </div>
 <MoreToLove/>

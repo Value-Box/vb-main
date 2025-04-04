@@ -58,7 +58,7 @@ export default function Notification() {
   return (
     <div className='sm:flex  items-start gap-2 sm:gap-4 sm:p-4 bg-[#F2F2F2] sm:bg-[#FCFCFC]'>
             <div className='hidden md:block'><AccountSideBar/></div>
-        <div className='flex flex-col-reverse sm:flex-col xl:flex-row gap-4 items-start'>
+        <div className='flex flex-col-reverse w-full sm:flex-col xl:flex-row gap-4 items-start'>
         <div className="w-full p-4 sm:border border-[#F2F2F2] sm:rounded-[10px] bg-white">
       {/* Notification Banner */}
       <div className="mb-4 p-4 flex items-center justify-between bg-[#FEF6E6] rounded-[10px] border border-gray-200">
