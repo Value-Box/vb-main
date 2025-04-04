@@ -454,14 +454,13 @@ function ProductCard1() {
         src={items.images[0]}
         alt="Home in Countryside"
       />
-      <button className='flex items-center gap-1 text-sm 2xl:text-base bg-white px-3 py-1 2xl:py-2 whitespace-nowrap rounded-full absolute bottom-2 left-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100' onClick={() => openModal('productView')}>
+      <button className='hidden md:flex items-center gap-1 text-sm 2xl:text-base bg-white px-3 py-1 2xl:py-2 whitespace-nowrap rounded-full absolute bottom-2 left-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100' onClick={() => openModal('productView')}>
             <svg xmlns="http://www.w3.org/2000/svg" className='w-4 2xl:w-5' viewBox="0 0 24 24" fill="none">
         <path d="M12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9ZM12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17ZM12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5Z" fill="#1A1A1A"/>
       </svg> See Preview</button>
       {activeModal ==='productView' && (
-        <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.10)] 
-        bg-opacity-50 px-5 md:p-0 z-1050"
-       onClick={closeModal}>
+        <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.10)] bg-opacity-50 
+        px-5 md:p-0 z-1050" onClick={closeModal}>
         <div
                   className="bg-white z-[10000px] p-5 m-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
                   onClick={(e) => e.stopPropagation()}
@@ -519,20 +518,20 @@ function ProductCard1() {
             
                     {/* Right Section - Product Details */}
                     <div className="lg:w-max space-y-2 2xl:space-y-4">
-                      <div className="hidden md:flex bg-[#FEE4E2] items-center px-3 py-2 rounded-lg">
-                        <img src={electricity} className="w-8 2xl:w-10" alt="" />
+                      <div className="hidden md:flex bg-[#FEE4E2] items-center px-2 lg:px-3 py-1 lg:py-2 rounded-md lg:rounded-lg">
+                        <img src={electricity} className="w-6 lg:w-8 2xl:w-10" alt="" />
                         <div className="ml-2">
                           <p className="text-xs font-semibold 2xl:font-normal 2xl:text-sm">Upcoming Price</p>
-                          <p className="text-lg 2xl:text-xl font-semibold">PKR 6,500</p>
+                          <p className="lg:text-lg 2xl:text-xl font-semibold">PKR 6,500</p>
                         </div>
-                        <span className="text-red-500 font-bold ml-auto text-2xl 2xl:text-3xl">
+                        <span className="text-red-500 font-bold ml-auto text-xl lg:text-2xl 2xl:text-3xl">
                           FLASH SALE
                         </span>
                       </div>
             
                       <div className="flex justify-between" >
-                      <h1 className="text-2xl 2xl:text-3xl font-bold text-[#002882]">PKR 7,100</h1>
-                      <div className="flex items-center space-x-2 2xl:text-lg text-md font-semibold">
+                      <h1 className="text-xl lg:text-2xl 2xl:text-3xl font-bold text-[#002882]">PKR 7,100</h1>
+                      <div className="flex items-center space-x-2 text-sm 2xl:text-lg text-md font-semibold">
                   <span>ENDS:</span>
                   <div className="flex space-x-1">
                     {/* <div className="bg-[#F04438] text-white px-2 2xl:px-3 py-1 text-sm 2xl:text-base rounded-[3px] ">{timeLeft.days}</div>
@@ -546,7 +545,7 @@ function ProductCard1() {
                 </div>
                       </div>
                       <div className="flex items-center">
-                        <del className="text-[#999] text-lg md:text-xl 2xl:text-2xl">PKR 8,500</del>
+                        <del className="text-[#999] text-lg lg:text-xl 2xl:text-2xl">PKR 8,500</del>
                         <span className="ml-2 text-[#F04438] text-sm md:text-md 2xl:text-lg">26% OFF</span>
                         <span className="ml-2 text-[#F04438] bg-[#FEE4E2] rounded-sm p-1 text-xs">
                           Almost Sold Out
@@ -569,7 +568,7 @@ function ProductCard1() {
                         <span className="w-1.5 h-1.5 bg-[#12B76A] rounded-full inline-block"></span>
                         <span className="text-[#666]">30+ Sold Recently</span>
                       </div>
-                      <p className="text-[#1A1A1A] text-lg 2xl:text-xl font-semibold leading-6">
+                      <p className="text-[#1A1A1A] lg:text-lg 2xl:text-xl font-semibold leading-5 lg:leading-6">
                         4K UHD DLED Smart Television 43Inch (2023 Model) 43A61K Black nch
                         (2023 Model) 43A61K Black
                       </p>
@@ -628,13 +627,13 @@ function ProductCard1() {
                       </div>
             
                       {/* Size & Shipping */}
-                      <div className="flex gap-4">
+                      <div className="flex items-start gap-4">
                         <Express />
                         <FreeShip />
                       </div>
             
                       
-                      <div className="flex items-center 2xl:gap-2 mt-4 bg-[#FEF6E6] p-2 rounded-lg cursor-pointer" onClick={() => openModal2("installmentDetail")}>
+                      <div className="flex items-center 2xl:gap-2 lg:mt-4 bg-[#FEF6E6] p-2 rounded-lg cursor-pointer" onClick={() => openModal2("installmentDetail")}>
                         <svg className="w-6 md:w-8 2xl:w-10"
                           xmlns="http://www.w3.org/2000/svg"
                           
@@ -785,7 +784,7 @@ function ProductCard1() {
                           </div>
                         )}
                       
-                      <div className="flex gap-4 mt-4 bg-[#F2F2F2] h-[1px]"></div>
+                      <div className="flex gap-4 lg:mt-4 bg-[#F2F2F2] h-[1px]"></div>
                       <p className="text-[#333] text-sm md:text-md 2xl:text-lg font-semibold ">
                         Cabinet Color: EU Ship
                       </p>
@@ -794,7 +793,7 @@ function ProductCard1() {
                           <button
                             key={color}
                             onClick={() => setSelectedColor(color)}
-                            className={`px-3 py-1 text-sm md:text-base rounded-md border font-medium ${
+                            className={`px-2 lg:px-3 lg:py-1 text-sm md:text-base rounded-md border font-medium ${
                               selectedColor === color
                                 ? "border border-[#EEA500] text-[#1A1A1A]"
                                 : "border border-[#CCC] text-[#666] "
@@ -810,7 +809,7 @@ function ProductCard1() {
                           <button
                             key={size}
                             onClick={() => setSelectedSize(size)}
-                            className={`px-3 py-1 text-sm md:text-base rounded-md border font-medium ${
+                            className={`px-2 lg:px-3 lg:py-1 text-sm md:text-base rounded-md border font-medium ${
                               selectedSize === size
                                 ? "border border-[#EEA500] text-[#1A1A1A]"
                                 : "border border-[#CCC] text-[#666] "

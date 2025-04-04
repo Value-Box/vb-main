@@ -3,8 +3,8 @@ import React from 'react'
 export default function FreeShip() {
   return (
     
-    <div className='flex items-center gap-1 text-[#FCFCFC] font-semibold bg-[linear-gradient(90deg,#0032A3_0%,#1A51CB_25%,#3B66C8_50%,#1A51CB_75%,#0032A3_100%)] px-3 py-1 rounded-r-full rounded-bl-full'>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <div className='flex items-center gap-1 text-sm lg:text-base text-[#FCFCFC] font-semibold bg-[linear-gradient(90deg,#0032A3_0%,#1A51CB_25%,#3B66C8_50%,#1A51CB_75%,#0032A3_100%)] px-3 py-1 rounded-r-full rounded-bl-full'>
+      <svg xmlns="http://www.w3.org/2000/svg" className='w-5 lg:w-6' viewBox="0 0 24 24" fill="none">
   <path d="M17 20C18.1046 20 19 19.1046 19 18C19 16.8954 18.1046 16 17 16C15.8954 16 15 16.8954 15 18C15 19.1046 15.8954 20 17 20Z" stroke="#FCFCFC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M7 20C8.10457 20 9 19.1046 9 18C9 16.8954 8.10457 16 7 16C5.89543 16 5 16.8954 5 18C5 19.1046 5.89543 20 7 20Z" stroke="#FCFCFC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M11 17H15M13.5 7H14.443C15.753 7 16.409 7 16.964 7.315C17.52 7.629 17.89 8.21 18.631 9.371C19.151 10.185 19.695 10.777 20.462 11.302C21.234 11.832 21.602 12.091 21.805 12.506C22 12.904 22 13.375 22 14.317C22 15.56 22 16.181 21.651 16.576L21.605 16.625C21.238 17 20.659 17 19.503 17H19" stroke="#FCFCFC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
