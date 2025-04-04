@@ -98,7 +98,7 @@ function Orders() {
 
   return (
     <div className='bg-[#FCFCFC]'>
-    {!isMobile?(<div className='relative flex p-4 xl:p-6 gap-4 xl:gap-5 items-start max-w-full mx-auto '>
+    {!isMobile?(<div className='relative flex p-4 xl:p-6 gap-4 xl:gap-5 items-start max-w-[1920px] mx-auto '>
       <AccountSideBar/>
         
         

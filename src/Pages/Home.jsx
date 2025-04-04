@@ -60,7 +60,7 @@ function Home() {
   return (
     <div>
     <HorizentolCategories  />
-    <div className="relative max-w-full w-full mx-auto mb-4">
+    <div className="relative max-w-[1920px] w-full mx-auto mb-4">
     <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden">
         <div
           className="flex transition-transform duration-700 ease-in-out"
@@ -102,12 +102,12 @@ function Home() {
     </div>
 
     <InfoSection/>
-    <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:px-4 py-0 max-w-full mx-auto mt-8'>
+    <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:px-4 py-0 max-w-[1920px] mx-auto mt-8'>
       <BundleDeal/>
       <FlashDeal/>
     </div>
 
-    <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:p-4 max-w-full mx-auto'>
+    <div className='flex flex-col md:flex-row gap-2 xl:gap-4 sm:p-4 max-w-[1920px] mx-auto'>
       <TrendyFashion/>
       <OneDollarShop/>
     </div>
@@ -158,7 +158,7 @@ function Home() {
  onClick={() => setShowModal(false)} // ❌ Background click closes modal
 >
  <div 
-   className="bg-[#FCFCFC] sm:p-4 2xl:p-7 rounded-lg shadow-lg max-w-full w-[550px] flex flex-col gap-5 relative"
+   className="bg-[#FCFCFC] sm:p-4 2xl:p-7 rounded-lg shadow-lg max-w-[1920px] mx-auto w-[550px] flex flex-col gap-5 relative"
    onClick={(e) => e.stopPropagation()} // ✅ Prevent closing on modal content click
  >
       <button 

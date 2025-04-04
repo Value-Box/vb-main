@@ -162,7 +162,7 @@ function OneDollarShopePage() {
       }, []);
 
   return (
-     <div className='w-full max-w-full mx-auto '>
+     <div className='w-full mx-auto max-w-[1920px]'>
           <div className='pb-2 md:mb-0'>
           <div className={`md:bg-[url(${onedollarshopBanner})] bg-[url(${onedollarshopMobBanner})] bg-center bg-cover bg-no-repeat text-white w-full flex md:justify-center items-center px-6 py-5 `}>
          

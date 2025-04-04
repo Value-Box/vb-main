@@ -50,7 +50,7 @@ function Addresses() {
     console.log(landMark);
   };
   return (
-    <div className="h-[94vh] block md:hidden pb-5">
+    <div className=" mx-auto max-w-[1920px] w-full flex md:hidden pb-5">
         <button className="flex items-center p-2 bg-[#FCFCFC] border-b border-[#F2F2F2] w-full "
         onClick={()=>setAddAddress(false)}>
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
