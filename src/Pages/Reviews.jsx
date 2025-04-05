@@ -98,7 +98,7 @@ function Reviews() {
       </div>
 
       {/* Title */}
-      <div className='md:border border-[#F2F2F2] p-4 sm:rounded-[10px]'>
+      <div className='md:border border-[#F2F2F2] p-4 sm:rounded-lg'>
       <button className='flex justify-between'>
       <p className="md:text-lg font-semibold ">Quick Review All Items Below</p>
       <p className="md:text-lg font-semibold pl-2 flex items-center"> Review <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

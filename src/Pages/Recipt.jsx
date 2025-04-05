@@ -183,7 +183,7 @@ function Recipt() {
     </div>
     <hr className="border-t-[1px] mx-6 border-[#F2F2F2]" />
       {/* Right Section - Payment Method */}
-      <div className='bg-white p-5 md:rounded-[5px] md:border-1 border-[#F2F2F2] flex flex-col gap-2.5 justify-around'>
+      <div className='bg-white p-5 md:rounded-lg md:border-1 border-[#F2F2F2] flex flex-col gap-2.5 justify-around'>
         <h2 className="text-[24px] font-semibold mb-2">Payment Method</h2>
         <hr className="border-t-[1px] border-[#F2F2F2]" />
         <div className="flex gap-2">
@@ -261,7 +261,7 @@ function Recipt() {
       </div>
     </div>
     <hr className="border-t-[1px] mx-6 border-[#F2F2F2]" />
-    <div className="bg-white p-5 md:rounded-[5px] md:border-1 border-[#F2F2F2]">
+    <div className="bg-white p-5 md:rounded-lg md:border-1 border-[#F2F2F2]">
       {/* Header */}
       <h2 className="text-lg font-semibold mb-4">Item Details (08)</h2>
       <div className="flex gap-5">
