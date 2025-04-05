@@ -329,6 +329,8 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         setShowShippingPopup1(false);
       }
     }, [promoCodePopup]);
+
+    const [inviteCheckBox,setInviteCheckBox]=useState(false)
     return (
     <>
  <div className="w-full p-7.5 bg-[#FCFCFC] hidden md:flex justify-center">
@@ -795,7 +797,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       <span className="text-black font-semibold">Plant with ValueBox</span>
    </div>
     <div  className=" flex text-[#999] text-[14px] gap-2">
-    <CheckBox/>
+    <CheckBox checked={inviteCheckBox} onChange={()=>setInviteCheckBox(!inviteCheckBox)} />
        We invite you to plant a tree for RS. 10
     </div >
   </div>
