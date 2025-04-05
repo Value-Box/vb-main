@@ -46,7 +46,7 @@ function OneDollarShop() {
           </span>
           <span className='bg-gradient-to-r from-[#FFC136] via-[#FFD168] to-[#E09B00] rounded-full p-2 2xl:p-3 flex sm:hidden items-center justify-center h-full w-max'>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-  <path d="M1.33398 8H14.6673M14.6673 8L8.66732 2M14.6673 8L8.66732 14" stroke="black" stroke-width="1.66667"/>
+  <path d="M1.33398 8H14.6673M14.6673 8L8.66732 2M14.6673 8L8.66732 14" stroke="black" strokeWidth="1.66667"/>
 </svg>
           </span>
         </div>

@@ -56,7 +56,6 @@ function Home() {
     
       const [visible, setVisible] = useState(true);
 
-    
   return (
     <div>
     <HorizentolCategories  />
