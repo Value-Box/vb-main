@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom';
 
 function DetailProductCard2({ products=[],style='' ,loadProducts=10}) {
+  
 
     const [currentIndex1, setCurrentIndex1] = useState(0);
         const [isSliding, setIsSliding] = useState(false);

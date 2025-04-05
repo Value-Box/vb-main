@@ -80,9 +80,10 @@ function ProductPage() {
     // "https://images.unsplash.com/photo-1484704849700-f032a568e944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw0fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080",
     // "https://images.unsplash.com/photo-1496957961599-e35b69ef5d7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080",
     // "https://images.unsplash.com/photo-1528148343865-51218c4a13e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwzfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080",
+        // Example video
+    { type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4" }, 
     { type: "image", src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" },
     { type: "image", src: "https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" },
-    { type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4" }, // Example video
     { type: "image", src: "https://images.unsplash.com/photo-1484704849700-f032a568e944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" },
     { type: "image", src: "https://images.unsplash.com/photo-1496957961599-e35b69ef5d7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" }, // Another video
   ];
@@ -90,21 +91,17 @@ function ProductPage() {
     ...thumbnails.filter((item) => item.type === "video"), // Pehle sab videos le lo
     ...thumbnails.filter((item) => item.type === "image") // Phir sab images le lo
   ];
-  let defaultMedia = null;
-  for (let i = 0; i < thumbnails.length; i++) {
-    if (thumbnails[i].type === "video") {
-      defaultMedia = thumbnails[i]; // First video found
-      break;
-    } else if (!defaultMedia && thumbnails[i].type === "image") {
-      defaultMedia = thumbnails[i]; // First image if no video
-    }
-  }
+
+// Step 2: Set defaultMedia from sorted array
+const defaultMedia = reorderedThumbnails[0];
   
-  const [mainMedia, setMainMedia] = useState(defaultMedia);
-  
-  useEffect(() => {
-    setMainMedia(defaultMedia);
-  }, []);
+// Step 3: useState and useEffect
+const [mainMedia, setMainMedia] = useState(defaultMedia);
+
+useEffect(() => {
+  setMainMedia(defaultMedia);
+}, []);
+
   const colors = ["Red", "Blue", "Green"];
   const sizes = ["S", "M", "L", "XL"];
 
@@ -1744,13 +1741,13 @@ function ProductPage() {
         <div className="border sticky top-[8%] rounded-lg border-[#F2F2F2]">
           <div className="px-2 2xl:px-3 py-4 2xl:py-6">
           <div className="flex items-center justify-between">
-            <h1 class="text-2xl 2xl:text-3xl font-bold text-[#002882]">PKR 7,100</h1>
+            <h1 className="text-2xl 2xl:text-3xl font-bold text-[#002882]">PKR 7,100</h1>
             </div>
 
-            <div class="flex items-center">
-              <del class="text-[#999] md:text-lg 2xl:text-2xl">PKR 8,500</del>
-              <span class="ml-2 text-[#F04438] text-sm md:text-md 2xl:text-lg">26% OFF</span>
-              <span class="ml-2 text-[#F04438] bg-[#FEE4E2] rounded-sm p-1 text-xs">Almost Sold Out</span>
+            <div className="flex items-center">
+              <del className="text-[#999] md:text-lg 2xl:text-2xl">PKR 8,500</del>
+              <span className="ml-2 text-[#F04438] text-sm md:text-md 2xl:text-lg">26% OFF</span>
+              <span className="ml-2 text-[#F04438] bg-[#FEE4E2] rounded-sm p-1 text-xs">Almost Sold Out</span>
             </div>
             <p className="text-natural-gray text-xs xl:text-sm 2xl:text-base">Tax Excluded, add at checkout if applicable.</p>
             <div className="flex gap-4 my-4 bg-[#F2F2F2] h-[1px]"></div>

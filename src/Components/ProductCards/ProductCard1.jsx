@@ -376,11 +376,15 @@ function ProductCard1() {
     
       useEffect(() => {
         const timer = setInterval(() => {
-          setTimeLeft(calculateTimeLeft());
+          const newTimeLeft = calculateTimeLeft();
+          if (JSON.stringify(newTimeLeft) !== JSON.stringify(timeLeft)) {
+            setTimeLeft(newTimeLeft);
+          }
         }, 1000);
-    
+      
         return () => clearInterval(timer);
-      }, []);
+      }, [timeLeft]);
+      
     // sale CountDown Timer end
 
       const [activeModal, setActiveModal] = useState(null);
@@ -1516,7 +1520,7 @@ xl:max-w-[350px] xl:min-w-[270px] overflow-hidden duration-400 hover:shadow-lg g
 </div>
     <div className='flex justify-center mb-5'>
     <LoadMoreButton className="bg-[#00171F] text-white " onClick={()=>setLoadMore(loadMore+10)}> Load More <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M19 8.5L12 15.5L5 8.5" stroke="#EEA500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M19 8.5L12 15.5L5 8.5" stroke="#EEA500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg></LoadMoreButton>
     </div>
    
