@@ -294,7 +294,7 @@ const copyTrackingNum=()=>{
 
            {activeModal === "contactLeopards" && (
                    <div
-                     className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center"
+                     className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center z-100"
                      onClick={closeModal} // Click outside to close modal
                    >
                      <div className="relative bg-natural-0 p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
