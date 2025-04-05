@@ -300,7 +300,7 @@ const tooltipRef = useRef(null);
   <h2 className="text-lg font-semibold mb-3">Order split into 03 packages:</h2>
   <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
     {packages.map((pkg) => (
-      <div key={pkg.id} className="bg-white p-5 rounded-[5px] border-1 border-[#F2F2F2] w-full">
+      <div key={pkg.id} className="bg-white p-5 rounded-lg border-1 border-[#F2F2F2] w-full">
         {/* Package Header */}
       <NavLink to="/PackageDetail">
       <div className="flex items-center justify-between mb-2">
@@ -361,7 +361,7 @@ const tooltipRef = useRef(null);
     ))}
   </div>
 </div>
-<div className="bg-white p-5 rounded-[5px] border-1 border-[#F2F2F2]">
+<div className="bg-white p-5 lg border-1 border-[#F2F2F2]">
       {/* Header */}
       <h2 className="text-lg font-semibold mb-4">Item Details (08)</h2>
 
@@ -433,7 +433,7 @@ const tooltipRef = useRef(null);
     
     <div className="grid grid-cols-2 gap-5">
       {/* Left Section - Payment Details */}
-      <div className='bg-white p-5 rounded-[5px] border-1 border-[#F2F2F2] flex flex-col gap-2.5'>
+      <div className='bg-white p-5 rounded-lg border-1 border-[#F2F2F2] flex flex-col gap-2.5'>
         <h2 className="text-[24px] font-semibold mb-2">Payment Details</h2>
         <p className="text-sm text-green-600 flex items-center">
           <span className="mr-1">🔒</span> All Data is encrypted
@@ -474,7 +474,7 @@ const tooltipRef = useRef(null);
       </div>
 
       {/* Right Section - Payment Method */}
-      <div className='bg-white p-5 rounded-[5px] border-1 border-[#F2F2F2] flex flex-col gap-2.5 justify-around'>
+      <div className='bg-white p-5 rounded-lg border-1 border-[#F2F2F2] flex flex-col gap-2.5 justify-around'>
         <h2 className="text-[24px] font-semibold mb-2">Payment Method</h2>
         <hr className="border-t-[1px] border-[#F2F2F2]" />
         <div className="flex gap-2">
