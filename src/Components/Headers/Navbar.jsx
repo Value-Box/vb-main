@@ -282,6 +282,8 @@ function Navbar() {
         window.removeEventListener("resize", handleResize);
       };
     }, []);
+
+    
   return (
     <>
 
@@ -360,7 +362,7 @@ function Navbar() {
           }
         }}
                     type="button"
-                    className="relative flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
+                    className="relative hidden sm:flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
                     id="user-menu-button"
                     aria-expanded={dropdownOpen}
                     aria-haspopup="true"
@@ -395,12 +397,27 @@ function Navbar() {
                     </div>
                   </button>
 
+                  <button onClick={() => {setDropdownOpen((prev) => !prev);}}
+                    type="button"
+                    className="relative flex sm:hidden gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
+                    id="user-menu-button"
+                    aria-expanded={dropdownOpen}
+                    aria-haspopup="true"
+                    // Toggle onClick
+                  >
+                    <img
+                      className="size-8 rounded-full max-w-none"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                  </button>
+
                   {/* Dropdown Menu */}
 
                   {/* Hover Effect */}
                   <div ref={dropdownRef}
     className={`absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all duration-300 ease-in-out 
-    translate-y-2 opacity-0 scale-95 flex gap-5 justify-end left-[100%] sm:left-0 w-[200px] sm:w-[250px] md:w-[300px] left-1/2 
+    translate-y-2 opacity-0 scale-95 flex gap-5 justify-end sm:left-0 w-[200px] sm:w-[250px] md:w-[300px] left-1/2 
     transform md:-translate-x-1/2 -translate-x-2/2 z-50 group-hover:opacity-100 
     group-hover:scale-100 group-hover:translate-y-0 sm:pointer-events-none sm:group-hover:pointer-events-auto
     ${dropdownOpen ? "opacity-100 scale-100 translate-y-0 pointer-events-auto" : "opacity-0 scale-95 translate-y-2 pointer-events-none"}`}
