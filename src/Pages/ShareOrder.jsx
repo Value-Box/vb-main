@@ -302,7 +302,7 @@ function ShareOrder() {
     
    </div>
    <div className="fixed bottom-0 left-0 w-full z-50 p-5 border border-white bg-white md:hidden flex">
-   
+             
     <button className="w-full flex items-center justify-center gap-2 rounded-[5px] text-white py-3 bg-[#002882]">
     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
   <path d="M3.625 10.625V15.625C3.625 15.9565 3.7567 16.2745 3.99112 16.5089C4.22554 16.7433 4.54348 16.875 4.875 16.875H16.125C16.4565 16.875 16.7745 16.7433 17.0089 16.5089C17.2433 16.2745 17.375 15.9565 17.375 15.625V10.625M10.5 12.5V2.1875M14.25 5.625L10.5 1.875L6.75 5.625" stroke="#FCFCFC" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
