@@ -500,6 +500,12 @@ export default function Notification() {
       )}
 
     </div>
+ 
+ 
+ 
+ 
+ 
+ 
     <div className="xl:max-w-sm mx-auto max-w-[1920px] sm:border border-[#F2F2F2] sm:rounded-lg p-4 bg-white">
       <h3 className="text-lg font-semibold">
         Receive SMS notifications about your order updates
