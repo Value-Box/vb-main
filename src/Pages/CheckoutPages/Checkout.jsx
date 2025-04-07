@@ -707,7 +707,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           <path d="M13.998 20.9999V15.9999C13.998 15.4694 13.7873 14.9607 13.4123 14.5857C13.0372 14.2106 12.5285 13.9999 11.998 13.9999C11.4676 13.9999 10.9589 14.2106 10.5838 14.5857C10.2088 14.9607 9.99805 15.4694 9.99805 15.9999V20.9999" stroke="#1A1A1A" stroke-width="1.5"/>
         </svg> {store.store}</h3>
      <div className='bg-[#CCC] h-px my-4'></div>
-        {store.items.filter(stItem=>stItem.delivery==='Standard').map((item,storeIndex) => (
+        {store.items.filter(stItem=>stItem.delivery==='Standard').map((item,storeIndex,filteredItems) => (
           <>
           <div key={item.id} className="flex items-center gap-2 xl:gap-4 mt-2 w-full">
             
@@ -797,7 +797,11 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             </div>
             
           </div>
-          <div className='bg-[#CCC] h-px my-4'> </div>
+          {storeIndex!==filteredItems.length-1 &&(
+            <div className='bg-[#CCC] h-px my-4'>
+            
+            </div>
+          )}
           </>
         ))}
       </div>
@@ -845,7 +849,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           <path d="M13.998 20.9999V15.9999C13.998 15.4694 13.7873 14.9607 13.4123 14.5857C13.0372 14.2106 12.5285 13.9999 11.998 13.9999C11.4676 13.9999 10.9589 14.2106 10.5838 14.5857C10.2088 14.9607 9.99805 15.4694 9.99805 15.9999V20.9999" stroke="#1A1A1A" stroke-width="1.5"/>
         </svg> {store.store}</h3>
      <div className='bg-[#CCC] h-px my-4'></div>
-        {store.items.filter(stItem=>stItem.delivery==='Express').map((item,storeIndex) => (
+        {store.items.filter(stItem=>stItem.delivery==='Express').map((item,storeIndex,filteredItems) => (
         
           <>
           <div key={item.id} className="flex items-center gap-2 xl:gap-4 mt-2 w-full">
@@ -933,9 +937,11 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             </div>
             
           </div>
-          <div className='bg-[#CCC] h-px my-4'>
+          {storeIndex!==filteredItems.length-1 &&(
+            <div className='bg-[#CCC] h-px my-4'>
             
-          </div>
+            </div>
+          )}
           </>
         ))}
       </div>
