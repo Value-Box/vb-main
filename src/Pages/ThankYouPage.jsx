@@ -149,7 +149,7 @@ function ThankYouPage() {
 </svg> ValueBox does not ask customers for additional fees via SMS or email
       </p>
       <Link to='/OrderDetails' className="bg-gradient-to-r from-[#FFC136] via-[#FAC142] via-[#FFD168] via-[#F5BC3A] to-[#E09B00] 
- text-[#1A1A1A] px-2 md:px-4 py-1 md:py-2 rounded-md font-medium text-xs md:text-base">
+ text-[#1A1A1A] px-2 md:px-4 py-1 md:py-2 rounded-md font-medium text-xs md:text-base text-nowrap">
           View Order
         </Link>
       </div>

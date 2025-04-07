@@ -70,14 +70,14 @@ function Home() {
               key={index}
               src={img}
               alt={`carousel-image-${index}`}
-              className="w-full flex-shrink-0 object-cover"
+              className="w-full h-full aspect-square flex-shrink-0 object-cover"
             />
           ))}
         </div>
       </div>
       <button
   onClick={goToPrevious}
-  className="group absolute top-1/2 left-0 transform -translate-y-1/2 overflow-hidden px-4 py-2 text-white bg-dark-blue rounded-r-[5px] transition-all duration-300 flex items-center justify-center w-[80px] h-[40px]"
+  className="group absolute top-1/2 left-0 transform -translate-y-1/2 overflow-hidden px-4 py-2 text-white bg-dark-blue rounded-r-[5px] transition-all duration-300 hidden sm:flex items-center justify-center w-[80px] h-[40px]"
 >
   {/* Arrow with transition */}
   <span
@@ -98,7 +98,7 @@ function Home() {
 
 <button
   onClick={goToNext}
-  className="group absolute top-1/2 right-0 transform -translate-y-1/2 overflow-hidden px-4 py-2 text-white bg-dark-blue rounded-l-[5px] transition-all duration-300 flex items-center justify-center w-[80px] h-[40px]"
+  className="group absolute top-1/2 right-0 transform -translate-y-1/2 overflow-hidden px-4 py-2 text-white bg-dark-blue rounded-l-[5px] transition-all duration-300 hidden sm:flex items-center justify-center w-[80px] h-[40px]"
 >
   {/* Arrow with transition */}
   <span

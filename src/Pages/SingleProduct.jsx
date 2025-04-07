@@ -167,8 +167,15 @@ useEffect(() => {
   ];
 
   const handleScroll = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = -70;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+  
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   };
+  
 
   const ratings = [
     { stars: 5, percentage: 70 },
@@ -459,12 +466,42 @@ useEffect(() => {
     setIsAnimating(false);
     setTimeout(() => setOpenPopup(null), 300);
   };
-  
 
+  const[reviewImage,setReviewImage]=useState(null)
+
+  useEffect(()=>{
+    console.log(reviewImage)
+    const handleKeyDown=(e)=>{
+      if(e.key==='Escape'){
+        setReviewImage(null)
+      }
+    }
+    window.addEventListener('keydown',handleKeyDown)
+    return ()=> window.removeEventListener('keydown',handleKeyDown)
+  },[])
 
   return (
     <>
-    
+
+
+    {reviewImage !== null && (
+  <div className="fixed inset-0 bg-[#00000052] bg-opacity-75 flex items-center justify-center z-50" onClick={() => setReviewImage(null)}>
+    <div className="relative" onClick={(e)=>e.stopPropagation()}>
+      <button
+        onClick={() => setReviewImage(null)}
+        className="absolute top-2 right-2 bg-white text-black rounded-full p-2 shadow"
+      >
+        ✕
+      </button>
+      <img
+        src={userRatingimages[reviewImage]}
+        alt={`Preview ${reviewImage}`}
+        className="max-w-[70vh] max-h-[70vh] aspect-square object-cover rounded-lg shadow-lg"
+      />
+    </div>
+  </div>
+)}
+
       
       {!isMobile ? (
         <div className="flex flex-col md:flex-row p-3 xl:p-6 gap-3 2xl:gap-6 max-w-[1920px] mx-auto">
@@ -918,9 +955,9 @@ useEffect(() => {
                   {userRatingimages.map((src, index) => (
                     <img
                       key={index}
-                      src={src}
+                      src={src} onClick={()=>setReviewImage(index)}
                       alt={`Customer ${index + 1}`}
-                      className="w-20 h-20 aspect-square select-none pointer-events-none object-cover rounded-lg shadow "
+                      className="w-20 h-20 aspect-square select-none object-cover rounded-lg shadow "
                     />
                   ))}
                 </div>
@@ -1006,7 +1043,7 @@ useEffect(() => {
           <ProductsCarousel products={products} CardType="DetailProductCard" />
           <div className="flex gap-4 mt-4 bg-[#F2F2F2] h-[1px]"></div>
 
-          <div className="mt-2">
+          <div className="mt-2" id="specification">
       {/* Title */}
       <h2 className="text-xl 2xl:text-2xl font-semibold text-black mb-4 mt-2">Specifications</h2>
 
@@ -1041,7 +1078,7 @@ useEffect(() => {
        </div>
        <ViewMoreButton />
     </div>
-          <div className="mt-3">
+          <div className="mt-3" id="description">
       {/* Title */}
       <h2 className="text-xl 2xl:text-2xl font-semibold text-black mb-4 mt-2">Description</h2>
 
@@ -1128,7 +1165,8 @@ useEffect(() => {
      
     </div>
 
-    <div className="flex items-center justify-between bg-[#F2F2F2] p-3 rounded-lg shadow-sm w-full mt-4 mx-auto">
+    <div className="flex items-center justify-between bg-[#F2F2F2] p-3 rounded-lg shadow-sm w-full mt-4 
+    mx-auto" id='store'>
       {/* Left Side - Store Info */}
       <div className="flex items-center gap-3">
         {/* Profile Image */}
@@ -1163,7 +1201,7 @@ useEffect(() => {
       </div>
     </div>
 
-    <div className="flex flex-wrap gap-4 mt-4">
+    <div className="flex flex-wrap gap-4 mt-4" >
    
                   <ProductsCarousel products={products} CardType="DetailProductCard" />
                   </div>
@@ -3264,7 +3302,7 @@ useEffect(() => {
     </div>
       )}
     
-<h1 className='text-xl lg:text-2xl mt-3 sm:mt-0 sm:mb-6 sm:py-0 p-3 sm:px-7 2xl:text-4xl font-semibold max-w-[1920px] mx-auto'>More To Love</h1>
+<h1 className='text-xl lg:text-2xl mt-3 sm:mt-0 sm:mb-6 sm:py-0 p-3 sm:px-7 2xl:text-4xl font-semibold max-w-[1920px] mx-auto' id="more-to-love">More To Love</h1>
     <MoreToLove/>
 
     <div className="flex md:hidden gap-3 items-center fixed bottom-0 bg-white w-full p-2 z-1055">

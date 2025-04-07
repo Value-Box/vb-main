@@ -521,9 +521,9 @@ export default function Notification() {
           +92
         </span>
         <Input value={smsNotifiNumber} onChange={(e)=>setSmsNotifiNumber(e.target.value)}
-          type="text"
+          type="number"
           placeholder="Enter your Phone number"
-          className="border-0 pl-2"
+          className="border-0 pl-2 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         
       </div>

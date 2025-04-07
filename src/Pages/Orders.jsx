@@ -22,10 +22,10 @@ function Orders() {
       { value: "option2", label: "Option2" },
       { value: "option3", label: "Option3" },
     ];
-  const [cardNumber, setCardNumber] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
-  const [cvv, setCvv] = useState("");
+  // const [cardNumber, setCardNumber] = useState("");
+  // const [month, setMonth] = useState("");
+  // const [year, setYear] = useState("");
+  // const [cvv, setCvv] = useState("");
 
     const [activeTab, setActiveTab] = useState("View All");
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -78,6 +78,11 @@ function Orders() {
   const openModal = (modalName) => setActiveModal(modalName);
   const closeModal = () => setActiveModal(null);
 
+  const [activeModal2, setActiveModal2] = useState(null);
+
+  const openModal2 = (modalName) => setActiveModal2(modalName);
+  const closeModal2 = () => setActiveModal2(null);
+
   const [activeToolTip, setActiveToolTip] = useState(null);
 
   const openToolTip = (modalName) => {
@@ -95,6 +100,16 @@ function Orders() {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+const [country, setCountry] = useState("");
+    const [province, setProvince] = useState("");
+    const [street, setStreet] = useState("");
+    const [apartment, setApartment] = useState("");
+    const [landmark, setLandmark] = useState("");
+    const [city, setCity] = useState("");
+    const [area, setArea] = useState("");
+    const [zip, setZip] = useState("");
+    const [contactName, setContactName] = useState("");
+    const [phone, setPhone] = useState("");
 
   return (
     <div className='bg-[#FCFCFC]'>
@@ -225,130 +240,14 @@ function Orders() {
   <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.25C9.67936 3.25 7.45376 4.17187 5.81282 5.81282C4.17187 7.45376 3.25 9.67936 3.25 12C3.25 14.3206 4.17187 16.5462 5.81282 18.1872C7.45376 19.8281 9.67936 20.75 12 20.75C14.3206 20.75 16.5462 19.8281 18.1872 18.1872C19.8281 16.5462 20.75 14.3206 20.75 12C20.75 9.67936 19.8281 7.45376 18.1872 5.81282C16.5462 4.17187 14.3206 3.25 12 3.25ZM4.75 12C4.75 11.0479 4.93753 10.1052 5.30187 9.22554C5.66622 8.34593 6.20025 7.5467 6.87348 6.87348C7.5467 6.20025 8.34593 5.66622 9.22554 5.30187C10.1052 4.93753 11.0479 4.75 12 4.75C12.9521 4.75 13.8948 4.93753 14.7745 5.30187C15.6541 5.66622 16.4533 6.20025 17.1265 6.87348C17.7997 7.5467 18.3338 8.34593 18.6981 9.22554C19.0625 10.1052 19.25 11.0479 19.25 12C19.25 13.9228 18.4862 15.7669 17.1265 17.1265C15.7669 18.4862 13.9228 19.25 12 19.25C10.0772 19.25 8.23311 18.4862 6.87348 17.1265C5.51384 15.7669 4.75 13.9228 4.75 12Z" fill="#F04438"/>
 </svg> {order.date}</p>
             
-            <button className="text-sm xl:text-base border border-[#002882] text-[#002882] px-2 xl:px-3 py-1 xl:py-2 rounded-[5px]">Edit Address</button>
-            <button className="text-sm xl:text-base bg-[#002882] text-white px-2 xl:px-3 py-1 xl:py-2 
-            rounded" onClick={()=>openModal('my')}>Pay Now</button>
-          </div>
-          {activeModal === "my" && (
-        <div
-          className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center"
-          onClick={closeModal} // Click outside to close modal
-        >
-          <div className="relative bg-white p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
-          <button
-              className="absolute -top-3 -right-3 bg-white rounded-full"
-              onClick={closeModal} // Close button inside modal
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-  <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
-</svg>
-            </button>
+            <button className="text-sm xl:text-base border border-[#002882] text-[#002882] px-2 xl:px-3 
+            py-1 xl:py-2 rounded-[5px]" onClick={()=>openModal('editAddress')}>Edit Address</button>
 
-            <h2 className="text-[30px] font-semibold">Add a new card</h2>
-        <p className="text-green-600 text-[16px] font-medium flex items-center gap-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M12 17C12.5304 17 13.0391 16.7893 13.4142 16.4142C13.7893 16.0391 14 15.5304 14 15C14 14.4696 13.7893 13.9609 13.4142 13.5858C13.0391 13.2107 12.5304 13 12 13C11.4696 13 10.9609 13.2107 10.5858 13.5858C10.2107 13.9609 10 14.4696 10 15C10 15.5304 10.2107 16.0391 10.5858 16.4142C10.9609 16.7893 11.4696 17 12 17ZM18 8C18.5304 8 19.0391 8.21071 19.4142 8.58579C19.7893 8.96086 20 9.46957 20 10V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58579 21.4142C4.21071 21.0391 4 20.5304 4 20V10C4 9.46957 4.21071 8.96086 4.58579 8.58579C4.96086 8.21071 5.46957 8 6 8H7V6C7 4.67392 7.52678 3.40215 8.46447 2.46447C9.40215 1.52678 10.6739 1 12 1C12.6566 1 13.3068 1.12933 13.9134 1.3806C14.52 1.63188 15.0712 2.00017 15.5355 2.46447C15.9998 2.92876 16.3681 3.47995 16.6194 4.08658C16.8707 4.69321 17 5.34339 17 6V8H18ZM12 3C11.2044 3 10.4413 3.31607 9.87868 3.87868C9.31607 4.44129 9 5.20435 9 6V8H15V6C15 5.20435 14.6839 4.44129 14.1213 3.87868C13.5587 3.31607 12.7956 3 12 3Z" fill="#12B76A"/>
-</svg> All Data is encrypted <svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24" fill="none">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1569 12.7116L4.49994 18.3686L3.08594 16.9546L8.03594 12.0046L3.08594 7.05463L4.49994 5.64062L10.1569 11.2976C10.3444 11.4852 10.4497 11.7395 10.4497 12.0046C10.4497 12.2698 10.3444 12.5241 10.1569 12.7116Z" fill="#12B76A"/>
-</svg>
-      </p>  
-      {/* Payment Icons */}
-      <div className='flex gap-2 my-2'>
-                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
-                  <img src={visa} className='w-7 aspect-square' />
-                  </span>
-                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
-                  <img src={mastercard} className='w-7 aspect-square' />
-                  </span>
-                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
-                  <img src={jcb} className='w-7 aspect-square' />
-                  </span>
-                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
-                  <img src={applepay} className='w-7 aspect-square' />
-                  </span>
-                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
-                  <img src={googlepay} className='w-7 aspect-square' />
-                  </span>
-                </div>
-
-      {/* Card Number */}
-      <div className="">
-        <label className="block text-gray-700 font-medium">Card Number <span className="text-yellow-400">*</span></label>
-        <Input
-          type="text"
-          className="w-full p-2 border rounded-md"
-          placeholder="Enter Your Card Number"
-        />
-      </div>
-
-      {/* Expiration & CVV */}
-      <div className="flex gap-3 mt-4">
-        {/* Expiry & CVV */}
-      <div className="flex gap-2.5">
-        <div className="w-1/2">
-          <label className="block text-gray-700 font-medium">Expiration Date <span className="text-yellow-400">*</span></label>
-          <div className="flex gap-2">
-          <Select
-        options={options}
-        value={selectedOption}
-        onChange={(e) => setSelectedOption(e.target.value)}
-        placeholder="Month"
-           />
-           <Select
-        options={options}
-        value={selectedOption}
-        onChange={(e) => setSelectedOption(e.target.value)}
-        placeholder="Year"
-           />
-         </div>
-        </div>
-        <div className="w-1/2">
-          <label className="block text-gray-700 font-medium">CVV <span className="text-yellow-400">*</span></label>
-          <Input type="text" className="w-full p-2 border rounded-md" placeholder="3-4 digit code" />
-        </div>
-      </div>
-      
-        
-      </div>
-      <hr className="border-t-[1px] border-[#CCD1D2] my-4" />
-      {/* Billing Address */}
-      <div className=" flex justify-between">
-        <div className="flex flex-col gap-2">
-        <label className="block text-gray-700 font-medium">Billing Address <span className="text-red-500">*</span></label>
-        <p className="text-gray-600 text-sm">farmanharis66@gmail.com</p>
-        <p className="text-gray-600 text-sm">135- Mian House, Garden Town Lahore, Pakistan</p>
-        </div>
-       <button className="flex gap-1 bg-transparent text-[#002882]"  >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M13 3C13.2549 3.00028 13.5 3.09788 13.6854 3.27285C13.8707 3.44782 13.9822 3.68695 13.9972 3.94139C14.0121 4.19584 13.9293 4.44638 13.7657 4.64183C13.6021 4.83729 13.3701 4.9629 13.117 4.993L13 5H5V19H19V11C19.0003 10.7451 19.0979 10.5 19.2728 10.3146C19.4478 10.1293 19.687 10.0178 19.9414 10.0028C20.1958 9.98789 20.4464 10.0707 20.6418 10.2343C20.8373 10.3979 20.9629 10.6299 20.993 10.883L21 11V19C21.0002 19.5046 20.8096 19.9906 20.4665 20.3605C20.1234 20.7305 19.6532 20.9572 19.15 20.995L19 21H5C4.49542 21.0002 4.00943 20.8096 3.63945 20.4665C3.26947 20.1234 3.04284 19.6532 3.005 19.15L3 19V5C2.99984 4.49542 3.19041 4.00943 3.5335 3.63945C3.87659 3.26947 4.34684 3.04284 4.85 3.005L5 3H13ZM19.243 3.343C19.423 3.16365 19.6644 3.05953 19.9184 3.05177C20.1723 3.04402 20.4197 3.13322 20.6103 3.30125C20.8008 3.46928 20.9203 3.70355 20.9444 3.95647C20.9685 4.2094 20.8954 4.46201 20.74 4.663L20.657 4.758L10.757 14.657C10.577 14.8363 10.3356 14.9405 10.0816 14.9482C9.82767 14.956 9.58029 14.8668 9.38972 14.6988C9.19916 14.5307 9.07969 14.2964 9.0556 14.0435C9.03151 13.7906 9.10459 13.538 9.26 13.337L9.343 13.243L19.243 3.343Z" fill="#002882"/>
-              </svg> Edit</button>
-      </div>
-
-      {/* Submit Button */}
-      <button className="mt-6 bg-dark-blue text-white w-full py-2 rounded-[5px] hover:bg-blue-700">
-        Add your card
-      </button>
-      <hr className="border-t-[1px] border-[#CCD1D2] my-4" />
-      {/* Security Info */}
-      <div className=" text-sm flex flex-col gap-2.5">
-        <span className="text-[16px] text-[#039855] flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <path d="M10 0.833496L2.5 4.16683V9.16683C2.5 13.7918 5.7 18.1168 10 19.1668C14.3 18.1168 17.5 13.7918 17.5 9.16683V4.16683L10 0.833496ZM10 7.4085C11.3333 7.4085 12.4083 8.4835 12.4083 9.81683C12.4083 11.1502 11.3333 12.2252 10 12.2252C8.66667 12.2252 7.59167 11.1418 7.59167 9.81683C7.59167 8.49183 8.675 7.4085 10 7.4085ZM10 5.00016L11.15 6.66683C10.8 6.51683 10.4167 6.44183 10 6.44183C9.375 6.44183 9.20833 6.51683 8.85 6.66683L10 5.00016ZM5.83333 7.4085L7.83333 7.24183C7.55 7.50016 7.28333 7.7835 7.08333 8.1335C6.875 8.4835 6.75 8.85016 6.66667 9.2335L5.83333 7.4085ZM5.83333 12.2252L6.69167 10.4168C6.75833 10.7752 6.89167 11.1502 7.08333 11.5002C7.29167 11.8585 7.55 12.1585 7.83333 12.4002L5.83333 12.2252ZM14.1667 7.4085L13.3333 9.2335C13.25 8.85016 13.1167 8.4835 12.9167 8.1335C12.7167 7.7835 12.4583 7.50016 12.1667 7.2335L14.1667 7.4085ZM14.1667 12.2252L12.1667 12.3918C12.45 12.1502 12.7083 11.8502 12.9167 11.5002C13.1167 11.1502 13.2417 10.7752 13.3083 10.4168L14.1667 12.2252ZM10 14.6252L8.84167 12.9752C9.2 13.1002 9.58333 13.1835 10 13.1835C10.4167 13.1835 10.7917 13.1002 11.1417 12.9752L10 14.6252Z" fill="#039855"/>
-</svg> ValueBox protects your card information</span>
-       <span className="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg> Card information is secure and uncompromised</span> 
-       <span className="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-   </svg>  All data is encrypted</span>
-        <span className="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg> ValueBox never sells your card information</span>
-        </div>
-    </div>
             
+            <button className="text-sm xl:text-base bg-[#002882] text-white px-2 xl:px-3 py-1 xl:py-2 
+            rounded" onClick={()=>openModal('payNow')}>Pay Now</button>
+          </div>
           
-        </div>
-      )}
           </div>
           <div className="">
             <div className='p-2 bg-gradient-to-b from-[#FFE09E] to-[#FFFCF4] flex items-center justify-between'> 
@@ -457,10 +356,10 @@ function Orders() {
 </svg>
             
             
-<button className="text-sm xl:text-base bg-[#002882] text-white px-2 xl:px-3 py-1 xl:py-2 rounded flex items-center gap-1">
+<Link to="/PackageDetail" className="text-sm xl:text-base bg-[#002882] text-white px-2 xl:px-3 py-1 xl:py-2 rounded flex items-center gap-1">
 <svg xmlns="http://www.w3.org/2000/svg" className='w-4 xl:w-6' viewBox="0 0 24 24" fill="none">
   <path d="M19.0739 4.92988L17.6639 6.33988C18.4066 7.08338 18.9955 7.96592 19.397 8.93708C19.7985 9.90824 20.0047 10.949 20.0039 11.9999C20.0039 16.4199 16.4239 19.9999 12.0039 19.9999C7.58391 19.9999 4.00391 16.4199 4.00391 11.9999C4.00391 7.91988 7.05391 4.55988 11.0039 4.06988V6.08988C8.16391 6.56988 6.00391 9.02988 6.00391 11.9999C6.00391 15.3099 8.69391 17.9999 12.0039 17.9999C15.3139 17.9999 18.0039 15.3099 18.0039 11.9999C18.0039 10.3399 17.3339 8.83988 16.2439 7.75988L14.8339 9.16988C15.5539 9.89988 16.0039 10.8999 16.0039 11.9999C16.0039 14.2099 14.2139 15.9999 12.0039 15.9999C9.79391 15.9999 8.00391 14.2099 8.00391 11.9999C8.00391 10.1399 9.28391 8.58988 11.0039 8.13988V10.2799C10.4039 10.6299 10.0039 11.2599 10.0039 11.9999C10.0039 13.0999 10.9039 13.9999 12.0039 13.9999C13.1039 13.9999 14.0039 13.0999 14.0039 11.9999C14.0039 11.2599 13.6039 10.6199 13.0039 10.2799V1.99988H12.0039C6.48391 1.99988 2.00391 6.47988 2.00391 11.9999C2.00391 17.5199 6.48391 21.9999 12.0039 21.9999C17.5239 21.9999 22.0039 17.5199 22.0039 11.9999C22.0039 9.23988 20.8839 6.73988 19.0739 4.92988Z" fill="#E6EAF3"/>
-</svg> Track Order</button>
+</svg> Track Order</Link>
           </div>
           <div className="">
             <div className='p-2 bg-gradient-to-b from-[#FFE09E] to-[#FFFCF4] flex items-center justify-between'> 
@@ -573,10 +472,11 @@ function Orders() {
             <button className="text-sm xl:text-base border border-[#002882] text-[#002882] px-2 xl:px-3 py-1 xl:py-2 rounded-[5px] ">Buy this again</button>
             <button className="text-sm xl:text-base border border-[#002882] text-[#002882] px-2 xl:px-3 py-1 xl:py-2 rounded-[5px] ">Return / Refund</button>
             <button className="text-sm xl:text-base border border-[#002882] text-[#002882] px-2 xl:px-3 py-1 xl:py-2 rounded-[5px] ">Leave a Reivew</button>
-            <button className="text-sm xl:text-base bg-[#002882] text-white px-2 xl:px-3 py-1 xl:py-2 rounded flex items-center gap-1">
+            
+            <Link to="/PackageDetail" className="text-sm xl:text-base bg-[#002882] text-white px-2 xl:px-3 py-1 xl:py-2 rounded flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" className='w-4 xl:w-6' viewBox="0 0 24 24" fill="none">
   <path d="M19.0739 4.92988L17.6639 6.33988C18.4066 7.08338 18.9955 7.96592 19.397 8.93708C19.7985 9.90824 20.0047 10.949 20.0039 11.9999C20.0039 16.4199 16.4239 19.9999 12.0039 19.9999C7.58391 19.9999 4.00391 16.4199 4.00391 11.9999C4.00391 7.91988 7.05391 4.55988 11.0039 4.06988V6.08988C8.16391 6.56988 6.00391 9.02988 6.00391 11.9999C6.00391 15.3099 8.69391 17.9999 12.0039 17.9999C15.3139 17.9999 18.0039 15.3099 18.0039 11.9999C18.0039 10.3399 17.3339 8.83988 16.2439 7.75988L14.8339 9.16988C15.5539 9.89988 16.0039 10.8999 16.0039 11.9999C16.0039 14.2099 14.2139 15.9999 12.0039 15.9999C9.79391 15.9999 8.00391 14.2099 8.00391 11.9999C8.00391 10.1399 9.28391 8.58988 11.0039 8.13988V10.2799C10.4039 10.6299 10.0039 11.2599 10.0039 11.9999C10.0039 13.0999 10.9039 13.9999 12.0039 13.9999C13.1039 13.9999 14.0039 13.0999 14.0039 11.9999C14.0039 11.2599 13.6039 10.6199 13.0039 10.2799V1.99988H12.0039C6.48391 1.99988 2.00391 6.47988 2.00391 11.9999C2.00391 17.5199 6.48391 21.9999 12.0039 21.9999C17.5239 21.9999 22.0039 17.5199 22.0039 11.9999C22.0039 9.23988 20.8839 6.73988 19.0739 4.92988Z" fill="#E6EAF3"/>
-</svg> Track Order</button>
+</svg> Track Order</Link>
 
           </div>
           </div>
@@ -797,8 +697,11 @@ function Orders() {
   <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.25C9.67936 3.25 7.45376 4.17187 5.81282 5.81282C4.17187 7.45376 3.25 9.67936 3.25 12C3.25 14.3206 4.17187 16.5462 5.81282 18.1872C7.45376 19.8281 9.67936 20.75 12 20.75C14.3206 20.75 16.5462 19.8281 18.1872 18.1872C19.8281 16.5462 20.75 14.3206 20.75 12C20.75 9.67936 19.8281 7.45376 18.1872 5.81282C16.5462 4.17187 14.3206 3.25 12 3.25ZM4.75 12C4.75 11.0479 4.93753 10.1052 5.30187 9.22554C5.66622 8.34593 6.20025 7.5467 6.87348 6.87348C7.5467 6.20025 8.34593 5.66622 9.22554 5.30187C10.1052 4.93753 11.0479 4.75 12 4.75C12.9521 4.75 13.8948 4.93753 14.7745 5.30187C15.6541 5.66622 16.4533 6.20025 17.1265 6.87348C17.7997 7.5467 18.3338 8.34593 18.6981 9.22554C19.0625 10.1052 19.25 11.0479 19.25 12C19.25 13.9228 18.4862 15.7669 17.1265 17.1265C15.7669 18.4862 13.9228 19.25 12 19.25C10.0772 19.25 8.23311 18.4862 6.87348 17.1265C5.51384 15.7669 4.75 13.9228 4.75 12Z" fill="#F04438"/>
 </svg> {order.date}</p>
             
-            <button className="text-sm border border-[#002882] text-[#002882] px-2 xl:px-3 py-1 xl:py-2 rounded-[5px]">Edit Address</button>
-            <button className="text-sm bg-[#002882] text-white px-2 xl:px-3 py-1 xl:py-2 rounded ">Pay Now</button>
+            <button className="text-sm border border-[#002882] text-[#002882] px-2 xl:px-3 py-1 
+            xl:py-2 rounded-[5px]" onClick={()=>openModal('editAddress')}>Edit Address</button>
+
+            <button className="text-sm bg-[#002882] text-white px-2 xl:px-3 py-1 xl:py-2 rounded " 
+            onClick={()=>openModal('payNow')}>Pay Now</button>
           </div>
           </div>
               </>
@@ -942,6 +845,191 @@ function Orders() {
       </div>
     )}
 
+{activeModal === "editAddress" && (
+        <div
+          className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
+          onClick={closeModal} // Click outside to close modal
+        >
+          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
+          <button
+              className="absolute -top-3 -right-3 bg-white rounded-full"
+              onClick={closeModal} // Close button inside modal
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+  <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
+</svg>
+            </button>
+
+            <h2 className="text-[30px] font-semibold">Edit Address</h2>
+        
+            <form className="flex flex-col flex-grow space-y-3">
+      <div className="grid grid-cols-2 gap-2">
+        <div className="w-full flex flex-col gap-1">
+          <label className="text-gray-600 text-[16px] font-medium">Country/region</label>
+          <Select options={options} placeholder="Please Select" value={country} onChange={(e) => setCountry(e.target.value)} />
+        </div>
+        <div className="w-full flex flex-col gap-1">
+          <label className="text-gray-600 text-[16px] font-medium">Province</label>
+          <Select options={options} placeholder="Please Select" value={province} onChange={(e) => setProvince(e.target.value)} />
+        </div>
+      </div>
+      <hr className="border-t-[1px] my-3 border-[#F2F2F2]" />
+    
+      <label className="text-gray-600 text-[16px] font-medium">Address</label>
+      <div className="grid grid-cols-3 gap-2">
+        <Input type="text" placeholder="Street Address*" value={street} onChange={(e) => setStreet(e.target.value)} />
+        <Input type="text" placeholder="Apt, Suite (Optional)" value={apartment} onChange={(e) => setApartment(e.target.value)} />
+        <Input type="text" placeholder="Landmark (Optional)" value={landmark} onChange={(e) => setLandmark(e.target.value)} />
+      </div>
+
+      <div className="grid grid-cols-3 gap-2">
+        <Select options={options} placeholder="Please Select" value={city} onChange={(e) => setCity(e.target.value)} />
+        <Select options={options} placeholder="Select Area" value={area} onChange={(e) => setArea(e.target.value)} />
+        <Input type="number" placeholder="ZIP Code*" value={zip} onChange={(e) => setZip(e.target.value)} className="border p-2 rounded" />
+      </div>
+      <hr className="border-t-[1px] my-3 border-[#F2F2F2]" />
+    
+      <label className="text-gray-600 text-[16px] font-medium">Contact Information</label>
+      <div className="grid grid-cols-2 gap-2">
+        <Input type="text" placeholder="Contact Name*" value={contactName} onChange={(e) => setContactName(e.target.value)} className="border p-2 rounded" />
+        <Input type="number" placeholder="+92 Enter your Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} className="border p-2 rounded" />
+      </div>
+      <hr className="border-t-[1px] my-5 border-[#F2F2F2]" />
+       <div className="flex gap-4 ">
+       <button type="submit" className="flex items-center gap-2 px-2 sm:px-10 py-2 bg-[#002882] text-white rounded-md">
+        <svg xmlns="http://www.w3.org/2000/svg" className='w-5' viewBox="0 0 20 20" fill="none">
+  <path d="M15.0013 10.8334H10.8346V15.0001C10.8346 15.4584 10.4596 15.8334 10.0013 15.8334C9.54297 15.8334 9.16797 15.4584 9.16797 15.0001V10.8334H5.0013C4.54297 10.8334 4.16797 10.4584 4.16797 10.0001C4.16797 9.54175 4.54297 9.16675 5.0013 9.16675H9.16797V5.00008C9.16797 4.54175 9.54297 4.16675 10.0013 4.16675C10.4596 4.16675 10.8346 4.54175 10.8346 5.00008V9.16675H15.0013C15.4596 9.16675 15.8346 9.54175 15.8346 10.0001C15.8346 10.4584 15.4596 10.8334 15.0013 10.8334Z" fill="#FCFCFC"/>
+</svg> Add a new address</button>
+       <button className="px-2 sm:px-10 py-2 bg-gray-300 text-gray-700 rounded-md">Discard</button>
+       </div>
+      
+    </form>
+    </div>
+            
+          
+        </div>
+      )}
+
+{activeModal === "payNow" && (
+        <div
+          className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
+          onClick={closeModal} // Click outside to close modal
+        >
+          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
+          <button
+              className="absolute -top-3 -right-3 bg-white rounded-full"
+              onClick={closeModal} // Close button inside modal
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+  <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
+</svg>
+            </button>
+
+            <h2 className="text-[30px] font-semibold">Add a new card</h2>
+        <p className="text-green-600 text-[16px] font-medium flex items-center gap-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M12 17C12.5304 17 13.0391 16.7893 13.4142 16.4142C13.7893 16.0391 14 15.5304 14 15C14 14.4696 13.7893 13.9609 13.4142 13.5858C13.0391 13.2107 12.5304 13 12 13C11.4696 13 10.9609 13.2107 10.5858 13.5858C10.2107 13.9609 10 14.4696 10 15C10 15.5304 10.2107 16.0391 10.5858 16.4142C10.9609 16.7893 11.4696 17 12 17ZM18 8C18.5304 8 19.0391 8.21071 19.4142 8.58579C19.7893 8.96086 20 9.46957 20 10V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58579 21.4142C4.21071 21.0391 4 20.5304 4 20V10C4 9.46957 4.21071 8.96086 4.58579 8.58579C4.96086 8.21071 5.46957 8 6 8H7V6C7 4.67392 7.52678 3.40215 8.46447 2.46447C9.40215 1.52678 10.6739 1 12 1C12.6566 1 13.3068 1.12933 13.9134 1.3806C14.52 1.63188 15.0712 2.00017 15.5355 2.46447C15.9998 2.92876 16.3681 3.47995 16.6194 4.08658C16.8707 4.69321 17 5.34339 17 6V8H18ZM12 3C11.2044 3 10.4413 3.31607 9.87868 3.87868C9.31607 4.44129 9 5.20435 9 6V8H15V6C15 5.20435 14.6839 4.44129 14.1213 3.87868C13.5587 3.31607 12.7956 3 12 3Z" fill="#12B76A"/>
+</svg> All Data is encrypted <svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1569 12.7116L4.49994 18.3686L3.08594 16.9546L8.03594 12.0046L3.08594 7.05463L4.49994 5.64062L10.1569 11.2976C10.3444 11.4852 10.4497 11.7395 10.4497 12.0046C10.4497 12.2698 10.3444 12.5241 10.1569 12.7116Z" fill="#12B76A"/>
+</svg>
+      </p>  
+      {/* Payment Icons */}
+      <div className='flex gap-2 my-2'>
+                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
+                  <img src={visa} className='w-7 aspect-square' />
+                  </span>
+                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
+                  <img src={mastercard} className='w-7 aspect-square' />
+                  </span>
+                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
+                  <img src={jcb} className='w-7 aspect-square' />
+                  </span>
+                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
+                  <img src={applepay} className='w-7 aspect-square' />
+                  </span>
+                  <span className='border border-[#F2F2F2] rounded-[3px] px-2'>
+                  <img src={googlepay} className='w-7 aspect-square' />
+                  </span>
+                </div>
+
+      {/* Card Number */}
+      <div className="">
+        <label className="block text-gray-700 font-medium">Card Number <span className="text-yellow-400">*</span></label>
+        <Input
+          type="text"
+          className="w-full p-2 border rounded-md"
+          placeholder="Enter Your Card Number"
+        />
+      </div>
+
+      {/* Expiration & CVV */}
+      <div className="flex gap-3 mt-4">
+        {/* Expiry & CVV */}
+      <div className="flex gap-2.5">
+        <div className="w-1/2">
+          <label className="block text-gray-700 font-medium">Expiration Date <span className="text-yellow-400">*</span></label>
+          <div className="flex gap-2">
+          <Select
+        options={options}
+        value={selectedOption}
+        onChange={(e) => setSelectedOption(e.target.value)}
+        placeholder="Month"
+           />
+           <Select
+        options={options}
+        value={selectedOption}
+        onChange={(e) => setSelectedOption(e.target.value)}
+        placeholder="Year"
+           />
+         </div>
+        </div>
+        <div className="w-1/2">
+          <label className="block text-gray-700 font-medium">CVV <span className="text-yellow-400">*</span></label>
+          <Input type="text" className="w-full p-2 border rounded-md" placeholder="3-4 digit code" />
+        </div>
+      </div>
+      
+        
+      </div>
+      <hr className="border-t-[1px] border-[#CCD1D2] my-4" />
+      {/* Billing Address */}
+      <div className=" flex justify-between">
+        <div className="flex flex-col gap-2">
+        <label className="block text-gray-700 font-medium">Billing Address <span className="text-red-500">*</span></label>
+        <p className="text-gray-600 text-sm">farmanharis66@gmail.com</p>
+        <p className="text-gray-600 text-sm">135- Mian House, Garden Town Lahore, Pakistan</p>
+        </div>
+       <button className="flex gap-1 bg-transparent text-[#002882]"  >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M13 3C13.2549 3.00028 13.5 3.09788 13.6854 3.27285C13.8707 3.44782 13.9822 3.68695 13.9972 3.94139C14.0121 4.19584 13.9293 4.44638 13.7657 4.64183C13.6021 4.83729 13.3701 4.9629 13.117 4.993L13 5H5V19H19V11C19.0003 10.7451 19.0979 10.5 19.2728 10.3146C19.4478 10.1293 19.687 10.0178 19.9414 10.0028C20.1958 9.98789 20.4464 10.0707 20.6418 10.2343C20.8373 10.3979 20.9629 10.6299 20.993 10.883L21 11V19C21.0002 19.5046 20.8096 19.9906 20.4665 20.3605C20.1234 20.7305 19.6532 20.9572 19.15 20.995L19 21H5C4.49542 21.0002 4.00943 20.8096 3.63945 20.4665C3.26947 20.1234 3.04284 19.6532 3.005 19.15L3 19V5C2.99984 4.49542 3.19041 4.00943 3.5335 3.63945C3.87659 3.26947 4.34684 3.04284 4.85 3.005L5 3H13ZM19.243 3.343C19.423 3.16365 19.6644 3.05953 19.9184 3.05177C20.1723 3.04402 20.4197 3.13322 20.6103 3.30125C20.8008 3.46928 20.9203 3.70355 20.9444 3.95647C20.9685 4.2094 20.8954 4.46201 20.74 4.663L20.657 4.758L10.757 14.657C10.577 14.8363 10.3356 14.9405 10.0816 14.9482C9.82767 14.956 9.58029 14.8668 9.38972 14.6988C9.19916 14.5307 9.07969 14.2964 9.0556 14.0435C9.03151 13.7906 9.10459 13.538 9.26 13.337L9.343 13.243L19.243 3.343Z" fill="#002882"/>
+              </svg> Edit</button>
+      </div>
+
+      {/* Submit Button */}
+      <button className="mt-6 bg-dark-blue text-white w-full py-2 rounded-[5px] hover:bg-blue-700">
+        Add your card
+      </button>
+      <hr className="border-t-[1px] border-[#CCD1D2] my-4" />
+      {/* Security Info */}
+      <div className=" text-sm flex flex-col gap-2.5">
+        <span className="text-[16px] text-[#039855] flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <path d="M10 0.833496L2.5 4.16683V9.16683C2.5 13.7918 5.7 18.1168 10 19.1668C14.3 18.1168 17.5 13.7918 17.5 9.16683V4.16683L10 0.833496ZM10 7.4085C11.3333 7.4085 12.4083 8.4835 12.4083 9.81683C12.4083 11.1502 11.3333 12.2252 10 12.2252C8.66667 12.2252 7.59167 11.1418 7.59167 9.81683C7.59167 8.49183 8.675 7.4085 10 7.4085ZM10 5.00016L11.15 6.66683C10.8 6.51683 10.4167 6.44183 10 6.44183C9.375 6.44183 9.20833 6.51683 8.85 6.66683L10 5.00016ZM5.83333 7.4085L7.83333 7.24183C7.55 7.50016 7.28333 7.7835 7.08333 8.1335C6.875 8.4835 6.75 8.85016 6.66667 9.2335L5.83333 7.4085ZM5.83333 12.2252L6.69167 10.4168C6.75833 10.7752 6.89167 11.1502 7.08333 11.5002C7.29167 11.8585 7.55 12.1585 7.83333 12.4002L5.83333 12.2252ZM14.1667 7.4085L13.3333 9.2335C13.25 8.85016 13.1167 8.4835 12.9167 8.1335C12.7167 7.7835 12.4583 7.50016 12.1667 7.2335L14.1667 7.4085ZM14.1667 12.2252L12.1667 12.3918C12.45 12.1502 12.7083 11.8502 12.9167 11.5002C13.1167 11.1502 13.2417 10.7752 13.3083 10.4168L14.1667 12.2252ZM10 14.6252L8.84167 12.9752C9.2 13.1002 9.58333 13.1835 10 13.1835C10.4167 13.1835 10.7917 13.1002 11.1417 12.9752L10 14.6252Z" fill="#039855"/>
+</svg> ValueBox protects your card information</span>
+       <span className="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg> Card information is secure and uncompromised</span> 
+       <span className="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+   </svg>  All data is encrypted</span>
+        <span className="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10.2426 16.2426L18.7275 7.75732" stroke="#12B76A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> ValueBox never sells your card information</span>
+        </div>
+    </div>
+            
+          
+        </div>
+      )}
     </div>
     
   )
