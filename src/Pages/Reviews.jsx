@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import AccountSideBar from '../Components/AccountSideBar'
 import Image2 from "/src/Images/Image2.png";
 import Image3 from "/src/Images/Image3.png";
+import { Link } from 'react-router-dom';
 
 const reviews = [
     {
@@ -50,7 +51,7 @@ function Reviews() {
     const pendingCount=useMemo(()=>reviews.filter((item)=>item.status==='pending').length,[])
     const reviewedCount=useMemo(()=>reviews.filter((item)=>item.status==='reviewed').length,[])
 
-    console.log(FilteringReview.length)
+    console.log(activeTab)
   return (
     <div className='flex gap-2 sm:gap-4 md:p-6 max-w-[1920px] mx-auto'>
         <div className='hidden md:block'><AccountSideBar/></div>
@@ -98,50 +99,106 @@ function Reviews() {
       </div>
 
       {/* Title */}
-      <div className='md:border border-[#F2F2F2] p-4 sm:rounded-lg'>
-      <button className='flex justify-between'>
-      <p className="md:text-lg font-semibold ">Quick Review All Items Below</p>
-      <p className="md:text-lg font-semibold pl-2 flex items-center"> Review <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M10 8L14 12L10 16" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></p>
-      </button>
+      <div className={`${activeTab==='pending'?'md:border border-[#F2F2F2] p-4':''} sm:rounded-lg`}>
+      {activeTab==='pending' && (
+        <Link to='/EditReview' className='flex justify-between w-full'>
+        <p className="md:text-lg font-semibold ">Quick Review All Items Below</p>
+        <p className="md:text-lg font-semibold pl-2 flex items-center"> Review <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M10 8L14 12L10 16" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg></p>
+        </Link>
+      )}
+      
 
 {/* Review Items */}
 <div className="mt-4 space-y-4">
 
   {FilteringReview.length>0 ?(
-  
-      FilteringReview.map((review) => (
-          <div key={review.id} className="flex w-full items-center gap-4 py-2 sm:p-4 border-y sm:border sm:rounded-md border-[#F2F2F2]">
-            {/* Image */}
-            <img src={review.image} alt="Product" className="w-16 h-16 rounded-md" />
+  activeTab==='pending'?(
+    FilteringReview.map((review) => (
+      <div key={review.id} className="flex w-full items-center gap-4 py-2 sm:p-4 border-y sm:border sm:rounded-md border-[#F2F2F2]">
+        {/* Image */}
+        <img src={review.image} alt="Product" className="w-16 h-16 rounded-md" />
 
-            {/* Product Details */}
-            <div className="flex-1 min-w-0 w-full">
-              <div className="flex items-center gap-2">
-                {review.badge && (
-                  <span className="text-xs bg-red-500 text-nowrap text-white px-2 py-1 rounded-md">
-                    {review.badge}
-                  </span>
-                )}
-                <h4 className="font-semibold truncate  md:max-w-[250px] lg:max-w-[400px]">
-  {review.product}
+        {/* Product Details */}
+        <div className="flex-1 min-w-0 w-full">
+          <div className="flex items-center gap-2">
+            {review.badge && (
+              <span className="text-xs bg-red-500 text-nowrap text-white px-2 py-1 rounded-md">
+                {review.badge}
+              </span>
+            )}
+            <h4 className="font-semibold truncate  md:max-w-[250px] lg:max-w-[400px]">
+{review.product}
 </h4>
 
-              </div>
-              <p className="text-gray-500 text-sm">{review.rating}</p>
-              <p className="text-gray-600 text-sm">By {review.brand}</p>
-            </div>
-
-            {/* Review Button & Price */}
-            <div className="flex flex-col items-end">
-              <button className="bg-dark-blue text-white px-4 py-2 rounded-md text-sm">
-                Leave a Review
-              </button>
-              <p className="text-gray-800 font-semibold mt-2">{review.price}</p>
-            </div>
           </div>
-        ))
+          <p className="text-gray-500 text-sm">{review.rating}</p>
+          <p className="text-gray-600 text-sm">By {review.brand}</p>
+        </div>
+
+        {/* Review Button & Price */}
+        <div className="flex flex-col items-end">
+        {activeTab==='pending'?(
+          <Link to='/EditReview' className="bg-dark-blue text-white px-4 py-2 rounded-md text-sm">
+          Leave a Review
+          </Link>
+        ):(
+          <Link to='/EditReview' className="bg-dark-blue text-white px-4 py-2 rounded-md text-sm">
+          Edit Review
+          </Link>
+        )}
+          
+          <p className="text-gray-800 font-semibold mt-2">{review.price}</p>
+        </div>
+      </div>
+    ))
+  ):(
+    FilteringReview.map((review) => (
+      <div key={review.id} className="flex w-full items-center gap-4 border-y sm:border sm:rounded-md border-[#F2F2F2]">
+        <div className='flex w-full items-center gap-4 py-2 sm:p-4 bg-natural-color'>
+          {/* Image */}
+        <img src={review.image} alt="Product" className="w-16 h-16 rounded-md" />
+
+{/* Product Details */}
+<div className="flex-1 min-w-0 w-full">
+  <div className="flex items-center gap-2">
+    {review.badge && (
+      <span className="text-xs bg-red-500 text-nowrap text-white px-2 py-1 rounded-md">
+        {review.badge}
+      </span>
+    )}
+    <h4 className="font-semibold truncate  md:max-w-[250px] lg:max-w-[400px]">
+{review.product}
+</h4>
+
+  </div>
+  <p className="text-gray-500 text-sm">{review.rating}</p>
+  <p className="text-gray-600 text-sm">By {review.brand}</p>
+</div>
+
+{/* Review Button & Price */}
+<div className="flex flex-col items-end">
+{/* {activeTab==='pending'?(
+  <Link to='/EditReview' className="bg-dark-blue text-white px-4 py-2 rounded-md text-sm">
+  Leave a Review
+  </Link>
+):(
+  <Link to='/EditReview' className="bg-dark-blue text-white px-4 py-2 rounded-md text-sm">
+  Edit Review
+  </Link>
+)} */}
+  
+  <p className="text-gray-800 font-semibold mt-2">{review.price}</p>
+</div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    ))
+  )
+      
         
   ):(<p className="text-gray-500 mt-4">No items found.</p>)}
 

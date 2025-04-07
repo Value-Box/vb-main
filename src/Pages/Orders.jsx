@@ -471,7 +471,8 @@ const [country, setCountry] = useState("");
             <div className="flex items-center space-x-2 xl:space-x-3 ">
             <button className="text-sm xl:text-base border border-[#002882] text-[#002882] px-2 xl:px-3 py-1 xl:py-2 rounded-[5px] ">Buy this again</button>
             <button className="text-sm xl:text-base border border-[#002882] text-[#002882] px-2 xl:px-3 py-1 xl:py-2 rounded-[5px] ">Return / Refund</button>
-            <button className="text-sm xl:text-base border border-[#002882] text-[#002882] px-2 xl:px-3 py-1 xl:py-2 rounded-[5px] ">Leave a Reivew</button>
+            <button className="text-sm xl:text-base border border-[#002882] text-[#002882] px-2 xl:px-3
+             py-1 xl:py-2 rounded-[5px]" onClick={() => openModal("leaveReview")}>Leave a Reivew</button>
             
             <Link to="/PackageDetail" className="text-sm xl:text-base bg-[#002882] text-white px-2 xl:px-3 py-1 xl:py-2 rounded flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" className='w-4 xl:w-6' viewBox="0 0 24 24" fill="none">
@@ -845,12 +846,12 @@ const [country, setCountry] = useState("");
       </div>
     )}
 
-{activeModal === "editAddress" && (
+{activeModal === "leaveReview" && (
         <div
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
           onClick={closeModal} // Click outside to close modal
         >
-          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
+          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full" onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal} // Close button inside modal
@@ -860,7 +861,96 @@ const [country, setCountry] = useState("");
 </svg>
             </button>
 
-            <h2 className="text-[30px] font-semibold">Edit Address</h2>
+            <h2 className="text-[30px] font-semibold">Leave Review</h2>
+        
+            <div className='flex flex-col justify-between mt-4 gap-2'>
+      <div className="flex items-start gap-2 border border-[#CCD1D2] p-2 rounded-[10px] ">
+
+        <img className='w-20 h-20 rounded-lg' src='https://plus.unsplash.com/premium_photo-1682125177822-63c27a3830ea?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2hvZXN8ZW58MHx8MHx8fDA%3D' />
+        <div className='w-full'>
+          <h3>4K UHD DLED Smart Television 43Inch (2023 Model) 43A61K Black nch (2023 Model) 43A61K Black</h3>
+          <input type='text' className='border border-[#CCD1D2] focus:outline-0 p-2 w-full rounded-lg' />
+        </div>       
+      </div>
+              <div className="flex gap-4 ">
+       <button type="submit" className="flex items-center gap-2 px-2 sm:px-10 py-2 bg-[#002882] text-white 
+       rounded-md">
+        Review</button>
+       </div>
+            </div>
+    </div>
+            
+          
+        </div>
+      )}
+      
+{activeModal === "editAddress" && (
+        <div
+          className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
+          onClick={closeModal} // Click outside to close modal
+        >
+          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full" onClick={(e) => e.stopPropagation()}>
+          <button
+              className="absolute -top-3 -right-3 bg-white rounded-full"
+              onClick={closeModal} // Close button inside modal
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+  <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
+</svg>
+            </button>
+
+            <h2 className="text-[30px] font-semibold">Shipping Address</h2>
+        
+            <div className='flex flex-col justify-between mt-4 gap-2'>
+            <div className='min-h-[400px] 2xl:min-h-[500px] max-h-[400px] 2xl:max-h-[500px] h-full flex flex-col gap-3 overflow-y-scroll'>
+      <div className=" flex justify-between border border-[#CCD1D2] p-2 rounded-[10px] ">
+        <div className='flex gap-2'>
+        <input type='radio' className='accent-[#002882] scale-125' checked={true}/>
+        <div className="flex flex-col gap-2">
+        <label className="block text-natural-black font-medium">Muhammad Ahmad <span className="text-gray-400 font-normal">
+        +92 03155786545</span></label>
+        <p className="text-gray-600 text-sm">farmanharis66@gmail.com</p>
+        <p className="text-gray-600 text-sm">135- Mian House, Garden Town Lahore, Pakistan</p>
+        </div>
+        </div>
+       <button className="flex gap-1 bg-transparent text-[#002882]"  >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M13 3C13.2549 3.00028 13.5 3.09788 13.6854 3.27285C13.8707 3.44782 13.9822 3.68695 13.9972 3.94139C14.0121 4.19584 13.9293 4.44638 13.7657 4.64183C13.6021 4.83729 13.3701 4.9629 13.117 4.993L13 5H5V19H19V11C19.0003 10.7451 19.0979 10.5 19.2728 10.3146C19.4478 10.1293 19.687 10.0178 19.9414 10.0028C20.1958 9.98789 20.4464 10.0707 20.6418 10.2343C20.8373 10.3979 20.9629 10.6299 20.993 10.883L21 11V19C21.0002 19.5046 20.8096 19.9906 20.4665 20.3605C20.1234 20.7305 19.6532 20.9572 19.15 20.995L19 21H5C4.49542 21.0002 4.00943 20.8096 3.63945 20.4665C3.26947 20.1234 3.04284 19.6532 3.005 19.15L3 19V5C2.99984 4.49542 3.19041 4.00943 3.5335 3.63945C3.87659 3.26947 4.34684 3.04284 4.85 3.005L5 3H13ZM19.243 3.343C19.423 3.16365 19.6644 3.05953 19.9184 3.05177C20.1723 3.04402 20.4197 3.13322 20.6103 3.30125C20.8008 3.46928 20.9203 3.70355 20.9444 3.95647C20.9685 4.2094 20.8954 4.46201 20.74 4.663L20.657 4.758L10.757 14.657C10.577 14.8363 10.3356 14.9405 10.0816 14.9482C9.82767 14.956 9.58029 14.8668 9.38972 14.6988C9.19916 14.5307 9.07969 14.2964 9.0556 14.0435C9.03151 13.7906 9.10459 13.538 9.26 13.337L9.343 13.243L19.243 3.343Z" fill="#002882"/>
+        </svg> 
+        Edit</button>
+      </div>
+      
+      </div>
+              <div className="flex gap-4 ">
+       <button type="submit" className="flex items-center gap-2 px-2 sm:px-10 py-2 bg-[#002882] text-white 
+       rounded-md" onClick={()=>openModal2('addNewAddress')}>
+        <svg xmlns="http://www.w3.org/2000/svg" className='w-5' viewBox="0 0 20 20" fill="none">
+  <path d="M15.0013 10.8334H10.8346V15.0001C10.8346 15.4584 10.4596 15.8334 10.0013 15.8334C9.54297 15.8334 9.16797 15.4584 9.16797 15.0001V10.8334H5.0013C4.54297 10.8334 4.16797 10.4584 4.16797 10.0001C4.16797 9.54175 4.54297 9.16675 5.0013 9.16675H9.16797V5.00008C9.16797 4.54175 9.54297 4.16675 10.0013 4.16675C10.4596 4.16675 10.8346 4.54175 10.8346 5.00008V9.16675H15.0013C15.4596 9.16675 15.8346 9.54175 15.8346 10.0001C15.8346 10.4584 15.4596 10.8334 15.0013 10.8334Z" fill="#FCFCFC"/>
+</svg> Add a new address</button>
+       </div>
+            </div>
+    </div>
+            
+          
+        </div>
+      )}
+
+{activeModal2 === "addNewAddress" && (
+        <div
+          className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
+          onClick={closeModal2} // Click outside to close modal
+        >
+          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
+          <button
+              className="absolute -top-3 -right-3 bg-white rounded-full"
+              onClick={closeModal2} // Close button inside modal
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+  <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
+</svg>
+            </button>
+
+            <h2 className="text-[30px] font-semibold">Add New Address</h2>
         
             <form className="flex flex-col flex-grow space-y-3">
       <div className="grid grid-cols-2 gap-2">
@@ -915,10 +1005,61 @@ const [country, setCountry] = useState("");
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
           onClick={closeModal} // Click outside to close modal
         >
-          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
+          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full" onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal} // Close button inside modal
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+  <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
+</svg>
+            </button>
+
+            <h2 className="text-2xl 2xl:text-[30px] font-semibold text-center">Cards</h2>
+
+<div className='flex flex-col justify-between mt-4 gap-2'>
+      {/* Billing Address */}
+      <div className='min-h-[400px] 2xl:min-h-[500px] max-h-[400px] 2xl:max-h-[500px] h-full flex flex-col gap-3 overflow-y-scroll'>
+      <div className=" flex justify-between border border-[#CCD1D2] p-2 rounded-[10px] ">
+        <div className='flex gap-2'>
+        <input type='radio' className='accent-[#002882] scale-125' checked={true}/>
+        <div className="flex flex-col gap-2">
+        <label className="block text-natural-black font-medium"><img src={jazzcash} /> Muhammad Ahmad <span className="text-gray-400 font-normal">
+        +92 03155786545</span></label>
+        <p className="text-gray-600 text-sm">farmanharis66@gmail.com</p>
+        <p className="text-gray-600 text-sm">135- Mian House, Garden Town Lahore, Pakistan</p>
+        </div>
+        </div>
+       <button className="flex gap-1 bg-transparent text-[#002882]"  >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M13 3C13.2549 3.00028 13.5 3.09788 13.6854 3.27285C13.8707 3.44782 13.9822 3.68695 13.9972 3.94139C14.0121 4.19584 13.9293 4.44638 13.7657 4.64183C13.6021 4.83729 13.3701 4.9629 13.117 4.993L13 5H5V19H19V11C19.0003 10.7451 19.0979 10.5 19.2728 10.3146C19.4478 10.1293 19.687 10.0178 19.9414 10.0028C20.1958 9.98789 20.4464 10.0707 20.6418 10.2343C20.8373 10.3979 20.9629 10.6299 20.993 10.883L21 11V19C21.0002 19.5046 20.8096 19.9906 20.4665 20.3605C20.1234 20.7305 19.6532 20.9572 19.15 20.995L19 21H5C4.49542 21.0002 4.00943 20.8096 3.63945 20.4665C3.26947 20.1234 3.04284 19.6532 3.005 19.15L3 19V5C2.99984 4.49542 3.19041 4.00943 3.5335 3.63945C3.87659 3.26947 4.34684 3.04284 4.85 3.005L5 3H13ZM19.243 3.343C19.423 3.16365 19.6644 3.05953 19.9184 3.05177C20.1723 3.04402 20.4197 3.13322 20.6103 3.30125C20.8008 3.46928 20.9203 3.70355 20.9444 3.95647C20.9685 4.2094 20.8954 4.46201 20.74 4.663L20.657 4.758L10.757 14.657C10.577 14.8363 10.3356 14.9405 10.0816 14.9482C9.82767 14.956 9.58029 14.8668 9.38972 14.6988C9.19916 14.5307 9.07969 14.2964 9.0556 14.0435C9.03151 13.7906 9.10459 13.538 9.26 13.337L9.343 13.243L19.243 3.343Z" fill="#002882"/>
+        </svg> 
+        Edit</button>
+      </div>
+      
+      </div>
+
+      
+      <button className="bg-dark-blue text-white w-full py-2 rounded-[5px]" onClick={()=>openModal2('addNewCard')}>
+        Add New Card
+      </button>
+      </div>
+    </div>
+            
+          
+        </div>
+      )}
+
+
+{activeModal2 === "addNewCard" && (
+        <div
+          className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
+          onClick={closeModal} // Click outside to close modal
+        >
+          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
+          <button
+              className="absolute -top-3 -right-3 bg-white rounded-full"
+              onClick={closeModal2} // Close button inside modal
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
   <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
@@ -991,24 +1132,11 @@ const [country, setCountry] = useState("");
       
         
       </div>
-      <hr className="border-t-[1px] border-[#CCD1D2] my-4" />
-      {/* Billing Address */}
-      <div className=" flex justify-between">
-        <div className="flex flex-col gap-2">
-        <label className="block text-gray-700 font-medium">Billing Address <span className="text-red-500">*</span></label>
-        <p className="text-gray-600 text-sm">farmanharis66@gmail.com</p>
-        <p className="text-gray-600 text-sm">135- Mian House, Garden Town Lahore, Pakistan</p>
-        </div>
-       <button className="flex gap-1 bg-transparent text-[#002882]"  >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M13 3C13.2549 3.00028 13.5 3.09788 13.6854 3.27285C13.8707 3.44782 13.9822 3.68695 13.9972 3.94139C14.0121 4.19584 13.9293 4.44638 13.7657 4.64183C13.6021 4.83729 13.3701 4.9629 13.117 4.993L13 5H5V19H19V11C19.0003 10.7451 19.0979 10.5 19.2728 10.3146C19.4478 10.1293 19.687 10.0178 19.9414 10.0028C20.1958 9.98789 20.4464 10.0707 20.6418 10.2343C20.8373 10.3979 20.9629 10.6299 20.993 10.883L21 11V19C21.0002 19.5046 20.8096 19.9906 20.4665 20.3605C20.1234 20.7305 19.6532 20.9572 19.15 20.995L19 21H5C4.49542 21.0002 4.00943 20.8096 3.63945 20.4665C3.26947 20.1234 3.04284 19.6532 3.005 19.15L3 19V5C2.99984 4.49542 3.19041 4.00943 3.5335 3.63945C3.87659 3.26947 4.34684 3.04284 4.85 3.005L5 3H13ZM19.243 3.343C19.423 3.16365 19.6644 3.05953 19.9184 3.05177C20.1723 3.04402 20.4197 3.13322 20.6103 3.30125C20.8008 3.46928 20.9203 3.70355 20.9444 3.95647C20.9685 4.2094 20.8954 4.46201 20.74 4.663L20.657 4.758L10.757 14.657C10.577 14.8363 10.3356 14.9405 10.0816 14.9482C9.82767 14.956 9.58029 14.8668 9.38972 14.6988C9.19916 14.5307 9.07969 14.2964 9.0556 14.0435C9.03151 13.7906 9.10459 13.538 9.26 13.337L9.343 13.243L19.243 3.343Z" fill="#002882"/>
-              </svg> Edit</button>
-      </div>
-
-      {/* Submit Button */}
+      
       <button className="mt-6 bg-dark-blue text-white w-full py-2 rounded-[5px] hover:bg-blue-700">
         Add your card
       </button>
+      
       <hr className="border-t-[1px] border-[#CCD1D2] my-4" />
       {/* Security Info */}
       <div className=" text-sm flex flex-col gap-2.5">
