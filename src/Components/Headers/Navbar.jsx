@@ -1,7 +1,7 @@
 import React, { useState ,useEffect,useRef} from "react";
 import Logo from "/src/Images/Logo.png";
 import ProductImg from "/src/Images/ProductCard.png";
-import { NavLink } from 'react-router-dom'
+import {  NavLink,Link} from 'react-router-dom'
 import VerticalCategories from "./../Categories/VerticalCategories";
 
 const Products=[
@@ -394,7 +394,7 @@ function Navbar() {
             <div className="relative bg-white p-1 2xl:p-[5px] rounded-lg sm:flex max-w-[800px] mx-2 w-full hidden">
               <input type="text" className="w-full px-2 outline-none 2xl:text-[20px]" value={searchInput}
               onChange={(e)=>setSearchInput(e.target.value)}/>
-              <button className="bg-[#002882] 2xl:px-[16px] cursor-pointer 2xl:py-[6px] py-[3px] px-[12px] rounded-[5px]"
+              <Link to='/SearchPage' className="bg-[#002882] 2xl:px-[16px] cursor-pointer 2xl:py-[6px] py-[3px] px-[12px] rounded-[5px]"
               >
                 {/* <i className="fa-solid fa-magnifying-glass text-[#E6EAF3]"></i> */}
                 <svg
@@ -409,7 +409,7 @@ function Navbar() {
                     fill="#E6EAF3"
                   />
                 </svg>
-              </button>
+              </Link>
               <div ref={suggestionContainer} className={`${suggestions.length > 0?'block':'hidden'} absolute right-0 top-[100%] bg-white w-full p-2 shadow-md rounded-b`}>
   {suggestions.length > 0 &&
     suggestions.map((item, index) => (
