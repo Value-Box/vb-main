@@ -510,7 +510,7 @@ useEffect(() => {
     <div className="relative" onClick={(e)=>e.stopPropagation()}>
       <button
         onClick={() => setReviewImage(null)}
-        className="absolute top-2 right-2 bg-white text-black rounded-full p-2 shadow"
+        className="absolute w-7 h-7 flex items-center justify-center top-2 right-2 bg-white text-black rounded-full p-2 shadow"
       >
         ✕
       </button>
