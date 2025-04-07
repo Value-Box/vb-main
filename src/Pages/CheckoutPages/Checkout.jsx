@@ -797,9 +797,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             </div>
             
           </div>
-          <div className='bg-[#CCC] h-px my-4'>
-            
-          </div>
+          <div className='bg-[#CCC] h-px my-4'> </div>
           </>
         ))}
       </div>
