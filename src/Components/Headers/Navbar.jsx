@@ -4,7 +4,19 @@ import ProductImg from "/src/Images/ProductCard.png";
 import { NavLink } from 'react-router-dom'
 import VerticalCategories from "./../Categories/VerticalCategories";
 
-
+const Products=[
+  'Portable Wood Laptop Table for Bed – Folding Desk for Gaming & Home Use',
+  'Geometric Multipurpose Wood Key Holder with Ideal for Home Decoration',
+  'Ludo Matt Carpet Game Ludo Game Carpet Ludo with large Got Set Foldable and Washable',
+  'Side & Coffee Table (16 Inches Top & 20.5 Inches Height ) With Solid Wooden Legs',
+  'Wall Shelf Shelves for Living Room Wooden Wall Hanging Floating Design',
+  'Geometric Wire Taper Candle Holders Candlestick Holder Set of 2',
+  'Handcrafted Round Coffee Table – Sheesham Wood with Naqshi Design, Folding',
+  'New Velvet Ottoman Storage Benches Folding Stool Soft Cushion Footrest Toy Storage Box Seat for Living Room',
+  'Couple Watch Rubber Chain Watch Premium Quality',
+  'Handfree',
+  'HeadPhones',
+]
 
 function Navbar() {
   const [isTrue, setIsTrue] = useState(false);
@@ -303,6 +315,36 @@ function Navbar() {
       };
     }, []);
 
+    const [suggestions,setSuggestions]=useState([])
+    const [searchInput,setSearchInput]=useState('')
+    const suggestionContainer=useRef(null)
+    useEffect(()=>{
+      const searchSuggestion=()=>{
+        if(searchInput===''){
+          setSuggestions([])
+          return false
+        }
+        const filtered=Products.filter(item=>
+          item.toLowerCase().startsWith(searchInput.toLowerCase()))
+        setSuggestions(filtered)
+        console.log(suggestions)
+      }
+      searchSuggestion()
+    },[searchInput])
+
+    useEffect(() => {
+      const clickOutside = (event) => {
+        if (suggestionContainer.current && !suggestionContainer.current.contains(event.target)) {
+          setSuggestions([]); // <- Only clear if clicked OUTSIDE
+        }
+      };
+    
+      window.addEventListener("mousedown", clickOutside);
+    
+      return () => {
+        window.removeEventListener("mousedown", clickOutside);
+      };
+    }, []);
     
   return (
     <>
@@ -349,11 +391,9 @@ function Navbar() {
               <VerticalCategories/>
             </div>
 
-            <div className="bg-white p-1 2xl:p-[5px] rounded-lg sm:flex max-w-[800px] mx-2 w-full hidden">
-              <input
-                type="text"
-                className="w-full px-2 outline-none 2xl:text-[20px]"
-              />
+            <div className="relative bg-white p-1 2xl:p-[5px] rounded-lg sm:flex max-w-[800px] mx-2 w-full hidden">
+              <input type="text" className="w-full px-2 outline-none 2xl:text-[20px]" value={searchInput}
+              onChange={(e)=>setSearchInput(e.target.value)}/>
               <button className="bg-[#002882] 2xl:px-[16px] cursor-pointer 2xl:py-[6px] py-[3px] px-[12px] rounded-[5px]"
               >
                 {/* <i className="fa-solid fa-magnifying-glass text-[#E6EAF3]"></i> */}
@@ -370,6 +410,19 @@ function Navbar() {
                   />
                 </svg>
               </button>
+              <div ref={suggestionContainer} className={`${suggestions.length > 0?'block':'hidden'} absolute right-0 top-[100%] bg-white w-full p-2 shadow-md rounded-b`}>
+  {suggestions.length > 0 &&
+    suggestions.map((item, index) => (
+      <h1 key={index} className="py-2 text-sm cursor-pointer font-medium hover:text-[#002882]" onClick={()=>{
+        setSearchInput(item);
+      setSuggestions([])
+      }}>
+        {item}
+      </h1>
+    ))
+  }
+</div>
+
             </div>
             <div className="relative inset-y-0 right-0 flex items-center pr-2 sm:static ml-auto sm:inset-auto sm:ml-4 sm:pr-0">
               {/* Profile dropdown */}
