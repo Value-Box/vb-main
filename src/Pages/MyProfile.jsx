@@ -62,52 +62,72 @@ const reviews = [
   ];
 
 function MyProfile() {
-    const [activeModal, setActiveModal] = useState(null);
+   
    const openModal = (modalName) => setActiveModal(modalName);
     const closeModal = () => setActiveModal(null);
-    const [name, setName] = useState("Muhammad Arshad");
-const [profileImage, setProfileImage] = useState(null);
-const [isSaving, setIsSaving] = useState(false);
+    const [activeModal, setActiveModal] = useState(null);
+  const [name, setName] = useState("Muhammad Arshad");
+  const [profileImage, setProfileImage] = useState(null); // Initially null
+  const [isSaving, setIsSaving] = useState(false);
 
+  // On initial render, check localStorage for saved profile image and name
+  useEffect(() => {
+    const savedName = localStorage.getItem('profileName');
+    const savedImage = localStorage.getItem('profileImage');
 
+    // If image is saved in localStorage, use it, otherwise use the default
+    if (savedImage) {
+      setProfileImage(savedImage);
+    } else {
+      setProfileImage(Image2); // Use the imported default image
+    }
 
-const handleImageChange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setProfileImage(reader.result); // base64 string
-    };
-    reader.readAsDataURL(file);
-  }
-};
+    // If name is saved in localStorage, set it
+    if (savedName) {
+      setName(savedName);
+    }
+  }, []); // Empty dependency array ensures this only runs once when the component mounts
 
+ 
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  setIsSaving(true);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+  
+    if (file) {
+      // Check file size (max 500KB)
+      if (file.size > 500 * 1024) {
+        alert("File size must be less than 500KB.");
+        return;
+      }
+  
+      // Check file type (PNG, JPG, SVG)
+      const validTypes = ["image/png", "image/jpeg", "image/svg+xml"];
+      if (!validTypes.includes(file.type)) {
+        alert("Only PNG, JPG, and SVG files are allowed.");
+        return;
+      }
+  
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64Image = reader.result;
+        setProfileImage(base64Image); // Set the base64 image string in state
+        localStorage.setItem("profileImage", base64Image); // Save the image in localStorage
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
-  // Save to localStorage
-  localStorage.setItem("profileName", name);
-  localStorage.setItem("profileImage", profileImage);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSaving(true);
+    // Save name to localStorage
+    localStorage.setItem("profileName", name);
+    setTimeout(() => {
+      setIsSaving(false);
+      closeModal();
+    }, 1500);
+  };
 
-  setTimeout(() => {
-    console.log("Saved:", name);
-    console.log("savedImage:", savedImage);
-    setIsSaving(false);
-    closeModal();
-  }, 1500);
-};
-
-
-const savedName = localStorage.getItem("profileName");
-const savedImage = localStorage.getItem("profileImage");
-
-useEffect(() => {
-  if (savedName) setName(savedName);
-  if (savedImage) setProfileImage(savedImage);
-  console.log(savedImage)
-}, [savedImage]);
 
   return (
     <div className='bg-natural-0'>
