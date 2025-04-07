@@ -1154,9 +1154,9 @@ const [showOffersModal, setShowOffersModal] = useState(false);
                     <tr key={index} className="hover:bg-gray-100 border-b border-gray-300 last:border-none">
                       <td className="flex gap-2 p-3">{/* No column borders */}
                       <CheckBox
-  type="checkbox"
-  checked={selectedCollectionPointIndex === index}
-  onChange={() => setSelectedCollectionPointIndex(index)}
+                     type="checkbox"
+                     checked={selectedCollectionPointIndex === index}
+                     onChange={() => setSelectedCollectionPointIndex(index)}
 />
                         {point.name}
                       </td>
