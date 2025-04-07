@@ -62,7 +62,7 @@ function AccountSideBar() {
             // Check if current item is active
             const isActive = item.name.toLowerCase().includes("orders") ? isOrdersActive : location.pathname.toLowerCase() === item.link?.toLowerCase();
 
-            console.log(isActive)
+            // console.log(isActive)
             return (
               <li key={item.name}>
                 <Link to={item.link} onClick={() => setActiveItem(item.name)}

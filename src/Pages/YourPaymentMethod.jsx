@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useRef } from "react";
 import AccountSideBar from '../Components/AccountSideBar'
 import Select from '../Components/Select';
 import Input from '../Components/Input';
@@ -48,6 +49,12 @@ function YourPaymentMethod() {
         { value: "sindh", label: "Sindh" },
         { value: "blochistan", label: "Blochistan" },
       ];
+      const formRef = useRef(null);
+
+      const scrollToForm = () => {
+        formRef.current?.scrollIntoView({ behavior: "smooth" });
+      };
+    
   return (
     <>
     {addPayment?(
@@ -135,9 +142,9 @@ function YourPaymentMethod() {
             <div className='hidden sm:flex items-center justify-between'>
             
             <h1 className='text-2xl font-semibold'>Your payment methods</h1>
-            <button className="bg-dark-blue text-white px-4 py-2 rounded flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <button className="bg-dark-blue text-white px-4 py-2 rounded flex items-center"  onClick={scrollToForm}><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
   <path d="M15.0013 10.8334H10.8346V15.0001C10.8346 15.4584 10.4596 15.8334 10.0013 15.8334C9.54297 15.8334 9.16797 15.4584 9.16797 15.0001V10.8334H5.0013C4.54297 10.8334 4.16797 10.4584 4.16797 10.0001C4.16797 9.54175 4.54297 9.16675 5.0013 9.16675H9.16797V5.00008C9.16797 4.54175 9.54297 4.16675 10.0013 4.16675C10.4596 4.16675 10.8346 4.54175 10.8346 5.00008V9.16675H15.0013C15.4596 9.16675 15.8346 9.54175 15.8346 10.0001C15.8346 10.4584 15.4596 10.8334 15.0013 10.8334Z" fill="#FCFCFC"/>
-</svg> Add a new address</button>
+</svg> Add a new card</button>
             </div>
             <p className="text-[#12B76A] mb-5 hidden sm:flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
   <path d="M10.0026 14.1668C10.4446 14.1668 10.8686 13.9912 11.1811 13.6787C11.4937 13.3661 11.6693 12.9422 11.6693 12.5002C11.6693 12.0581 11.4937 11.6342 11.1811 11.3217C10.8686 11.0091 10.4446 10.8335 10.0026 10.8335C9.56058 10.8335 9.13665 11.0091 8.82409 11.3217C8.51153 11.6342 8.33594 12.0581 8.33594 12.5002C8.33594 12.9422 8.51153 13.3661 8.82409 13.6787C9.13665 13.9912 9.56058 14.1668 10.0026 14.1668ZM15.0026 6.66683C15.4446 6.66683 15.8686 6.84242 16.1811 7.15498C16.4937 7.46755 16.6693 7.89147 16.6693 8.3335V16.6668C16.6693 17.1089 16.4937 17.5328 16.1811 17.8453C15.8686 18.1579 15.4446 18.3335 15.0026 18.3335H5.0026C4.56058 18.3335 4.13665 18.1579 3.82409 17.8453C3.51153 17.5328 3.33594 17.1089 3.33594 16.6668V8.3335C3.33594 7.89147 3.51153 7.46755 3.82409 7.15498C4.13665 6.84242 4.56058 6.66683 5.0026 6.66683H5.83594V5.00016C5.83594 3.89509 6.27492 2.83529 7.05633 2.05388C7.83773 1.27248 8.89754 0.833496 10.0026 0.833496C10.5498 0.833496 11.0916 0.94127 11.5971 1.15066C12.1026 1.36006 12.562 1.66697 12.9489 2.05388C13.3358 2.4408 13.6427 2.90013 13.8521 3.40565C14.0615 3.91117 14.1693 4.45299 14.1693 5.00016V6.66683H15.0026ZM10.0026 2.50016C9.33956 2.50016 8.70368 2.76355 8.23484 3.2324C7.766 3.70124 7.5026 4.33712 7.5026 5.00016V6.66683H12.5026V5.00016C12.5026 4.33712 12.2392 3.70124 11.7704 3.2324C11.3015 2.76355 10.6656 2.50016 10.0026 2.50016Z" fill="#12B76A"/>
@@ -277,7 +284,7 @@ function YourPaymentMethod() {
                    </div>
                  )}
 
-        <div className="hidden sm:flex items-start gap-10 border-[#F2F2F2] mt-4 p-6 bg-white rounded-lg border">
+  <div ref={formRef} className="hidden sm:flex items-start gap-10 border-[#F2F2F2] mt-4 p-6 bg-white rounded-lg border">
 <div className='w-full'>
 <h2 className="text-lg font-semibold mb-4">Add a new card</h2>
 <p className="text-[#12B76A] mb-5 hidden sm:flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

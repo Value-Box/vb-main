@@ -206,7 +206,7 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
       {!isMobile?(
         <div className='flex flex-col lg:flex-row gap-6 p-4 xl:p-8 max-w-full mx-auto'>
         <div className='w-full lg:w-[70%]'>
-        <div class="bg-white p-4 rounded-[10px] border border-[#CCD1D2] ">
+        <div class="bg-white p-4 rounded-lg border border-[#CCD1D2] ">
            <h2 class="font-semibold text-lg">Shopping Cart (04)</h2>
            <div class="flex items-center space-x-4 mt-2 md:mt-3 2xl:mt-5">
             <CheckBox id='selectAllItems' />
@@ -217,7 +217,7 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
         </div>
 
         <div className="mt-4 min-h-screen">
-  <div className="bg-white rounded-[10px] border border-[#CCD1D2] overflow-hidden">
+  <div className="bg-white rounded-lg border border-[#CCD1D2] overflow-hidden">
     <div className='flex items-center gap-1.5 bg-[#F2F2F2] p-2 '>
     <CheckBox id='stantardDelItems'  checked={cartData.every(store => 
         store.items.filter(item => item.delivery === "Standard").every(item => item.checked)
@@ -352,7 +352,7 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
     </div>
   </div>
 
-  <div className="bg-white rounded-[10px] border border-[#CCD1D2] overflow-hidden mt-3">
+  <div className="bg-white rounded-lg border border-[#CCD1D2] overflow-hidden mt-3">
     <div className='flex items-center gap-1.5 bg-gradient-to-b from-[#FFE09E] to-[#FFFCF4] p-2 '>
     <CheckBox id='expressDelItems' checked={cartData.every(store => 
         store.items.filter(item => item.delivery === "Express").every(item => item.checked)
@@ -493,7 +493,7 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
         </div>
         <div className='flex-1  relative'>
             <div className='sticky top-[8%] flex flex-col gap-4'>
-            <div className=' border border-[#CCD1D2] rounded-[10px] bg-white p-3 2xl:p-4'>
+            <div className=' border border-[#CCD1D2] rounded-lg bg-white p-3 2xl:p-4'>
             <h1 className='text-md md:text-xl 2xl:text-2xl font-bold'>Order Summery</h1>
             
 {/* Coupon Input */}
@@ -548,10 +548,9 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
                       ✖
                     </span>
                   </button>
-
                   {/* Modal Content */}
-                  <div className="w-full">
-                  <div className="max-w-lg mx-auto p-4">
+      <div className="w-full">
+      <div className="max-w-lg mx-auto">
       {/* Heading */}
       <h2 className="text-2xl font-bold text-center">Available Offers</h2>
       <p className="text-gray-500 text-center italic">Download ValueBox App to get more offers</p>
@@ -809,7 +808,7 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
 </svg>
             </div>
             
-         <div className='bg-[#CCC] h-px my-4'></div>
+            <div className='bg-[#CCC] h-px my-4'></div>
             {store.items.filter(stItem=>stItem.delivery==='Standard').map(item => (
               <>
               <div key={item.id} className="flex items-center gap-2 xl:gap-4 mt-2 w-full">
