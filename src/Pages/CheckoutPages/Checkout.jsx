@@ -1052,7 +1052,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           <div className="relative bg-white rounded-2xl shadow-lg ">
             {/* Modal Header */}
             <div className="flex justify-end items-center">
-            <button  className="absolute -top-4 -right-4 z-1050 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+            <button  className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
   onClick={() => {
     setIsModalOpen(false);
     isMapTrue(false); 
@@ -1306,7 +1306,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     
       {/* Close Button */}
       <button 
-        className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+        className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
         onClick={() => { setIsOpen(false); setFormOpen(false) }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1332,7 +1332,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         
         {/* Close Button */}
         <button 
-          className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+          className="absolute  -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
           onClick={() => setIsOpen(false)}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1402,7 +1402,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] relative flex flex-col" onClick={(e)=>e.stopPropagation()}>
       
       {/* Close Button */}
-      <button  className="absolute -top-4 -right-4 z-1050 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+      <button  className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
       onClick={() => setIsInstalmentModalOpen(false)} 
   
 >
@@ -1530,7 +1530,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     
       {/* Close Button */}
       <button 
-        className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+        className="absolute  -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
         onClick={() => {setIsCardModalOpen(false); setbillingAddressOpen(false) }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1556,7 +1556,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         
         {/* Close Button */}
         <button 
-          className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+          className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
           onClick={() => setIsCardModalOpen(false)}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1813,7 +1813,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
            <div className="max-w-lg mx-auto ">
             {/* Close Button */}
       <button 
-        className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+        className="absolute  -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
         onClick={() => {setShowOffersModal(false) }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
