@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import Select from "../../Components/Select";
 import Input from "../../Components/Input";
 
@@ -50,15 +51,19 @@ function Addresses() {
     console.log(landMark);
   };
   return (
-    <div className=" mx-auto max-w-[1920px] w-full flex md:hidden pb-5">
-        <button className="flex items-center p-2 bg-[#FCFCFC] border-b border-[#F2F2F2] w-full "
+    <div className=" mx-auto max-w-[1920px] w-full block md:hidden pb-5">
+      
+    {AddAddress ?(
+             <div>
+                   <button className="flex items-center p-2 bg-[#FCFCFC] border-b border-[#F2F2F2] w-full "
         onClick={()=>setAddAddress(false)}>
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
   <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg> <span>Add Shipping Address</span>
         </button>
-    {AddAddress ?(
         <form onSubmit={handleSubmit} className="flex flex-col justify-between h-full mt-2 px-3">
+
+
             <div>
             <div className="mt-1">
             <span className="flex items-center gap-1 mb-1">Country/Region :  
@@ -211,8 +216,18 @@ function Addresses() {
     </div>
             <button className="bg-[#002882] rounded-[5px] text-white w-full mt-4 py-2 ">Save</button>
         </form>
-        ) :(
-             <div className=" bg-[#F2F2F2] flex flex-col gap-3 h-screen">
+     </div>
+         ) :(
+              <div>
+         <NavLink to='/Checkout'>
+        <button className="flex items-center p-2 bg-[#FCFCFC] border-b border-[#F2F2F2] w-full ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg> <span>Add Shipping Address</span>
+        </button>
+        </NavLink>  
+        
+        <div className=" bg-[#F2F2F2] flex flex-col gap-3 h-screen">
         <Link to="/Checkout" className="flex items-center p-2 bg-[#FCFCFC] border-b border-[#F2F2F2] ">
          <span>Select Shipping Address</span>
         </Link>
@@ -220,7 +235,7 @@ function Addresses() {
     <div className="px-4">
     <button className="bg-[#E6EAF3] w-full flex items-center justify-center gap-2 border border-[#002882] 
     px-4 py-3 rounded-[5px] text-[#002882] font-semibold transition" onClick={()=>setAddAddress(true)}>
-     Add New Address
+    <span className="mb-1">+</span> Add New Address
     </button>
     </div>
 
@@ -259,6 +274,9 @@ function Addresses() {
       ))}
     </div>
   </div>
+              </div>
+
+          
 )
 }
 </div>

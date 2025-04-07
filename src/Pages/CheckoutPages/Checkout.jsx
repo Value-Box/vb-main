@@ -18,6 +18,8 @@ import Select from "../../Components/Select";
 
 function Checkout() {
   const [selectedValue, setSelectedValue] = useState(""); // State for selected value
+  const [selectedCollectionPointIndex, setSelectedCollectionPointIndex] = useState(null);
+  const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value); // Update state on change
@@ -52,6 +54,28 @@ function Checkout() {
   const removeImage = (setImage) => {
     setImage(null); // Remove the selected image
   };
+
+
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  const addresses = [
+    {
+      name: "Farman Haris",
+      phone: "+92123456789",
+      address: "135- Mian House, Garden Town Lahore",
+      fullAddress: "Lahore - Garden Town, Punjab, Pakistan",
+      type: "Home",
+      isDefault: true,
+    },
+    {
+      name: "Farman Haris",
+      phone: "+92123456789",
+      address: "135- Mian House, Garden Town Lahore",
+      fullAddress: "Lahore - Garden Town, Punjab, Pakistan",
+      type: "Office",
+      isDefault: false,
+    },
+  ];
 
 const [cartData, setCartData] = useState([
       {
@@ -171,7 +195,24 @@ const [cartData, setCartData] = useState([
           }
           setInstallmentPhone(value);
         };
-        
+        const handleItemCheckboxChange = (storeIndex, itemIndex) => {
+          setCartData((prevCartData) =>
+            prevCartData.map((store, sIndex) => {
+              if (sIndex === storeIndex) {
+                return {
+                  ...store,
+                  items: store.items.map((item, iIndex) => {
+                    if (iIndex === itemIndex) {
+                      return { ...item, checked: !item.checked };
+                    }
+                    return item;
+                  }),
+                };
+              }
+              return store;
+            })
+          );
+        };
       // modal 1
       const [isModalOpen, setIsModalOpen] = useState(false);
       const collectionPoints = [
@@ -337,8 +378,8 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         <div className="w-full md:w-3/4 space-y-5">
           {/* Two Equal Columns inside col-9 */}
           <div className="flex flex-col md:flex-row gap-5">
-            <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5">
-              <h3 className="text-[24px] font-semibold">Shippind Address</h3>
+            <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5">
+              <h3 className="text-[24px] font-semibold">Shipping Address</h3>
               <div className="relative p-2.5 rounded-[10px] border-[1px] border-dashed border-gray-400 pl-5 space-y-[5px]">
               <div className="flex justify-between items-center">
               <span className="text-[16px] font-semibold">
@@ -366,7 +407,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
               </div>
            </div>
              </div>
-           <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5">
+           <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5">
               <h3 className="text-[20px] font-normal">Delivery Time: 7-11 Business Days</h3>
               <hr className="border-t-[1px] border-[#CCD1D2]" />
             <p className="flex gap-1 text-[18px] items-center font-semibold"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -405,7 +446,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
        </div>
          </div>
           </div>
-          <div className="w-full flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5">
+          <div className="w-full flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5">
           <h3 className="text-[24px] font-semibold">Payment Method</h3>
         
           <div className="flex gap-2.5 items-baseline">
@@ -615,20 +656,65 @@ const [showOffersModal, setShowOffersModal] = useState(false);
        
   
        </div>
-            <div className="w-full flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5">
+            <div className="w-full flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5">
             <div className="w-full flex flex-col gap-1">
            <label className="text-gray-600 text-[16px] font-medium">Order Note (Optional)<span className="text-yellow-400">*</span></label>
-           <Input type="text" placeholder="Please Input" />
+           <Input
+  type="text"
+  placeholder="Please Input"
+  value={inputValue}
+  onChange={(e) => setInputValue(e.target.value)}
+  className="border p-2 rounded"
+/>
               </div>
              <div>
              <h3 className="text-[20px] font-semibold">ORDER ITEMS</h3>
-             {cartData.map((store, index) => (
-       <div key={index} >
-     {store.items.map((item,storeIndex) => (
-          <div key={item.id} >
-          <div className="flex items-center gap-2 xl:gap-4 mt-2 w-full">
+             <div className="mt-4 min-h-screen">
+  <div className="bg-white rounded-[10px] border border-[#CCD1D2] overflow-hidden">
+    <div className='flex items-center gap-1.5 bg-[#F2F2F2] p-2 '>
+    <CheckBox id='stantardDelItems'  checked={cartData.every(store => 
+        store.items.filter(item => item.delivery === "Standard").every(item => item.checked)
+      )}
+      onChange={(e) => {
+        cartData.forEach((_, index) => handleDeliveryCheckBox(index, "Standard", e.target.checked));
+      }} />
+    <label className="text-xl 2xl:text-2xl font-medium flex items-center gap-2 select-none" htmlFor='stantardDelItems'>Standard Delivery <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<g clip-path="url(#clip0_7110_91286)">
+<path d="M10 18.75C7.67936 18.75 5.45376 17.8281 3.81282 16.1872C2.17187 14.5462 1.25 12.3206 1.25 10C1.25 7.67936 2.17187 5.45376 3.81282 3.81282C5.45376 2.17187 7.67936 1.25 10 1.25C12.3206 1.25 14.5462 2.17187 16.1872 3.81282C17.8281 5.45376 18.75 7.67936 18.75 10C18.75 12.3206 17.8281 14.5462 16.1872 16.1872C14.5462 17.8281 12.3206 18.75 10 18.75ZM10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 7.34784 18.9464 4.8043 17.0711 2.92893C15.1957 1.05357 12.6522 0 10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20Z" fill="#667479"/>
+<path d="M11.1624 8.235L8.29994 8.59375L8.19744 9.06875L8.75994 9.1725C9.12744 9.26 9.19994 9.3925 9.11994 9.75875L8.19744 14.0938C7.95494 15.215 8.32869 15.7425 9.20744 15.7425C9.88869 15.7425 10.6799 15.4275 11.0387 14.995L11.1487 14.475C10.8987 14.695 10.5337 14.7825 10.2912 14.7825C9.94744 14.7825 9.82244 14.5413 9.91119 14.1163L11.1624 8.235ZM11.2499 5.625C11.2499 5.95652 11.1182 6.27446 10.8838 6.50888C10.6494 6.7433 10.3315 6.875 9.99994 6.875C9.66842 6.875 9.35048 6.7433 9.11606 6.50888C8.88164 6.27446 8.74994 5.95652 8.74994 5.625C8.74994 5.29348 8.88164 4.97554 9.11606 4.74112C9.35048 4.5067 9.66842 4.375 9.99994 4.375C10.3315 4.375 10.6494 4.5067 10.8838 4.74112C11.1182 4.97554 11.2499 5.29348 11.2499 5.625Z" fill="#667479"/>
+</g>
+<defs>
+<clipPath id="clip0_7110_91286">
+  <rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg></label>
+    </div>
+    <div className='p-3 2xl:p-6 flex flex-col gap-4 2xl:gap-6'>
+    {cartData.map((store, index) => (
+      store.items.some(item=>item.delivery==='Standard')&&(
+      <div key={index} className="bg-[#FCFCFC] border border-[#F2F2F2] rounded-[10px] p-4">
+        <h3 className="font-semibold text-gray-700 flex gap-1.5 items-center">
+        <CheckBox 
+  id={store.id} 
+  checked={store.items.every(item => item.checked)} // Sab checked hain to store bhi checked hoga
+      onChange={() => handleStoreCheckboxChange(index)}
+/> 
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 21.0002H5M5 21.0002H19M5 21.0002V9.32824M21 21.0002H19M19 21.0002V9.32824M5 9.32824C4.96261 9.30677 4.92592 9.28409 4.89 9.26024L4.35 8.90024C3.96826 8.64562 3.68568 8.26746 3.54967 7.82921C3.41366 7.39096 3.43249 6.91926 3.603 6.49324L4.497 4.25724C4.64549 3.88615 4.90176 3.56806 5.23276 3.34401C5.56376 3.11995 5.9543 3.00022 6.354 3.00024H17.646C18.0457 3.00022 18.4362 3.11995 18.7672 3.34401C19.0982 3.56806 19.3545 3.88615 19.503 4.25724L20.397 6.49324C20.5675 6.91926 20.5863 7.39096 20.4503 7.82921C20.3143 8.26746 20.0317 8.64562 19.65 8.90024L19.11 9.26024C19.0741 9.28409 19.0374 9.30677 19 9.32824M5 9.32824C5.32305 9.51483 5.69184 9.60733 6.0647 9.59532C6.43757 9.5833 6.79964 9.46724 7.11 9.26024L9 8.00024L10.89 9.26024C11.2187 9.47952 11.6049 9.59654 12 9.59654C12.3951 9.59654 12.7813 9.47952 13.11 9.26024L15 8.00024L16.89 9.26024C17.2004 9.46724 17.5624 9.5833 17.9353 9.59532C18.3082 9.60733 18.677 9.51483 19 9.32824" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.998 20.9999V15.9999C13.998 15.4694 13.7873 14.9607 13.4123 14.5857C13.0372 14.2106 12.5285 13.9999 11.998 13.9999C11.4676 13.9999 10.9589 14.2106 10.5838 14.5857C10.2088 14.9607 9.99805 15.4694 9.99805 15.9999V20.9999" stroke="#1A1A1A" stroke-width="1.5"/>
+        </svg> {store.store}</h3>
+     <div className='bg-[#CCC] h-px my-4'></div>
+        {store.items.filter(stItem=>stItem.delivery==='Standard').map((item,storeIndex) => (
+          <>
+          <div key={item.id} className="flex items-center gap-2 xl:gap-4 mt-2 w-full">
             
-         
+          <CheckBox 
+    key={item.id}
+    id={item.id} 
+    checked={item.checked || false}
+          onChange={() => handleItemCheckboxChange(storeIndex, index)} 
+  />
             <img src={item.image} className='w-20 h-20 lg:w-25 lg:h-25 2xl:w-32 2xl:h-32 rounded-lg select-none' alt="" />
             <div className="flex-1 flex flex-col gap-3 select-none min-w-0">
             <div className="flex gap-2 justify-between overflow-hidden w-full min-w-0">
@@ -646,14 +732,14 @@ const [showOffersModal, setShowOffersModal] = useState(false);
               <div className='flex gap-1'>
               <button className='cursor-pointer'>
               <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5 2xl:w-6 2xl:h-6' viewBox="0 0 24 24" fill="none">
-                <path d="M20.5 6H3.5M9.5 11L10 16M14.5 11L14 16" stroke="#666666" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M6.5 6H6.61C7.01245 5.98972 7.40242 5.85822 7.72892 5.62271C8.05543 5.3872 8.30325 5.05864 8.44 4.68L8.474 4.577L8.571 4.286C8.654 4.037 8.696 3.913 8.751 3.807C8.85921 3.59939 9.01451 3.41999 9.20448 3.28316C9.39444 3.14633 9.6138 3.05586 9.845 3.019C9.962 3 10.093 3 10.355 3H13.645C13.907 3 14.038 3 14.155 3.019C14.3862 3.05586 14.6056 3.14633 14.7955 3.28316C14.9855 3.41999 15.1408 3.59939 15.249 3.807C15.304 3.913 15.346 4.037 15.429 4.286L15.526 4.577C15.6527 4.99827 15.9148 5.36601 16.2717 5.62326C16.6285 5.88051 17.0603 6.01293 17.5 6" stroke="#666666" strokeWidth="1.5"/>
-                <path d="M18.374 15.4C18.197 18.054 18.108 19.381 17.243 20.19C16.378 20.999 15.048 21 12.387 21H11.613C8.95299 21 7.62299 21 6.75699 20.19C5.89199 19.381 5.80399 18.054 5.62699 15.4L5.16699 8.5M18.833 8.5L18.633 11.5" stroke="#666666" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M20.5 6H3.5M9.5 11L10 16M14.5 11L14 16" stroke="#666666" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M6.5 6H6.61C7.01245 5.98972 7.40242 5.85822 7.72892 5.62271C8.05543 5.3872 8.30325 5.05864 8.44 4.68L8.474 4.577L8.571 4.286C8.654 4.037 8.696 3.913 8.751 3.807C8.85921 3.59939 9.01451 3.41999 9.20448 3.28316C9.39444 3.14633 9.6138 3.05586 9.845 3.019C9.962 3 10.093 3 10.355 3H13.645C13.907 3 14.038 3 14.155 3.019C14.3862 3.05586 14.6056 3.14633 14.7955 3.28316C14.9855 3.41999 15.1408 3.59939 15.249 3.807C15.304 3.913 15.346 4.037 15.429 4.286L15.526 4.577C15.6527 4.99827 15.9148 5.36601 16.2717 5.62326C16.6285 5.88051 17.0603 6.01293 17.5 6" stroke="#666666" stroke-width="1.5"/>
+                <path d="M18.374 15.4C18.197 18.054 18.108 19.381 17.243 20.19C16.378 20.999 15.048 21 12.387 21H11.613C8.95299 21 7.62299 21 6.75699 20.19C5.89199 19.381 5.80399 18.054 5.62699 15.4L5.16699 8.5M18.833 8.5L18.633 11.5" stroke="#666666" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
               </button>
               <button className='cursor-pointer'>
               <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5 2xl:w-6 2xl:h-6' viewBox="0 0 24 24" fill="none">
-                <path d="M20.0009 13.3096L13.6274 19.735C13.2049 20.1608 12.6318 20.4 12.0344 20.4C11.4369 20.4 10.8638 20.1608 10.4413 19.735L4.06781 13.3107C3.54096 12.7843 3.12245 12.1582 2.8363 11.4683C2.55016 10.7784 2.40203 10.0383 2.4004 9.29056C2.39878 8.5428 2.5437 7.80209 2.82684 7.11093C3.10998 6.41978 3.52577 5.79181 4.05033 5.26307C4.57489 4.73432 5.1979 4.31522 5.88359 4.02982C6.56927 3.74442 7.30413 3.59835 8.04597 3.59999C8.78781 3.60163 9.52203 3.75094 10.2065 4.03936C10.8909 4.32779 11.5121 4.74963 12.0344 5.28069C13.0952 4.23803 14.5208 3.65863 16.0024 3.66799C17.4841 3.67734 18.9024 4.27471 19.9502 5.33068C20.9979 6.38665 21.5908 7.8162 21.6003 9.30964C21.6098 10.8031 21.0351 12.2402 20.0009 13.3096Z" stroke="#666666" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M20.0009 13.3096L13.6274 19.735C13.2049 20.1608 12.6318 20.4 12.0344 20.4C11.4369 20.4 10.8638 20.1608 10.4413 19.735L4.06781 13.3107C3.54096 12.7843 3.12245 12.1582 2.8363 11.4683C2.55016 10.7784 2.40203 10.0383 2.4004 9.29056C2.39878 8.5428 2.5437 7.80209 2.82684 7.11093C3.10998 6.41978 3.52577 5.79181 4.05033 5.26307C4.57489 4.73432 5.1979 4.31522 5.88359 4.02982C6.56927 3.74442 7.30413 3.59835 8.04597 3.59999C8.78781 3.60163 9.52203 3.75094 10.2065 4.03936C10.8909 4.32779 11.5121 4.74963 12.0344 5.28069C13.0952 4.23803 14.5208 3.65863 16.0024 3.66799C17.4841 3.67734 18.9024 4.27471 19.9502 5.33068C20.9979 6.38665 21.5908 7.8162 21.6003 9.30964C21.6098 10.8031 21.0351 12.2402 20.0009 13.3096Z" stroke="#666666" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               </button>
               </div>
@@ -673,7 +759,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             <p className='bg-[#CCC] h-5 w-px '></p>
             <div className='flex gap-1 items-center'>
             <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 xl:w-5 xl:h-5' viewBox="0 0 20 20" fill="none">
-<path fillRule="evenodd" clipRule="evenodd" d="M0 15.7144C0 16.8972 0.957143 17.8572 2.14 17.8572H17.86C19.0429 17.8572 20 16.8972 20 15.7144V12.8087C20.0001 12.6517 19.9486 12.4991 19.8533 12.3744C19.758 12.2496 19.6243 12.1598 19.4729 12.1187C19.008 11.9921 18.5976 11.7161 18.3051 11.3332C18.0125 10.9504 17.854 10.4819 17.854 10.0001C17.854 9.51826 18.0125 9.04981 18.3051 8.66696C18.5976 8.28411 19.008 8.00811 19.4729 7.88152C19.6243 7.84039 19.758 7.75053 19.8533 7.62581C19.9486 7.50109 20.0001 7.34846 20 7.19152V4.2858C20 3.10294 19.0429 2.14294 17.86 2.14294H2.14C0.957143 2.14294 0 3.10294 0 4.2858V7.1858C0.000189937 7.3435 0.0525637 7.49671 0.148953 7.62152C0.245342 7.74634 0.380328 7.83575 0.532857 7.8758C1.00268 7.99866 1.41852 8.2738 1.7153 8.65817C2.01209 9.04255 2.17308 9.51447 2.17308 10.0001C2.17308 10.4857 2.01209 10.9576 1.7153 11.342C1.41852 11.7264 1.00268 12.0015 0.532857 12.1244C0.380328 12.1644 0.245342 12.2538 0.148953 12.3787C0.0525637 12.5035 0.000189937 12.6567 0 12.8144L0 15.7144ZM7.08857 14.2029L14.2314 7.06009C14.3908 6.89119 14.4782 6.66682 14.4749 6.4346C14.4716 6.20237 14.3779 5.98057 14.2138 5.81625C14.0497 5.65193 13.828 5.55804 13.5958 5.55449C13.3635 5.55094 13.1391 5.63801 12.97 5.79723L5.82714 12.9401C5.74017 13.022 5.67052 13.1205 5.62231 13.2298C5.57411 13.3391 5.54833 13.457 5.5465 13.5764C5.54467 13.6959 5.56684 13.8145 5.61168 13.9252C5.65652 14.036 5.72313 14.1366 5.80755 14.2211C5.89198 14.3056 5.99251 14.3723 6.10319 14.4173C6.21387 14.4623 6.33245 14.4846 6.4519 14.4829C6.57135 14.4812 6.68925 14.4555 6.79861 14.4074C6.90797 14.3594 7.00657 14.2898 7.08857 14.2029ZM5.74429 7.14294C5.74429 6.76406 5.8948 6.4007 6.1627 6.13279C6.43061 5.86488 6.79398 5.71437 7.17286 5.71437C7.55174 5.71437 7.9151 5.86488 8.18301 6.13279C8.45092 6.4007 8.60143 6.76406 8.60143 7.14294C8.60143 7.52182 8.45092 7.88519 8.18301 8.1531C7.9151 8.42101 7.55174 8.57152 7.17286 8.57152C6.79398 8.57152 6.43061 8.42101 6.1627 8.1531C5.8948 7.88519 5.74429 7.52182 5.74429 7.14294ZM11.4586 12.8572C11.4586 12.4783 11.6091 12.115 11.877 11.8471C12.1449 11.5792 12.5083 11.4287 12.8871 11.4287C13.266 11.4287 13.6294 11.5792 13.8973 11.8471C14.1652 12.115 14.3157 12.4783 14.3157 12.8572C14.3157 13.2361 14.1652 13.5995 13.8973 13.8674C13.6294 14.1353 13.266 14.2858 12.8871 14.2858C12.5083 14.2858 12.1449 14.1353 11.877 13.8674C11.6091 13.5995 11.4586 13.2361 11.4586 12.8572Z" fill="#F04438"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 15.7144C0 16.8972 0.957143 17.8572 2.14 17.8572H17.86C19.0429 17.8572 20 16.8972 20 15.7144V12.8087C20.0001 12.6517 19.9486 12.4991 19.8533 12.3744C19.758 12.2496 19.6243 12.1598 19.4729 12.1187C19.008 11.9921 18.5976 11.7161 18.3051 11.3332C18.0125 10.9504 17.854 10.4819 17.854 10.0001C17.854 9.51826 18.0125 9.04981 18.3051 8.66696C18.5976 8.28411 19.008 8.00811 19.4729 7.88152C19.6243 7.84039 19.758 7.75053 19.8533 7.62581C19.9486 7.50109 20.0001 7.34846 20 7.19152V4.2858C20 3.10294 19.0429 2.14294 17.86 2.14294H2.14C0.957143 2.14294 0 3.10294 0 4.2858V7.1858C0.000189937 7.3435 0.0525637 7.49671 0.148953 7.62152C0.245342 7.74634 0.380328 7.83575 0.532857 7.8758C1.00268 7.99866 1.41852 8.2738 1.7153 8.65817C2.01209 9.04255 2.17308 9.51447 2.17308 10.0001C2.17308 10.4857 2.01209 10.9576 1.7153 11.342C1.41852 11.7264 1.00268 12.0015 0.532857 12.1244C0.380328 12.1644 0.245342 12.2538 0.148953 12.3787C0.0525637 12.5035 0.000189937 12.6567 0 12.8144L0 15.7144ZM7.08857 14.2029L14.2314 7.06009C14.3908 6.89119 14.4782 6.66682 14.4749 6.4346C14.4716 6.20237 14.3779 5.98057 14.2138 5.81625C14.0497 5.65193 13.828 5.55804 13.5958 5.55449C13.3635 5.55094 13.1391 5.63801 12.97 5.79723L5.82714 12.9401C5.74017 13.022 5.67052 13.1205 5.62231 13.2298C5.57411 13.3391 5.54833 13.457 5.5465 13.5764C5.54467 13.6959 5.56684 13.8145 5.61168 13.9252C5.65652 14.036 5.72313 14.1366 5.80755 14.2211C5.89198 14.3056 5.99251 14.3723 6.10319 14.4173C6.21387 14.4623 6.33245 14.4846 6.4519 14.4829C6.57135 14.4812 6.68925 14.4555 6.79861 14.4074C6.90797 14.3594 7.00657 14.2898 7.08857 14.2029ZM5.74429 7.14294C5.74429 6.76406 5.8948 6.4007 6.1627 6.13279C6.43061 5.86488 6.79398 5.71437 7.17286 5.71437C7.55174 5.71437 7.9151 5.86488 8.18301 6.13279C8.45092 6.4007 8.60143 6.76406 8.60143 7.14294C8.60143 7.52182 8.45092 7.88519 8.18301 8.1531C7.9151 8.42101 7.55174 8.57152 7.17286 8.57152C6.79398 8.57152 6.43061 8.42101 6.1627 8.1531C5.8948 7.88519 5.74429 7.52182 5.74429 7.14294ZM11.4586 12.8572C11.4586 12.4783 11.6091 12.115 11.877 11.8471C12.1449 11.5792 12.5083 11.4287 12.8871 11.4287C13.266 11.4287 13.6294 11.5792 13.8973 11.8471C14.1652 12.115 14.3157 12.4783 14.3157 12.8572C14.3157 13.2361 14.1652 13.5995 13.8973 13.8674C13.6294 14.1353 13.266 14.2858 12.8871 14.2858C12.5083 14.2858 12.1449 14.1353 11.877 13.8674C11.6091 13.5995 11.4586 13.2361 11.4586 12.8572Z" fill="#F04438"/>
 </svg>
             <span className='text-sm xl:text-base text-[#F04438]'>Coupons applicable</span>
             </div>
@@ -697,7 +783,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
               <div className="flex items-center border border-[#CCD1D2] rounded-full ">
               <button className="px-1 py-1 cursor-pointer" onClick={()=>decreaseQuantity(item.id)}>
                 <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 2xl:w-5 2xl:h-5' viewBox="0 0 20 20" fill="none">
-                <path d="M16.6654 10H3.33203" stroke="#999999" strokeWidth="1.66667" strokeLinecap="round"/>
+                <path d="M16.6654 10H3.33203" stroke="#999999" stroke-width="1.66667" stroke-linecap="round"/>
               </svg></button>
               <span className="px-4">{item.quantity}</span>
               <button className="px-1 py-1 cursor-pointer" onClick={()=>increaseQuantity(item.id)}>
@@ -709,17 +795,160 @@ const [showOffersModal, setShowOffersModal] = useState(false);
             </div>
             
           </div>
-          <div className='bg-[#CCC] h-px my-4'></div>
+          <div className='bg-[#CCC] h-px my-4'>
+            
           </div>
+          </>
         ))}
       </div>
-    ))}
+    )))}
+    </div>
+  </div>
+
+  <div className="bg-white rounded-[10px] border border-[#CCD1D2] overflow-hidden mt-3">
+    <div className='flex items-center gap-1.5 bg-gradient-to-b from-[#FFE09E] to-[#FFFCF4] p-2 '>
+    <CheckBox id='expressDelItems' checked={cartData.every(store => 
+        store.items.filter(item => item.delivery === "Express").every(item => item.checked)
+      )}
+      onChange={(e) => {
+        cartData.forEach((_, index) => handleDeliveryCheckBox(index, "Express", e.target.checked));
+      }} />
+    
+
+    <label className="text-xl 2xl:text-2xl font-medium flex items-center gap-2 select-none" htmlFor='expressDelItems'>
+    <span className="bg-gradient-to-r from-[#0032A3] via-[#1A51CB] to-[#0032A3] text-white text-xs font-semibold px-2 py-1 rounded-md">
+  VB MALL
+</span> Express Delivery <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<g clip-path="url(#clip0_7110_91286)">
+<path d="M10 18.75C7.67936 18.75 5.45376 17.8281 3.81282 16.1872C2.17187 14.5462 1.25 12.3206 1.25 10C1.25 7.67936 2.17187 5.45376 3.81282 3.81282C5.45376 2.17187 7.67936 1.25 10 1.25C12.3206 1.25 14.5462 2.17187 16.1872 3.81282C17.8281 5.45376 18.75 7.67936 18.75 10C18.75 12.3206 17.8281 14.5462 16.1872 16.1872C14.5462 17.8281 12.3206 18.75 10 18.75ZM10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 7.34784 18.9464 4.8043 17.0711 2.92893C15.1957 1.05357 12.6522 0 10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20Z" fill="#667479"/>
+<path d="M11.1624 8.235L8.29994 8.59375L8.19744 9.06875L8.75994 9.1725C9.12744 9.26 9.19994 9.3925 9.11994 9.75875L8.19744 14.0938C7.95494 15.215 8.32869 15.7425 9.20744 15.7425C9.88869 15.7425 10.6799 15.4275 11.0387 14.995L11.1487 14.475C10.8987 14.695 10.5337 14.7825 10.2912 14.7825C9.94744 14.7825 9.82244 14.5413 9.91119 14.1163L11.1624 8.235ZM11.2499 5.625C11.2499 5.95652 11.1182 6.27446 10.8838 6.50888C10.6494 6.7433 10.3315 6.875 9.99994 6.875C9.66842 6.875 9.35048 6.7433 9.11606 6.50888C8.88164 6.27446 8.74994 5.95652 8.74994 5.625C8.74994 5.29348 8.88164 4.97554 9.11606 4.74112C9.35048 4.5067 9.66842 4.375 9.99994 4.375C10.3315 4.375 10.6494 4.5067 10.8838 4.74112C11.1182 4.97554 11.2499 5.29348 11.2499 5.625Z" fill="#667479"/>
+</g>
+<defs>
+<clipPath id="clip0_7110_91286">
+  <rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg></label>
+    </div>
+    <div className='p-3 2xl:p-6 flex flex-col gap-4 2xl:gap-6'>
+    {cartData.map((store, index) => (
+      store.items.some(item=>item.delivery==='Express')&&(
+      <div key={index} className="bg-[#FCFCFC] border border-[#F2F2F2] rounded-[10px] p-4">
+        <h3 className="font-semibold text-gray-700 flex gap-1.5 items-center">
+        <CheckBox 
+  id={store.id} 
+  checked={store.items.every(item => item.checked)} // Sab checked hain to store bhi checked hoga
+      onChange={() => handleStoreCheckboxChange(index)}
+/> 
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 21.0002H5M5 21.0002H19M5 21.0002V9.32824M21 21.0002H19M19 21.0002V9.32824M5 9.32824C4.96261 9.30677 4.92592 9.28409 4.89 9.26024L4.35 8.90024C3.96826 8.64562 3.68568 8.26746 3.54967 7.82921C3.41366 7.39096 3.43249 6.91926 3.603 6.49324L4.497 4.25724C4.64549 3.88615 4.90176 3.56806 5.23276 3.34401C5.56376 3.11995 5.9543 3.00022 6.354 3.00024H17.646C18.0457 3.00022 18.4362 3.11995 18.7672 3.34401C19.0982 3.56806 19.3545 3.88615 19.503 4.25724L20.397 6.49324C20.5675 6.91926 20.5863 7.39096 20.4503 7.82921C20.3143 8.26746 20.0317 8.64562 19.65 8.90024L19.11 9.26024C19.0741 9.28409 19.0374 9.30677 19 9.32824M5 9.32824C5.32305 9.51483 5.69184 9.60733 6.0647 9.59532C6.43757 9.5833 6.79964 9.46724 7.11 9.26024L9 8.00024L10.89 9.26024C11.2187 9.47952 11.6049 9.59654 12 9.59654C12.3951 9.59654 12.7813 9.47952 13.11 9.26024L15 8.00024L16.89 9.26024C17.2004 9.46724 17.5624 9.5833 17.9353 9.59532C18.3082 9.60733 18.677 9.51483 19 9.32824" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.998 20.9999V15.9999C13.998 15.4694 13.7873 14.9607 13.4123 14.5857C13.0372 14.2106 12.5285 13.9999 11.998 13.9999C11.4676 13.9999 10.9589 14.2106 10.5838 14.5857C10.2088 14.9607 9.99805 15.4694 9.99805 15.9999V20.9999" stroke="#1A1A1A" stroke-width="1.5"/>
+        </svg> {store.store}</h3>
+     <div className='bg-[#CCC] h-px my-4'></div>
+        {store.items.filter(stItem=>stItem.delivery==='Express').map((item,storeIndex) => (
+        
+          <>
+          <div key={item.id} className="flex items-center gap-2 xl:gap-4 mt-2 w-full">
+            
+            <CheckBox id={item.id} checked={item.checked || false}
+          onChange={() => handleItemCheckboxChange(storeIndex, itemIndex)}
+             />
+            <img src={item.image} className='w-20 h-20 lg:w-25 lg:h-25 2xl:w-32 2xl:h-32 rounded-lg select-none' alt="" />
+            <div className="flex-1 flex flex-col gap-3 select-none min-w-0">
+            <div className="flex gap-2 justify-between overflow-hidden w-full min-w-0">
+              <div className="flex items-center space-x-2 w-full overflow-hidden min-w-0">
+                {item.label && (
+                  <span className="text-xs bg-red-500 text-white px-2 py-1 rounded shrink-0">
+                    {item.label}
+                  </span>
+                )}
+                <p className="w-full min-w-0 overflow-hidden text-ellipsis whitespace-nowrap">
+                  {item.name}
+                </p>
+              </div>
+              
+              <div className='flex gap-1'>
+              <button className='cursor-pointer'>
+              <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5 2xl:w-6 2xl:h-6' viewBox="0 0 24 24" fill="none">
+                <path d="M20.5 6H3.5M9.5 11L10 16M14.5 11L14 16" stroke="#666666" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M6.5 6H6.61C7.01245 5.98972 7.40242 5.85822 7.72892 5.62271C8.05543 5.3872 8.30325 5.05864 8.44 4.68L8.474 4.577L8.571 4.286C8.654 4.037 8.696 3.913 8.751 3.807C8.85921 3.59939 9.01451 3.41999 9.20448 3.28316C9.39444 3.14633 9.6138 3.05586 9.845 3.019C9.962 3 10.093 3 10.355 3H13.645C13.907 3 14.038 3 14.155 3.019C14.3862 3.05586 14.6056 3.14633 14.7955 3.28316C14.9855 3.41999 15.1408 3.59939 15.249 3.807C15.304 3.913 15.346 4.037 15.429 4.286L15.526 4.577C15.6527 4.99827 15.9148 5.36601 16.2717 5.62326C16.6285 5.88051 17.0603 6.01293 17.5 6" stroke="#666666" stroke-width="1.5"/>
+                <path d="M18.374 15.4C18.197 18.054 18.108 19.381 17.243 20.19C16.378 20.999 15.048 21 12.387 21H11.613C8.95299 21 7.62299 21 6.75699 20.19C5.89199 19.381 5.80399 18.054 5.62699 15.4L5.16699 8.5M18.833 8.5L18.633 11.5" stroke="#666666" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              </button>
+              <button className='cursor-pointer'>
+              <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5 2xl:w-6 2xl:h-6' viewBox="0 0 24 24" fill="none">
+                <path d="M20.0009 13.3096L13.6274 19.735C13.2049 20.1608 12.6318 20.4 12.0344 20.4C11.4369 20.4 10.8638 20.1608 10.4413 19.735L4.06781 13.3107C3.54096 12.7843 3.12245 12.1582 2.8363 11.4683C2.55016 10.7784 2.40203 10.0383 2.4004 9.29056C2.39878 8.5428 2.5437 7.80209 2.82684 7.11093C3.10998 6.41978 3.52577 5.79181 4.05033 5.26307C4.57489 4.73432 5.1979 4.31522 5.88359 4.02982C6.56927 3.74442 7.30413 3.59835 8.04597 3.59999C8.78781 3.60163 9.52203 3.75094 10.2065 4.03936C10.8909 4.32779 11.5121 4.74963 12.0344 5.28069C13.0952 4.23803 14.5208 3.65863 16.0024 3.66799C17.4841 3.67734 18.9024 4.27471 19.9502 5.33068C20.9979 6.38665 21.5908 7.8162 21.6003 9.30964C21.6098 10.8031 21.0351 12.2402 20.0009 13.3096Z" stroke="#666666" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              </button>
+              </div>
+            </div>
+            <div className='flex gap-2'>
+                <span className='text-[#999] bg-[#F2F2F2] px-4 rounded-[5px] inline-block '>Red/42</span>
+                <span className='text-[#999] bg-[#F2F2F2] px-4 rounded-[5px] inline-block '>Free Delivery</span>
+            </div>
+
+            <div className='flex gap-3'>
+            <div className='flex xl:flex-row gap-1 items-center'>
+            <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 xl:w-5 xl:h-5' viewBox="0 0 20 20" fill="none">
+              <path d="M6.69034 10H4.03644C3.83149 10.0003 3.63122 10.0591 3.46088 10.169C3.29053 10.2789 3.15773 10.435 3.07921 10.6175C3.00069 10.8 2.97996 11.0009 3.01964 11.1948C3.05932 11.3887 3.15763 11.5669 3.30218 11.707L9.74041 18L16.1776 11.707C16.2742 11.6143 16.3509 11.5042 16.4033 11.3829C16.4556 11.2615 16.4825 11.1314 16.4825 11C16.4825 10.8686 16.4556 10.7385 16.4033 10.6171C16.3509 10.4958 16.2742 10.3857 16.1776 10.293C15.9831 10.1055 15.7194 10.0001 15.4444 10H12.8631C12.9336 7.25 13.4501 4.245 17 2H15.9629C11.1581 2 7.20681 5.5 6.69034 10Z" fill="#F04438"/>
+            </svg>
+            <span className='text-[#F04438] text-sm xl:text-base'>Save PKR 5,999</span>
+            </div>
+            <p className='bg-[#CCC] h-5 w-px '></p>
+            <div className='flex gap-1 items-center'>
+            <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 xl:w-5 xl:h-5' viewBox="0 0 20 20" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 15.7144C0 16.8972 0.957143 17.8572 2.14 17.8572H17.86C19.0429 17.8572 20 16.8972 20 15.7144V12.8087C20.0001 12.6517 19.9486 12.4991 19.8533 12.3744C19.758 12.2496 19.6243 12.1598 19.4729 12.1187C19.008 11.9921 18.5976 11.7161 18.3051 11.3332C18.0125 10.9504 17.854 10.4819 17.854 10.0001C17.854 9.51826 18.0125 9.04981 18.3051 8.66696C18.5976 8.28411 19.008 8.00811 19.4729 7.88152C19.6243 7.84039 19.758 7.75053 19.8533 7.62581C19.9486 7.50109 20.0001 7.34846 20 7.19152V4.2858C20 3.10294 19.0429 2.14294 17.86 2.14294H2.14C0.957143 2.14294 0 3.10294 0 4.2858V7.1858C0.000189937 7.3435 0.0525637 7.49671 0.148953 7.62152C0.245342 7.74634 0.380328 7.83575 0.532857 7.8758C1.00268 7.99866 1.41852 8.2738 1.7153 8.65817C2.01209 9.04255 2.17308 9.51447 2.17308 10.0001C2.17308 10.4857 2.01209 10.9576 1.7153 11.342C1.41852 11.7264 1.00268 12.0015 0.532857 12.1244C0.380328 12.1644 0.245342 12.2538 0.148953 12.3787C0.0525637 12.5035 0.000189937 12.6567 0 12.8144L0 15.7144ZM7.08857 14.2029L14.2314 7.06009C14.3908 6.89119 14.4782 6.66682 14.4749 6.4346C14.4716 6.20237 14.3779 5.98057 14.2138 5.81625C14.0497 5.65193 13.828 5.55804 13.5958 5.55449C13.3635 5.55094 13.1391 5.63801 12.97 5.79723L5.82714 12.9401C5.74017 13.022 5.67052 13.1205 5.62231 13.2298C5.57411 13.3391 5.54833 13.457 5.5465 13.5764C5.54467 13.6959 5.56684 13.8145 5.61168 13.9252C5.65652 14.036 5.72313 14.1366 5.80755 14.2211C5.89198 14.3056 5.99251 14.3723 6.10319 14.4173C6.21387 14.4623 6.33245 14.4846 6.4519 14.4829C6.57135 14.4812 6.68925 14.4555 6.79861 14.4074C6.90797 14.3594 7.00657 14.2898 7.08857 14.2029ZM5.74429 7.14294C5.74429 6.76406 5.8948 6.4007 6.1627 6.13279C6.43061 5.86488 6.79398 5.71437 7.17286 5.71437C7.55174 5.71437 7.9151 5.86488 8.18301 6.13279C8.45092 6.4007 8.60143 6.76406 8.60143 7.14294C8.60143 7.52182 8.45092 7.88519 8.18301 8.1531C7.9151 8.42101 7.55174 8.57152 7.17286 8.57152C6.79398 8.57152 6.43061 8.42101 6.1627 8.1531C5.8948 7.88519 5.74429 7.52182 5.74429 7.14294ZM11.4586 12.8572C11.4586 12.4783 11.6091 12.115 11.877 11.8471C12.1449 11.5792 12.5083 11.4287 12.8871 11.4287C13.266 11.4287 13.6294 11.5792 13.8973 11.8471C14.1652 12.115 14.3157 12.4783 14.3157 12.8572C14.3157 13.2361 14.1652 13.5995 13.8973 13.8674C13.6294 14.1353 13.266 14.2858 12.8871 14.2858C12.5083 14.2858 12.1449 14.1353 11.877 13.8674C11.6091 13.5995 11.4586 13.2361 11.4586 12.8572Z" fill="#F04438"/>
+</svg>
+            <span className='text-sm xl:text-base text-[#F04438]'>Coupons applicable</span>
+            </div>
+            <p className='bg-[#CCC] h-5 w-px '></p>
+            <div className='flex gap-1 items-center'>
+            <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 xl:w-5 xl:h-5' viewBox="0 0 18 20" fill="none">
+<path d="M16.0096 6.66755V8.43408C16.0096 10.6361 15.6173 12.5459 14.8437 14.11C14.2331 15.3442 13.3823 16.3714 12.3147 17.1627C11.3571 17.8725 10.3955 18.2606 9.75741 18.4612C9.20382 18.6352 8.78993 18.7027 8.6392 18.7235C8.48847 18.7027 8.07458 18.6352 7.521 18.4612C6.88291 18.2606 5.92129 17.8725 4.96371 17.1627C3.89614 16.3714 3.04527 15.3442 2.43472 14.11C1.66113 12.5459 1.26881 10.6361 1.26881 8.43408V5.3558C2.31888 5.12853 3.34433 4.80878 4.32436 4.40262C5.23778 4.02399 6.11415 3.56974 6.92898 3.05254C7.7046 2.56021 8.27735 2.10418 8.6392 1.78975C9.00107 2.10418 9.57381 2.56021 10.3494 3.05254C11.0243 3.48091 11.7415 3.86614 12.4867 4.20086L13.2331 3.14301C12.4762 2.8169 11.7492 2.4351 11.0687 2.00622C9.78621 1.19769 9.10486 0.4927 9.09902 0.48649L8.64187 0L8.18027 0.485594C8.17354 0.4927 7.49219 1.19769 6.20968 2.00622C5.4588 2.4795 4.65121 2.89544 3.80948 3.24236C2.75929 3.67542 1.65199 4.00178 0.518432 4.21254L0 4.30898V8.43409C0 10.8518 0.443327 12.9645 1.31766 14.7134C2.02743 16.1327 3.01825 17.3133 4.2627 18.2222C6.38008 19.7687 8.49012 19.9858 8.57894 19.9942L8.6392 20L8.69947 19.9942C8.78829 19.9858 10.8983 19.7687 13.0157 18.2222C14.2602 17.3133 15.251 16.1327 15.9606 14.7134C16.8351 12.9645 17.2784 10.8518 17.2784 8.43409V4.86905L16.0096 6.66755Z" fill="#33539B"/>
+<path d="M10.3521 3.05254C9.57837 2.56135 9.00652 2.10633 8.64453 1.79204V0L9.10168 0.48649C9.10752 0.492712 9.78887 1.1977 11.0714 2.00622C11.7519 2.4351 12.4789 2.8169 13.2357 3.14301L12.4894 4.20086C11.7441 3.86614 11.027 3.48091 10.3521 3.05254Z" fill="#002882"/>
+<path d="M17.2811 4.86914V8.43418C17.2811 10.8519 16.8378 12.9646 15.9633 14.7135C15.2536 16.1328 14.2628 17.3134 13.0184 18.2223C10.901 19.7688 8.79095 19.9859 8.70213 19.9943L8.64453 19.9998V18.7232C8.79743 18.702 9.20966 18.6343 9.76007 18.4613C10.3982 18.2607 11.3598 17.8726 12.3174 17.1628C13.3849 16.3715 14.2358 15.3443 14.8463 14.1101C15.6199 12.546 16.0123 10.6362 16.0123 8.43417V6.66764L17.2811 4.86914Z" fill="#002882"/>
+<path d="M8.11644 15.165L4.40004 12.0903C4.09559 11.8384 4.05296 11.3874 4.30483 11.0829L5.13718 10.0768C5.38905 9.77232 5.84004 9.72969 6.14448 9.98157L8.17914 11.6649L14.6499 2.4923C14.8777 2.16942 15.3241 2.09232 15.647 2.32012L16.7139 3.07289C17.0368 3.30069 17.1139 3.7471 16.8861 4.06998L9.15711 15.0262C8.91686 15.3667 8.43755 15.4307 8.11644 15.165Z" fill="#EEA500"/>
+</svg>
+            <span className='text-sm xl:text-base'>One Year Warranty</span>
+            </div>
+            </div>
+              <div className='flex justify-between'>
+              <div className='flex gap-2'>
+              <p className="text-[#002882] font-bold text-xl 2xl:text-3xl">
+                <small className='text-xs 2xl:text-sm font-medium'>PKR</small> {item.price}</p>
+              <small className="line-through text-gray-400 flex items-center">PKR {item.oldPrice}</small>
+              </div>
+              <div className="flex items-center border border-[#CCD1D2] rounded-full ">
+              <button className="px-1 py-1 cursor-pointer" onClick={()=>decreaseQuantity(item.id)}>
+                <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 2xl:w-5 2xl:h-5' viewBox="0 0 20 20" fill="none">
+                <path d="M16.6654 10H3.33203" stroke="#999999" stroke-width="1.66667" stroke-linecap="round"/>
+              </svg></button>
+              <span className="px-4">{item.quantity}</span>
+              <button className="px-1 py-1 cursor-pointer" onClick={()=>increaseQuantity(item.id)}>
+                <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4 2xl:w-5 2xl:h-5' viewBox="0 0 20 20" fill="none">
+                <path d="M14.9974 10.8333H10.8307V15C10.8307 15.4583 10.4557 15.8333 9.9974 15.8333C9.53906 15.8333 9.16406 15.4583 9.16406 15V10.8333H4.9974C4.53906 10.8333 4.16406 10.4583 4.16406 9.99996C4.16406 9.54163 4.53906 9.16663 4.9974 9.16663H9.16406V4.99996C9.16406 4.54163 9.53906 4.16663 9.9974 4.16663C10.4557 4.16663 10.8307 4.54163 10.8307 4.99996V9.16663H14.9974C15.4557 9.16663 15.8307 9.54163 15.8307 9.99996C15.8307 10.4583 15.4557 10.8333 14.9974 10.8333Z" fill="#1A1A1A"/>
+              </svg></button>
+            </div> 
+              </div>
+            </div>
+            
+          </div>
+          <div className='bg-[#CCC] h-px my-4'>
+            
+          </div>
+          </>
+        ))}
+      </div>
+    )))}
+    </div>
+  </div>
+</div>
     </div>
       </div>
         </div>
 
         {/* Right Section - col-3 */}
-        <div className="sticky top-20 w-full md:w-1/4 flex flex-col bg-white p-5 rounded-[10px] border-1 border-[#CCC] gap-5 min-h-0 h-auto">
+        <div className="sticky top-20 w-full md:w-1/4 flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5 min-h-0 h-auto">
         <h1 className='text-md md:text-xl 2xl:text-2xl font-bold'>Order Summery</h1>
         
     <div className="flex items-center ">
@@ -922,7 +1151,11 @@ const [showOffersModal, setShowOffersModal] = useState(false);
                   {collectionPoints.map((point, index) => (
                     <tr key={index} className="hover:bg-gray-100 border-b border-gray-300 last:border-none">
                       <td className="flex gap-2 p-3">{/* No column borders */}
-                        <CheckBox />
+                      <CheckBox
+  type="checkbox"
+  checked={selectedCollectionPointIndex === index}
+  onChange={() => setSelectedCollectionPointIndex(index)}
+/>
                         {point.name}
                       </td>
                       <td className="p-2">{point.address}</td>
@@ -989,11 +1222,11 @@ const [showOffersModal, setShowOffersModal] = useState(false);
        <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
        {formOpen ? (  
       
-      <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] max-w-full min-h-[600px] flex flex-col gap-2 relative">
+      <div className="bg-[#FCFCFC] p-4 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative">
       <h2 className="text-[24px] font-semibold mb-2">Add New Address</h2>
     
       {/* Location Type */}
-      <div className="mb-2 flex gap-2">
+      <div className="flex gap-2">
         <label className="flex items-center gap-1">
           <CheckBox value="home" checked={locationType === "home"} onChange={() => setLocationType("home")}/>
           Home
@@ -1040,13 +1273,29 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         <div className="grid grid-cols-3 gap-2">
           <Select options={options} placeholder="Please Select" value={city} onChange={(e) => setCity(e.target.value)} />
           <Select options={options} placeholder="Select Area" value={area} onChange={(e) => setArea(e.target.value)} />
-          <Input type="text" placeholder="ZIP Code*" value={zip} onChange={(e) => setZip(e.target.value)} className="border p-2 rounded" />
+          <Input type="text" placeholder="ZIP Code*" value={zip} onChange={(e) => {
+    const onlyNums = e.target.value.replace(/\D/, ''); // Remove non-digits
+    setZip(onlyNums);
+  }} className="border p-2 rounded" />
         </div>
     
         <label className="text-gray-600 text-[16px] font-medium">Contact Information</label>
         <div className="grid grid-cols-2 gap-2">
           <Input type="text" placeholder="Contact Name*" value={contactName} onChange={(e) => setContactName(e.target.value)} className="border p-2 rounded" />
-          <Input type="text" placeholder="+92 Enter your Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} className="border p-2 rounded" />
+          <Input
+  type="text"
+  placeholder="Enter your Phone Number"
+  value={phone}
+  maxLength={11}
+  onChange={(e) => {
+    // Only allow digits and max 11 digits
+    const onlyNums = e.target.value.replace(/\D/g, ''); // Remove all non-digits
+    if (onlyNums.length <= 11) {
+      setPhone(onlyNums);
+    }
+  }}
+  className="border p-2 rounded"
+/>
         </div>
     
         {/* Confirm Button (Always at Bottom) */}
@@ -1077,7 +1326,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     </div>
     
     ) : (
-      <div className="bg-white p-6 rounded-lg shadow-lg w-[700px] max-w-full min-h-[500px] flex flex-col relative">
+      <div className="bg-white p-4 rounded-lg shadow-lg w-[600px] max-w-full min-h-[400px] flex flex-col relative">
         
         {/* Close Button */}
         <button 
@@ -1102,31 +1351,37 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         </button>
 
         {/* Modal Content */}
-        <h2 className="text-[30px] font-semibold mb-4">Shipping Address</h2>
+        <h2 className="text-[28px] font-semibold mb-4">Shipping Address</h2>
 
         {/* Scrollable Address List */}
         <div className="flex-grow overflow-y-auto space-y-4">
-          <div className="flex gap-2 border border-gray-300 p-4 rounded-lg">
-            <CheckBox />
-            <div>
-              <strong>Farman Haris</strong> | +92123456789
-              <p className="text-gray-600">135- Mian House, Garden Town Lahore</p>
-              <p className="text-gray-400 text-sm">Lahore - Garden Town, Punjab, Pakistan</p>
-              <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 text-xs rounded">Home</span>
-              <span className="inline-block bg-red-100 text-red-500 px-2 py-1 text-xs rounded ml-2">Default</span>
-            </div>
-          </div>
-
-          <div className="flex gap-2 border border-gray-300 p-4 rounded-lg">
-            <CheckBox />
-            <div>
-              <strong>Farman Haris</strong> | +92123456789
-              <p className="text-gray-600">135- Mian House, Garden Town Lahore</p>
-              <p className="text-gray-400 text-sm">Lahore - Garden Town, Punjab, Pakistan</p>
-              <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 text-xs rounded">Office</span>
-            </div>
+      {addresses.map((item, index) => (
+        <div
+          key={index}
+          className="flex gap-2 border border-gray-300 p-2 rounded-lg"
+        >
+          <CheckBox
+          checked={selectedIndex === index}
+            onChange={() =>
+              setSelectedIndex(index === selectedIndex ? null : index)
+            }
+          />
+          <div>
+            <strong>{item.name}</strong> | {item.phone}
+            <p className="text-gray-600">{item.address}</p>
+            <p className="text-gray-400 text-sm">{item.fullAddress}</p>
+            <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 text-xs rounded">
+              {item.type}
+            </span>
+            {item.isDefault && (
+              <span className="inline-block bg-red-100 text-red-500 px-2 py-1 text-xs rounded ml-2">
+                Default
+              </span>
+            )}
           </div>
         </div>
+      ))}
+    </div>
 
         {/* Add New Address Button - Always at Bottom */}
         <FormButton 
@@ -1657,6 +1912,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
 
       {/* User Info */}
       <div className="flex flex-col gap-2 px-4 pb-4 pt-2 border-b border-gray-200 bg-[#FCFCFC]">
+      <NavLink to='/Addresses'>
       <div className="flex justify-between items-center">
       <div className="flex flex-col gap-2">
        <span className="flex items-center gap-2 font-semibold text-black text-[16px]">Farman Haris, <span className="text-[#999] font-normal">+92123456789</span> 
@@ -1667,12 +1923,14 @@ const [showOffersModal, setShowOffersModal] = useState(false);
           <span className="text-gray-600 text-sm">135-Mian House, Garden Town, Lahore</span>
         <span className="text-gray-600 text-sm">Lahore - Garden Town, Punjab</span>
         </div>
-        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+         <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M10 8L14 12L10 16" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg></span>
-      </div>
+     </div>
+      </ NavLink>
        
         <div className="flex justify-between items-center">
+          <NavLink to='/PickUpPoints'>
           <div className="flex flex-col gap-1">
           <span className="text-[#002882] text-sm font-medium">
           Collect your parcels at a location close to you at a fraction of the delivery fee!
@@ -1681,6 +1939,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         4 Suggested Collection Point(s) Nearby
         </span>
           </div>
+          </NavLink>
       <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M10 8L14 12L10 16" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg></span> 

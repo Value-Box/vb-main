@@ -1,5 +1,5 @@
 
-function Input({ type, placeholder, name,value='',checked='', onChange ,className='',id=''}) {
+function Input({ type, placeholder, name,value='',checked='', onChange ,className='',id=''}) { 
     return (
       <input
         id={id}

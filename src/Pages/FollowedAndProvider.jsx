@@ -71,7 +71,8 @@ function FollowedAndProvider() {
       </div>
       <div className="flex gap-2 md:gap-4 overflow-x-auto scrollbar-hide">
         {users.map((user) => (
-          <div key={user.id} className="flex flex-col items-center min-w-[25%] md:min-w-[120px]">
+          <NavLink to='/SellerStore'>
+   <div key={user.id} className="flex flex-col items-center min-w-[25%] md:min-w-[120px]">
             <img
               src={user.img}
               alt="User"
@@ -79,6 +80,8 @@ function FollowedAndProvider() {
             />
             <p className="text-xs mt-2 text-gray-600">YS Traders</p>
           </div>
+          </NavLink>
+       
         ))}
       </div>
     </div>
