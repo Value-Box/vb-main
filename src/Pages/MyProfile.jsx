@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AccountSideBar from '../Components/AccountSideBar'
 import Image2 from "/src/Images/Image2.png";
 import Image3 from "/src/Images/Image3.png";
@@ -63,10 +63,52 @@ const reviews = [
 
 function MyProfile() {
     const [activeModal, setActiveModal] = useState(null);
-  
-    const openModal = (modalName) => setActiveModal(modalName);
+   const openModal = (modalName) => setActiveModal(modalName);
     const closeModal = () => setActiveModal(null);
-    
+    const [name, setName] = useState("Muhammad Arshad");
+const [profileImage, setProfileImage] = useState(null);
+const [isSaving, setIsSaving] = useState(false);
+
+
+
+const handleImageChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setProfileImage(reader.result); // base64 string
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  setIsSaving(true);
+
+  // Save to localStorage
+  localStorage.setItem("profileName", name);
+  localStorage.setItem("profileImage", profileImage);
+
+  setTimeout(() => {
+    console.log("Saved:", name);
+    console.log("savedImage:", savedImage);
+    setIsSaving(false);
+    closeModal();
+  }, 1500);
+};
+
+
+const savedName = localStorage.getItem("profileName");
+const savedImage = localStorage.getItem("profileImage");
+
+useEffect(() => {
+  if (savedName) setName(savedName);
+  if (savedImage) setProfileImage(savedImage);
+  console.log(savedImage)
+}, [savedImage]);
+
   return (
     <div className='bg-natural-0'>
     <div className='flex gap-2 sm:gap-4 md:p-6 max-w-[1920px] mx-auto'>
@@ -78,15 +120,16 @@ function MyProfile() {
       <div className=" bg-white border border-natural-color sm:rounded-lg p-4">
         <div className='flex items-center space-x-4'>
         <img
-          src={reviews[0].profileImage}
-          alt="profile"
-          className="w-14 h-14 rounded-full"
-        />
+  src={profileImage}
+  alt="profile"
+  className="w-30 h-30 rounded-full"
+/>
         <div>
-          <h2 className="text-lg font-semibold flex gap-1.5">{reviews[0].user} <button onClick={()=>openModal('contactLeopards')}>
+        <h2 className="text-lg font-semibold flex gap-1.5">
+        {name} <button onClick={()=>openModal('contactLeopards')}>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-  <path d="M15.9049 12.5339V16.2339C15.9047 16.7575 15.6966 17.2595 15.3265 17.6296C14.9563 17.9998 14.4543 18.2079 13.9308 18.2081H4.26326C4.00306 18.208 3.74544 18.1565 3.50521 18.0565C3.26498 17.9565 3.04687 17.8101 2.86342 17.6255C2.67997 17.441 2.5348 17.222 2.43624 16.9812C2.33767 16.7404 2.28767 16.4825 2.2891 16.2223V6.56561C2.28755 6.30582 2.33758 6.0483 2.43628 5.80798C2.53499 5.56767 2.6804 5.34933 2.86411 5.16562C3.04781 4.98192 3.26615 4.8365 3.50647 4.7378C3.74679 4.63909 4.0043 4.58906 4.2641 4.59061H7.96326" stroke="#999999" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M15.9039 7.99576L12.4997 4.59076M5.69141 13.6691V11.8649C5.69307 11.5674 5.81141 11.2816 6.02057 11.0708L13.9639 3.12743C14.0693 3.02085 14.1948 2.93624 14.3331 2.8785C14.4714 2.82075 14.6198 2.79102 14.7697 2.79102C14.9196 2.79102 15.068 2.82075 15.2064 2.8785C15.3447 2.93624 15.4702 3.02085 15.5756 3.12743L17.3681 4.91993C17.4747 5.02533 17.5593 5.15082 17.617 5.28915C17.6748 5.42747 17.7045 5.57587 17.7045 5.72576C17.7045 5.87566 17.6748 6.02406 17.617 6.16238C17.5593 6.30071 17.4747 6.4262 17.3681 6.5316L9.42474 14.4749C9.21352 14.6847 8.92825 14.8029 8.63057 14.8041H6.82641C6.6773 14.8043 6.52961 14.7751 6.3918 14.7181C6.254 14.6612 6.12879 14.5776 6.02335 14.4722C5.91791 14.3667 5.83432 14.2415 5.77736 14.1037C5.7204 13.9659 5.69119 13.8182 5.69141 13.6691Z" stroke="#999999" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M15.9049 12.5339V16.2339C15.9047 16.7575 15.6966 17.2595 15.3265 17.6296C14.9563 17.9998 14.4543 18.2079 13.9308 18.2081H4.26326C4.00306 18.208 3.74544 18.1565 3.50521 18.0565C3.26498 17.9565 3.04687 17.8101 2.86342 17.6255C2.67997 17.441 2.5348 17.222 2.43624 16.9812C2.33767 16.7404 2.28767 16.4825 2.2891 16.2223V6.56561C2.28755 6.30582 2.33758 6.0483 2.43628 5.80798C2.53499 5.56767 2.6804 5.34933 2.86411 5.16562C3.04781 4.98192 3.26615 4.8365 3.50647 4.7378C3.74679 4.63909 4.0043 4.58906 4.2641 4.59061H7.96326" stroke="#999999" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M15.9039 7.99576L12.4997 4.59076M5.69141 13.6691V11.8649C5.69307 11.5674 5.81141 11.2816 6.02057 11.0708L13.9639 3.12743C14.0693 3.02085 14.1948 2.93624 14.3331 2.8785C14.4714 2.82075 14.6198 2.79102 14.7697 2.79102C14.9196 2.79102 15.068 2.82075 15.2064 2.8785C15.3447 2.93624 15.4702 3.02085 15.5756 3.12743L17.3681 4.91993C17.4747 5.02533 17.5593 5.15082 17.617 5.28915C17.6748 5.42747 17.7045 5.57587 17.7045 5.72576C17.7045 5.87566 17.6748 6.02406 17.617 6.16238C17.5593 6.30071 17.4747 6.4262 17.3681 6.5316L9.42474 14.4749C9.21352 14.6847 8.92825 14.8029 8.63057 14.8041H6.82641C6.6773 14.8043 6.52961 14.7751 6.3918 14.7181C6.254 14.6612 6.12879 14.5776 6.02335 14.4722C5.91791 14.3667 5.83432 14.2415 5.77736 14.1037C5.7204 13.9659 5.69119 13.8182 5.69141 13.6691Z" stroke="#999999" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
             </button></h2>
           <div className='flex justify-between items-center gap-1 mt-3 text-sm sm:text-base text-natural-gray'>
@@ -131,7 +174,7 @@ function MyProfile() {
               {Array.from({ length: 5 - review.rating }, (_, i) => (
                 <span key={i} className="text-gray-300">
                 <svg xmlns="http://www.w3.org/2000/svg" className='w-[15px] sm:w-[18px]' viewBox="0 0 24 24" fill="none">
-                <path d="M8.46018 7.94876L7.93377 8.02895L1.37976 9.02726L1.379 9.02738C1.22157 9.05123 1.08756 9.16079 1.02679 9.35645C0.965647 9.55331 1.00804 9.75401 1.14831 9.8967L1.14858 9.89699L5.89026 14.7245L6.24595 15.0867L6.16358 15.5875L5.0422 22.4063C5.04217 22.4065 5.04214 22.4067 5.04211 22.4069C5.0421 22.4069 5.04209 22.407 5.04209 22.407C5.00468 22.6368 5.09731 22.8129 5.2316 22.914C5.3645 23.0141 5.51162 23.0274 5.65228 22.9494L5.65547 22.9477L11.5186 19.7278L12 19.4634L12.4814 19.7278L18.3445 22.9477L18.3447 22.9478C18.4867 23.0258 18.6358 23.0119 18.7691 22.9117C18.9032 22.811 18.9954 22.6361 18.9578 22.4065C18.9578 22.4064 18.9578 22.4064 18.9578 22.4063L17.8364 15.5875L17.7541 15.0867L18.1097 14.7245L22.8514 9.89699L22.8517 9.8967C22.992 9.75401 23.0344 9.55331 22.9732 9.35645C22.9124 9.16079 22.7784 9.05123 22.621 9.02738L22.6202 9.02726L16.0662 8.02895L15.5398 7.94876L15.3125 7.46723L12.384 1.26356C12.3839 1.26333 12.3838 1.26311 12.3837 1.26288C12.2932 1.07272 12.1415 1.00049 11.9983 1C11.8581 0.999521 11.7089 1.06727 11.6168 1.26175L8.46018 7.94876ZM8.46018 7.94876L8.68749 7.46723L11.6167 1.26212L8.46018 7.94876Z" stroke="#1A1A1A" stroke-width="2"/>
+                <path d="M8.46018 7.94876L7.93377 8.02895L1.37976 9.02726L1.379 9.02738C1.22157 9.05123 1.08756 9.16079 1.02679 9.35645C0.965647 9.55331 1.00804 9.75401 1.14831 9.8967L1.14858 9.89699L5.89026 14.7245L6.24595 15.0867L6.16358 15.5875L5.0422 22.4063C5.04217 22.4065 5.04214 22.4067 5.04211 22.4069C5.0421 22.4069 5.04209 22.407 5.04209 22.407C5.00468 22.6368 5.09731 22.8129 5.2316 22.914C5.3645 23.0141 5.51162 23.0274 5.65228 22.9494L5.65547 22.9477L11.5186 19.7278L12 19.4634L12.4814 19.7278L18.3445 22.9477L18.3447 22.9478C18.4867 23.0258 18.6358 23.0119 18.7691 22.9117C18.9032 22.811 18.9954 22.6361 18.9578 22.4065C18.9578 22.4064 18.9578 22.4064 18.9578 22.4063L17.8364 15.5875L17.7541 15.0867L18.1097 14.7245L22.8514 9.89699L22.8517 9.8967C22.992 9.75401 23.0344 9.55331 22.9732 9.35645C22.9124 9.16079 22.7784 9.05123 22.621 9.02738L22.6202 9.02726L16.0662 8.02895L15.5398 7.94876L15.3125 7.46723L12.384 1.26356C12.3839 1.26333 12.3838 1.26311 12.3837 1.26288C12.2932 1.07272 12.1415 1.00049 11.9983 1C11.8581 0.999521 11.7089 1.06727 11.6168 1.26175L8.46018 7.94876ZM8.46018 7.94876L8.68749 7.46723L11.6167 1.26212L8.46018 7.94876Z" stroke="#1A1A1A" strokeWidth="2"/>
               </svg></span>
               ))}
               <span className="text-gray-500 text-sm ml-1">{review.status}</span>
@@ -164,7 +207,7 @@ function MyProfile() {
             
             <button className='flex items-center gap-1 text-sm sm:text-base sm:border border-[#666] py-1 px-1 sm:px-2 rounded-full'>
               <svg xmlns="http://www.w3.org/2000/svg" className='w-4 sm:w-5' viewBox="0 0 20 20" fill="none">
-  <path d="M3.125 10.625V15.625C3.125 15.9565 3.2567 16.2745 3.49112 16.5089C3.72554 16.7433 4.04348 16.875 4.375 16.875H15.625C15.9565 16.875 16.2745 16.7433 16.5089 16.5089C16.7433 16.2745 16.875 15.9565 16.875 15.625V10.625M10 12.5V2.1875M13.75 5.625L10 1.875L6.25 5.625" stroke="#1A1A1A" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M3.125 10.625V15.625C3.125 15.9565 3.2567 16.2745 3.49112 16.5089C3.72554 16.7433 4.04348 16.875 4.375 16.875H15.625C15.9565 16.875 16.2745 16.7433 16.5089 16.5089C16.7433 16.2745 16.875 15.9565 16.875 15.625V10.625M10 12.5V2.1875M13.75 5.625L10 1.875L6.25 5.625" stroke="#1A1A1A" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
 </svg> Share</button>
             </div>
             <div className="flex space-x-2 mt-2">
@@ -180,64 +223,69 @@ function MyProfile() {
         </div>
 
         {activeModal === "contactLeopards" && (
-                   <div
-                     className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center p-3 items-center"
-                     onClick={closeModal} // Click outside to close modal
-                   >
-                     <div className="relative bg-natural-0 p-3 sm:p-6 rounded-[10px] sm:rounded-[15px] shadow-lg " onClick={(e) => e.stopPropagation()}>
-                     <button
-                         className="absolute -top-3 -right-3 bg-white rounded-full"
-                         onClick={closeModal} // Close button inside modal
-                       >
-                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-             <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
-           </svg>
-                       </button>
-           
-                       <div className="flex justify-center items-center ">
-      <div className=" rounded-2xl  max-w-[600px]">
-        {/* Profile Header */}
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Update Profile</h2>
+  <div
+    className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center p-3 items-center"
+    onClick={closeModal}
+  >
+    <div
+      className="relative bg-white p-3 sm:p-6 rounded-[10px] sm:rounded-[15px] shadow-lg"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        className="absolute -top-3 -right-3 bg-white rounded-full"
+        onClick={closeModal}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+          <path d="M15 0C6.64286 0 0 6.64286 0 15C0 23.3571 6.64286 30 15 30C23.3571 30 30 23.3571 30 15C30 6.64286 23.3571 0 15 0ZM20.7857 22.5L15 16.7143L9.21429 22.5L7.5 20.7857L13.2857 15L7.5 9.21429L9.21429 7.5L15 13.2857L20.7857 7.5L22.5 9.21429L16.7143 15L22.5 20.7857L20.7857 22.5Z" fill="#002882"/>
+        </svg>
+      </button>
 
-        {/* Profile Image */}
-        <div className="relative w-20 h-20 ">
-          <img
-            src={Image2} // Replace with actual user image
-            alt="Profile"
-            className="w-20 h-20 rounded-full object-cover"
-          />
-          <label className="absolute bottom-0 right-0 bg-white border border-gray-300 rounded-full p-1 cursor-pointer">
-            <input type="file" className="hidden" />
-            📷
-          </label>
+      <div className="flex justify-center items-center">
+        <div className="rounded-2xl max-w-[600px] w-full">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Update Profile</h2>
+
+          <form onSubmit={handleSubmit}>
+            <div className="relative w-20 h-20 mb-4">
+              <img
+                src={profileImage}
+                alt="Profile"
+                className="w-20 h-20 rounded-full object-cover"
+              />
+              <label className="absolute bottom-0 right-0 bg-white border border-gray-300 rounded-full p-1 cursor-pointer">
+                <input type="file" className="hidden" onChange={handleImageChange} />
+                📷
+              </label>
+            </div>
+
+            <label className="block mt-2 text-gray-700 font-medium">Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-3 py-2 border border-natural-gray-20 rounded-lg focus:outline-none focus:ring-0"
+            />
+
+            <button
+              type="submit"
+              className="w-full mt-4 py-2 bg-dark-blue text-white font-semibold rounded-lg transition"
+              disabled={isSaving}
+            >
+              {isSaving ? "Saving..." : "Save"}
+            </button>
+          </form>
+
+          <div className="text-sm text-natural-gray mt-4">
+            <p className="text-natural-black mb-1">
+              How we use your profile avatar and username?
+            </p>
+            Your avatar and username may be shown to others when you add an item to your cart, buy an item, or participate in a promo or event. To opt out, go to ‘Notifications – Avatar and username sharing’.
+          </div>
         </div>
-
-        {/* Name Input */}
-        <label className="block mt-4 text-gray-700 font-medium">Name</label>
-        <input
-          type="text"
-          value="Muhammad Arshad"
-          className="w-full px-3 py-2 border border-natural-gray-20 rounded-lg focus:outline-none focus:ring-0"
-        />
-
-        {/* Save Button */}
-        <button className="w-full mt-4 py-2 bg-dark-blue text-white font-semibold rounded-lg transition">
-          Save
-        </button>
-
-        {/* Info Text */}
-        <p className="text-sm text-natural-gray mt-4">
-          <p className='text-natural-black mb-1'>How we use your profile avatar and username?</p> 
-          Your avatar and username may be shown to others when you add an item to your cart, buy an item, or participate in a promo or event. To opt out, go to ‘Notifications – Avatar and username sharing’.
-        </p>
       </div>
     </div>
-                
-               </div>
-                       
-                     
-                   </div>
-                 )}
+  </div>
+)}
+
     </div>
     </div>
   )
