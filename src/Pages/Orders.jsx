@@ -959,7 +959,7 @@ const [country, setCountry] = useState("");
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
           onClick={closeModal2} // Click outside to close modal
         >
-          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
+          <div className={`${closing2 ? 'flyout-up' : 'jiggle-in'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg`} onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal2} // Close button inside modal
