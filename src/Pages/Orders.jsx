@@ -664,7 +664,7 @@ const [country, setCountry] = useState("");
             {order.standardDelivery.stores.map((store, idx) => (
               <>
               <div key={idx} className="mt-2 2xl:py-2 px-2 2xl:px-4">
-                <div className='border border-[#F2F2F2] rounded-[10px] p-2 2xl:p-3'>
+                <div className='border border-[#F2F2F2] rounded-[10px] p-2   2xl:p-3 '>
                 <div className='flex justify-between'>
                 <h4 className="font-medium flex gap-1 text-[#1A1A1A] ">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -959,7 +959,7 @@ const [country, setCountry] = useState("");
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
           onClick={closeModal2} // Click outside to close modal
         >
-          <div className={`${closing2 ? 'flyout-up' : 'jiggle-in'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg `} onClick={(e) => e.stopPropagation()}>
+          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal2} // Close button inside modal
