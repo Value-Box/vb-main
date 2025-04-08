@@ -246,7 +246,7 @@ function Collection() {
     </div>
 
 
-    {/* Filters Views */}
+    {/* Filters Views */} 
     <aside ref={sideBarRef}
         className={`hidden sm:block fixed top-[56px] left-0 z-40 w-72 p-4 bg-[#FCFCFC] shadow-md 
           transition-transform duration-600 transform ease-in-out ${
@@ -254,7 +254,7 @@ function Collection() {
           }`}
       >
       
-        <div className='relative h-screen'>
+        <div className='relative h-screen' onClick={(e)=>e.stopPropagation()}>
         <div className='flex justify-between'>
         <h2 className="text-lg font-semibold">FILTERS</h2>
         <button
