@@ -130,3 +130,34 @@ button{
 .border-natural-0 {
   border-color: var(--Natural-Color-0);
 }
+
+
+@keyframes jiggleIn {
+  0% { transform: scale(0.1) rotate(0deg); opacity: 0; }
+ 
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.jiggle-in {
+  animation: jiggleIn 0.4s ease;
+}
+
+/* Close animation - fly out up */
+@keyframes flyOutUp {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-40px); /* Thoda neeche jaye */
+  }
+  40% {
+    transform: translateY(40px); /* Thoda neeche jaye */
+  }
+  100% {
+    transform: translateY(-150vh); /* Screen se full upar nikal jaye */
+  }
+}
+
+.flyout-up {
+  animation: flyOutUp 0.6s ease-in-out forwards;
+}
