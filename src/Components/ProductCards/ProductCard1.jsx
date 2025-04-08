@@ -387,9 +387,20 @@ function ProductCard1() {
       
     // sale CountDown Timer end
 
-      const [activeModal, setActiveModal] = useState(null);
-      const openModal = (modalName) => setActiveModal(modalName);
-      const closeModal = () => setActiveModal(null);
+  const [activeModal, setActiveModal] = useState(null);
+  const [closing, setClosing] = useState(false); // New state for closing animation
+  const openModal = (modalName) => {
+    setActiveModal(modalName);
+    setClosing(false); // Reset closing animation when opening a new modal
+  };
+
+  const closeModal = () => {
+    setClosing(true); // Trigger closing animation
+    setTimeout(() => {
+      setActiveModal(null); // Close the modal after animation
+      setClosing(false);
+    }, 390); // Match the animation duration
+  };
 
       const [activeModal2, setActiveModal2] = useState(null);
       const openModal2 = (modalName) => setActiveModal2(modalName);
@@ -583,7 +594,7 @@ xl:max-w-[350px] xl:min-w-[270px] overflow-hidden duration-400 hover:shadow-lg g
         <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.10)] bg-opacity-50 
         px-5 md:p-0 z-1050" onClick={closeModal}>
         <div
-                  className="bg-white z-[10000px] p-5 m-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  className={`${closing ? 'animate-flyout' : 'animate-wiggle'} bg-white z-[10000px] p-5 m-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
