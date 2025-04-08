@@ -112,6 +112,7 @@ function OrderDetails() {
   
   const [isOpen, setIsOpen] = useState(false);
   const [selectedReasons, setSelectedReasons] = useState([]);
+  const [isClosing, setIsClosing] = useState(false);
 
   const reasons = [
     "Change of Delivery",
@@ -422,7 +423,8 @@ const tooltipRef = useRef(null);
           </button>
           <button 
   className="border border-gray-300 text-gray-500 lg:text-[16px] text-[14px] lg:px-6 py-2 rounded-lg" 
-  onClick={() => setIsOpen(true)} // ✅ Opens the modal
+   onClick={(e) => { 
+   e.preventDefault();  setIsOpen(true); setIsClosing(false)}}
 >
   Cancel Order
 </button>
@@ -563,13 +565,19 @@ const tooltipRef = useRef(null);
         >
           {/* Modal Box */}
           <div
-            className={`${isOpen?'animate-wiggle':'animate-wiggle'} bg-white p-7 rounded-lg shadow-lg w-[500px] relative flex flex-col gap-3`}
+            className={`${isClosing?'animate-flyout':'animate-wiggle'} bg-white p-7 rounded-lg shadow-lg w-[500px] relative flex flex-col gap-3`}
             onClick={(e) => e.stopPropagation()} // Prevents closing modal when clicking inside
           >
             {/* Close Button */}
             <button 
         className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
-        onClick={() => setIsOpen(false)}
+          onClick={() => {
+          setIsClosing(true)
+          setTimeout(()=>{
+          setIsOpen(false);
+          isMapTrue(false); 
+      },600)
+        }}
       >
         ✖
             </button>

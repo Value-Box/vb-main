@@ -9,6 +9,8 @@ import InfoSection from '../../Components/InfoSection';
 function LoginSignup() {
   const [showPassword, setShowPassword] = useState(false); 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     
   useEffect(() => {
@@ -100,11 +102,11 @@ function LoginSignup() {
               Continue
             </FormButton>
             <p 
-              className="mt-3 md:flex hidden text-center  cursor-pointer" 
-              onClick={() => setIsModalOpen(true)}
-             
-            >
-              Trouble Signing in?
+              className="mt-3 md:flex hidden text-center cursor-pointer" 
+                onClick={(e) => { 
+                e.preventDefault(); setIsModalOpen(true); setIsClosing(false)}}
+             >
+              Trouble Signing in? 
             </p>
           <span 
            className="mt-3 md:hidden flex justify-center text-center cursor-pointer" 
@@ -163,12 +165,26 @@ function LoginSignup() {
 
 {/* Reset Password Modal */}
 {isModalOpen && (
-  <div className="fixed inset-0 md:flex hidden items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
-    <div className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-lg shadow-lg relative">
+  <div className="fixed inset-0 md:flex hidden items-center p-10 justify-center bg-black/70" onClick={() => {
+    setIsClosing(true)
+    setTimeout(()=>{
+    setIsModalOpen(false);
+   isMapTrue(false); 
+},600)
+  }}>
+    <div className={`${isClosing?'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-lg shadow-lg relative`}>
        {/* Close Icon */}
        <button 
   className="absolute top-4 right-4 text-white cursor-pointer"
-  onClick={() => setIsModalOpen(false)}
+  onClick={() => {
+    setIsClosing(true)
+    setTimeout(()=>{
+    setIsModalOpen(false);
+   isMapTrue(false); 
+},600)
+  }}
+
+
 >
   <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white">
     ✖

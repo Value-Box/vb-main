@@ -215,7 +215,7 @@ const [cartData, setCartData] = useState([
         };
       // modal 1
       const [isModalOpen, setIsModalOpen] = useState(false);
-            const [isClosing, setIsClosing] = useState(false);
+       const [isClosing, setIsClosing] = useState(false);
       
       const collectionPoints = [
         {
@@ -440,7 +440,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     className="text-[#002882] underline" 
     onClick={(e) => { 
       e.preventDefault(); 
-      setIsInstalmentModalOpen(true); 
+      setIsInstalmentModalOpen(true); setIsClosing(false)
     }}
   >
     View more details
@@ -471,12 +471,14 @@ const [showOffersModal, setShowOffersModal] = useState(false);
 
            </div>
            <div className="flex gap-2.5 items-center ">
-           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC] cursor-pointer" onClick={() => setIsCardModalOpen(true)}>
+           <span className="flex p-2.5 flex-col justify-center items-center gap-2.5 rounded-[5px] border border-[#CCC] bg-[#FCFCFC] cursor-pointer"  onClick={(e) => { 
+           e.preventDefault();  setIsCardModalOpen(true); setIsClosing(false)}}>
            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 36 36" fill="none">
           <path d="M9 18H27M18 27L18 9" stroke="#999999" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
            </svg>
             </span>
-             <span className="text-black text-[18px] font-medium cursor-pointer" onClick={() => setIsCardModalOpen(true)}>Add New Card</span>            
+             <span className="text-black text-[18px] font-medium cursor-pointer"  onClick={(e) => { 
+           e.preventDefault();  setIsCardModalOpen(true); setIsClosing(false)}}>Add New Card</span>            
 
            </div>
            </div>
@@ -652,8 +654,8 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       <rect width="20" height="20" fill="white"/>
     </clipPath>
   </defs>
-</svg> Note: Installments are available for one product at a time during checkout</p>
-            </div>
+  </svg> Note: Installments are available for one product at a time during checkout</p>
+   </div>
          
       )}
        
@@ -982,7 +984,8 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     </button>
   </div>
   {/* Offers Section */}
-  <div className="flex items-center justify-between border bg-[#E6EAF3] border-gray-300 rounded-md px-3 py-2 cursor-pointer"  onClick={() => setShowOffersModal(true)}>
+  <div className="flex items-center justify-between border bg-[#E6EAF3] border-gray-300 rounded-md px-3 py-2 cursor-pointer"  onClick={(e) => { 
+    e.preventDefault();  setShowOffersModal(true); setIsClosing(false)}}>
     <div className="flex items-center space-x-2 cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <g clipPath="url(#clip0_7213_113152)">
@@ -1242,7 +1245,7 @@ setTimeout(()=>{
       )}
       {/* Modal 2 */}
        {isOpen && (
-       <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 backdrop-blur-sm">
+       <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 ">
         <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} `}>
 
        
@@ -1432,12 +1435,22 @@ setTimeout(()=>{
       )}
        {/* Modal 3 */}
        {isInstalmentModalOpen && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm"  onClick={() => setIsInstalmentModalOpen(false)}>
-    <div className={`${isInstalmentModalOpen?'animate-wiggle':'animate-flyout'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] relative flex flex-col`} onClick={(e)=>e.stopPropagation()}>
+  <div className="fixed inset-0 flex items-center justify-center bg-black/70 "  onClick={() => setIsInstalmentModalOpen(false)}>
+    <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] relative flex flex-col`} onClick={(e)=>e.stopPropagation()}>
       
       {/* Close Button */}
       <button  className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
-      onClick={() => setIsInstalmentModalOpen(false)} 
+      onClick={() => {
+        setIsClosing(true)
+        setTimeout(()=>{
+          setIsInstalmentModalOpen(false)
+        },600)
+      }}
+
+
+
+         
+         
   
 >
   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1531,10 +1544,10 @@ setTimeout(()=>{
       )}
        {/* Modal 4 */}
        {isCardModalOpen && (
-    <div className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 backdrop-blur-sm">
+    <div className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 ">
     {billingAddressOpen ? (  
       
-      <div className="bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative ">
+      <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative `}>
       <h2 className="text-[24px] font-semibold">Billing Address</h2>
     
    
@@ -1586,12 +1599,17 @@ setTimeout(()=>{
     </div>
     
     ) : (
-      <div className={`${isCardModalOpen?'animate-wiggle':'animate-flyout'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative `}>
+      <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative `}>
         
         {/* Close Button */}
         <button 
           className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
-          onClick={() => setIsCardModalOpen(false)}
+          onClick={() => {
+            setIsClosing(true)
+            setTimeout(()=>{
+            setIsCardModalOpen(false)
+            },600)
+          }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
   <g clipPath="url(#clip0_7135_111246)">
@@ -1842,13 +1860,23 @@ setTimeout(()=>{
       )}
       {/* Modal 5 */}
       {showOffersModal && (
-        <div className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 backdrop-blur-sm"  onClick={() => {setShowOffersModal(false) }}>
-          <div className={`${showOffersModal?'animate-wiggle':'animate-flyout'} bg-white p-6 rounded-lg shadow-lg w-[430px] relative`}>
-           <div className="max-w-lg mx-auto ">
+        <div className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 "  onClick={() => {
+          setIsClosing(true);
+          setTimeout(()=>{
+          setShowOffersModal(false)
+          },600);
+        }}>
+        <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-white p-6 rounded-lg shadow-lg w-[430px] relative`}>
+        <div className="max-w-lg mx-auto ">
             {/* Close Button */}
-      <button 
-        className="absolute  -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
-        onClick={() => {setShowOffersModal(false) }}
+        <button 
+        className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
+         onClick={() => {
+          setIsClosing(true);
+          setTimeout(()=>{
+          setShowOffersModal(false)
+          },600);
+        }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
           <g clipPath="url(#clip0_7135_111246)">
