@@ -9,26 +9,20 @@
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
     }
+
     @keyframes flyOutUp {
-      0% {
-        transform: translateY(0);
-      }
-      20% {
-        transform: translateY(-40px); /* Thoda neeche jaye */
-      }
-      40% {
-        transform: translateY(40px); /* Thoda neeche jaye */
-      }
-      100% {
-        transform: translateY(-150vh); /* Screen se full upar nikal jaye */
-      }
+      0% { transform: scale(1) rotate(0deg); opacity: 1; }
+   
+      100% { transform: scale(0.1) rotate(0deg); opacity: 0; }
     }
+
     @keyframes jiggleIn {
       0% { transform: scale(0.1) rotate(0deg); opacity: 0; }
    
       100% { transform: scale(1) rotate(0deg); opacity: 1; }
     }
   }
+  
   @theme {
     --breakpoint-xs: 25rem; /* ✅ 400px */
     --animate-flyout: flyOutUp 0.6s ease-in-out;

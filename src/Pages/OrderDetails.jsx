@@ -563,7 +563,7 @@ const tooltipRef = useRef(null);
         >
           {/* Modal Box */}
           <div
-            className="bg-white p-7 rounded-lg shadow-lg w-[500px] relative flex flex-col gap-3"
+            className={`${isOpen?'animate-wiggle':'animate-wiggle'} bg-white p-7 rounded-lg shadow-lg w-[500px] relative flex flex-col gap-3`}
             onClick={(e) => e.stopPropagation()} // Prevents closing modal when clicking inside
           >
             {/* Close Button */}
