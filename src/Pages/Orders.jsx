@@ -664,7 +664,7 @@ const [country, setCountry] = useState("");
             {order.standardDelivery.stores.map((store, idx) => (
               <>
               <div key={idx} className="mt-2 2xl:py-2 px-2 2xl:px-4">
-                <div className='border border-[#F2F2F2] rounded-[10px] p-2   2xl:p-3 '>
+                <div className='border border-[#F2F2F2] rounded-[10px] p-2 2xl:p-3'>
                 <div className='flex justify-between'>
                 <h4 className="font-medium flex gap-1 text-[#1A1A1A] ">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
