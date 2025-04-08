@@ -14,6 +14,7 @@ import FormButton from '../Components/FormButton';
 function Home() {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
+
     const images = [
         "https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
         "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80",
@@ -36,7 +37,7 @@ function Home() {
       },[currentIndex])
 
       const [showModal, setShowModal] = useState(false);
-
+      const [isClosing, setIsClosing] = useState(false);
       useEffect(() => {
         // Remove 'hasVisited' when project starts (not on reload)
         if (!sessionStorage.getItem("sessionStarted")) {
@@ -55,7 +56,7 @@ function Home() {
       }, []);
     
       const [visible, setVisible] = useState(true);
-
+      
   return (
     <div>
     <HorizentolCategories  />
@@ -189,12 +190,21 @@ function Home() {
  onClick={() => setShowModal(false)} // ❌ Background click closes modal
 >
  <div 
-   className="bg-[#FCFCFC] sm:p-4 2xl:p-7 rounded-lg shadow-lg max-w-[1920px] mx-auto w-[550px] flex flex-col gap-5 relative"
+   className={`${isClosing?'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] sm:p-4 2xl:p-7 rounded-lg shadow-lg max-w-[1920px] mx-auto w-[550px] flex flex-col gap-5 relative`}
    onClick={(e) => e.stopPropagation()} // ✅ Prevent closing on modal content click
  >
       <button 
         className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
-        onClick={() => setShowModal(false)} // 🛠️ Corrected Here!
+        onClick={() => {
+          setIsClosing(true)
+         setTimeout(()=>{
+         setShowModal(false);
+         isMapTrue(false); 
+      },600)
+        }}
+
+
+
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
           <g clipPath="url(#clip0_7135_111246)">
