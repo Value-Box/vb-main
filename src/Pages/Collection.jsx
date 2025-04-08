@@ -247,7 +247,7 @@ function Collection() {
 
 
     {/* Filters Views */}
-    <aside
+    <aside ref={sideBarRef}
         className={`hidden sm:block fixed top-[56px] left-0 z-40 w-72 p-4 bg-[#FCFCFC] shadow-md 
           transition-transform duration-600 transform ease-in-out ${
             filterSideBar ? "translate-x-0" : "-translate-x-full"
@@ -269,17 +269,11 @@ function Collection() {
         <p className="text-gray-500 text-sm mb-4">1000+ Products</p>
   
        <div className='h-full overflow-y-scroll max-h-[calc(100vh-56px)]'>
-         {/* Category Section */}
-         <div className="mb-4">
-        
-        
-      </div>
-      
 
       {/* Other Sections */}
       {filters.map((section, index) => (
         <div key={index} className="mb-2">
-          <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleSection(section.name)}>
+          <div className="flex justify-between items-center" onClick={() => toggleSection(section.name)}>
             <h3 className="font-medium">{section.name}</h3>
             {/* Dropdown Arrow */}
           </div>
