@@ -25,9 +25,9 @@
   
   @theme {
     --breakpoint-xs: 25rem; /* ✅ 400px */
-    --animate-flyout: flyOutUp 0.6s ease-in-out;
+    --animate-flyout: flyOutUp 0.4s ease-in-out;
 
-    --animate-wiggle: jiggleIn 0.6s ease-in-out ;
+    --animate-wiggle: jiggleIn 0.4s ease-in-out ;
 
   }
   

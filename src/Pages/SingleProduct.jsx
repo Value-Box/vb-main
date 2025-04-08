@@ -70,13 +70,40 @@ function ProductPage() {
 
   const [quantity, setQuantity] = useState(1);
 
-  const [activeModal, setActiveModal] = useState(null);
-  const openModal = (modalName) => setActiveModal(modalName);
-  const closeModal = () => setActiveModal(null);
+  // const [activeModal, setActiveModal] = useState(null);
+  // const openModal = (modalName) => setActiveModal(modalName);
+  // const closeModal = () => setActiveModal(null);
 
-  const [activeModal2, setActiveModal2] = useState(null);
-  const openModal2 = (modalName) => setActiveModal2(modalName);
-  const closeModal2 = () => setActiveModal2(null);
+  // const [activeModal2, setActiveModal2] = useState(null);
+  // const openModal2 = (modalName) => setActiveModal2(modalName);
+  // const closeModal2 = () => setActiveModal2(null);
+
+    const [activeModal, setActiveModal] = useState(null);
+    const [closing, setClosing] = useState(false); // New state for closing animation
+    const openModal = (modalName) => {
+      setActiveModal(modalName);
+      setClosing(false); // Reset closing animation when opening a new modal
+    };
+  
+    const closeModal = () => {
+      setClosing(true); // Trigger closing animation
+      setTimeout(() => {
+        setActiveModal(null); // Close the modal after animation
+      }, 390); // Match the animation duration
+    };
+  
+    const [activeModal2, setActiveModal2] = useState(null);
+    const [closing2, setClosing2] = useState(false);
+    const openModal2 = (modalName) => {
+      setActiveModal2(modalName);
+      setClosing2(false);
+    }
+    const closeModal2 = () => {
+      setClosing2(true); // Trigger closing animation
+      setTimeout(() => {
+        setActiveModal2(null); // Close the modal after animation
+      }, 390); // Match the animation duration
+    }
 
 
   const increaseQuantity = () => setQuantity(quantity + 1);
@@ -529,7 +556,7 @@ useEffect(() => {
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3 z-1060"
           onClick={closeModal} // Click outside to close modal
         >
-          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full" onClick={(e) => e.stopPropagation()}>
+          <div className={`${closing?'animate-flyout' : 'animate-wiggle'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full`} onClick={(e) => e.stopPropagation()}>
           
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
@@ -581,7 +608,7 @@ useEffect(() => {
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3 z-1070"
           onClick={closeModal2} // Click outside to close modal
         >
-          <div className="relative bg-white p-3 sm:p-6 rounded-lg shadow-lg " onClick={(e) => e.stopPropagation()}>
+          <div className={`${closing2?'animate-flyout' : 'animate-wiggle'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg `} onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal2} // Close button inside modal
@@ -807,7 +834,7 @@ useEffect(() => {
           </div>
 
           {/* Quantity & Buttons */}
-          <div className="flex items-center 2xl:gap-2 mt-4 bg-[#FEF6E6] p-2 rounded-lg cursor-pointer" onClick={() => openModal("installmentDetail")}>
+          <button className="flex items-center 2xl:gap-2 mt-4 bg-[#FEF6E6] p-2 rounded-lg " onClick={() => openModal("installmentDetail")}>
             <svg className="w-6 md:w-8 2xl:w-10"
               xmlns="http://www.w3.org/2000/svg"
               
@@ -882,13 +909,15 @@ useEffect(() => {
                 View more details
               </Link>
             </p>
-            {activeModal === "installmentDetail" && (
-             <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.4)] 
-              bg-opacity-50 px-5 md:p-0 z-1050"
-             onClick={closeModal}
+           
+          </button>
+          {activeModal === "installmentDetail" && (
+             <div
+             className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3 z-1060"
+             onClick={closeModal} // Click outside to close modal
            >
                 <div
-                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  className={`${closing?'animate-flyout' : 'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
@@ -956,7 +985,6 @@ useEffect(() => {
                 </div>
               </div>
             )}
-          </div>
           <div className="flex gap-4 mt-4 bg-[#F2F2F2] h-[1px]"></div>
           <p className="text-[#333] text-sm md:text-md 2xl:text-lg font-semibold ">
             Cabinet Color: EU Ship
@@ -1480,7 +1508,7 @@ useEffect(() => {
              onClick={closeModal}
            >
                 <div
-                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  className={`${closing?'animate-flyout' : 'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
@@ -1581,7 +1609,7 @@ useEffect(() => {
                 onClick={closeModal}
               >
                 <div
-                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  className={`${closing?'animate-flyout' : 'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
@@ -1733,7 +1761,7 @@ useEffect(() => {
                 onClick={closeModal}
               >
                 <div
-                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  className={`${closing?'animate-flyout' : 'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
@@ -2070,11 +2098,11 @@ useEffect(() => {
 
             {activeModal === "warentyReturn" && (
              <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.4)] 
-              bg-opacity-50 px-5 md:p-0 z-1050"
+              bg-opacity-50 px-5 md:p-0 z-1060"
              onClick={closeModal}
            >
                 <div
-                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  className={`${closing?'animate-flyout' : 'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
@@ -2175,7 +2203,7 @@ useEffect(() => {
                 onClick={closeModal}
               >
                 <div
-                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  className={`${closing?'animate-flyout' : 'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
@@ -2327,7 +2355,7 @@ useEffect(() => {
                 onClick={closeModal}
               >
                 <div
-                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  className={`${closing?'animate-flyout' : 'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}

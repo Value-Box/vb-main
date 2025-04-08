@@ -11,16 +11,23 @@ function EditReview() {
   const [reviewImages,setReviewImages]=useState([])
   const [reviewVideo,setReviewvideo]=useState(null)
   const [activeModal, setActiveModal] = useState(null);
+  const [closing, setClosing] = useState(false); // New state for closing animation
     
   const openModal = (modalName) => {
     if (rating.productquality >= 1 && rating.shippingservice >= 1 && rating.sellerservice >= 1) { // Ensure at least 1 star is selected
       setActiveModal(modalName);
+      setClosing(false);
     }else{
       return false
     }
   };
-  const closeModal = () => setActiveModal(null);
-
+  const closeModal = () => {
+    setClosing(true); // Trigger closing animation
+    setTimeout(() => {
+      setActiveModal(null); // Close the modal after animation
+      setClosing(false);
+    }, 390); // Match the animation duration
+  };
   const [rating, setRating] = useState({
     productquality: 0,
     shippingservice: 0,
@@ -335,7 +342,7 @@ function EditReview() {
             className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center p-3 items-center"
              // Click outside to close modal
           >
-            <div className="relative bg-natural-0 p-3 sm:p-6 rounded-[10px] sm:rounded-[15px] shadow-lg " 
+            <div className={`${closing ? 'animate-flyout' : 'animate-wiggle'} relative bg-natural-0 p-3 sm:p-6 rounded-[10px] sm:rounded-[15px] shadow-lg `} 
             onClick={(e) => e.stopPropagation()}>
             
                  

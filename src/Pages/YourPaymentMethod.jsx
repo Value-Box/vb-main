@@ -39,9 +39,20 @@ function YourPaymentMethod() {
     const [isToggled, setIsToggled] = useState(false);
 
     const [updatePayment,setUpdatePayment]=useState(null)
-    const [activeModal, setActiveModal] = useState(null);
-    const openModal = (modalName) => setActiveModal(modalName);
-    const closeModal = () => setActiveModal(null);
+  const [activeModal, setActiveModal] = useState(null);
+  const [closing, setClosing] = useState(false); // New state for closing animation
+  const openModal = (modalName) => {
+    setActiveModal(modalName);
+    setClosing(false); // Reset closing animation when opening a new modal
+  };
+
+  const closeModal = () => {
+    setClosing(true); // Trigger closing animation
+    setTimeout(() => {
+      setActiveModal(null); // Close the modal after animation
+      setClosing(false);
+    }, 390); // Match the animation duration
+  };
 
     const options = [
         { value: "punjab", label: "Punjab" },
@@ -185,7 +196,7 @@ function YourPaymentMethod() {
            
             <div className='flex items-center justify-between mt-3 '>
             <div className="flex gap-3 text-sm">
-              <button className=" hover:underline" onClick={()=>{openModal('contactLeopards');setUpdatePayment(index)}}>Edit</button>
+              <button className=" hover:underline" onClick={()=>{openModal('editCard');setUpdatePayment(index)}}>Edit</button>
               <p className='w-px bg-natural-gray-20'></p>
               <button className=" hover:underline">Delete</button>
             </div>
@@ -197,12 +208,12 @@ function YourPaymentMethod() {
       </div>
         </div>
 
-{activeModal === "contactLeopards" && (
+{activeModal === "editCard" && (
                    <div
-                     className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center p-3 items-center"
+                     className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center p-3 items-center z-100"
                      onClick={closeModal} // Click outside to close modal
                    >
-                     <div className="relative bg-natural-0 p-3 sm:p-6 rounded-[10px] sm:rounded-[15px] shadow-lg " onClick={(e) => e.stopPropagation()}>
+                     <div className={`${closing ? 'animate-flyout' : 'animate-wiggle'} relative bg-natural-0 p-3 sm:p-6 rounded-[10px] sm:rounded-[15px] shadow-lg`} onClick={(e) => e.stopPropagation()}>
                      <button
                          className="absolute -top-3 -right-3 bg-white rounded-full"
                          onClick={closeModal} // Close button inside modal

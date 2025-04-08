@@ -63,9 +63,21 @@ const reviews = [
 
 function MyProfile() {
    
-   const openModal = (modalName) => setActiveModal(modalName);
-    const closeModal = () => setActiveModal(null);
-    const [activeModal, setActiveModal] = useState(null);
+  const [activeModal, setActiveModal] = useState(null);
+  const [closing, setClosing] = useState(false); // New state for closing animation
+  const openModal = (modalName) => {
+    setActiveModal(modalName);
+    setClosing(false); // Reset closing animation when opening a new modal
+  };
+
+  const closeModal = () => {
+    setClosing(true); // Trigger closing animation
+    setTimeout(() => {
+      setActiveModal(null); // Close the modal after animation
+      setClosing(false);
+    }, 390); // Match the animation duration
+  };
+
   const [name, setName] = useState("Muhammad Arshad");
   const [profileImage, setProfileImage] = useState(null); // Initially null
   const [isSaving, setIsSaving] = useState(false);
@@ -146,7 +158,7 @@ function MyProfile() {
 />
         <div>
         <h2 className="text-lg font-semibold flex gap-1.5">
-        {name} <button onClick={()=>openModal('contactLeopards')}>
+        {name} <button onClick={()=>openModal('editProfile')}>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
   <path d="M15.9049 12.5339V16.2339C15.9047 16.7575 15.6966 17.2595 15.3265 17.6296C14.9563 17.9998 14.4543 18.2079 13.9308 18.2081H4.26326C4.00306 18.208 3.74544 18.1565 3.50521 18.0565C3.26498 17.9565 3.04687 17.8101 2.86342 17.6255C2.67997 17.441 2.5348 17.222 2.43624 16.9812C2.33767 16.7404 2.28767 16.4825 2.2891 16.2223V6.56561C2.28755 6.30582 2.33758 6.0483 2.43628 5.80798C2.53499 5.56767 2.6804 5.34933 2.86411 5.16562C3.04781 4.98192 3.26615 4.8365 3.50647 4.7378C3.74679 4.63909 4.0043 4.58906 4.2641 4.59061H7.96326" stroke="#999999" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
   <path d="M15.9039 7.99576L12.4997 4.59076M5.69141 13.6691V11.8649C5.69307 11.5674 5.81141 11.2816 6.02057 11.0708L13.9639 3.12743C14.0693 3.02085 14.1948 2.93624 14.3331 2.8785C14.4714 2.82075 14.6198 2.79102 14.7697 2.79102C14.9196 2.79102 15.068 2.82075 15.2064 2.8785C15.3447 2.93624 15.4702 3.02085 15.5756 3.12743L17.3681 4.91993C17.4747 5.02533 17.5593 5.15082 17.617 5.28915C17.6748 5.42747 17.7045 5.57587 17.7045 5.72576C17.7045 5.87566 17.6748 6.02406 17.617 6.16238C17.5593 6.30071 17.4747 6.4262 17.3681 6.5316L9.42474 14.4749C9.21352 14.6847 8.92825 14.8029 8.63057 14.8041H6.82641C6.6773 14.8043 6.52961 14.7751 6.3918 14.7181C6.254 14.6612 6.12879 14.5776 6.02335 14.4722C5.91791 14.3667 5.83432 14.2415 5.77736 14.1037C5.7204 13.9659 5.69119 13.8182 5.69141 13.6691Z" stroke="#999999" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
@@ -242,13 +254,13 @@ function MyProfile() {
     </div>
         </div>
 
-        {activeModal === "contactLeopards" && (
+        {activeModal === "editProfile" && (
   <div
     className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center p-3 items-center"
     onClick={closeModal}
   >
     <div
-      className="relative bg-white p-3 sm:p-6 rounded-[10px] sm:rounded-[15px] shadow-lg"
+      className={`${closing ? 'animate-flyout' : 'animate-wiggle'} relative bg-white p-3 sm:p-6 rounded-[10px] sm:rounded-[15px] shadow-lg`}
       onClick={(e) => e.stopPropagation()}
     >
       <button

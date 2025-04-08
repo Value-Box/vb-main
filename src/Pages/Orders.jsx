@@ -86,7 +86,8 @@ function Orders() {
     setClosing(true); // Trigger closing animation
     setTimeout(() => {
       setActiveModal(null); // Close the modal after animation
-    }, 600); // Match the animation duration
+      setClosing(false);
+    }, 390); // Match the animation duration
   };
 
   const [activeModal2, setActiveModal2] = useState(null);
@@ -99,7 +100,8 @@ function Orders() {
     setClosing2(true); // Trigger closing animation
     setTimeout(() => {
       setActiveModal2(null); // Close the modal after animation
-    }, 600); // Match the animation duration
+      setClosing2(false);
+    }, 390); // Match the animation duration
   }
 
   const [activeToolTip, setActiveToolTip] = useState(null);
@@ -870,7 +872,7 @@ const [country, setCountry] = useState("");
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
           onClick={closeModal} // Click outside to close modal
         >
-          <div className={`${closing ? 'flyout-up' : 'jiggle-in'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${closing ? 'animate-flyout' : 'animate-wiggle'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full`} onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal} // Close button inside modal
@@ -908,7 +910,7 @@ const [country, setCountry] = useState("");
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
           onClick={closeModal} // Click outside to close modal
         >
-          <div className={`${closing ? 'flyout-up' : 'jiggle-in'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${closing ? 'animate-flyout' : 'animate-wiggle'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full`} onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal} // Close button inside modal
@@ -959,7 +961,7 @@ const [country, setCountry] = useState("");
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
           onClick={closeModal2} // Click outside to close modal
         >
-          <div className={`${closing2 ? 'flyout-up' : 'jiggle-in'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${closing2 ? 'animate-flyout' : 'animate-wiggle'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg`} onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal2} // Close button inside modal
@@ -1024,7 +1026,7 @@ const [country, setCountry] = useState("");
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
           onClick={closeModal} // Click outside to close modal
         >
-          <div className={`${closing ? 'flyout-up' : 'jiggle-in'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${closing ? 'animate-flyout' : 'animate-wiggle'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg max-w-[800px] w-full`} onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal} // Close button inside modal
@@ -1075,7 +1077,7 @@ const [country, setCountry] = useState("");
           className="fixed inset-0 bg-[#00000042] bg-opacity-50 flex justify-center items-center p-3"
           onClick={closeModal2} // Click outside to close modal
         >
-          <div className={`${closing2 ? 'flyout-up' : 'jiggle-in'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg `} onClick={(e) => e.stopPropagation()}>
+          <div className={`${closing2 ? 'animate-flyout' : 'animate-wiggle'} relative bg-white p-3 sm:p-6 rounded-lg shadow-lg `} onClick={(e) => e.stopPropagation()}>
           <button
               className="absolute -top-3 -right-3 bg-white rounded-full"
               onClick={closeModal2} // Close button inside modal

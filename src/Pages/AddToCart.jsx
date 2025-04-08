@@ -177,11 +177,22 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
 };
 
   const [activeModal, setActiveModal] = useState(null);
-  const openModal = (modalName) => setActiveModal(modalName);
-  const closeModal = () => setActiveModal(null);
-  useEffect(() => {
-    
-  }, [activeModal]);
+  const [closing, setClosing] = useState(false); // New state for closing animation
+  // const openModal = (modalName) => setActiveModal(modalName);
+  const openModal = (modalName) => {
+    setActiveModal(modalName);
+    setClosing(false); // Reset closing animation when opening a new modal
+  };
+  // const closeModal = () => setActiveModal(null);
+
+  const closeModal = () => {
+    setClosing(true); // Trigger closing animation
+    setTimeout(() => {
+      setActiveModal(null); // Close the modal after animation
+      setClosing(false);
+    }, 390); // Match the animation duration
+  };
+
       
     const [openPopup, setOpenPopup] = useState(null);
     const [isAnimating, setIsAnimating] = useState(false);
@@ -538,11 +549,11 @@ const handleItemCheckboxChange = (storeIndex, itemIndex) => {
 </button>
 {activeModal === "availableOffers" && (
              <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.4)] 
-             backdrop-blur-xs bg-opacity-50 px-5 md:p-0 z-1050"
+             bg-opacity-50 px-5 md:p-0 z-1050"
              onClick={closeModal}
            >
                 <div
-                  className="bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative"
+                  className={`${closing ? 'animate-flyout' : 'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-2xl shadow-lg relative`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
