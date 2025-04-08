@@ -672,15 +672,17 @@ const [showOffersModal, setShowOffersModal] = useState(false);
              <div>
              <h3 className="text-[20px] font-semibold">ORDER ITEMS</h3>
              <div className="mt-4 min-h-screen">
-  <div className="bg-white rounded-[10px] border border-[#CCD1D2] overflow-hidden">
-    <div className='flex items-center gap-1.5 bg-[#F2F2F2] p-2 '>
-    <CheckBox id='stantardDelItems'  checked={cartData.every(store => 
+  <div className="bg-white rounded-lg border border-[#CCD1D2] overflow-hidden">
+    <div className='flex items-center justify-between gap-1.5 bg-[#F2F2F2] p-2 '>
+      <div className="flex items-center gap-1.5">
+      <CheckBox id='stantardDelItems'  checked={cartData.every(store => 
         store.items.filter(item => item.delivery === "Standard").every(item => item.checked)
       )}
       onChange={(e) => {
         cartData.forEach((_, index) => handleDeliveryCheckBox(index, "Standard", e.target.checked));
       }} />
-    <label className="text-xl 2xl:text-2xl font-medium flex items-center gap-2 select-none" htmlFor='stantardDelItems'>Standard Delivery <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+     
+      <label className="text-xl 2xl:text-2xl font-medium flex items-center gap-2 select-none" htmlFor='stantardDelItems'>Standard Delivery <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 <g clip-path="url(#clip0_7110_91286)">
 <path d="M10 18.75C7.67936 18.75 5.45376 17.8281 3.81282 16.1872C2.17187 14.5462 1.25 12.3206 1.25 10C1.25 7.67936 2.17187 5.45376 3.81282 3.81282C5.45376 2.17187 7.67936 1.25 10 1.25C12.3206 1.25 14.5462 2.17187 16.1872 3.81282C17.8281 5.45376 18.75 7.67936 18.75 10C18.75 12.3206 17.8281 14.5462 16.1872 16.1872C14.5462 17.8281 12.3206 18.75 10 18.75ZM10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 7.34784 18.9464 4.8043 17.0711 2.92893C15.1957 1.05357 12.6522 0 10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20Z" fill="#667479"/>
 <path d="M11.1624 8.235L8.29994 8.59375L8.19744 9.06875L8.75994 9.1725C9.12744 9.26 9.19994 9.3925 9.11994 9.75875L8.19744 14.0938C7.95494 15.215 8.32869 15.7425 9.20744 15.7425C9.88869 15.7425 10.6799 15.4275 11.0387 14.995L11.1487 14.475C10.8987 14.695 10.5337 14.7825 10.2912 14.7825C9.94744 14.7825 9.82244 14.5413 9.91119 14.1163L11.1624 8.235ZM11.2499 5.625C11.2499 5.95652 11.1182 6.27446 10.8838 6.50888C10.6494 6.7433 10.3315 6.875 9.99994 6.875C9.66842 6.875 9.35048 6.7433 9.11606 6.50888C8.88164 6.27446 8.74994 5.95652 8.74994 5.625C8.74994 5.29348 8.88164 4.97554 9.11606 4.74112C9.35048 4.5067 9.66842 4.375 9.99994 4.375C10.3315 4.375 10.6494 4.5067 10.8838 4.74112C11.1182 4.97554 11.2499 5.29348 11.2499 5.625Z" fill="#667479"/>
@@ -691,12 +693,20 @@ const [showOffersModal, setShowOffersModal] = useState(false);
 </clipPath>
 </defs>
 </svg></label>
+      </div>
+   
+<label htmlFor="">3/2500</label>
+      
+    
     </div>
     <div className='p-3 2xl:p-6 flex flex-col gap-4 2xl:gap-6'>
     {cartData.map((store, index) => (
       store.items.some(item=>item.delivery==='Standard')&&(
       <div key={index} className="bg-[#FCFCFC] border border-[#F2F2F2] rounded-[10px] p-4">
         <h3 className="font-semibold text-gray-700 flex gap-1.5 items-center">
+          <div>
+
+          </div>
         <CheckBox 
   id={store.id} 
   checked={store.items.every(item => item.checked)} // Sab checked hain to store bhi checked hoga
@@ -809,9 +819,10 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     </div>
   </div>
 
-  <div className="bg-white rounded-[10px] border border-[#CCD1D2] overflow-hidden mt-3">
-    <div className='flex items-center gap-1.5 bg-gradient-to-b from-[#FFE09E] to-[#FFFCF4] p-2 '>
-    <CheckBox id='expressDelItems' checked={cartData.every(store => 
+  <div className="bg-white rounded-lg                                                                                              border border-[#CCD1D2] overflow-hidden mt-3">
+    <div className='flex justify-between items-center gap-1.5 bg-gradient-to-b from-[#FFE09E] to-[#FFFCF4] p-2 '>
+      <div className="flex items-center gap-1.5">
+      <CheckBox id='expressDelItems' checked={cartData.every(store => 
         store.items.filter(item => item.delivery === "Express").every(item => item.checked)
       )}
       onChange={(e) => {
@@ -833,6 +844,8 @@ const [showOffersModal, setShowOffersModal] = useState(false);
 </clipPath>
 </defs>
 </svg></label>
+      </div>
+      <label htmlFor="">3/2500</label>
     </div>
     <div className='p-3 2xl:p-6 flex flex-col gap-4 2xl:gap-6'>
     {cartData.map((store, index) => (
