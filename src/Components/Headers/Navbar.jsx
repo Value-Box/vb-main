@@ -345,6 +345,7 @@ function Navbar() {
         window.removeEventListener("mousedown", clickOutside);
       };
     }, []);
+     const [mobSearchInp,setMobSearchInp]=useState(false)
     
   return (
     <>
@@ -391,7 +392,7 @@ function Navbar() {
               <VerticalCategories/>
             </div>
 
-            <div className="relative bg-white p-1 2xl:p-[5px] rounded-lg sm:flex max-w-[800px] mx-2 w-full hidden">
+            <div className="relative bg-white p-1 2xl:p-[5px] rounded-lg hidden sm:flex max-w-[800px] mx-2 w-full ">
               <input type="text" className="w-full px-2 outline-none 2xl:text-[20px]" value={searchInput}
               onChange={(e)=>setSearchInput(e.target.value)}/>
               <Link to='/SearchPage' className="bg-[#002882] 2xl:px-[16px] cursor-pointer 2xl:py-[6px] py-[3px] px-[12px] rounded-[5px]"
@@ -410,6 +411,7 @@ function Navbar() {
                   />
                 </svg>
               </Link>
+              
               <div ref={suggestionContainer} className={`${suggestions.length > 0?'block':'hidden'} absolute right-0 top-[100%] bg-white w-full p-2 shadow-md rounded-b`}>
   {suggestions.length > 0 &&
     suggestions.map((item, index) => (
@@ -424,8 +426,56 @@ function Navbar() {
 </div>
 
             </div>
+                <div className={`${mobSearchInp?'opacity-100 translate-y-0':'opacity-0 translate-y-[-100%]'} absolute top-15 w-full shadow-xl transition-all duration-400 ease-in-out`}>
+                  <div className="relative bg-white p-1 2xl:p-[5px] rounded-[6px] flex sm:hidden max-w-[800px] w-full ">
+              <input type="text" className="w-full px-2 outline-none 2xl:text-[20px]" value={searchInput}
+              onChange={(e)=>setSearchInput(e.target.value)}/>
+              <Link to='/SearchPage' className="bg-[#002882] 2xl:px-[16px] cursor-pointer 2xl:py-[6px] py-[3px] px-[12px] rounded-[5px]"
+              >
+                {/* <i className="fa-solid fa-magnifying-glass text-[#E6EAF3]"></i> */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="24"
+                  viewBox="0 0 25 24"
+                  fill="none"
+                >
+                  <path
+                    d="M15.9434 14.2929C15.5529 13.9024 14.9197 13.9024 14.5292 14.2929C14.1387 14.6834 14.1387 15.3166 14.5292 15.7071L15.9434 14.2929ZM20.5292 21.7071C20.9197 22.0976 21.5529 22.0976 21.9434 21.7071C22.334 21.3166 22.334 20.6834 21.9434 20.2929L20.5292 21.7071ZM10.2363 16C6.92262 16 4.23633 13.3137 4.23633 10H2.23633C2.23633 14.4183 5.81805 18 10.2363 18V16ZM4.23633 10C4.23633 6.68629 6.92262 4 10.2363 4V2C5.81805 2 2.23633 5.58172 2.23633 10H4.23633ZM10.2363 4C13.55 4 16.2363 6.68629 16.2363 10H18.2363C18.2363 5.58172 14.6546 2 10.2363 2V4ZM16.2363 10C16.2363 13.3137 13.55 16 10.2363 16V18C14.6546 18 18.2363 14.4183 18.2363 10H16.2363ZM14.5292 15.7071L20.5292 21.7071L21.9434 20.2929L15.9434 14.2929L14.5292 15.7071Z"
+                    fill="#E6EAF3"
+                  />
+                </svg>
+              </Link>
+              
+              <div ref={suggestionContainer} className={`${suggestions.length > 0?'block':'hidden'} absolute right-0 top-[100%] bg-white w-full p-2 shadow-md rounded-b`}>
+  {suggestions.length > 0 &&
+    suggestions.map((item, index) => (
+      <h1 key={index} className="py-2 text-sm cursor-pointer font-medium hover:text-[#002882]" onClick={()=>{
+        setSearchInput(item);
+      setSuggestions([])
+      }}>
+        {item}
+      </h1>
+    ))
+  }
+</div>
+
+            </div>
+                </div>
+
             <div className="relative inset-y-0 right-0 flex items-center pr-2 sm:static ml-auto sm:inset-auto sm:ml-4 sm:pr-0">
               {/* Profile dropdown */}
+              <button className="block sm:hidden" onClick={()=>setMobSearchInp((prev)=>!prev)}>
+              <svg 
+                  xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" >
+                  <path
+                    d="M15.9434 14.2929C15.5529 13.9024 14.9197 13.9024 14.5292 14.2929C14.1387 14.6834 14.1387 15.3166 14.5292 15.7071L15.9434 14.2929ZM20.5292 21.7071C20.9197 22.0976 21.5529 22.0976 21.9434 21.7071C22.334 21.3166 22.334 20.6834 21.9434 20.2929L20.5292 21.7071ZM10.2363 16C6.92262 16 4.23633 13.3137 4.23633 10H2.23633C2.23633 14.4183 5.81805 18 10.2363 18V16ZM4.23633 10C4.23633 6.68629 6.92262 4 10.2363 4V2C5.81805 2 2.23633 5.58172 2.23633 10H4.23633ZM10.2363 4C13.55 4 16.2363 6.68629 16.2363 10H18.2363C18.2363 5.58172 14.6546 2 10.2363 2V4ZM16.2363 10C16.2363 13.3137 13.55 16 10.2363 16V18C14.6546 18 18.2363 14.4183 18.2363 10H16.2363ZM14.5292 15.7071L20.5292 21.7071L21.9434 20.2929L15.9434 14.2929L14.5292 15.7071Z"
+                    fill="#002882"
+                  />
+              </svg>
+              </button>
+              
+              
               <div className="relative ml-3 flex gap-3 xl:gap-8  items-center">
                 <div className="relative group" ref={dropdownRef}>
                   {/* Button */}

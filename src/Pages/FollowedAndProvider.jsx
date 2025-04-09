@@ -41,7 +41,7 @@ function FollowedAndProvider() {
       <div className="flex items-center p-4 pr-6 ">
       <NavLink to="/OrderDetails">
       <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-  <path d="M21 12L15 18L21 24" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21 12L15 18L21 24" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
       </NavLink>
         <div className="relative flex-1 items-center">
@@ -65,14 +65,14 @@ function FollowedAndProvider() {
       <span className='text-[24px]'>Following</span>
         <a href="#" className="text-sm flex items-center">
           See All <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M10 8L14 12L10 16" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 8L14 12L10 16" stroke="#333333" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>   
         </a>
       </div>
-      <div className="flex gap-2 md:gap-4 overflow-x-auto scrollbar-hide">
+      <div className="flex flex-wrap gap-2 md:gap-4 overflow-x-auto scrollbar-hide">
         {users.map((user) => (
-          <NavLink to='/SellerStore'>
-   <div key={user.id} className="flex flex-col items-center min-w-[25%] md:min-w-[120px]">
+          <NavLink to='/SellerStore' key={user.id}>
+   <div  className="flex flex-col items-center min-w-[25%] md:min-w-[120px]">
             <img
               src={user.img}
               alt="User"
@@ -91,7 +91,7 @@ function FollowedAndProvider() {
         <span className='text-[24px]'>Provider Updates</span>
      <a href="#" className="text-sm flex items-center">
           See All <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M10 8L14 12L10 16" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 8L14 12L10 16" stroke="#333333" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>   
         </a>
         </div>

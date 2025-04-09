@@ -53,7 +53,7 @@ function LoginSignup() {
      <div className="flex w-full">
      <div className="flex items-center justify-center w-[50%] bg-gray-200 hidden md:block">
   <img 
-    className="w-full h-full object-contain"
+    className="w-full h-[93.8vh] object-cover"
     src={LoginImage}
     alt="Login Page"
   />
