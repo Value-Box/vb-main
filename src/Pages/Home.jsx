@@ -223,8 +223,8 @@ function Home() {
         </svg>
       </button>
       <div className="w-full flex items-center justify-center">
-        <form className=" px-2 sm:px-5 md:px-2">
-        <div className='hidden md:block'>
+        <form className=" px-2 py-2 sm:px-5 md:px-2">
+        <div className=''>
         <h2 className="text-2xl text-center font-bold">Register/Sign in</h2>
         <div className="py-2 text-center flex items-center justify-center gap-1">
   <div className="2xl:w-4 2xl:h-4 flex items-center justify-center bg-[#12B76A] rounded-full border border-[#12B76A]">

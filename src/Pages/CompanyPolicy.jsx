@@ -35,62 +35,56 @@ function CompanyPolicy() {
         
       <div className="px-3 sm:px-6 md:px-12 text-natural-gray pt-5">
         <h1 className="text-xl md:text-2xl font-bold sm:text-center text-dark-blue mb-4">
-          Title of the information
+        ValueBox - Privacy Policy
         </h1>
         
-        <p className="font-semibold text-[#333]">Lorem ipsum dolor sit amet consectetur.</p>
         <p className=" mt-2">
-          Quisque luctus elementum urna faucibus id tortor lacus morbi. Iaculis egestas urna ut pellentesque. Arcu amet sit imperdiet viverra semper. 
-          Urna massa euismod libero viverra rhoncus.
+        At value box, your protection and the security of your information is our primary goal. We will guarantee that your security is safeguarded while utilizing our administrations.
         </p>
         
         <p className=" mt-4">
-          Turpis morbi lacinia risus ac sit imperdiet proin. Sed fames interdum suspendisse turpis varius ornare arcu sed.
-        </p>
+        The accompanying protection strategy applies to the whole of value box client confronting communication channels including this site and all pages related with the www.valuebox.pk space.
+
+</p>
         
         <p className=" mt-4">
-          Nulla odio risus amet suscipit metus hendrerit luctus aliquam scelerisque. Arcu eget elit nunc a in tellus. 
-          Ac quis viverra nisl at vestibulum sodales sagittis turpis enim.
+        This strategy makes sense of what we view as confidential information, who approaches it and how that information is utilized in a protected way.
+
+
         </p>
         
-        <h2 className="text-lg text-[#333] font-semibold mt-6">Massa vestibulum platea vulputate aliquam. Scelerisque</h2>
         <p className=" mt-2">
-          Nibh turpis suspendisse mauris sit. Pulvinar tincidunt vel fermentum ut est in praesent.
-        </p>
+        We will hold your own information just however long is essential for the reasons set out in this Security Strategy.
+
+</p>
         
         <p className=" mt-4">
-          Consequat elementum purus egestas praesent egestas. Ipsum pretium eu lorem semper malesuada sapien et sed ullamcorper.
-        </p>
+        We will hold and utilize your own information to the degree important to consent to our legitimate commitments (for instance, assuming we are expected to hold your information to follow appropriate regulations), resolve debates, and uphold our lawful arrangements and strategies.        </p>
+        <p className=" mt-4">
+        We will likewise hold use information for inward examination purposes.        </p>
+        <p className=" mt-4">
+        Use Information is by and large held for a more limited timeframe, with the exception of when this information is utilized to reinforce security or to work on the nature of our administration, or we are lawfully committed to hold this information for longer time spans.        </p>
+        <p className=" mt-4">
+        After the need to keep the information is finished, the information is erased from the framework right away and can't be recuperated by any clients or our workers after this point.
+
+</p>
+        <p className=" mt-4">
+        Information which has been erased or generally annihilated can't be recuperated whenever.
+
+</p>
+        <p className=" mt-4">
+        Adequate admonition is given to the record manager before information are for all time erased.
+
+</p>
+        <p className=" mt-4">
+        Information might in any case stay in the frameworks back-up documents, which will be erased occasionally. You can likewise demand to have your information erased by contacting us at care@valuebox.pk or fill Contact Form.        </p>
+        <p className=" mt-4">
+        We embrace to play out the cancellation in no less than one month (30 schedule days). At every possible opportunity, we will expect to finish the solicitation ahead of the cutoff time.
+
+</p>
+        
       </div>
-      <div className="px-3 sm:px-6 md:px-12 text-natural-gray pt-10">
-        <h1 className="text-xl md:text-2xl font-bold sm:text-center text-dark-blue mb-4">
-          Title of the information
-        </h1>
-        
-        <p className="font-semibold text-[#333]">Lorem ipsum dolor sit amet consectetur.</p>
-        <p className=" mt-2">
-          Quisque luctus elementum urna faucibus id tortor lacus morbi. Iaculis egestas urna ut pellentesque. Arcu amet sit imperdiet viverra semper. 
-          Urna massa euismod libero viverra rhoncus.
-        </p>
-        
-        <p className=" mt-4">
-          Turpis morbi lacinia risus ac sit imperdiet proin. Sed fames interdum suspendisse turpis varius ornare arcu sed.
-        </p>
-        
-        <p className=" mt-4">
-          Nulla odio risus amet suscipit metus hendrerit luctus aliquam scelerisque. Arcu eget elit nunc a in tellus. 
-          Ac quis viverra nisl at vestibulum sodales sagittis turpis enim.
-        </p>
-        
-        <h2 className="text-lg text-[#333] font-semibold mt-6">Massa vestibulum platea vulputate aliquam. Scelerisque</h2>
-        <p className=" mt-2">
-          Nibh turpis suspendisse mauris sit. Pulvinar tincidunt vel fermentum ut est in praesent.
-        </p>
-        
-        <p className=" mt-4">
-          Consequat elementum purus egestas praesent egestas. Ipsum pretium eu lorem semper malesuada sapien et sed ullamcorper.
-        </p>
-      </div>
+
     
 
       <div className="w-full px-3 sm:px-6 md:px-12 mt-4 2xl:mt-8 mb-8 2xl:mb-10">

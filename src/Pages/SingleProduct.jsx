@@ -516,6 +516,7 @@ useEffect(() => {
   };
 
   const[reviewImage,setReviewImage]=useState(null)
+  const[close,setClose]=useState(false)
 
   useEffect(()=>{
     console.log(reviewImage)
@@ -528,15 +529,21 @@ useEffect(() => {
     return ()=> window.removeEventListener('keydown',handleKeyDown)
   },[])
 
+  const closeReviewImage=()=>{
+    setClose(true)
+    setTimeout(() => {
+      setReviewImage(null)
+    }, 390);
+  }
   return (
     <>
 
 
     {reviewImage !== null && (
-  <div className="fixed inset-0 bg-[#00000052] bg-opacity-75 flex items-center justify-center z-50" onClick={() => setReviewImage(null)}>
-    <div className="relative" onClick={(e)=>e.stopPropagation()}>
+  <div className="fixed inset-0 bg-[#00000052] bg-opacity-75 flex items-center justify-center z-50" onClick={closeReviewImage}>
+    <div className={`${close?'animate-flyout' : 'animate-wiggle'} relative`} onClick={(e)=>e.stopPropagation()}>
       <button
-        onClick={() => setReviewImage(null)}
+        onClick={closeReviewImage}
         className="absolute w-7 h-7 flex items-center justify-center top-2 right-2 bg-white text-black rounded-full p-2 shadow"
       >
         ✕
@@ -1121,7 +1128,7 @@ useEffect(() => {
                   {userRatingimages.map((src, index) => (
                     <img
                       key={index}
-                      src={src} onClick={()=>setReviewImage(index)}
+                      src={src} onClick={()=>{setReviewImage(index);setClose(false)}}
                       alt={`Customer ${index + 1}`}
                       className="w-20 h-20 aspect-square select-none object-cover rounded-lg shadow "
                     />
