@@ -162,18 +162,18 @@ function Collection() {
         });
       };
         // Close sidebar if user clicks outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (sideBarRef.current && !sideBarRef.current.contains(event.target)) {
-        setFilterSideBar(false); // ✅ Sidebar band ho jaye ga
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (sideBarRef.current && !sideBarRef.current.contains(event.target)) {
+  //       setFilterSideBar(false); // ✅ Sidebar band ho jaye ga
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <>
