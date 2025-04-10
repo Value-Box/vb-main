@@ -187,7 +187,12 @@ function Home() {
     {showModal && (
  <div 
  className="fixed inset-0 flex items-center p-4 md:p-6 2xl:p-10 justify-center bg-black/70 z-[9999]" 
- onClick={() => setShowModal(false)} // ❌ Background click closes modal
+ onClick={() => {
+  setIsClosing(true)
+ setTimeout(()=>{
+ setShowModal(false);
+},390)
+}} // ❌ Background click closes modal
 >
  <div 
    className={`${isClosing?'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] sm:p-4 2xl:p-7 rounded-lg shadow-lg max-w-[1920px] mx-auto w-[550px] flex flex-col gap-5 relative`}
@@ -199,8 +204,7 @@ function Home() {
           setIsClosing(true)
          setTimeout(()=>{
          setShowModal(false);
-         isMapTrue(false); 
-      },600)
+      },390)
         }}
 
 

@@ -1,8 +1,12 @@
 import React, { useState ,useEffect,useRef} from "react";
 import Logo from "/src/Images/Logo.png";
 import ProductImg from "/src/Images/ProductCard.png";
-import {  NavLink,Link} from 'react-router-dom'
+import {  NavLink,Link, useNavigate} from 'react-router-dom'
 import VerticalCategories from "./../Categories/VerticalCategories";
+import { auth } from "../../firebaseConfig";
+import { signOut } from "firebase/auth";
+
+
 
 const Products=[
   'Portable Wood Laptop Table for Bed – Folding Desk for Gaming & Home Use',
@@ -19,6 +23,24 @@ const Products=[
 ]
 
 function Navbar() {
+
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+  
+//   useEffect(() => {
+//    if (!user) {
+//      navigate("/home");
+//    }
+//  }, [navigate, user]);
+
+ const handleLogout = () => {
+   signOut(auth).then(() => {
+     localStorage.removeItem("user");
+    //  navigate("/LoginSignup");
+   });
+ };
+
+ 
   const [isTrue, setIsTrue] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -279,6 +301,7 @@ function Navbar() {
         </svg>
       ),
       link: "",
+      onclick: handleLogout
     },
   ];
 
@@ -346,6 +369,8 @@ function Navbar() {
       };
     }, []);
      const [mobSearchInp,setMobSearchInp]=useState(false)
+
+    
     
   return (
     <>
@@ -479,6 +504,7 @@ function Navbar() {
               <div className="relative ml-3 flex gap-3 xl:gap-8  items-center">
                 <div className="relative group" ref={dropdownRef}>
                   {/* Button */}
+                  {user?(
                   <button onClick={() => {
           if (screenWidth < 640) {
             setDropdownOpen((prev) => !prev); // Toggle dropdown state
@@ -501,7 +527,8 @@ function Navbar() {
                         Welcome
                       </p>
                       <span className="text-[#1A1A1A] font-semibold text-[13px] lg:text-sm xl:text-base flex items-center">
-                        Muhammad Arshad
+                        {/* Muhammad Arshad */}
+                        {user?(user.displayName):('Login Sign/Up')}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -519,7 +546,43 @@ function Navbar() {
                       </span>
                     </div>
                   </button>
-
+):(
+<Link to='/LoginSignup' 
+                    type="button"
+                    className="relative hidden sm:flex gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
+                    id="user-menu-button"
+                    aria-haspopup="true"
+                    // Toggle onClick
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 md:w-7 2xl:w-9" viewBox="0 0 36 36" fill="none">
+  <path d="M18 18C22.1421 18 25.5 14.6421 25.5 10.5C25.5 6.35786 22.1421 3 18 3C13.8579 3 10.5 6.35786 10.5 10.5C10.5 14.6421 13.8579 18 18 18Z" stroke="#1A1A1A" stroke-width="2.5"/>
+  <path d="M25.5001 21H26.0281C27.1247 21.0003 28.1835 21.401 29.0055 22.1269C29.8275 22.8528 30.3561 23.8538 30.4921 24.942L31.0786 29.628C31.1313 30.0501 31.0937 30.4787 30.9682 30.8852C30.8427 31.2917 30.6321 31.6668 30.3505 31.9857C30.0689 32.3046 29.7227 32.56 29.3349 32.7348C28.9471 32.9097 28.5265 33.0001 28.1011 33H7.89909C7.47366 33.0001 7.05308 32.9097 6.66526 32.7348C6.27744 32.56 5.93124 32.3046 5.64965 31.9857C5.36807 31.6668 5.15752 31.2917 5.032 30.8852C4.90647 30.4787 4.86884 30.0501 4.92159 29.628L5.50659 24.942C5.64264 23.8533 6.17171 22.8519 6.99434 22.1259C7.81696 21.4 8.87646 20.9996 9.97359 21H10.5001" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                    <div className="hidden md:block">
+                      <p className="text-[10px] text-start xl:text-xs font-semibold text-[#333]">
+                        Welcome
+                      </p>
+                      <span className="text-[#1A1A1A] font-semibold text-[13px] lg:text-sm xl:text-base flex items-center">
+                        {/* Muhammad Arshad */}
+                        {user?(user.displayName):('Login Sign/Up')}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="18"
+                          viewBox="0 0 20 18"
+                          fill="none"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M10.1075 11.8925L5.39333 7.17833L6.57167 6L10.6967 10.125L14.8217 6L16 7.17833L11.2858 11.8925C11.1296 12.0487 10.9176 12.1365 10.6967 12.1365C10.4757 12.1365 10.2638 12.0487 10.1075 11.8925Z"
+                            fill="#1A1A1A"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </Link>
+)}
                   <button onClick={() => {setDropdownOpen((prev) => !prev);}}
                     type="button"
                     className="relative flex sm:hidden gap-2 rounded-full w-max cursor-pointer text-sm focus:outline-none"
@@ -538,7 +601,8 @@ function Navbar() {
                   {/* Dropdown Menu */}
 
                   {/* Hover Effect */}
-                  <div ref={dropdownRef}
+                  {user?(
+                    <div ref={dropdownRef}
     className={`absolute bg-[#F2F2F2] shadow-md rounded-lg transition-all duration-300 ease-in-out 
     translate-y-2 opacity-0 scale-95 flex gap-5 justify-end sm:left-0 w-[200px] sm:w-[250px] md:w-[300px] left-1/2 
     transform md:-translate-x-1/2 -translate-x-2/2 z-50 group-hover:opacity-100 
@@ -594,8 +658,12 @@ function Navbar() {
                           {profilPopup.map((item,index) => (
                             <React.Fragment key={index}>
                            
-                              <li >
-                                <NavLink to={item.link} onClick={()=>setDropdownOpen(false)} className="flex items-center gap-2 cursor-pointer text-xs 2xl:text-base">
+                              <li>
+                                <NavLink to={item.link} onClick={()=>{
+                                  if(item.onclick){
+                                    item.onclick()
+                                  }
+                                  setDropdownOpen(false)}} className="flex items-center gap-2 cursor-pointer text-xs 2xl:text-base">
                                   {item.svg} {item.name}
                                 </NavLink>
                               </li>
@@ -608,6 +676,7 @@ function Navbar() {
                       </div>
                     </div>
                   </div>
+                  ):('')}
                 </div>
                 <NavLink to="/LoginSignup">
                 <button className="hidden md:flex items-center font-semibold gap-1 text-sm xl:text-base cursor-pointer">

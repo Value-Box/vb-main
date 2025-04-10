@@ -1,12 +1,16 @@
 import React, { useState,useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import LoginImage from "/src/Images/LoginImage.png";
 import Input from '../../Components/Input';
 import FormButton from '../../Components/FormButton';
 import InfoSection from '../../Components/InfoSection';
+import { auth, provider } from '../../firebaseConfig';
+import { signInWithPopup } from "firebase/auth";
 
 
 function LoginSignup() {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false); 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -30,6 +34,24 @@ function LoginSignup() {
         }
       }, [ResetPasswordPopup]);
  
+      useEffect(() => {
+        // If already logged in, redirect
+        const user = localStorage.getItem("user");
+        if (user) {
+          navigate("/");
+        }
+      }, [navigate]);
+
+      const handleGoogleLogin = async () => {
+        try {
+          const result = await signInWithPopup(auth, provider);
+          localStorage.setItem("user", JSON.stringify(result.user));
+          navigate("/");
+        } catch (err) {
+          console.error("Login failed:", err);
+        }
+      };
+
   return (
     <>
     <div className="bg-[#D1FADF] py-2 text-center flex items-center justify-center gap-2 block md:hidden">
@@ -120,7 +142,7 @@ function LoginSignup() {
        <div className="flex-1 h-px bg-gray-300"></div>
        </div>
        <div className='flex flex-col gap-3 mt-5'>
-       <FormButton className="bg-white font-semibold text-black border border-gray-300 !rounded-full py-2 px-4 w-full mb-1 cursor-pointer">
+       <FormButton onClick={handleGoogleLogin} className="bg-white font-semibold text-black border border-gray-300 !rounded-full py-2 px-4 w-full mb-1 cursor-pointer">
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 36 36" fill="none">
     <path d="M32.7083 15.0623H31.5V15H18V21H26.4773C25.2405 24.4928 21.9172 27 18 27C13.0297 27 9 22.9702 9 18C9 13.0297 13.0297 9 18 9C20.2943 9 22.3815 9.8655 23.9708 11.2792L28.2135 7.0365C25.5345 4.53975 21.951 3 18 3C9.71625 3 3 9.71625 3 18C3 26.2838 9.71625 33 18 33C26.2838 33 33 26.2838 33 18C33 16.9943 32.8965 16.0125 32.7083 15.0623Z" fill="#FFC107"/>
     <path d="M4.72656 11.0183L9.65481 14.6325C10.9883 11.331 14.2178 9 17.9971 9C20.2913 9 22.3786 9.8655 23.9678 11.2793L28.2106 7.0365C25.5316 4.53975 21.9481 3 17.9971 3C12.2356 3 7.23906 6.25275 4.72656 11.0183Z" fill="#FF3D00"/>
@@ -131,7 +153,7 @@ function LoginSignup() {
 </FormButton>
 <FormButton className="bg-white font-semibold text-black border border-gray-300 !rounded-full py-2 px-4 w-full mb-1 cursor-pointer">
 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 36 36" fill="none">
-  <g clip-path="url(#clip0_11160_31316)">
+  <g clipPath="url(#clip0_11160_31316)">
     <path d="M36 18C36 8.05894 27.9411 0 18 0C8.05894 0 0 8.05894 0 18C0 26.9842 6.58237 34.431 15.1875 35.7813V23.2031H10.6172V18H15.1875V14.0344C15.1875 9.52312 17.8748 7.03125 21.9864 7.03125C23.9558 7.03125 26.0156 7.38281 26.0156 7.38281V11.8125H23.7459C21.5099 11.8125 20.8125 13.2 20.8125 14.6236V18H25.8047L25.0066 23.2031H20.8125V35.7813C29.4176 34.431 36 26.9844 36 18Z" fill="#1877F2"/>
     <path d="M25.0066 23.2031L25.8047 18H20.8125V14.6236C20.8125 13.1999 21.5099 11.8125 23.7459 11.8125H26.0156V7.38281C26.0156 7.38281 23.9558 7.03125 21.9863 7.03125C17.8748 7.03125 15.1875 9.52313 15.1875 14.0344V18H10.6172V23.2031H15.1875V35.7813C16.1179 35.9271 17.0582 36.0002 18 36C18.9418 36.0002 19.8821 35.9271 20.8125 35.7813V23.2031H25.0066Z" fill="white"/>
   </g>
@@ -169,8 +191,7 @@ function LoginSignup() {
     setIsClosing(true)
     setTimeout(()=>{
     setIsModalOpen(false);
-   isMapTrue(false); 
-},600)
+},390)
   }}>
     <div className={`${isClosing?'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] w-[600px] p-5 flex flex-col items-start gap-4 rounded-lg shadow-lg relative`}>
        {/* Close Icon */}
@@ -180,8 +201,7 @@ function LoginSignup() {
     setIsClosing(true)
     setTimeout(()=>{
     setIsModalOpen(false);
-   isMapTrue(false); 
-},600)
+},390)
   }}
 
 
