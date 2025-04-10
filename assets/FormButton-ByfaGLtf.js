@@ -1,0 +1,1 @@
+import{j as n}from"./index-CX-S0rsR.js";function u({children:t,onClick:e,className:r,type:o="button"}){return n.jsx("button",{type:o,onClick:e,className:`flex items-center justify-center gap-2 px-4 py-1.5 2xl:py-2 w-full border rounded-md ${r}`,children:t})}export{u as F};
