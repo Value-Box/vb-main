@@ -7,11 +7,15 @@ import BundleDeal from '../Components/Deals/BundleDeal';
 import FlashDeal from '../Components/Deals/FlashDeal';
 import TrendyFashion from '../Components/Deals/TrendyFashion';
 import OneDollarShop from '../Components/Deals/OneDollarShop';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Input from '../Components/Input';
 import FormButton from '../Components/FormButton';
+import { auth, provider } from '../firebaseConfig';
+import { signInWithPopup } from "firebase/auth";
 
 function Home() {
+
+
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
 
@@ -38,16 +42,17 @@ function Home() {
 
       const [showModal, setShowModal] = useState(false);
       const [isClosing, setIsClosing] = useState(false);
+
       useEffect(() => {
         // Remove 'hasVisited' when project starts (not on reload)
         if (!sessionStorage.getItem("sessionStarted")) {
           localStorage.removeItem("hasVisited");
           sessionStorage.setItem("sessionStarted", "true");
         }
-    
         const hasVisited = localStorage.getItem("hasVisited");
-    
-        if (!hasVisited) {
+        // If user has not visited, show modal after 3 seconds
+        const user = localStorage.getItem("user");
+        if (!user && !hasVisited) {
           setTimeout(() => {
             setShowModal(true);
             localStorage.setItem("hasVisited", "true"); // Store so modal doesn't show again
@@ -57,6 +62,31 @@ function Home() {
     
       const [visible, setVisible] = useState(true);
       
+      const navigate = useNavigate();
+      useEffect(() => {
+              // If already logged in, redirect
+              const user = localStorage.getItem("user");
+              if (user) {
+                navigate("/");
+                setShowModal(false)
+              }
+            }, [navigate]);
+      
+            const handleGoogleLogin = async () => {
+              try {
+                console.log('clicked google')
+                const result = await signInWithPopup(auth, provider);
+                localStorage.setItem("user", JSON.stringify(result.user));
+                navigate("/");
+                setIsClosing(true)
+         setTimeout(()=>{
+         setShowModal(false);
+      },390)
+              } catch (err) {
+                console.error("Login failed:", err);
+              }
+            };
+
   return (
     <div>
     <HorizentolCategories  />
@@ -287,7 +317,7 @@ function Home() {
 </svg>
   <span className="text-center text-sm 2xl:text-base flex-1">Phone</span>
 </FormButton>
-       <FormButton className="bg-white font-semibold text-black border border-gray-300 !rounded-full 2xl:py-2 px-4 w-full mb-1 cursor-pointer">
+       <FormButton onClick={handleGoogleLogin} className="bg-white font-semibold text-black border border-gray-300 !rounded-full 2xl:py-2 px-4 w-full mb-1 cursor-pointer">
   <svg xmlns="http://www.w3.org/2000/svg" className='w-5 sm:w-6' viewBox="0 0 36 36" fill="none">
     <path d="M32.7083 15.0623H31.5V15H18V21H26.4773C25.2405 24.4928 21.9172 27 18 27C13.0297 27 9 22.9702 9 18C9 13.0297 13.0297 9 18 9C20.2943 9 22.3815 9.8655 23.9708 11.2792L28.2135 7.0365C25.5345 4.53975 21.951 3 18 3C9.71625 3 3 9.71625 3 18C3 26.2838 9.71625 33 18 33C26.2838 33 33 26.2838 33 18C33 16.9943 32.8965 16.0125 32.7083 15.0623Z" fill="#FFC107"/>
     <path d="M4.72656 11.0183L9.65481 14.6325C10.9883 11.331 14.2178 9 17.9971 9C20.2913 9 22.3786 9.8655 23.9678 11.2793L28.2106 7.0365C25.5316 4.53975 21.9481 3 17.9971 3C12.2356 3 7.23906 6.25275 4.72656 11.0183Z" fill="#FF3D00"/>
