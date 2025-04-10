@@ -10,7 +10,7 @@ import { signInWithPopup } from "firebase/auth";
 
 function LoginSignup() {
   const navigate = useNavigate();
-
+  const [email,setEmail]=useState('')
   const [showPassword, setShowPassword] = useState(false); 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -52,9 +52,66 @@ function LoginSignup() {
         }
       };
 
+      const [users,setusers]=useState([])
+
+      useEffect(()=>{
+        fetch('https://67f655d642d6c71cca61951f.mockapi.io/dummyapis/Users').
+        then((res)=>res.json()).
+        then((result)=>{
+          setusers(result)
+        }).catch((err)=>{
+          console.log(err)
+        })
+      },[])
+
+      // useEffect(()=>{
+      //   console.log(email)
+      // },[email])
+
+      const signUp=async ()=>{
+        try {
+          const response=await fetch('https://67f655d642d6c71cca61951f.mockapi.io/dummyapis/Users',{
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json',
+            },
+            body:JSON.stringify({email}),
+          });
+
+          if(response.ok){
+            const newUserData = await response.json();
+            setusers([...users,newUserData ]);
+            console.log(newUserData)
+            if (newUserData) {
+              window.localStorage.setItem('user', JSON.stringify(newUserData)); // Store in localStorage
+            }
+            setEmail('')
+            navigate('/')
+          }else{
+            alert('Failed to add user')
+          }
+        } catch (error) {
+          console.error('Error during sign-up:', error);
+        }
+      }
+
+      const submit=()=>{
+        // setShowPassword(true);
+        const isEmailExist=users.find((user)=>user.email===email)
+        console.log(isEmailExist)
+        if(!isEmailExist){
+          signUp()
+        }else {
+          window.localStorage.setItem('user', JSON.stringify(isEmailExist));
+          navigate('/')
+          setEmail('')
+        }
+        
+      }
+
   return (
     <>
-    <div className="bg-[#D1FADF] py-2 text-center flex items-center justify-center gap-2 block md:hidden">
+    <div className="bg-[#D1FADF] py-2 text-center items-center justify-center gap-2 block md:hidden">
   <div className="w-4 h-4 flex items-center justify-center bg-[#12B76A] rounded-full border border-[#12B76A]">
     <svg
       className="w-3 h-3 text-white"
@@ -105,7 +162,7 @@ function LoginSignup() {
           {!showPassword ? (
               <div className="mb-4">
                 <label className="block text-blue-900">Email</label>
-                <Input type="text" placeholder="Enter your email" />
+                <Input type="email" placeholder="Enter your email" value={email} onChange={(e)=>setEmail(e.target.value)} />
               </div>
             ) : (
               <div className="mb-4">
@@ -115,10 +172,7 @@ function LoginSignup() {
             )}
 
             <FormButton
-              onClick={(e) => {
-                e.preventDefault(); 
-                setShowPassword(true); 
-              }}
+              onClick={submit}
               className="bg-blue-900 text-white w-full mb-1 cursor-pointer"
             >
               Continue

@@ -519,7 +519,7 @@ function Navbar() {
                   >
                     <img
                       className="size-8 rounded-full max-w-none"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src={user?user.avatar:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'}
                       alt=""
                     />
                     <div className="hidden md:block">
@@ -528,7 +528,7 @@ function Navbar() {
                       </p>
                       <span className="text-[#1A1A1A] font-semibold text-[13px] lg:text-sm xl:text-base flex items-center">
                         {/* Muhammad Arshad */}
-                        {user?(user.displayName):('Login Sign/Up')}
+                        <p className="truncate min-w-[111px] max-w-[120px] xl:min-w-[136px] xl:max-w-[150px] flex">{user?(user.displayName):('Login Sign/Up')}</p>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"

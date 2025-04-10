@@ -14,7 +14,7 @@ function LoginNavbar() {
     <div className="relative flex items-center justify-between py-2">
      
       <div className="flex items-center">
-        <NavLink>
+        <NavLink to='/'>
           <img className="xl:h-10 h-8 w-auto sm:mr-4" src={Logo} alt="Your Company" />
         </NavLink>
       </div>

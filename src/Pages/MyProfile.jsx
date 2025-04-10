@@ -143,20 +143,19 @@ function MyProfile() {
 
   return (
     <div className='bg-natural-0'>
-    <div className='flex gap-2 sm:gap-4 md:p-6 max-w-[1920px] mx-auto'>
+    <div className='flex gap-2 sm:gap-4 md:p-3 xl:p-6 max-w-[1920px] mx-auto'>
         <div className='hidden md:block'>
             <AccountSideBar/>
         </div>
-        <div className='w-full'>
-        <div className="">
-      <div className=" bg-white border border-natural-color sm:rounded-lg p-4">
+        <div className='flex-1 min-w-0'>
+      <div className=" bg-white border border-natural-color sm:rounded-lg p-2 sm:p-4">
         <div className='flex items-center space-x-4'>
         <img
   src={profileImage}
   alt="profile"
-  className="w-30 h-30 rounded-full"
+  className="w-20 xs:w-25 sm:w-30 h-20 xs:h-25 sm:h-30 rounded-full"
 />
-        <div>
+        <div className='w-full lg:w-auto'>
         <h2 className="text-lg font-semibold flex gap-1.5">
         {name} <button onClick={()=>openModal('editProfile')}>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
@@ -164,12 +163,14 @@ function MyProfile() {
   <path d="M15.9039 7.99576L12.4997 4.59076M5.69141 13.6691V11.8649C5.69307 11.5674 5.81141 11.2816 6.02057 11.0708L13.9639 3.12743C14.0693 3.02085 14.1948 2.93624 14.3331 2.8785C14.4714 2.82075 14.6198 2.79102 14.7697 2.79102C14.9196 2.79102 15.068 2.82075 15.2064 2.8785C15.3447 2.93624 15.4702 3.02085 15.5756 3.12743L17.3681 4.91993C17.4747 5.02533 17.5593 5.15082 17.617 5.28915C17.6748 5.42747 17.7045 5.57587 17.7045 5.72576C17.7045 5.87566 17.6748 6.02406 17.617 6.16238C17.5593 6.30071 17.4747 6.4262 17.3681 6.5316L9.42474 14.4749C9.21352 14.6847 8.92825 14.8029 8.63057 14.8041H6.82641C6.6773 14.8043 6.52961 14.7751 6.3918 14.7181C6.254 14.6612 6.12879 14.5776 6.02335 14.4722C5.91791 14.3667 5.83432 14.2415 5.77736 14.1037C5.7204 13.9659 5.69119 13.8182 5.69141 13.6691Z" stroke="#999999" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
             </button></h2>
-          <div className='flex justify-between items-center gap-1 mt-3 text-sm sm:text-base text-natural-gray'>
-          <p className=" text-center sm:w-24"><span className='text-natural-black text-lg md:text-2xl'>{reviews[0].totalReviews}</span><br/> Total Reviews</p>
+          <div className='flex md:justify-between items-center gap-3 md:gap-1 mt-3 text-sm sm:text-base text-natural-gray'>
+          <p className=" text-center lg:w-24"><span className='text-natural-black text-lg md:text-2xl'>{reviews[0].totalReviews}</span><br/> Total Reviews</p>
           <p className='bg-natural-gray-20 w-px h-8'></p>
-          <p className=" text-center sm:w-24"><span className='text-natural-black text-lg md:text-2xl'>{reviews[0].likes}</span><br/> Likes</p>
+
+          <p className=" text-center lg:w-24"><span className='text-natural-black text-lg md:text-2xl'>{reviews[0].likes}</span><br/> Likes</p>
           <p className='bg-natural-gray-20 w-px h-8'></p>
-          <p className=" text-center sm:w-24"><span className='text-natural-black text-lg md:text-2xl'>{reviews[0].helpfuls}</span><br/> Helpfuls</p>
+
+          <p className=" text-center lg:w-24"><span className='text-natural-black text-lg md:text-2xl'>{reviews[0].helpfuls}</span><br/> Helpfuls</p>
           </div>
         </div>
         </div>
@@ -178,7 +179,7 @@ function MyProfile() {
   <path d="M12 17C12.5304 17 13.0391 16.7893 13.4142 16.4142C13.7893 16.0391 14 15.5304 14 15C14 14.4696 13.7893 13.9609 13.4142 13.5858C13.0391 13.2107 12.5304 13 12 13C11.4696 13 10.9609 13.2107 10.5858 13.5858C10.2107 13.9609 10 14.4696 10 15C10 15.5304 10.2107 16.0391 10.5858 16.4142C10.9609 16.7893 11.4696 17 12 17ZM18 8C18.5304 8 19.0391 8.21071 19.4142 8.58579C19.7893 8.96086 20 9.46957 20 10V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58579 21.4142C4.21071 21.0391 4 20.5304 4 20V10C4 9.46957 4.21071 8.96086 4.58579 8.58579C4.96086 8.21071 5.46957 8 6 8H7V6C7 4.67392 7.52678 3.40215 8.46447 2.46447C9.40215 1.52678 10.6739 1 12 1C12.6566 1 13.3068 1.12933 13.9134 1.3806C14.52 1.63188 15.0712 2.00017 15.5355 2.46447C15.9998 2.92876 16.3681 3.47995 16.6194 4.08658C16.8707 4.69321 17 5.34339 17 6V8H18ZM12 3C11.2044 3 10.4413 3.31607 9.87868 3.87868C9.31607 4.44129 9 5.20435 9 6V8H15V6C15 5.20435 14.6839 4.44129 14.1213 3.87868C13.5587 3.31607 12.7956 3 12 3Z" fill="#12B76A"/>
 </svg> Your information and privacy will be kept secure and uncompromised.</p>
       </div>
-      <div className="mt-4 pt-4 bg-white border border-natural-color sm:rounded-lg p-4">
+      <div className="mt-4 pt-4 bg-white border border-natural-color sm:rounded-lg p-2 sm:p-4">
         <h3 className="text-md font-semibold">Your Reviews</h3>
         {reviews[0].reviews.map((review, index) => (
           <div key={index} className="mt-2 p-3 border rounded-md border-natural-color">
@@ -251,7 +252,7 @@ function MyProfile() {
           </div>
         ))}
       </div>
-    </div>
+   
         </div>
 
         {activeModal === "editProfile" && (
