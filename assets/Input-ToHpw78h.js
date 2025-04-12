@@ -1,0 +1,2 @@
+import{j as x}from"./index-BZZ9LIDx.js";function a({type:r,placeholder:e,name:t,value:n="",checked:o="",onChange:s,className:u="",id:p=""}){return x.jsx("input",{id:p,name:t,checked:o,type:r,value:n,onChange:s,placeholder:e,className:`w-full flex px-2 2xl:px-4 py-1.5 2xl:py-2 items-center gap-3 self-stretch rounded-md border border-gray-300
+        bg-white text-gray-700 focus:outline-none focus:ring-0 focus:ring-gray-400 ${u}`})}export{a as I};
