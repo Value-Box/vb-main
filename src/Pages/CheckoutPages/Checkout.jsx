@@ -375,13 +375,13 @@ const [showOffersModal, setShowOffersModal] = useState(false);
     const [inviteCheckBox,setInviteCheckBox]=useState(false)
     return (
     <>
- <div className="w-full p-7.5 bg-[#FCFCFC] hidden md:flex justify-center">
-      <div className="flex flex-col items-start md:flex-row gap-10">
+ <div className="w-full p-3 lg:p-5 2xl:p-7.5 bg-[#FCFCFC] hidden md:flex justify-center">
+      <div className="min-w-0 flex flex-col items-start md:flex-row gap-3 lg:gap-5 2xl:gap-10">
         {/* Left Section - col-9 */}
-        <div className="w-full md:w-3/4 space-y-5">
+        <div className="w-full md:w-3/5 lg:w-3/4 space-y-5">
           {/* Two Equal Columns inside col-9 */}
-          <div className="flex flex-col md:flex-row gap-5">
-            <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5">
+          <div className="flex flex-col lg:flex-row gap-5">
+            <div className="w-full lg:w-1/2 flex flex-col bg-white p-3 lg:p-5 rounded-lg border-1 border-[#CCC] gap-5">
               <h3 className="text-[24px] font-semibold">Shipping Address</h3>
               <div className="relative p-2.5 rounded-[10px] border-[1px] border-dashed border-gray-400 pl-5 space-y-[5px]">
               <div className="flex justify-between items-center">
@@ -410,7 +410,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
               </div>
            </div>
              </div>
-           <div className="w-full md:w-1/2 flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5">
+           <div className="w-full lg:w-1/2 flex flex-col bg-white p-3 lg:p-5 rounded-lg border-1 border-[#CCC] gap-5">
               <h3 className="text-[20px] font-normal">Delivery Time: 7-11 Business Days</h3>
               <hr className="border-t-[1px] border-[#CCD1D2]" />
             <p className="flex gap-1 text-[18px] items-center font-semibold"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -449,7 +449,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
        </div>
          </div>
           </div>
-          <div className="w-full flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5">
+          <div className="w-full flex flex-col bg-white p-3 lg:p-5 rounded-lg border-1 border-[#CCC] gap-5">
           <h3 className="text-[24px] font-semibold">Payment Method</h3>
         
           <div className="flex gap-2.5 items-baseline">
@@ -661,7 +661,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
        
   
        </div>
-            <div className="w-full flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5">
+            <div className="w-full flex flex-col bg-white p-3 lg:p-5 rounded-lg border-1 border-[#CCC] gap-5">
             <div className="w-full flex flex-col gap-1">
            <label className="text-gray-600 text-[16px] font-medium">Order Note (Optional)<span className="text-yellow-400">*</span></label>
            <Input
@@ -674,7 +674,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
               </div>
              <div>
              <h3 className="text-[20px] font-semibold">ORDER ITEMS</h3>
-             <div className="mt-4 min-h-screen">
+             <div className="mt-4">
   <div className="bg-white rounded-lg border border-[#CCD1D2] overflow-hidden">
     <div className='flex items-center justify-between gap-1.5 bg-[#F2F2F2] p-2 '>
       <div className="flex items-center gap-1.5">
@@ -970,7 +970,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
         </div>
 
         {/* Right Section - col-3 */}
-        <div className="sticky top-20 w-full md:w-1/4 flex flex-col bg-white p-5 rounded-lg border-1 border-[#CCC] gap-5 min-h-0 h-auto">
+        <div className="sticky top-17 w-full md:w-2/5 lg:w-1/4 flex flex-col bg-white p-3 lg:p-5 rounded-lg border-1 border-[#CCC] gap-3 2xl:gap-5 min-h-0 h-auto">
         <h1 className='text-md md:text-xl 2xl:text-2xl font-bold'>Order Summery</h1>
         
     <div className="flex items-center ">
@@ -1006,7 +1006,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
   <path d="M10 8L14 12L10 16" stroke="#002882" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
   </div>
-  <div className="flex flex-col gap-5 text-sm">
+  <div className="flex flex-col gap-2 lg:gap-5 text-sm">
     <div className="flex justify-between text-[#1A1A1A] font-medium">
       <span>Item(s) Total</span>
       <span className="line-through text-[#999] ">PKR 24,900</span>
@@ -1069,8 +1069,14 @@ const [showOffersModal, setShowOffersModal] = useState(false);
       </div>
       {/* Modal 1 */}
       {isModalOpen && (
-        <div className=" fixed inset-0 flex items-center p-4 justify-center bg-black/70 "  >
-          <div className={`${isClosing?'animate-flyout':'animate-wiggle'} relative bg-white rounded-2xl shadow-lg`}>
+        <div className=" fixed inset-0 flex items-center p-4 justify-center bg-black/70 "  onClick={() => {
+          setIsClosing(true);
+      setTimeout(()=>{
+        setIsModalOpen(false);
+        isMapTrue(false); 
+      },400)
+        }}>
+          <div className={`${isClosing?'animate-flyout':'animate-wiggle'} min-w-0 relative bg-white rounded-2xl shadow-lg`} onClick={(e)=>e.stopPropagation()}>
             {/* Modal Header */}
             <div className="flex justify-end items-center">
             <button  className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
@@ -1079,7 +1085,7 @@ const [showOffersModal, setShowOffersModal] = useState(false);
 setTimeout(()=>{
   setIsModalOpen(false);
   isMapTrue(false); 
-},600)
+},400)
   }}
 >
   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1160,7 +1166,6 @@ setTimeout(()=>{
                 </div>
               </div>
               ):(
-                
                 <div className="p-4">
                   <table className="w-[1000px] border-collapse rounded-2xl text-sm overflow-hidden">
                 <thead className="bg-gray-200">
@@ -1214,38 +1219,42 @@ setTimeout(()=>{
                   ))}
                 </tbody>
               </table>
-              <div className="flex justify-end mt-5 w-full">
-  <div className="flex gap-2">
-    <FormButton
-      onClick={() => setIsModalOpen(false)}
-      className="bg-gray-300 border-0 text-[#666]"
-    >
-      Cancel
-    </FormButton>
-    <FormButton className="bg-[#002882] text-white">
-      Confirm
-    </FormButton>
-  </div>
-</div>
                 </div>
               )}
+             
   
 </div>
 
-
-
-
-
-
            {/* Modal Footer */}
 
-
+           <div className="flex justify-end gap-2 p-2 mr-3">
+    <FormButton
+      onClick={() => {
+        setIsClosing(true)
+    setTimeout(()=>{
+      setIsModalOpen(false);
+      isMapTrue(false); 
+    },400)
+      }}
+      className="bg-gray-300 border-0 text-[#666] w-max"
+    >
+      Cancel
+    </FormButton>
+    <FormButton className="bg-[#002882] text-white w-max">
+      Confirm
+    </FormButton>
+  </div>
           </div>
         </div>
       )}
       {/* Modal 2 */}
        {isOpen && (
-       <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 ">
+       <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 " onClick={() => {
+        setIsClosing(true)
+        setTimeout(()=>{
+          setIsOpen(false)
+        },390)
+      }}>
         <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} `}>
 
        
@@ -1368,7 +1377,7 @@ setTimeout(()=>{
             setIsClosing(true)
             setTimeout(()=>{
               setIsOpen(false)
-            },600)
+            },390)
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1435,7 +1444,12 @@ setTimeout(()=>{
       )}
        {/* Modal 3 */}
        {isInstalmentModalOpen && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black/70 "  onClick={() => setIsInstalmentModalOpen(false)}>
+  <div className="fixed inset-0 flex items-center justify-center bg-black/70 "  onClick={() => {
+    setIsClosing(true)
+    setTimeout(()=>{
+      setIsInstalmentModalOpen(false)
+    },390)
+  }}>
     <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] relative flex flex-col`} onClick={(e)=>e.stopPropagation()}>
       
       {/* Close Button */}
@@ -1444,14 +1458,8 @@ setTimeout(()=>{
         setIsClosing(true)
         setTimeout(()=>{
           setIsInstalmentModalOpen(false)
-        },600)
+        },390)
       }}
-
-
-
-         
-         
-  
 >
   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
     <g clipPath="url(#clip0_7110_94001)">
@@ -1544,7 +1552,12 @@ setTimeout(()=>{
       )}
        {/* Modal 4 */}
        {isCardModalOpen && (
-    <div className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 ">
+    <div className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 " onClick={() => {
+      setIsClosing(true)
+      setTimeout(()=>{
+      setIsCardModalOpen(false)
+      },390)
+    }}>
     {billingAddressOpen ? (  
       
       <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative `}>
@@ -1608,7 +1621,7 @@ setTimeout(()=>{
             setIsClosing(true)
             setTimeout(()=>{
             setIsCardModalOpen(false)
-            },600)
+            },390)
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1864,7 +1877,7 @@ setTimeout(()=>{
           setIsClosing(true);
           setTimeout(()=>{
           setShowOffersModal(false)
-          },600);
+          },390);
         }}>
         <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-white p-6 rounded-lg shadow-lg w-[430px] relative`}>
         <div className="max-w-lg mx-auto ">
@@ -1875,7 +1888,7 @@ setTimeout(()=>{
           setIsClosing(true);
           setTimeout(()=>{
           setShowOffersModal(false)
-          },600);
+          },390);
         }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1964,7 +1977,7 @@ setTimeout(()=>{
 </div>
 {/* Mobile View */}
  <div className="flex md:hidden">
- <div className="max-w-md mx-auto bg-[#F2F2F2] shadow-lg rounded-lg border">
+ <div className="w-full bg-[#F2F2F2] shadow-lg rounded-lg">
       {/* Header */}
       <div className="flex items-center border-b border-[#F2F2F2] bg-[#FCFCFC] px-2 py-4">
         <button className="mr-2 text-gray-600 text-xl"> <NavLink to="/AddToCart">

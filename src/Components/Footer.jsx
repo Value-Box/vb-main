@@ -3,8 +3,8 @@ import GooglePlay from "/src/Images/GooglePlay.svg";
 import PlayStore from "/src/Images/PlayStore.svg";
 import Logo from "/src/Images/Logo.png";
 // import {visa,mastercard,discover,americanexpress,jcb,applePay,GooglePay} from "/src/Images";
-
 import Logos from "/src/Images/Logos.png";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const [openDropDown, setOpenDropDown] = useState(null);
@@ -181,9 +181,9 @@ function Footer() {
         : "opacity-0 scale-y-0 h-[0px]"
     }`}
               >
-                <a className=" " href="">
+                <Link className=" " to="/CompanyPolicy">
                   Support center & FAQ’s
-                </a>
+                </Link>
                 <a className=" " href="">
                   Safety Center
                 </a>
@@ -192,9 +192,9 @@ function Footer() {
                 </a>
               </nav>
               <nav className="hidden sm:flex flex-col mt-4 space-y-1 2xl:space-y-2 2xl:text-base text-sm text-[#CCC] 2xl:font-medium">
-                <a className=" " href="">
+                <Link className=" " to="/CompanyPolicy">
                   Support center & FAQ’s
-                </a>
+                </Link>
                 <a className=" " href="">
                   Safety Center
                 </a>
@@ -272,7 +272,7 @@ function Footer() {
                     </svg>{" "}
                     Low stock items alerts
                   </a>
-                  <a className="flex gap-2 items-center" href="">
+                  <Link className="flex gap-2 items-center" to="/CouponOffers">
                     <svg
                       className="w-[18px] 2xl:w-[24px]"
                       xmlns="http://www.w3.org/2000/svg"
@@ -289,7 +289,7 @@ function Footer() {
                       />
                     </svg>{" "}
                     Coupons & offers alerts
-                  </a>
+                  </Link>
                 </div>
 
                 <a className="mt-2" href="" >
@@ -343,7 +343,7 @@ function Footer() {
                     </svg>{" "}
                     Low stock items alerts
                   </a>
-                  <a className="flex gap-2 items-center" href="">
+                  <Link className="flex gap-2 items-center" to="/CouponOffers">
                     <svg
                       className="w-[18px] 2xl:w-[24px]"
                       xmlns="http://www.w3.org/2000/svg"
@@ -360,7 +360,7 @@ function Footer() {
                       />
                     </svg>{" "}
                     Coupons & offers alerts
-                  </a>
+                  </Link>
                 </div>
 
                 <a className="mt-2" href="" >

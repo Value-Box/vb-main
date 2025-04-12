@@ -122,7 +122,7 @@ const Layout=()=>{
   `}
   onClick={scrollTop}
 >
-  <span className="relative flex h-[50px] w-[50px] items-center bg-[#002882] sm:bg-white justify-center overflow-hidden shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#002882] before:duration-500 before:ease-out group-hover:shadow-[#002882] group-hover:before:h-[50px] group-hover:before:w-[50px]">
+  <span className="relative flex h-[50px] w-[50px] items-center bg-[#002882] sm:bg-[#E6EAF3] justify-center overflow-hidden shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#002882] before:duration-500 before:ease-out group-hover:shadow-[#002882] group-hover:before:h-[50px] group-hover:before:w-[50px]">
     <svg
       className="relative z-10 text-white sm:text-[#002882] group-hover:text-white transition-colors duration-300"
 

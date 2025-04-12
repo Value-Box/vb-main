@@ -161,7 +161,7 @@ const parentWithSubcategories = parentCategory.map(parent => ({
   
 
   return (
-    <div className="ml-2 sm:ml-0 relative py-1 group" ref={dropdownRef}>
+    <div className="ml-2 sm:ml-0 relative group" ref={dropdownRef}>
       
       {/* Button for mobile */}
       <button
