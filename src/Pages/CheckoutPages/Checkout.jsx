@@ -311,6 +311,8 @@ const bankData = {
 // modal 4
 const [isCardModalOpen, setIsCardModalOpen] = useState(false);
  const [billingAddressOpen, setbillingAddressOpen] = useState(false);
+ const [cvv, setCvv] = useState('');
+
 // modal 5
 const [showOffersModal, setShowOffersModal] = useState(false);
 // mobile view
@@ -1249,16 +1251,15 @@ setTimeout(()=>{
       )}
       {/* Modal 2 */}
        {isOpen && (
-       <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 " onClick={() => {
-        setIsClosing(true)
-        setTimeout(()=>{
-          setIsOpen(false)
-        },390)
+       <div className="fixed inset-0 flex items-center p-10 justify-center bg-black/70 " 
+       onClick={() => {
+        setIsClosing(true);
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 390);
       }}>
-        <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} `}>
-
-       
-       {formOpen ? (  
+      <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} `}  onClick={(e) => e.stopPropagation()} >
+     {formOpen ? (  
        <div className="bg-[#FCFCFC] p-4 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative">
        <h2 className="text-[24px] font-semibold mb-2">Add New Address</h2>
     
@@ -1341,43 +1342,50 @@ setTimeout(()=>{
     
       {/* Close Button */}
       <button 
-        className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
-        onClick={() => { 
-          setIsClosing(true)
-          setTimeout(()=>{
-            setIsOpen(false); setFormOpen(false);
-          },600)
-         } }
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-          <g clipPath="url(#clip0_7135_111246)">
-            <rect width="36" height="36" fill="url(#paint0_radial_7135_111246)"/>
-            <path d="M18 0C7.97143 0 0 7.97143 0 18C0 28.0286 7.97143 36 18 36C28.0286 36 36 28.0286 36 18C36 7.97143 28.0286 0 18 0ZM24.9429 27L18 20.0571L11.0571 27L9 24.9429L15.9429 18L9 11.0571L11.0571 9L18 15.9429L24.9429 9L27 11.0571L20.0571 18L27 24.9429L24.9429 27Z" fill="#002882"/>
-          </g>
-          <defs>
-            <radialGradient id="paint0_radial_7135_111246" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 18) rotate(90) scale(18)">
-              <stop offset="0.80208" stop-color="white"/>
-              <stop offset="1" stop-color="white" stop-opacity="0"/>
-            </radialGradient>
-            <clipPath id="clip0_7135_111246">
-              <rect width="36" height="36" fill="white"/>
-            </clipPath>
-          </defs>
-        </svg>
-      </button>
+  className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
+  onClick={() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setFormOpen(false);
+      setIsOpen(false);
+    }, 390); // animation duration
+    setTimeout(() => {
+      setIsClosing(false); // reset after it's unmounted
+    }, 400); // just after unmounting
+  }}
+>
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <g clipPath="url(#clip0_7135_111246)">
+    <rect width="36" height="36" fill="url(#paint0_radial_7135_111246)"/>
+    <path d="M18 0C7.97143 0 0 7.97143 0 18C0 28.0286 7.97143 36 18 36C28.0286 36 36 28.0286 36 18C36 7.97143 28.0286 0 18 0ZM24.9429 27L18 20.0571L11.0571 27L9 24.9429L15.9429 18L9 11.0571L11.0571 9L18 15.9429L24.9429 9L27 11.0571L20.0571 18L27 24.9429L24.9429 27Z" fill="#002882"/>
+  </g>
+  <defs>
+    <radialGradient id="paint0_radial_7135_111246" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18 18) rotate(90) scale(18)">
+      <stop offset="0.80208" stop-color="white"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clip0_7135_111246">
+      <rect width="36" height="36" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>        
+
+
+
+</button>
+
     </div>
     
     ) : (
       <div className="bg-white p-4 rounded-lg shadow-lg w-[600px] max-w-full min-h-[400px] flex flex-col relative">
-        
-        {/* Close Button */}
+       {/* Close Button */}
         <button 
           className="absolute  -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
           onClick={() => {
-            setIsClosing(true)
-            setTimeout(()=>{
-              setIsOpen(false)
-            },390)
+            setIsClosing(true);
+            setTimeout(() => {
+              setIsOpen(false);
+            }, 390);
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -1447,7 +1455,7 @@ setTimeout(()=>{
   <div className="fixed inset-0 flex items-center justify-center bg-black/70 "  onClick={() => {
     setIsClosing(true)
     setTimeout(()=>{
-      setIsInstalmentModalOpen(false)
+    setIsInstalmentModalOpen(false)
     },390)
   }}>
     <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[700px] relative flex flex-col`} onClick={(e)=>e.stopPropagation()}>
@@ -1457,7 +1465,7 @@ setTimeout(()=>{
       onClick={() => {
         setIsClosing(true)
         setTimeout(()=>{
-          setIsInstalmentModalOpen(false)
+        setIsInstalmentModalOpen(false)
         },390)
       }}
 >
@@ -1559,8 +1567,7 @@ setTimeout(()=>{
       },390)
     }}>
     {billingAddressOpen ? (  
-      
-      <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative `}>
+     <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative `} onClick={(e) => e.stopPropagation()}>
       <h2 className="text-[24px] font-semibold">Billing Address</h2>
     
    
@@ -1591,7 +1598,13 @@ setTimeout(()=>{
       {/* Close Button */}
       <button 
         className="absolute  -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
-        onClick={() => {setIsCardModalOpen(false); setbillingAddressOpen(false) }}
+        onClick={() => {
+          setIsClosing(true)
+          setTimeout(()=>{
+          setIsCardModalOpen(false)
+          setbillingAddressOpen(false)
+          },390)
+        }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
           <g clipPath="url(#clip0_7135_111246)">
@@ -1610,11 +1623,9 @@ setTimeout(()=>{
         </svg>
       </button>
     </div>
-    
     ) : (
-      <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative `}>
-        
-        {/* Close Button */}
+      <div className={`${isClosing? 'animate-flyout':'animate-wiggle'} bg-[#FCFCFC] p-6 rounded-lg shadow-lg w-[600px] max-w-full min-h-[500px] flex flex-col gap-2 relative `}  onClick={(e) => e.stopPropagation()}>
+       {/* Close Button */}
         <button 
           className="absolute -top-3 -right-3 z-1050 w-8 h-8 flex items-center justify-center rounded-full bg-[#002882] text-white"
           onClick={() => {
@@ -1640,8 +1651,7 @@ setTimeout(()=>{
   </defs>
 </svg>
         </button>
-
-        {/* Modal Content */}
+       {/* Modal Content */}
         <h2 className="text-[30px] font-semibold">Add a new card</h2>
         <p className="text-green-600 text-[16px] font-medium flex items-center gap-1">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1828,7 +1838,21 @@ setTimeout(()=>{
         </div>
         <div className="w-1/2">
           <label className="block text-gray-700 font-medium">CVV <span className="text-yellow-400">*</span></label>
-          <Input type="text" className="w-full p-2 border rounded-md" placeholder="3-4 digit code" />
+          <Input
+  type="text"
+  className="w-full p-2 border rounded-md"
+  placeholder="3-digit CVV"
+  value={cvv}
+  onChange={(e) => {
+    const value = e.target.value;
+    if (/^\d{0,3}$/.test(value)) {
+      setCvv(value);
+    }
+  }}
+  maxLength={3}
+  inputMode="numeric"
+/>
+
         </div>
       </div>
       <hr className="border-t-[1px] border-[#CCD1D2]" />

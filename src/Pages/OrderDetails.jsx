@@ -560,23 +560,22 @@ const tooltipRef = useRef(null);
 </div>
 {isOpen && (
         <div
-          className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 backdrop-blur-sm z-999 "
-          onClick={() => setIsOpen(false)}
+        className="fixed inset-0 flex items-center p-6 justify-center bg-black/70 backdrop-blur-sm z-999 "
+        onClick={() => setIsOpen(false)}
         >
-          {/* Modal Box */}
-          <div
+        {/* Modal Box */}
+        <div
             className={`${isClosing?'animate-flyout':'animate-wiggle'} bg-white p-7 rounded-lg shadow-lg w-[500px] relative flex flex-col gap-3`}
             onClick={(e) => e.stopPropagation()} // Prevents closing modal when clicking inside
-          >
+        >
             {/* Close Button */}
             <button 
-        className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
+          className="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full bg-[#002882] text-white"
           onClick={() => {
           setIsClosing(true)
           setTimeout(()=>{
           setIsOpen(false);
-          isMapTrue(false); 
-      },600)
+          },390)
         }}
       >
         ✖
@@ -613,8 +612,7 @@ const tooltipRef = useRef(null);
           </div>
         </div>
       )}
-   
-      </div>
+     </div>
      {!showTrackOrder && !showPaymentDetails ? (
        <div className="flex flex-col gap-5 md:hidden bg-[#FCFCFC] ">
         <div className="w-full bg-white shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.10),0px_2px_4px_-2px_rgba(16,24,40,0.06)]">
