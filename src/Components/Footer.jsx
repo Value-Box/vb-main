@@ -58,7 +58,7 @@ function Footer() {
               <a href="">Press Corner</a>
               <a href="">Careers</a>
               <a href="">ValueBox Billion Tree Program</a>
-              <a href="">Contact Us</a>
+              <Link to="/ContectUs">Contact Us</Link>
             </nav>
 
             <nav className="hidden sm:flex flex-col mt-4 space-y-1 2xl:space-y-2 2xl:text-base text-sm text-[#CCC] 2xl:font-medium">
@@ -77,9 +77,7 @@ function Footer() {
               <a className=" " href="">
                 ValueBox Billion Tree Program
               </a>
-              <a className=" " href="">
-                Contact Us
-              </a>
+              <Link to="/ContectUs">Contact Us</Link>
             </nav>
           </div>
           <div className="flex flex-col sm:items-end md:items-center">
