@@ -43,7 +43,10 @@ const SearchPage =lazy(()=>import("./Pages/SearchPage"))
 const CompanyPolicy =lazy(()=>import("./Pages/CompanyPolicy"))
 const MobCategories =lazy(()=>import("./Pages/MobCategories"))
 const FollowedAndProvider=lazy(()=>import("./Pages/FollowedAndProvider"))
-const SellerStore=lazy(()=>import("./Pages/SellerStore"))
+const SellerStore=lazy(()=>import("./Pages/SellerStore"))  
+const ContectUs=lazy(()=>import("./Pages/ContectUs"))  
+const NotFound=lazy(()=>import("./Pages/NotFound"))  
+
 
 
 
@@ -111,6 +114,8 @@ const Layout=()=>{
           <Route path="/FollowedAndProvider" element={<FollowedAndProvider/>}/>
           <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
           <Route path="/SellerStore" element={<SellerStore/>}/>
+          <Route path="/ContectUs" element={<ContectUs/>}/>
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
         {isLogin?'':<Footer />}
 
