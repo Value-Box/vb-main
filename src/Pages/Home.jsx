@@ -12,6 +12,7 @@ import Input from '../Components/Input';
 import FormButton from '../Components/FormButton';
 import { auth, provider } from '../firebaseConfig';
 import { signInWithPopup } from "firebase/auth";
+import ChatBotPopup from '../Components/Chat';
 
 function Home() {
 
@@ -180,6 +181,8 @@ function Home() {
     {visible && (
     <div className="fixed bottom-1/3 right-5 items-center justify-center w-25 sm:w-30 bg-white p-2 rounded-xl shadow-lg border border-gray-300 z-999">
       {/* Blue Box with GIF */}
+
+      <NavLink to="/FlashDealPage">
       <div className="h-17 sm:h-20 bg-[#002882] rounded-lg flex justify-center items-center">
         <img
           src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXAzbDVrNjB0aDZ2YXUwaTcxcmd1NXlpYzAwcnJ5ZnpvN2FwdXd4NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mIzhcjFBGFmOhkoVEn/giphy.gif"
@@ -187,6 +190,7 @@ function Home() {
           className="w-4/4 h-4/4 object-cover rounded-lg"
         />
       </div>
+      </NavLink>
 
       {/* Close Button */}
       <button
@@ -213,7 +217,7 @@ function Home() {
     </div>
   )}
     </div>
-  
+    <ChatBotPopup/>  
     {showModal && (
  <div 
  className="fixed inset-0 flex items-center p-4 md:p-6 2xl:p-10 justify-center bg-black/70 z-[9999]" 
