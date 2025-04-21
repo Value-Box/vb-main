@@ -440,7 +440,7 @@ function Navbar() {
               <div ref={suggestionContainer} className={`${suggestions.length > 0?'block':'hidden'} absolute right-0 top-[100%] bg-white w-full p-2 shadow-md rounded-b`}>
   {suggestions.length > 0 &&
     suggestions.map((item, index) => (
-      <h1 key={index} className="py-2 text-sm cursor-pointer font-medium hover:text-[#002882]" onClick={()=>{
+      <h1 key={index} className="py-2 text-sm cursor-pointer font-medium hover:text-[#002882]" onMouseDown={()=>{
         setSearchInput(item);
       setSuggestions([])
       }}>
