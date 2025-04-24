@@ -386,7 +386,7 @@ function Footer() {
               <div className="flex mt-1 md:mt-2 lg:mt-3 space-x-3 2xl:space-x-6 lg:text-base text-[#CCC] font-medium">
                 <a
                   className="bg-gradient-to-r from-[#0032A3] via-[#3B66C8] to-[#0032A3] p-1 2xl:p-2 flex items-center justify-center w-[30px] 2xl:w-[40px] h-[30px] 2xl:h-[40px] rounded-full"
-                  href=""
+                  href="https://www.facebook.com/valueboxdotpk/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -422,7 +422,7 @@ function Footer() {
                 </a>
                 <a
                   className="bg-gradient-to-r from-[#0032A3] via-[#3B66C8] to-[#0032A3] p-1 2xl:p-2 flex items-center justify-center w-[30px] 2xl:w-[40px] h-[30px] 2xl:h-[40px] rounded-full"
-                  href=""
+                  href="https://www.instagram.com/valueboxdootpk/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -460,11 +460,11 @@ function Footer() {
                 </a>
                 <a
                   className="bg-gradient-to-r from-[#0032A3] via-[#3B66C8] to-[#0032A3] p-1 2xl:p-2 flex items-center justify-center w-[30px] 2xl:w-[40px] h-[30px] 2xl:h-[40px] rounded-full"
-                  href=""
+                  href="https://www.tiktok.com/@valueboxdotpk"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span className="sr-only"> Twitter </span>
+                  <span className="sr-only"> TikTok </span>
                   <svg className="w-[18px] 2xl:w-[25px] h-[18px] 2xl:h-[25px]"
                     xmlns="http://www.w3.org/2000/svg"
                     width="22"
@@ -496,7 +496,7 @@ function Footer() {
                 </a>
                 <a
                   className="bg-gradient-to-r from-[#0032A3] via-[#3B66C8] to-[#0032A3] p-1 2xl:p-2 flex items-center justify-center w-[30px] 2xl:w-[40px] h-[30px] 2xl:h-[40px] rounded-full"
-                  href=""
+                  href="https://www.youtube.com/channel/UCEn1oQPOc_nlg6HlMM_n7ew"
                   target="_blank"
                   rel="noreferrer"
                 >
