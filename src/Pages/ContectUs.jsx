@@ -111,7 +111,7 @@ function ContectUs() {
       /> 
       <Input onChange={(e)=>console.log(e.target.value)}
         type="text"
-        placeholder="Subject"
+        placeholder="Number"
         className="w-full text-slate-900 rounded-md py-2.5 px-4 border text-sm outline-none focus:border-[#002882]"
       />
       <textarea
